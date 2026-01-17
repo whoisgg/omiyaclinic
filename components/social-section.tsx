@@ -34,7 +34,7 @@ export default function SocialSection() {
   }, [])
 
   return (
-    <section id="social-section" className="relative bg-[#F5F1E8] text-black py-24 px-6 md:px-12 overflow-hidden">
+    <section id="social-section" className="relative bg-lorenzo-cream text-black py-24 px-6 md:px-12 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="relative h-32 flex items-center justify-center mt-16">
           {/* Replaced static image with animated icon switcher */}

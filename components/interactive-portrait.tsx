@@ -3,7 +3,11 @@
 import { useEffect, useRef } from "react"
 import * as THREE from "three"
 
-export default function InteractivePortrait() {
+interface InteractivePortraitProps {
+  children?: React.ReactNode
+}
+
+export default function InteractivePortrait({ children }: InteractivePortraitProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const animationFrameRef = useRef<number>()
@@ -28,6 +32,7 @@ export default function InteractivePortrait() {
     camera.position.z = 1
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    renderer.setClearColor(0xffffff, 1) // Force white clear color
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     container.appendChild(renderer.domElement)
@@ -164,7 +169,7 @@ export default function InteractivePortrait() {
     const baseImage = new THREE.Mesh(new THREE.PlaneGeometry(width, height), baseImageMaterial)
     scene.add(baseImage)
 
-    const bgPlaneMaterial = new THREE.MeshBasicMaterial({ color: 0x1a1f1a, transparent: true })
+    const bgPlaneMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true })
     bgPlaneMaterial.defines = { USE_UV: "" }
 
     bgPlaneMaterial.onBeforeCompile = (shader) => {
@@ -211,10 +216,10 @@ export default function InteractivePortrait() {
 
         // <<< LÓGICA ATUALIZADA PARA ANIMAÇÃO LÍQUIDA (DOMAIN WARPING) >>>
 
-        // 1. Define as cores
-        vec3 colorBg = vec3(1.0);
-        vec3 colorSoftShape = vec3(0.92);
-        vec3 colorLine = vec3(0.8);
+        // 1. Define as cores (White and Gold palette)
+        vec3 colorBg = vec3(1.0); // White base
+        vec3 colorSoftShape = vec3(0.92, 0.90, 0.87); // Slightly darker cream
+        vec3 colorLine = vec3(0.83, 0.69, 0.22); // Brand Gold (#D4AF37)
 
         // 2. Coordenada base da textura (controla o "zoom")
         vec2 uv = vUv * 3.5;
@@ -357,8 +362,14 @@ export default function InteractivePortrait() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 w-full h-full bg-[#1a1f1a] cursor-crosshair overflow-hidden"
+      className="fixed inset-0 w-full h-full bg-white cursor-crosshair overflow-hidden"
       style={{ touchAction: "none" }}
-    ></div>
+    >
+      <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-start">
+        <div className="w-full pl-4 md:pl-6 lg:pl-8 pr-4">
+          {children}
+        </div>
+      </div>
+    </div>
   )
 }

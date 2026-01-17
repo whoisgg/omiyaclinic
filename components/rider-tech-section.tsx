@@ -116,7 +116,7 @@ function HotspotPoint({ spot, isActive, onHover, onLeave }: HotspotPointProps) {
           transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY, ease: "easeOut", delay: 0.2 }}
           className="absolute inset-0 bg-lorenzo-accent/30 rounded-full"
         />
-        <div className="relative w-3 h-3 bg-lorenzo-accent rounded-full shadow-[0_0_15px_rgba(163,230,53,1)] ring-2 ring-black/20" />
+        <div className="relative w-3 h-3 bg-lorenzo-accent rounded-full shadow-[0_0_15px_rgba(212,175,55,1)] ring-2 ring-black/20" />
       </div>
 
       <AnimatePresence>
@@ -130,7 +130,7 @@ function HotspotPoint({ spot, isActive, onHover, onLeave }: HotspotPointProps) {
           >
             {/* Connector Line */}
             <div className="absolute -top-4 left-1/2 w-px h-4 bg-gradient-to-b from-transparent to-lorenzo-accent/50" />
-            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-lorenzo-accent rounded-full shadow-[0_0_10px_#a3e635]" />
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-lorenzo-accent rounded-full shadow-[0_0_10px_rgba(212,175,55,0.8)]" />
 
             {/* Card Container - Glassmorphism & Tech Borders */}
             <div className="relative overflow-hidden rounded-lg bg-black/80 backdrop-blur-xl border border-white/10 shadow-2xl">
@@ -192,7 +192,7 @@ export default function RiderTechSection() {
   const [activeHotspot, setActiveHotspot] = useState<number | null>(null)
 
   return (
-    <section id="tech-specs" className="relative min-h-screen bg-white px-6 md:px-12 overflow-visible py-0 mb-0 pb-24">
+    <section id="tech-specs" className="relative min-h-screen bg-lorenzo-cream px-6 md:px-12 overflow-visible py-0 mb-0 pb-24">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 md:mb-12">
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-tight">

@@ -41,6 +41,9 @@ export default function HeroSection() {
 
   const scrollHintOpacity = useTransform(p, [0, 0.1], [1, 0])
 
+  const leftTextOpacity = useTransform(p, [0, 0.45, 0.6], [1, 1, 0])
+  const leftTextX = useTransform(p, [0, 0.45, 0.6], [0, 0, -30])
+
   return (
     <section ref={containerRef} className="relative h-[150vh] bg-background">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-background">
@@ -65,7 +68,27 @@ export default function HeroSection() {
             className="absolute inset-0 flex items-center justify-center"
             style={{ opacity: portraitOpacity }}
           >
-            <div className="w-full h-full flex items-center justify-center">{isReady && <InteractivePortrait />}</div>
+            <div className="w-full h-full flex items-center justify-center">
+              {isReady && (
+                <InteractivePortrait>
+                  {/* Left side text integrated into portrait */}
+                  <motion.div
+                    style={{
+                      opacity: leftTextOpacity,
+                      x: leftTextX,
+                    }}
+                  >
+                    <h2 className="text-3xl md:text-5xl lg:text-7xl font-mona font-light text-black leading-[1.0] tracking-tighter">
+                      TRATAMIENTOS <br />
+                      QUE <br />
+                      <span className="text-lorenzo-accent font-brier italic">REALZAN</span> <br />
+                      TU BELLEZA <br />
+                      AUTÉNTICA
+                    </h2>
+                  </motion.div>
+                </InteractivePortrait>
+              )}
+            </div>
           </motion.div>
 
           {/* Logo */}
@@ -78,6 +101,7 @@ export default function HeroSection() {
             </div>
           </motion.div>
         </motion.div>
+
 
         {/* Scroll indicator */}
         <motion.div

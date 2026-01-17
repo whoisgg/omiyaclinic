@@ -16,7 +16,7 @@ export default function MissionSection() {
     <section
       id="mission"
       ref={sectionRef}
-      className="relative min-h-screen bg-lorenzo-dark text-lorenzo-text-light pb-24 pt-24"
+      className="relative min-h-screen bg-black text-white pb-24 pt-24"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="text-center">
@@ -42,7 +42,7 @@ export default function MissionSection() {
             <motion.path
               d="M30,75 Q60,40 110,75 T220,75 Q250,95 310,65 Q340,45 370,75 M200,90 Q220,110 250,90"
               fill="none"
-              stroke="#c8f550"
+              stroke="var(--lorenzo-accent)"
               strokeWidth="4"
               strokeLinecap="round"
               strokeLinejoin="round"

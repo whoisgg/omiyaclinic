@@ -75,10 +75,10 @@ export default function DoctorsJourney() {
   )
 
   return (
-    <section ref={sectionRef} className="relative h-screen bg-cream text-obsidian overflow-hidden">
+    <section ref={sectionRef} className="relative h-screen bg-lorenzo-cream text-lorenzo-dark overflow-hidden">
       {/* Fixed Title overlapping everything */}
       <div className="absolute top-8 left-8 z-30">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-soft-gold">The Doctor&apos;s Journey</h2>
+        <h2 className="text-sm font-bold uppercase tracking-widest text-lorenzo-accent">The Doctor&apos;s Journey</h2>
       </div>
 
       {/* Background Contours */}
@@ -104,7 +104,7 @@ export default function DoctorsJourney() {
                 alt={scene.centerImage.title}
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
-              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-widest text-obsidian/50 whitespace-nowrap">
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-widest text-lorenzo-dark/50 whitespace-nowrap">
                 {scene.centerImage.title}
               </span>
             </div>
@@ -133,7 +133,7 @@ export default function DoctorsJourney() {
 
             {/* Quote (Lower Right/Center) */}
             <div className="absolute bottom-[15%] left-1/2 translate-x-10 text-left z-20 w-fit max-w-sm px-4">
-              <p className="text-xl md:text-2xl font-serif italic text-obsidian px-4 py-2 leading-tight">
+              <p className="text-xl md:text-2xl font-serif italic text-lorenzo-dark px-4 py-2 leading-tight">
                 &quot;{scene.quote}&quot;
               </p>
               <img src="/signature.svg" alt="Signature" className="h-8 mt-4 opacity-60 ml-4" />

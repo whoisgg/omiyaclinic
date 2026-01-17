@@ -6,7 +6,7 @@ const partners = ["HILTON", "UBER", "UYKART", "BELL", "PURE ELECTRIC", "GOOGLE",
 
 export default function PartnersSection() {
   return (
-    <section className="relative min-h-screen bg-[#F5F1E8] py-24 px-6 md:px-12">
+    <section className="relative min-h-screen bg-lorenzo-cream py-24 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -20,7 +20,7 @@ export default function PartnersSection() {
               <motion.path
                 d="M50,200 Q80,100 150,180 Q200,240 250,150 Q280,100 320,170 Q340,210 360,180"
                 fill="none"
-                stroke="#c8f550"
+                stroke="var(--lorenzo-accent)"
                 strokeWidth="8"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -32,7 +32,7 @@ export default function PartnersSection() {
               <motion.path
                 d="M80,250 Q120,300 180,260 Q240,220 280,280"
                 fill="none"
-                stroke="#c8f550"
+                stroke="var(--lorenzo-accent)"
                 strokeWidth="6"
                 strokeLinecap="round"
                 strokeLinejoin="round"

@@ -161,7 +161,7 @@ export default function Header() {
                 {["INSTAGRAM", "TIKTOK", "YOUTUBE"].map((social) => (
                   <motion.a
                     key={social}
-                    whileHover={{ scale: 1.1, color: "#c8f550" }}
+                    whileHover={{ scale: 1.1, color: "var(--lorenzo-accent)" }}
                     href="#"
                     className="text-sm font-bold text-white/60 hover:text-lorenzo-accent transition-colors"
                   >

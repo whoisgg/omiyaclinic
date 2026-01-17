@@ -171,7 +171,7 @@ export function InteractiveClean() {
     >
       <div
         ref={containerRef}
-        className="relative w-full h-full select-none touch-none group cursor-none bg-gray-900"
+        className="relative w-full h-full select-none touch-none group cursor-none bg-lorenzo-dark"
         style={{
           // --- AQUI A MÁGICA ACONTECE ---
           // O WebkitMaskImage é para Chrome/Safari/Edge

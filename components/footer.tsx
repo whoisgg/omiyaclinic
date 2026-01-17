@@ -7,30 +7,30 @@ export default function Footer() {
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div className="fixed bottom-0 h-[600px] w-full sm:h-[700px] lg:h-[800px]">
-        <footer className="relative z-20 h-full bg-neutral-900">
+        <footer className="relative z-20 h-full bg-lorenzo-dark">
           <div className="flex h-full w-full flex-col justify-between px-4 py-8 sm:px-6 sm:py-12 lg:py-16">
             <div className="flex flex-col gap-2 sm:gap-3">
               <Link
                 href="/"
-                className="text-sm text-white transition-colors duration-300 hover:text-neutral-400 sm:text-lg"
+                className="text-sm text-white transition-colors duration-300 hover:text-lorenzo-accent sm:text-lg"
               >
                 Home
               </Link>
               <Link
                 href="/acerca-de"
-                className="text-sm text-white transition-colors duration-300 hover:text-neutral-400 sm:text-lg"
+                className="text-sm text-white transition-colors duration-300 hover:text-lorenzo-accent sm:text-lg"
               >
                 Acerca de
               </Link>
               <Link
                 href="/wellaging"
-                className="text-sm text-white transition-colors duration-300 hover:text-neutral-400 sm:text-lg"
+                className="text-sm text-white transition-colors duration-300 hover:text-lorenzo-accent sm:text-lg"
               >
                 Well Aging
               </Link>
               <Link
                 href="#treatments"
-                className="text-sm text-white transition-colors duration-300 hover:text-neutral-400 sm:text-lg"
+                className="text-sm text-white transition-colors duration-300 hover:text-lorenzo-accent sm:text-lg"
               >
                 Tratamientos
               </Link>

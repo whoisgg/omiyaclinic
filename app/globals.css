@@ -4,15 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --darkcinzabg: #111112;
-  --lorenzo-dark: #282c20;
-  --lorenzo-darkbk: #282c20;
-  --lorenzo-light: #e8e8e3;
-  --lorenzo-accent: #c8f550;
+  --darkcinzabg: #000000;
+  --lorenzo-dark: #000000;
+  --lorenzo-darkbk: #000000;
+  --lorenzo-light: #ffffff;
+  --lorenzo-cream: #F5F1E8;
+  --lorenzo-accent: #D4AF37;
   --lorenzo-text-dark: #000000;
   --lorenzo-text-light: #ffffff;
-  --verdetitulo: #282c20;
-  --background: #282c20;
+  --verdetitulo: #000000;
+  --background: #000000;
   /* --background: oklch(0.92 0.01 80); */
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -119,6 +120,7 @@
 
   --color-lorenzo-dark: var(--lorenzo-dark);
   --color-lorenzo-light: var(--lorenzo-light);
+  --color-lorenzo-cream: var(--lorenzo-cream);
   --color-lorenzo-accent: var(--lorenzo-accent);
   --color-lorenzo-text-dark: var(--lorenzo-text-dark);
   --color-lorenzo-text-light: var(--lorenzo-text-light);
@@ -238,7 +240,7 @@
 }
 
 .simteste {
-  color: #c8f550;
+  color: var(--lorenzo-accent);
   font-size: 1050px;
   line-height: 600px;
 }

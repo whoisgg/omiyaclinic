@@ -61,7 +61,7 @@ export default function BikeShowcase() {
 
               {/* Main quote with improved spacing and hierarchy */}
               <blockquote className="relative z-10 max-w-xl">
-                <p className="text-4xl md:text-5xl lg:text-6xl font-black uppercase text-lorenzo-text-light leading-[1.1] tracking-tight mb-8">
+                <p className="text-4xl md:text-5xl lg:text-6xl font-black uppercase text-white leading-[1.1] tracking-tight mb-8">
                   <span className="block mb-2">I THINK</span>
                   <span className="block mb-2">ABOUT BEING</span>
                   <span className="block text-lorenzo-accent font-brier normal-case text-5xl md:text-6xl -ml-1 lg:text-8xl">
@@ -74,7 +74,7 @@ export default function BikeShowcase() {
 
               {/* Author attribution */}
               <div className="mt-4">
-                <p className="text-base font-medium font-mono md:text-lg text-accent">- Lorenzo Cardoso</p>
+                <p className="text-base font-medium font-mono md:text-lg text-lorenzo-accent">- Lorenzo Cardoso</p>
               </div>
             </div>
           </div>

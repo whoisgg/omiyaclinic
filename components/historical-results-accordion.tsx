@@ -319,7 +319,7 @@ export function HistoricalResultsAccordion() {
   const [activeYear, setActiveYear] = useState<string | null>("2024")
 
   return (
-    <div className="w-full bg-[#111111] py-20 px-4">
+    <div className="w-full bg-lorenzo-dark py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div className="flex flex-col">

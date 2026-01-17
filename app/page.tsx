@@ -20,7 +20,7 @@ export default function Home() {
         <MissionSection />
         <DoctorsJourney />
         <RiderTechSection />
-        <div className="relative w-full h-[120px] md:h-[160px] lg:h-[200px] overflow-hidden bg-white">
+        <div className="relative w-full h-[120px] md:h-[160px] lg:h-[200px] overflow-hidden bg-lorenzo-cream">
           <Image
             src="/images/trilha2.svg"
             alt="Tire track divider"
@@ -30,7 +30,7 @@ export default function Home() {
           />
         </div>
         <HelmetHall />
-        <div className="relative w-full h-[120px] md:h-[160px] lg:h-[200px] overflow-hidden bg-white">
+        <div className="relative w-full h-[120px] md:h-[160px] lg:h-[200px] overflow-hidden bg-lorenzo-cream">
           <Image
             src="/images/splash.svg"
             alt="Tire track divider"
