@@ -1,30 +1,27 @@
-# Lorenzo Motocross - Landing Page
+# Omiya Clinic
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+Next.js 16 (App Router) + Supabase baseline.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/whoisggs-projects/v0-lorenzo-motocross-landing-pag)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/O00w147vdT4)
+## Setup
 
-## Overview
+```bash
+pnpm install
+cp .env.example .env.local
+# fill in NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
+pnpm dev
+```
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Stack
 
-## Deployment
+- Next.js 16 (App Router, `src/` layout, Turbopack)
+- React 19.2
+- Tailwind CSS v4
+- TypeScript 5
+- Supabase (`@supabase/ssr` + `@supabase/supabase-js`)
 
-Your project is live at:
+## Supabase helpers
 
-**[https://vercel.com/whoisggs-projects/v0-lorenzo-motocross-landing-pag](https://vercel.com/whoisggs-projects/v0-lorenzo-motocross-landing-pag)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/O00w147vdT4](https://v0.app/chat/O00w147vdT4)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+- `src/lib/supabase/client.ts` — browser client
+- `src/lib/supabase/server.ts` — server client (RSC, Server Actions, Route Handlers)
+- `src/lib/supabase/proxy.ts` — session refresh helper used by `src/proxy.ts`
+- `src/proxy.ts` — Next.js 16 proxy (formerly middleware) that refreshes the session cookie on every request
