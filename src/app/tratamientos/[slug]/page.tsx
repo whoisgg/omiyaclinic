@@ -1,0 +1,71 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { CATEGORIES, getTreatmentBySlug, formatCLP } from "@/lib/treatments";
+
+type Params = Promise<{ slug: string }>;
+
+export default async function TreatmentDetailPage({ params }: { params: Params }) {
+  const { slug } = await params;
+  const t = await getTreatmentBySlug(slug);
+  if (!t) notFound();
+
+  const category = CATEGORIES.find((c) => c.id === t.category);
+
+  return (
+    <main className="bg-white">
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2">
+        {/* Galería */}
+        <div className="aspect-[4/5] bg-gradient-to-br from-zinc-200 to-zinc-300" />
+
+        {/* Info */}
+        <div className="flex flex-col">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+            {(category?.label ?? "General").toUpperCase()} · {t.durationMin} min
+          </p>
+          <h1 className="mt-3 text-4xl font-light text-zinc-900 sm:text-5xl">{t.name}</h1>
+
+          <section className="mt-8 border-l-2 border-zinc-200 pl-4 text-sm leading-relaxed text-zinc-700">
+            {t.longDescription}
+          </section>
+
+          {t.includes.length > 0 && (
+            <section className="mt-6">
+              <p className="text-xs uppercase tracking-widest text-zinc-500">Qué incluye</p>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-zinc-700">
+                {t.includes.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {t.contraindications.length > 0 && (
+            <section className="mt-6">
+              <p className="text-xs uppercase tracking-widest text-zinc-500">Contraindicaciones</p>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-zinc-700">
+                {t.contraindications.map((i) => (
+                  <li key={i}>{i}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <div className="mt-10 flex items-end justify-between border-t border-zinc-200 pt-6">
+            <div>
+              <p className="text-3xl font-semibold text-zinc-900">{formatCLP(t.price)}</p>
+              <p className="text-xs uppercase tracking-widest text-zinc-500">
+                Abono {formatCLP(t.deposit)} para reservar
+              </p>
+            </div>
+            <Link
+              href={`/reserva?servicio=${t.slug}`}
+              className="rounded-full border border-[#b08a4f] bg-[#b08a4f] px-6 py-3 text-xs uppercase tracking-widest text-white transition-colors hover:bg-[#8e6e3a]"
+            >
+              ↘ Reservar este tratamiento
+            </Link>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
