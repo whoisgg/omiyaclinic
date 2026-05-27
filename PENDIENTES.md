@@ -14,6 +14,24 @@
 - [x] Función `confirm_reservation_payment` (idempotente, webhook MP)
 - [x] Función + cron `expire_pending_reservations` (corre cada minuto vía pg_cron)
 
+## 💳 Pasarela de Pago — decisión MP vs Getnet pendiente
+
+**Estado:** MP implementado y listo para producción. Getnet documentado como alternativa.
+**Decisión bloqueante con la clínica:**
+- ¿Banco operativo de la clínica? (Santander → Getnet conveniente; otro → MP)
+- ¿Volumen estimado mensual? (impacta comisión negociable con Getnet)
+- ¿Hay urgencia de salir a producción? (MP arranca en horas, Getnet ~2 días)
+
+Comparación detallada + plan de migración a Getnet (si se decide) está en el vault Obsidian:
+`2BGG/02 - Projects/omiya/Omiya - Pasarela de Pago (MP vs Getnet).md`
+
+Resumen: la arquitectura es provider-agnostic. Cambiar a Getnet requiere:
+1. Solicitar credenciales Getnet (~2 días hábiles vía `integracionweb@getnet.cl`)
+2. Renombrar columna `pagos.mp_payment_id → gateway_payment_id`
+3. Crear `src/lib/getnet.ts` con misma interfaz que `mp.ts`
+4. Crear `/api/getnet/webhook` espejo del de MP (sin HMAC, valida re-consultando)
+5. Cambiar 1 import en `bookReservationAction`
+
 ## 💳 Pagos — Mercado Pago  ⏳ código listo, faltan credenciales
 
 - [x] Lib `src/lib/mp.ts` con Checkout Pro Preference + payment lookup + HMAC signature verify
