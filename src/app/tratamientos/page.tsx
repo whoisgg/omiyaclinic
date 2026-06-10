@@ -46,9 +46,9 @@ export default async function TratamientosPage({
             </p>
           </div>
         ) : (
-          <p className="mt-6 max-w-2xl border-l-2 border-[#b08a4f]/40 pl-4 text-sm text-zinc-600">
-            Estructura FaceLab: filtro por categoría; cada fila lleva imagen, descripción,
-            duración y precio. <strong>Reservar</strong> abre la agenda online de la clínica.
+          <p className="mt-8 max-w-2xl text-base leading-relaxed text-zinc-600">
+            Tratamientos personalizados que integran ciencia médica avanzada con un
+            enfoque natural y holístico del bienestar.
           </p>
         )}
 

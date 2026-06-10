@@ -16,3 +16,9 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Set before first paint by the inline script in layout.tsx when the
+   loader already ran this session — prevents the black overlay flash. */
+[data-loader-done] #site-loader {
+  display: none;
+}

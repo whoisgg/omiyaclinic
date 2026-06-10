@@ -30,6 +30,16 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* The loader overlay is server-rendered, so without this it would
+            flash black on every reload before React unmounts it. Runs before
+            first paint; the CSS rule lives in globals.css. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("omiya-loader-shown"))document.documentElement.setAttribute("data-loader-done","")}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-zinc-50 font-sans text-zinc-900">
         <Loader />
         <SiteHeader />

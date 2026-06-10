@@ -17,6 +17,15 @@ export function Loader() {
   const [showText2, setShowText2] = useState(false);
 
   useEffect(() => {
+    // Show only once per browser session. A new tab/visit shows it again.
+    // The inline script in layout.tsx hides the overlay via CSS before
+    // first paint on repeat loads; this just unmounts it.
+    if (sessionStorage.getItem("omiya-loader-shown")) {
+      setIsLoading(false);
+      return;
+    }
+    sessionStorage.setItem("omiya-loader-shown", "1");
+
     // The fill always animates over ~2.8s minimum (the site is static and
     // loads instantly, so jumping straight to 100% felt like a flash).
     // While the document isn't loaded yet it stalls at 70%.
@@ -69,7 +78,7 @@ export function Loader() {
   if (!isLoading) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[100]" aria-hidden="true">
+    <div id="site-loader" className="pointer-events-none fixed inset-0 z-[100]" aria-hidden="true">
       {/* Black overlay that slides down */}
       <div
         className="absolute inset-0 origin-top bg-black transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)]"
