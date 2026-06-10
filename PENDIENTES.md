@@ -8,7 +8,7 @@
 
 El sitio es **100% estático/informativo**. La agenda y el pago se manejan fuera:
 
-- **Agenda online:** Dentalink — `https://draantonietaortegamunoz.dentalink.cl/administracion/agendaonline/completa/citas`
+- **Agenda online:** Dentalink — `https://cfef9477a3f223017832f99a2e8d7eda04b5fb18.agenda.softwaredentalink.com/agenda?modalidad=1`
   (todos los botones *Agendar* / *Reservar* abren este link)
 - **Link de pago:** HealthAtom — `https://ff.healthatom.io/txzPhD` (linkeado en /contacto; revisar cómo funciona exactamente con la clínica)
 - Ambos links viven en `src/lib/links.ts`.
@@ -19,7 +19,6 @@ ya no existía en la cuenta. Si algún día se retoma, está en el historial de 
 (commit `ee88fe9` "Booking system end-to-end").
 
 - [ ] Confirmar con la clínica cómo opera el link de pago HealthAtom (¿abono? ¿por tratamiento?)
-- [ ] Revisar el link de Dentalink: la URL contiene `/administracion/` — verificar que sea la URL pública para pacientes y no la del panel interno
 
 ## 📦 Catálogo de tratamientos
 
