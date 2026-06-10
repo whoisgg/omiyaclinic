@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CATEGORIES, getFeaturedTreatments, formatCLP } from "@/lib/treatments";
+import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 
 export default async function HomePage() {
@@ -120,12 +120,11 @@ export default async function HomePage() {
                   <p className="mt-2 text-sm text-zinc-600">
                     {t.shortDescription}
                   </p>
-                  <p className="mt-6 text-xl font-light text-zinc-900">
-                    {formatCLP(t.price)}
-                  </p>
-                  <p className="text-xs uppercase tracking-widest text-zinc-500">
-                    {t.durationMin} min
-                  </p>
+                  {t.duration && (
+                    <p className="mt-6 text-xs uppercase tracking-widest text-zinc-500">
+                      {t.duration}
+                    </p>
+                  )}
                 </Link>
               </li>
             ))}

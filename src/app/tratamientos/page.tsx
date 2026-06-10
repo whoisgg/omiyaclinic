@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CATEGORIES, getTreatments, formatCLP, type Category } from "@/lib/treatments";
+import { CATEGORIES, getTreatments, type Category } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 
 type SearchParams = Promise<{ cat?: string }>;
@@ -66,16 +66,16 @@ export default async function TratamientosPage({
                 </h3>
                 <p className="mt-1 text-sm text-zinc-600">{t.shortDescription}</p>
                 <p className="mt-2 text-xs uppercase tracking-widest text-zinc-500">
-                  ⏱ {t.durationMin} min · {CATEGORIES.find((c) => c.id === t.category)?.label ?? "General"}
+                  {CATEGORIES.find((c) => c.id === t.category)?.label ?? "General"}
+                  {t.duration ? ` · ${t.duration}` : ""}
                 </p>
               </Link>
               <div className="text-right">
-                <p className="text-xl font-semibold text-zinc-900">{formatCLP(t.price)}</p>
                 <a
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block rounded-full border border-[#b08a4f] px-4 py-2 text-xs uppercase tracking-widest text-[#b08a4f] transition-colors hover:bg-[#b08a4f] hover:text-white"
+                  className="inline-block rounded-full border border-[#b08a4f] px-4 py-2 text-xs uppercase tracking-widest text-[#b08a4f] transition-colors hover:bg-[#b08a4f] hover:text-white"
                 >
                   Reservar →
                 </a>

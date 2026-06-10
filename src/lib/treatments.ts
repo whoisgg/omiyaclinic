@@ -1,8 +1,9 @@
 /**
  * Catálogo estático de tratamientos.
- * La agenda y el pago se manejan fuera del sitio (ver "@/lib/links"),
- * así que el catálogo vive en código — editar aquí para cambiar servicios.
- * ⚠️ Datos placeholder: falta la lista real de servicios, duraciones y precios.
+ * Basado en los procedimientos de facelab.cl, reagrupados en la clasificación
+ * de Omiya (Glow / Smooth / Lift / Smile). Sin precios: la reserva en Dentalink
+ * es por categoría o por hora de diagnóstico, y el detalle se ve en consulta.
+ * Editar aquí para cambiar servicios.
  */
 import type { Category, Treatment } from "@/lib/treatments-shared";
 
@@ -11,101 +12,148 @@ export { CATEGORIES, formatCLP } from "@/lib/treatments-shared";
 export type { Category, Treatment } from "@/lib/treatments-shared";
 
 const TREATMENTS: Treatment[] = [
+  // ── GLOW · Calidad y luminosidad de la piel ──────────────────────────────
   {
     slug: "limpieza-facial-profunda",
     name: "Limpieza facial profunda",
-    shortDescription: "Higiene profunda con extracción e hidratación.",
+    shortDescription:
+      "Elimina impurezas, exfolia y revitaliza la piel para una apariencia saludable y radiante.",
     longDescription:
-      "Limpieza facial médica con vapor ozonizado, extracción de comedones, exfoliación enzimática y máscara hidratante según tipo de piel.",
-    includes: ["Diagnóstico de piel", "Extracción", "Máscara hidratante"],
+      "Procedimiento no invasivo que elimina impurezas, exfolia y revitaliza la piel. Mejora la textura y el tono, previene brotes de acné y es el complemento ideal antes y después de otros procedimientos estéticos.",
+    includes: [
+      "Limpieza profunda de poros",
+      "Eliminación de células muertas",
+      "Aplicación de productos hidratantes y nutritivos",
+    ],
     contraindications: ["Acné inflamatorio severo", "Rosácea en brote"],
     category: "glow",
-    durationMin: 60,
-    price: 45000,
+    duration: "45–90 min",
   },
   {
-    slug: "peeling-quimico",
-    name: "Peeling químico",
-    shortDescription: "Renovación celular para luminosidad y textura.",
+    slug: "mesoterapia",
+    name: "Mesoterapia",
+    shortDescription:
+      "Microinyecciones de vitaminas y compuestos esenciales directamente en la dermis.",
     longDescription:
-      "Aplicación de ácidos de grado médico para mejorar textura, manchas y luminosidad. Intensidad ajustada a cada piel.",
-    includes: ["Evaluación previa", "Peeling", "Protocolo post-tratamiento"],
-    contraindications: ["Embarazo", "Piel fotosensibilizada"],
-    category: "glow",
-    durationMin: 45,
-    price: 60000,
-  },
-  {
-    slug: "toxina-botulinica",
-    name: "Toxina botulínica",
-    shortDescription: "Suaviza arrugas de expresión de forma natural.",
-    longDescription:
-      "Tratamiento de arrugas dinámicas en tercio superior del rostro. Resultado natural que respeta la expresión.",
-    includes: ["Evaluación médica", "Aplicación", "Control a los 15 días"],
-    contraindications: ["Embarazo y lactancia", "Enfermedades neuromusculares"],
-    category: "smooth",
-    durationMin: 30,
-    price: 180000,
-  },
-  {
-    slug: "acido-hialuronico",
-    name: "Ácido hialurónico",
-    shortDescription: "Hidratación profunda y reposición de volumen.",
-    longDescription:
-      "Relleno con ácido hialurónico para hidratar, perfilar y reponer volumen perdido, con resultado armónico.",
-    includes: ["Evaluación médica", "Aplicación con cánula o aguja", "Control"],
+      "Tratamiento no quirúrgico que utiliza microinyecciones para administrar pequeñas dosis de vitaminas, minerales, aminoácidos y otros compuestos esenciales directamente en la dermis. Rejuvenece la piel y mejora su calidad de forma progresiva, con sesiones personalizadas según las necesidades de cada paciente.",
+    includes: [
+      "Evaluación y plan personalizado",
+      "Anestésico tópico para minimizar molestias",
+      "Sesiones de mantención según resultados",
+    ],
     contraindications: ["Embarazo y lactancia", "Infección activa en la zona"],
-    category: "smooth",
-    durationMin: 45,
-    price: 250000,
+    category: "glow",
+    duration: "30–60 min",
   },
+
+  // ── SMOOTH · Arrugas y líneas de expresión ───────────────────────────────
+  {
+    slug: "relleno-acido-hialuronico",
+    name: "Relleno de ácido hialurónico",
+    shortDescription:
+      "Hidratación y volumen natural para pómulos, ojeras, labios, mentón y contorno.",
+    longDescription:
+      "El ácido hialurónico es una sustancia presente de forma natural en casi todos los tejidos del cuerpo, capaz de atraer agua hasta 1000 veces su volumen. Aporta hidratación y volumen natural en pómulos, ojeras, nariz, labios, contorno mandibular y mentón, suavizando líneas y armonizando el rostro.",
+    includes: ["Evaluación médica", "Aplicación con cánula o aguja", "Control"],
+    contraindications: [
+      "Embarazo y lactancia",
+      "Alergias previas al producto",
+      "Enfermedades autoinmunes",
+      "Infección en el sitio de inyección",
+      "Rellenos permanentes previos",
+    ],
+    category: "smooth",
+    duration: "Resultados de 6–18 meses según la zona",
+  },
+  {
+    slug: "hilos-revitalizantes-pdo",
+    name: "Hilos revitalizantes PDO",
+    shortDescription:
+      "Hebras finas de polidioxanona que reafirman la piel y estimulan colágeno y elastina.",
+    longDescription:
+      "Hebras finas de polidioxanona (PDO), un material biocompatible y reabsorbible usado hace décadas en cirugía. Reafirman la piel y estimulan la síntesis natural de colágeno y elastina, suavizando la textura y mejorando la calidad de la piel.",
+    includes: ["Evaluación médica", "Aplicación", "Control post-tratamiento"],
+    contraindications: [
+      "Embarazo y lactancia",
+      "Enfermedades autoinmunes",
+      "Tratamiento con isotretinoína",
+      "Infección en la zona",
+    ],
+    category: "smooth",
+    duration: "Resultados de 6–8 meses",
+  },
+
+  // ── LIFT · Firmeza y soporte facial ──────────────────────────────────────
   {
     slug: "bioestimuladores",
     name: "Bioestimuladores de colágeno",
-    shortDescription: "Firmeza progresiva estimulando tu propio colágeno.",
+    shortDescription:
+      "Radiesse® y Sculptra®: volumen inmediato y estímulo del colágeno propio.",
     longDescription:
-      "Inducción de colágeno propio para mejorar firmeza y calidad de piel de forma progresiva y duradera.",
+      "Bioestimuladores dérmicos inyectables — hidroxiapatita de calcio (Radiesse®) o ácido poli-L-láctico (Sculptra®) — que tratan la flacidez del rostro, cuello y escote con doble efecto: volumen inmediato y estimulación progresiva del colágeno natural, para una firmeza que dura entre 12 y 24 meses.",
     includes: ["Evaluación médica", "Aplicación", "Plan de sesiones"],
-    contraindications: ["Embarazo y lactancia", "Enfermedades autoinmunes activas"],
+    contraindications: [
+      "Embarazo y lactancia",
+      "Alergia al producto o lidocaína",
+      "Enfermedades autoinmunes",
+      "Queloides",
+      "Rellenos permanentes previos",
+    ],
     category: "lift",
-    durationMin: 60,
-    price: 350000,
+    duration: "Resultados de 12–24 meses",
   },
   {
-    slug: "hilos-tensores",
-    name: "Hilos tensores",
-    shortDescription: "Efecto lifting sin cirugía.",
+    slug: "radiofrecuencia-endymed",
+    name: "Radiofrecuencia Endymed PRO™",
+    shortDescription:
+      "Calor profundo controlado que reestructura el colágeno y reafirma la piel.",
     longDescription:
-      "Reposicionamiento de tejidos con hilos reabsorbibles PDO para un efecto tensor inmediato y estímulo de colágeno.",
-    includes: ["Evaluación médica", "Procedimiento", "Control post-tratamiento"],
-    contraindications: ["Infección activa", "Trastornos de coagulación"],
+      "Plataforma de radiofrecuencia con tecnología 3DEEP™ que genera un calentamiento cutáneo y subcutáneo profundo, estimulando la circulación, la oxigenación y la regeneración de las fibras de colágeno. Trata flacidez, líneas de expresión, poros dilatados y cicatrices, con retorno inmediato a la actividad diaria.",
+    includes: [
+      "Plan de 6–8 sesiones según evaluación",
+      "Cambios visibles desde la segunda sesión",
+      "Sin tiempo de recuperación",
+    ],
+    contraindications: ["Embarazo", "Dispositivos electrónicos implantados"],
     category: "lift",
-    durationMin: 90,
-    price: 450000,
+    duration: "30–45 min por sesión",
+  },
+  {
+    slug: "lipopapada",
+    name: "Lipopapada",
+    shortDescription:
+      "Reducción de la grasa submentoniana para un contorno más definido.",
+    longDescription:
+      "Procedimiento que reduce el exceso de grasa localizada bajo el mentón, disminuyendo el volumen y aumentando la definición del contorno facial. El paciente vuelve a casa el mismo día; los resultados finales se aprecian de forma progresiva en los meses siguientes.",
+    includes: ["Evaluación médica", "Procedimiento ambulatorio", "Controles"],
+    contraindications: ["Embarazo y lactancia", "Trastornos de coagulación"],
+    category: "lift",
+    duration: "Ambulatorio · mismo día",
+  },
+
+  // ── SMILE · Salud y estética dental ──────────────────────────────────────
+  {
+    slug: "endodoncia",
+    name: "Endodoncia",
+    shortDescription:
+      "Tratamiento de conducto especializado que conserva tu diente natural.",
+    longDescription:
+      "Tratamiento de conducto realizado por especialista, orientado a conservar el diente natural eliminando la infección o inflamación del tejido interno. Con técnica moderna y control del dolor, en una o pocas sesiones.",
+    includes: ["Diagnóstico con imagenología", "Tratamiento de conducto", "Control"],
+    contraindications: [],
+    category: "smile",
+    duration: "Según diagnóstico",
   },
   {
     slug: "blanqueamiento-dental",
     name: "Blanqueamiento dental",
-    shortDescription: "Sonrisa más blanca en una sesión.",
+    shortDescription: "Sonrisa más blanca con sensibilidad controlada.",
     longDescription:
-      "Blanqueamiento dental clínico con protocolo de sensibilidad controlada para un resultado visible en una sola sesión.",
-    includes: ["Evaluación dental", "Sesión de blanqueamiento", "Kit de mantención"],
+      "Blanqueamiento dental clínico con protocolo de sensibilidad controlada para un resultado visible y natural, cuidando la salud del esmalte.",
+    includes: ["Evaluación dental", "Sesión de blanqueamiento", "Indicaciones de mantención"],
     contraindications: ["Caries activas", "Embarazo"],
     category: "smile",
-    durationMin: 60,
-    price: 150000,
-  },
-  {
-    slug: "diseno-de-sonrisa",
-    name: "Diseño de sonrisa",
-    shortDescription: "Armonización integral de tu sonrisa.",
-    longDescription:
-      "Plan integral que combina estética dental y armonización facial para una sonrisa natural y proporcionada.",
-    includes: ["Estudio digital", "Plan de tratamiento", "Seguimiento"],
-    contraindications: ["Enfermedad periodontal no tratada"],
-    category: "smile",
-    durationMin: 60,
-    price: 90000,
+    duration: "60 min",
   },
 ];
 

@@ -13,8 +13,8 @@ export type Treatment = {
   includes: string[];
   contraindications: string[];
   category: Category;
-  durationMin: number;
-  price: number;
+  /** Free text, e.g. "45–90 min" or "Resultados de 12–18 meses". Optional. */
+  duration?: string;
 };
 
 export const CATEGORIES: {

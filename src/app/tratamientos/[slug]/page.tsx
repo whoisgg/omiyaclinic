@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { CATEGORIES, getTreatmentBySlug, formatCLP } from "@/lib/treatments";
+import { CATEGORIES, getTreatmentBySlug } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 
 type Params = Promise<{ slug: string }>;
@@ -20,7 +20,8 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
         {/* Info */}
         <div className="flex flex-col">
           <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
-            {(category?.label ?? "General").toUpperCase()} · {t.durationMin} min
+            {(category?.label ?? "General").toUpperCase()}
+            {t.duration ? ` · ${t.duration}` : ""}
           </p>
           <h1 className="mt-3 text-4xl font-light text-zinc-900 sm:text-5xl">{t.name}</h1>
 
@@ -50,20 +51,18 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
             </section>
           )}
 
-          <div className="mt-10 flex items-end justify-between border-t border-zinc-200 pt-6">
-            <div>
-              <p className="text-3xl font-semibold text-zinc-900">{formatCLP(t.price)}</p>
-              <p className="text-xs uppercase tracking-widest text-zinc-500">
-                {t.durationMin} min
-              </p>
-            </div>
+          <div className="mt-10 flex flex-col gap-4 border-t border-zinc-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-xs text-xs leading-relaxed text-zinc-500">
+              El plan y los valores se definen en una evaluación personalizada
+              con la doctora.
+            </p>
             <a
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-[#b08a4f] bg-[#b08a4f] px-6 py-3 text-xs uppercase tracking-widest text-white transition-colors hover:bg-[#8e6e3a]"
+              className="shrink-0 rounded-full border border-[#b08a4f] bg-[#b08a4f] px-6 py-3 text-center text-xs uppercase tracking-widest text-white transition-colors hover:bg-[#8e6e3a]"
             >
-              ↘ Reservar este tratamiento
+              ↘ Agendar evaluación
             </a>
           </div>
         </div>
