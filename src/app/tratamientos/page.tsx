@@ -16,6 +16,7 @@ export default async function TratamientosPage({
     ? (cat as Category)
     : null;
   const list = await getTreatments(active ?? undefined);
+  const activeCategory = active ? CATEGORIES.find((c) => c.id === active) : null;
 
   return (
     <main className="bg-white">
@@ -35,10 +36,21 @@ export default async function TratamientosPage({
           ))}
         </div>
 
-        <p className="mt-6 max-w-2xl border-l-2 border-[#b08a4f]/40 pl-4 text-sm text-zinc-600">
-          Estructura FaceLab: filtro por categoría; cada fila lleva imagen, descripción,
-          duración y precio. <strong>Reservar</strong> abre la agenda online de la clínica.
-        </p>
+        {activeCategory ? (
+          <div className="mt-8 max-w-2xl">
+            <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
+              {activeCategory.subtitle}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-zinc-600">
+              {activeCategory.description}
+            </p>
+          </div>
+        ) : (
+          <p className="mt-6 max-w-2xl border-l-2 border-[#b08a4f]/40 pl-4 text-sm text-zinc-600">
+            Estructura FaceLab: filtro por categoría; cada fila lleva imagen, descripción,
+            duración y precio. <strong>Reservar</strong> abre la agenda online de la clínica.
+          </p>
+        )}
 
         {/* Lista */}
         <ul className="mt-10 divide-y divide-zinc-200 border-y border-zinc-200">
