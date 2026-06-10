@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BOOKING_URL } from "@/lib/links";
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   const pathname = usePathname();
@@ -30,12 +31,14 @@ export function SiteHeader() {
           <NavLink href="/tratamientos">Tratamientos</NavLink>
           <NavLink href="/contacto">Contacto</NavLink>
         </nav>
-        <Link
-          href="/reserva"
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="rounded-full border border-[#b08a4f] px-4 py-2 text-xs uppercase tracking-widest text-[#b08a4f] transition-colors hover:bg-[#b08a4f] hover:text-white"
         >
           ↘ Agendar
-        </Link>
+        </a>
       </div>
     </header>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CATEGORIES, getFeaturedTreatments, formatCLP } from "@/lib/treatments";
+import { BOOKING_URL } from "@/lib/links";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -123,7 +124,7 @@ export default async function HomePage() {
                     {formatCLP(t.price)}
                   </p>
                   <p className="text-xs uppercase tracking-widest text-zinc-500">
-                    {t.durationMin} min · Abono {formatCLP(t.deposit)}
+                    {t.durationMin} min
                   </p>
                 </Link>
               </li>
@@ -159,12 +160,14 @@ export default async function HomePage() {
       <section className="bg-zinc-900 text-white">
         <div className="mx-auto max-w-4xl px-6 py-20 text-center">
           <p className="text-2xl font-light">Tu bienestar comienza aquí.</p>
-          <Link
-            href="/reserva"
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-8 inline-block rounded-full border border-white/30 px-8 py-3 text-xs uppercase tracking-widest transition-colors hover:bg-white hover:text-zinc-900"
           >
             ↘ Agendar consulta
-          </Link>
+          </a>
         </div>
       </section>
     </>

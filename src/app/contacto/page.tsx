@@ -1,3 +1,5 @@
+import { PAYMENT_URL } from "@/lib/links";
+
 export default function ContactoPage() {
   return (
     <main className="bg-white">
@@ -26,6 +28,17 @@ export default function ContactoPage() {
               </p>
               <p className="mt-2 text-sm text-zinc-700">Martes a sábado · 10:00 – 19:00</p>
             </li>
+            <li className="mt-6 border-t border-zinc-200 pt-6">
+              <p className="text-xs uppercase tracking-widest text-zinc-500">Pagos</p>
+              <a
+                href={PAYMENT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block text-sm text-[#b08a4f] hover:text-[#8e6e3a]"
+              >
+                Link de pago en línea →
+              </a>
+            </li>
           </ul>
 
           <div className="aspect-video bg-gradient-to-br from-zinc-200 to-zinc-300">
@@ -36,9 +49,9 @@ export default function ContactoPage() {
         </div>
 
         <p className="mt-10 max-w-2xl border-l-2 border-[#b08a4f]/40 pl-4 text-sm text-zinc-600">
-          <strong>Decisión:</strong> el botón <em>Agendar</em> del nav lleva al flujo de
-          reserva, no a un formulario. Esta página es para info y consultas generales,
-          con WhatsApp como canal directo.
+          <strong>Decisión:</strong> el botón <em>Agendar</em> abre la agenda online de
+          Dentalink; el pago se maneja con un link aparte. Esta página es para info y
+          consultas generales, con WhatsApp como canal directo.
         </p>
       </div>
     </main>

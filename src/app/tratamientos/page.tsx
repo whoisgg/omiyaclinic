@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CATEGORIES, getTreatments, formatCLP, type Category } from "@/lib/treatments";
+import { BOOKING_URL } from "@/lib/links";
 
 type SearchParams = Promise<{ cat?: string }>;
 
@@ -36,7 +37,7 @@ export default async function TratamientosPage({
 
         <p className="mt-6 max-w-2xl border-l-2 border-[#b08a4f]/40 pl-4 text-sm text-zinc-600">
           Estructura FaceLab: filtro por categoría; cada fila lleva imagen, descripción,
-          duración, precio y abono. <strong>Reservar</strong> precarga el servicio en el flujo.
+          duración y precio. <strong>Reservar</strong> abre la agenda online de la clínica.
         </p>
 
         {/* Lista */}
@@ -58,23 +59,19 @@ export default async function TratamientosPage({
               </Link>
               <div className="text-right">
                 <p className="text-xl font-semibold text-zinc-900">{formatCLP(t.price)}</p>
-                <p className="text-xs uppercase tracking-widest text-zinc-500">
-                  Abono {formatCLP(t.deposit)}
-                </p>
-                <Link
-                  href={`/reserva?servicio=${t.slug}`}
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-3 inline-block rounded-full border border-[#b08a4f] px-4 py-2 text-xs uppercase tracking-widest text-[#b08a4f] transition-colors hover:bg-[#b08a4f] hover:text-white"
                 >
                   Reservar →
-                </Link>
+                </a>
               </div>
             </li>
           ))}
         </ul>
 
-        <p className="mt-10 text-xs uppercase tracking-widest text-zinc-500">
-          Datos desde Supabase · tabla <code className="font-mono text-zinc-900">servicios</code>
-        </p>
       </div>
     </main>
   );

@@ -15,7 +15,6 @@ export type Treatment = {
   category: Category;
   durationMin: number;
   price: number;
-  deposit: number;
 };
 
 export const CATEGORIES: { id: Category; label: string; tagline: string }[] = [

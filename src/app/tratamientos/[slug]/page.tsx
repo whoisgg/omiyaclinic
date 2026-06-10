@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CATEGORIES, getTreatmentBySlug, formatCLP } from "@/lib/treatments";
+import { BOOKING_URL } from "@/lib/links";
 
 type Params = Promise<{ slug: string }>;
 
@@ -54,15 +54,17 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
             <div>
               <p className="text-3xl font-semibold text-zinc-900">{formatCLP(t.price)}</p>
               <p className="text-xs uppercase tracking-widest text-zinc-500">
-                Abono {formatCLP(t.deposit)} para reservar
+                {t.durationMin} min
               </p>
             </div>
-            <Link
-              href={`/reserva?servicio=${t.slug}`}
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-[#b08a4f] bg-[#b08a4f] px-6 py-3 text-xs uppercase tracking-widest text-white transition-colors hover:bg-[#8e6e3a]"
             >
               ↘ Reservar este tratamiento
-            </Link>
+            </a>
           </div>
         </div>
       </div>

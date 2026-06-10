@@ -4,68 +4,29 @@
 
 ---
 
-## 🗄️ Backend (Supabase)  ✅ baseline listo
+## 🏗️ Arquitectura (decisión 2026-06-10)
 
-- [x] Schema base (todas las tablas + índices + RLS)
-- [x] RLS policies (catálogo público; pacientes/reservas/pagos vía SECURITY DEFINER RPC)
-- [x] Función SQL `available_slots(profesional_id, fecha, duration_min)`
-- [x] Función `create_pending_reservation` (booking atómico anti-doble-reserva)
-- [x] Función `get_reservation_summary` (para pantalla de confirmación)
-- [x] Función `confirm_reservation_payment` (idempotente, webhook MP)
-- [x] Función + cron `expire_pending_reservations` (corre cada minuto vía pg_cron)
+El sitio es **100% estático/informativo**. La agenda y el pago se manejan fuera:
 
-## 💳 Pasarela de Pago — decisión MP vs Getnet pendiente
+- **Agenda online:** Dentalink — `https://draantonietaortegamunoz.dentalink.cl/administracion/agendaonline/completa/citas`
+  (todos los botones *Agendar* / *Reservar* abren este link)
+- **Link de pago:** HealthAtom — `https://ff.healthatom.io/txzPhD` (linkeado en /contacto; revisar cómo funciona exactamente con la clínica)
+- Ambos links viven en `src/lib/links.ts`.
 
-**Estado:** MP implementado y listo para producción. Getnet documentado como alternativa.
-**Decisión bloqueante con la clínica:**
-- ¿Banco operativo de la clínica? (Santander → Getnet conveniente; otro → MP)
-- ¿Volumen estimado mensual? (impacta comisión negociable con Getnet)
-- ¿Hay urgencia de salir a producción? (MP arranca en horas, Getnet ~2 días)
+Se eliminó todo el stack anterior: Supabase (schema de reservas, RLS, RPCs), Mercado Pago
+(checkout + webhook), flujo `/reserva`, export a calendario `.ics`. El proyecto de Supabase
+ya no existía en la cuenta. Si algún día se retoma, está en el historial de git
+(commit `ee88fe9` "Booking system end-to-end").
 
-Comparación detallada + plan de migración a Getnet (si se decide) está en el vault Obsidian:
-`2BGG/02 - Projects/omiya/Omiya - Pasarela de Pago (MP vs Getnet).md`
+- [ ] Confirmar con la clínica cómo opera el link de pago HealthAtom (¿abono? ¿por tratamiento?)
+- [ ] Revisar el link de Dentalink: la URL contiene `/administracion/` — verificar que sea la URL pública para pacientes y no la del panel interno
 
-Resumen: la arquitectura es provider-agnostic. Cambiar a Getnet requiere:
-1. Solicitar credenciales Getnet (~2 días hábiles vía `integracionweb@getnet.cl`)
-2. Renombrar columna `pagos.mp_payment_id → gateway_payment_id`
-3. Crear `src/lib/getnet.ts` con misma interfaz que `mp.ts`
-4. Crear `/api/getnet/webhook` espejo del de MP (sin HMAC, valida re-consultando)
-5. Cambiar 1 import en `bookReservationAction`
+## 📦 Catálogo de tratamientos
 
-## 💳 Pagos — Mercado Pago  ⏳ código listo, faltan credenciales
+Ahora vive en código: `src/lib/treatments.ts` (datos estáticos, editar ahí).
 
-- [x] Lib `src/lib/mp.ts` con Checkout Pro Preference + payment lookup + HMAC signature verify
-- [x] `POST /api/mp/webhook` valida firma, llama `confirm_reservation_payment`, idempotente
-- [x] Server action `bookReservationAction` redirige a `init_point` cuando MP está configurado, mock-mode si no
-- [x] `/reserva/confirmacion?id=...` lee la reserva real (incluyendo estado para mostrar el copy correcto)
-- [x] `/reserva/error?id=...&reason=...` cubre rechazo / pending / expirada
-- [ ] **Pegar credenciales** en `.env.local`:
-  - `MP_ACCESS_TOKEN` (Producción o Test) del panel https://www.mercadopago.cl/developers/panel/app
-  - `MP_WEBHOOK_SECRET` (settings → webhooks → secret)
-  - `NEXT_PUBLIC_SITE_URL` apuntando al dominio público (en dev usar ngrok si quieres probar el webhook real)
-- [ ] Probar end-to-end con tarjeta sandbox MP (Visa 4509 9535 6623 3704 / CVV 123 / 11/30)
-- [ ] Para producción: configurar el webhook en MP apuntando a `https://omiyaclinic.cl/api/mp/webhook`
-
-## 📅 Calendario y notificaciones
-
-- [x] **Export a Google Calendar / .ics desde la pantalla de confirmación**
-  - [x] Generar archivo `.ics` (RFC 5545) válido para Apple Calendar, Outlook, etc.
-  - [x] URL de "Add to Google Calendar" usando el template
-  - [x] Botón **"Agregar a calendario"** abre menú con 3 opciones: Google, Outlook, descargar .ics
-  - [x] Incluir: nombre del servicio, profesional, ubicación física (Del Pucará 50, Of. 410, Machalí), 60 min de recordatorio
-- [ ] Observabilidad route handlers (estructured logs + error tracking) — para cuando despleguemos a Vercel
-- [ ] Email de confirmación (Resend / Vercel Email) con `.ics` adjunto
-- [ ] WhatsApp Cloud API o Twilio para notificación de confirmación
-- [ ] Recordatorio automático 24h antes (cron + email/WhatsApp)
-- [ ] Política de cancelación: hasta 24h antes con reembolso del abono
-
-## 🖥️ Back-office (panel interno)
-
-- [ ] Login para el equipo (Supabase Auth + RLS por rol)
-- [ ] Vista de agenda diaria/semanal por profesional
-- [ ] Acciones: confirmar manualmente, reagendar, marcar no-show, reembolsar
-- [ ] CRUD de servicios y profesionales (sin tocar código)
-- [ ] Dashboard básico: reservas del mes, ingresos, tasa de no-show
+- [ ] ⚠️ Los 8 tratamientos actuales son **placeholder** — reemplazar con la lista real (nombres, descripciones, duraciones, precios)
+- [ ] Decidir si mostrar precios públicamente o solo "desde $X" / consultar
 
 ## 🎨 Frontend / UX
 
@@ -75,22 +36,21 @@ Resumen: la arquitectura es provider-agnostic. Cambiar a Getnet requiere:
 - [ ] Video del hero scrubbing: producir uno propio (10–15s, 30fps, optimizado para web)
 - [ ] Mobile del scrubbing hero (actualmente solo desktop está pulido)
 - [ ] Página de detalle de tratamiento con galería real + antes/después
+- [ ] Google Maps embed real en /contacto
+- [ ] Teléfono real en /contacto (hoy dice "+56 9 …") + botón WhatsApp
 - [ ] SEO: metadata por página, sitemap, robots.txt, Open Graph images
 - [ ] Accesibilidad: contraste de cremoso/dorado sobre blanco, focus states, alt text
 
 ## ⚙️ Infra y deploys
 
-- [ ] Conectar repo a Vercel
-- [ ] Variables de entorno productivas (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `MP_ACCESS_TOKEN`, etc.)
+- [ ] Conectar repo a Vercel (ya no requiere variables de entorno)
 - [ ] Dominio `omiyaclinic.cl` apuntado
-- [ ] Supabase project (separado del dev local)
-- [ ] Logs / observabilidad (Vercel Observability + Sentry opcional)
 
 ## 📋 Pendiente con la clínica
 
-- [ ] Lista real de servicios, duraciones, precios y montos de abono
-- [ ] Política de cancelación y reembolso por escrito
+- [ ] Lista real de servicios, duraciones y precios
 - [ ] Horarios oficiales de atención
 - [ ] CV / credenciales del equipo médico
 - [ ] Fotos clínicas (instalaciones y antes/después con consentimiento)
 - [ ] Texto definitivo de "Acerca de" y filosofía
+- [ ] Instagram real (footer apunta a instagram.com genérico)
