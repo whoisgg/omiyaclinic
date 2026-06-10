@@ -4,6 +4,37 @@
 
 ---
 
+## 🔄 Para retomar (estado al 2026-06-10)
+
+**Setup en un computador nuevo:**
+```bash
+git clone https://github.com/whoisgg/omiyaclinic.git && cd omiyaclinic
+pnpm install
+pnpm dev          # corre en http://localhost:3004 — NO necesita .env ni variables
+```
+
+**Deploy:** `vercel deploy --prod --yes --scope whoisggs-projects` (proyecto Vercel `omiya`,
+producción en https://omiya.vercel.app). El repo NO está conectado a GitHub en Vercel,
+así que el deploy es manual por CLI. Ojo: la cola de Vercel estuvo lenta el 10-06;
+verificar con `vercel ls --scope whoisggs-projects` que el último deploy esté ● Ready.
+
+**Lo hecho en la sesión del 10-06:**
+- Limpieza total: fuera Supabase, Mercado Pago y el flujo `/reserva` (recuperable en commit `ee88fe9`)
+- Agendar/Reservar → link público de Dentalink; link de pago HealthAtom en /contacto (ambos en `src/lib/links.ts`)
+- Loader del sitio anterior replicado (`src/components/loader.tsx`): corre 1 vez por sesión
+  (sessionStorage + script inline anti-flash en `layout.tsx` + regla CSS en `globals.css`)
+- Catálogo espejo de facelab.cl en `src/lib/treatments.ts`: Glow (limpieza facial, mesoterapia),
+  Smooth (rellenos A.H.), Lift (bioestimulación, Endymed PRO, lipopapadas),
+  Smile (limpieza dental, endodoncia, blanqueamiento — línea propia). Sin precios.
+- Descripciones de categorías (del sitio viejo) se muestran al filtrar en /tratamientos
+
+**Material reutilizable:** el repo del sitio anterior `whoisgg/v0-website-replication`
+tiene fotos reales en `public/` (founder-portrait.webp, hero-face-1..5.jpg,
+clinic-interior.webp, edificio-exterior.webp, video clinic-consultation.mp4) para
+reemplazar los placeholders IMG. El loader ya se sacó de ahí.
+
+---
+
 ## 🏗️ Arquitectura (decisión 2026-06-10)
 
 El sitio es **100% estático/informativo**. La agenda y el pago se manejan fuera:
@@ -24,8 +55,9 @@ ya no existía en la cuenta. Si algún día se retoma, está en el historial de 
 
 Ahora vive en código: `src/lib/treatments.ts` (datos estáticos, editar ahí).
 
-- [ ] ⚠️ Los 8 tratamientos actuales son **placeholder** — reemplazar con la lista real (nombres, descripciones, duraciones, precios)
-- [ ] Decidir si mostrar precios públicamente o solo "desde $X" / consultar
+- [x] Catálogo espejo de facelab.cl agrupado en Glow/Smooth/Lift + línea dental propia en Smile
+- [x] Sin precios en el sitio (la reserva en Dentalink es por categoría o diagnóstico)
+- [ ] Validar con la doctora los descriptivos y la lista dental (¿falta algo además de limpieza, endodoncia, blanqueamiento?)
 
 ## 🎨 Frontend / UX
 
