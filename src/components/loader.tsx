@@ -17,27 +17,35 @@ export function Loader() {
   const [showText2, setShowText2] = useState(false);
 
   useEffect(() => {
-    // Simulate loading progress - fills slowly and waits at 70%
-    const progressInterval = setInterval(() => {
-      setLoadProgress((prev) => (prev < 70 ? prev + 1.5 : prev));
-    }, 80);
-
-    const finish = () => {
-      setLoadProgress(100);
-      setTimeout(() => setIsReady(true), 300);
+    // The fill always animates over ~2.8s minimum (the site is static and
+    // loads instantly, so jumping straight to 100% felt like a flash).
+    // While the document isn't loaded yet it stalls at 70%.
+    let docLoaded = document.readyState === "complete";
+    const onLoad = () => {
+      docLoaded = true;
     };
+    window.addEventListener("load", onLoad);
 
-    if (document.readyState === "complete") {
-      finish();
-    } else {
-      window.addEventListener("load", finish);
-    }
+    const progressInterval = setInterval(() => {
+      setLoadProgress((prev) => {
+        const cap = docLoaded ? 100 : 70;
+        return Math.min(prev + 1.8, cap);
+      });
+    }, 50);
 
     return () => {
       clearInterval(progressInterval);
-      window.removeEventListener("load", finish);
+      window.removeEventListener("load", onLoad);
     };
   }, []);
+
+  // Once the fill reaches 100%, hold briefly and start the exit
+  useEffect(() => {
+    if (loadProgress >= 100 && !isReady) {
+      const t = setTimeout(() => setIsReady(true), 300);
+      return () => clearTimeout(t);
+    }
+  }, [loadProgress, isReady]);
 
   // Trigger text reveals based on load progress
   useEffect(() => {
