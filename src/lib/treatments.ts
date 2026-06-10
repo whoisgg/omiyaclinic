@@ -1,9 +1,10 @@
 /**
  * Catálogo estático de tratamientos.
- * Basado en los procedimientos de facelab.cl, reagrupados en la clasificación
- * de Omiya (Glow / Smooth / Lift / Smile). Sin precios: la reserva en Dentalink
- * es por categoría o por hora de diagnóstico, y el detalle se ve en consulta.
- * Editar aquí para cambiar servicios.
+ * Espejo de los procedimientos de facelab.cl (referencia), reagrupados en la
+ * clasificación de Omiya (Glow / Smooth / Lift), más la línea dental propia
+ * en Smile. Sin precios: la reserva en Dentalink es por categoría o por hora
+ * de diagnóstico, y el detalle se ve en consulta. Editar aquí para cambiar
+ * servicios.
  */
 import type { Category, Treatment } from "@/lib/treatments-shared";
 
@@ -14,8 +15,8 @@ export type { Category, Treatment } from "@/lib/treatments-shared";
 const TREATMENTS: Treatment[] = [
   // ── GLOW · Calidad y luminosidad de la piel ──────────────────────────────
   {
-    slug: "limpieza-facial-profunda",
-    name: "Limpieza facial profunda",
+    slug: "limpieza-facial",
+    name: "Limpieza facial",
     shortDescription:
       "Elimina impurezas, exfolia y revitaliza la piel para una apariencia saludable y radiante.",
     longDescription:
@@ -48,8 +49,8 @@ const TREATMENTS: Treatment[] = [
 
   // ── SMOOTH · Arrugas y líneas de expresión ───────────────────────────────
   {
-    slug: "relleno-acido-hialuronico",
-    name: "Relleno de ácido hialurónico",
+    slug: "rellenos-acido-hialuronico",
+    name: "Rellenos de ácido hialurónico",
     shortDescription:
       "Hidratación y volumen natural para pómulos, ojeras, labios, mentón y contorno.",
     longDescription:
@@ -65,33 +66,20 @@ const TREATMENTS: Treatment[] = [
     category: "smooth",
     duration: "Resultados de 6–18 meses según la zona",
   },
-  {
-    slug: "hilos-revitalizantes-pdo",
-    name: "Hilos revitalizantes PDO",
-    shortDescription:
-      "Hebras finas de polidioxanona que reafirman la piel y estimulan colágeno y elastina.",
-    longDescription:
-      "Hebras finas de polidioxanona (PDO), un material biocompatible y reabsorbible usado hace décadas en cirugía. Reafirman la piel y estimulan la síntesis natural de colágeno y elastina, suavizando la textura y mejorando la calidad de la piel.",
-    includes: ["Evaluación médica", "Aplicación", "Control post-tratamiento"],
-    contraindications: [
-      "Embarazo y lactancia",
-      "Enfermedades autoinmunes",
-      "Tratamiento con isotretinoína",
-      "Infección en la zona",
-    ],
-    category: "smooth",
-    duration: "Resultados de 6–8 meses",
-  },
 
   // ── LIFT · Firmeza y soporte facial ──────────────────────────────────────
   {
-    slug: "bioestimuladores",
-    name: "Bioestimuladores de colágeno",
+    slug: "bioestimulacion",
+    name: "Bioestimulación",
     shortDescription:
-      "Radiesse® y Sculptra®: volumen inmediato y estímulo del colágeno propio.",
+      "Radiesse®, Sculptra® e hilos PDO: firmeza estimulando tu propio colágeno.",
     longDescription:
-      "Bioestimuladores dérmicos inyectables — hidroxiapatita de calcio (Radiesse®) o ácido poli-L-láctico (Sculptra®) — que tratan la flacidez del rostro, cuello y escote con doble efecto: volumen inmediato y estimulación progresiva del colágeno natural, para una firmeza que dura entre 12 y 24 meses.",
-    includes: ["Evaluación médica", "Aplicación", "Plan de sesiones"],
+      "Tratamientos inyectables que estimulan la producción natural de colágeno y elastina para tratar la flacidez del rostro, cuello y escote: hidroxiapatita de calcio (Radiesse®), ácido poli-L-láctico (Sculptra®) e hilos revitalizantes de polidioxanona (PDO). Firmeza progresiva y natural, con resultados que duran entre 6 y 24 meses según la técnica.",
+    includes: [
+      "Evaluación médica y elección de técnica",
+      "Aplicación",
+      "Control post-tratamiento",
+    ],
     contraindications: [
       "Embarazo y lactancia",
       "Alergia al producto o lidocaína",
@@ -100,13 +88,13 @@ const TREATMENTS: Treatment[] = [
       "Rellenos permanentes previos",
     ],
     category: "lift",
-    duration: "Resultados de 12–24 meses",
+    duration: "Resultados de 6–24 meses según técnica",
   },
   {
-    slug: "radiofrecuencia-endymed",
-    name: "Radiofrecuencia Endymed PRO™",
+    slug: "endymed-pro",
+    name: "Endymed PRO™",
     shortDescription:
-      "Calor profundo controlado que reestructura el colágeno y reafirma la piel.",
+      "Radiofrecuencia 3DEEP™: calor profundo controlado que reafirma la piel.",
     longDescription:
       "Plataforma de radiofrecuencia con tecnología 3DEEP™ que genera un calentamiento cutáneo y subcutáneo profundo, estimulando la circulación, la oxigenación y la regeneración de las fibras de colágeno. Trata flacidez, líneas de expresión, poros dilatados y cicatrices, con retorno inmediato a la actividad diaria.",
     includes: [
@@ -119,8 +107,8 @@ const TREATMENTS: Treatment[] = [
     duration: "30–45 min por sesión",
   },
   {
-    slug: "lipopapada",
-    name: "Lipopapada",
+    slug: "lipopapadas",
+    name: "Lipopapadas",
     shortDescription:
       "Reducción de la grasa submentoniana para un contorno más definido.",
     longDescription:
@@ -131,7 +119,19 @@ const TREATMENTS: Treatment[] = [
     duration: "Ambulatorio · mismo día",
   },
 
-  // ── SMILE · Salud y estética dental ──────────────────────────────────────
+  // ── SMILE · Salud y estética dental (línea propia de Omiya) ──────────────
+  {
+    slug: "limpieza-dental",
+    name: "Limpieza dental",
+    shortDescription:
+      "Higiene profesional: destartraje y pulido para encías y dientes sanos.",
+    longDescription:
+      "Higiene dental profesional que elimina placa bacteriana y sarro mediante destartraje y pulido coronario. Previene caries y enfermedad de las encías, y mantiene la salud y frescura de tu sonrisa. Recomendada cada 6 meses.",
+    includes: ["Evaluación de salud oral", "Destartraje", "Pulido coronario"],
+    contraindications: [],
+    category: "smile",
+    duration: "30–45 min",
+  },
   {
     slug: "endodoncia",
     name: "Endodoncia",
