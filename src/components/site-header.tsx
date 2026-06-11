@@ -41,8 +41,8 @@ export function SiteHeader() {
           aria-label="Omiya Clinic — Home"
           className={`transition-colors ${
             overHero
-              ? "text-[#f3ede3] hover:text-white"
-              : "text-[#a4884f] hover:text-[#8e6e3a]"
+              ? "text-[#f3ede3]/80 hover:text-[#f3ede3]"
+              : "text-zinc-600 hover:text-zinc-900"
           }`}
         >
           <LogoMark className="h-8 w-auto" />
