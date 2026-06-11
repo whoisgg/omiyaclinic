@@ -10,28 +10,16 @@ export default function AcercaPage() {
 
   return (
     <main className="bg-white">
-      {/* Filosofía */}
-      <section className="border-b border-zinc-200">
-        <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
-            Nuestra filosofía
-          </p>
-          <h1 className="mt-4 text-4xl font-light text-zinc-900 sm:text-5xl">
-            Well-aging, no anti-aging.
-          </h1>
-        </div>
-      </section>
-
-      {/* Nuestra esencia */}
+      {/* Nuestra filosofía */}
       <section className="bg-[#faf6ec]">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:py-28">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
-              Nuestra esencia
+              Nuestra filosofía
             </p>
-            <h2 className="mt-6 font-serif text-5xl font-medium leading-[1.05] tracking-tight text-zinc-900 sm:text-6xl">
-              El arte de envejecer con gracia.
-            </h2>
+            <h1 className="mt-6 font-serif text-5xl font-medium leading-[1.05] tracking-tight text-zinc-900 sm:text-6xl">
+              Well-aging, no anti-aging.
+            </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-zinc-600 sm:text-lg">
               En Omiya Clinic, entendemos que la belleza no es una lucha contra
               el tiempo, sino una alianza con él. Creemos en un enfoque
