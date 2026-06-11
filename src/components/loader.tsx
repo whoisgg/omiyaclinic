@@ -120,7 +120,7 @@ export function Loader() {
           <div className="mt-4 flex flex-col items-center gap-2 md:mt-6">
             <div className="overflow-hidden">
               <span
-                className="block py-1 text-lg font-medium uppercase tracking-[0.2em] text-white transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:text-2xl"
+                className="block py-1 font-serif text-2xl font-light uppercase tracking-[0.18em] text-white transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:text-3xl"
                 style={{
                   transform: showText1 ? "translateY(0)" : "translateY(110%)",
                 }}
@@ -130,7 +130,7 @@ export function Loader() {
             </div>
             <div className="overflow-hidden">
               <span
-                className="block py-1 text-sm font-light tracking-[0.15em] text-white/60 transition-transform delay-100 duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:text-base"
+                className="block py-1 text-[10px] uppercase tracking-[0.3em] text-white/60 transition-transform delay-100 duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:text-xs"
                 style={{
                   transform: showText2 ? "translateY(0)" : "translateY(110%)",
                 }}
