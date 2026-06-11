@@ -4,7 +4,7 @@ import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 import { PetalsOverlay } from "@/components/petals-overlay";
 import { IntroReveal } from "@/components/intro-reveal";
-import { HeroScrollGate } from "@/components/hero-scroll-gate";
+import { LogoMark } from "@/components/logo-mark";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -14,7 +14,6 @@ export default async function HomePage() {
       {/* HERO — fondo crema de la marca, pétalos de cerezo a la deriva */}
       <section className="relative isolate min-h-screen overflow-hidden bg-[#faf6ec]">
         <PetalsOverlay />
-        <HeroScrollGate />
 
         <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
@@ -55,10 +54,11 @@ export default async function HomePage() {
       <section className="flex min-h-screen items-center bg-white">
         <IntroReveal>
           <div className="mx-auto max-w-3xl px-6 py-24 text-center">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
-            Clinic
-          </p>
-          <h2 className="mt-6 text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
+          {/* Cajita con el monograma, al estilo sensei.tech */}
+          <div className="mx-auto flex h-16 w-16 items-center justify-center border border-[#b08a4f]/40">
+            <LogoMark className="h-7 w-auto text-[#b08a4f]" />
+          </div>
+          <h2 className="mt-10 font-serif text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
             El well-aging en Omiya Clinic.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-zinc-600">
