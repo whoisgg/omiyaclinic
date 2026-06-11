@@ -2,81 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
-import { PetalsOverlay } from "@/components/petals-overlay";
-import { IntroReveal } from "@/components/intro-reveal";
-import { LogoMark } from "@/components/logo-mark";
+import { HeroStage } from "@/components/hero-stage";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
 
   return (
     <>
-      {/* HERO pinned + INTRO que sube como lámina blanca encima (cover) */}
-      <div className="relative">
-      <section className="sticky top-0 z-0 h-screen overflow-hidden bg-[#faf6ec]">
-        <PetalsOverlay />
-
-        <div className="relative flex h-full flex-col items-center justify-center px-6 pt-20 text-center">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
-            Premium well-aging clinic
-          </p>
-          <h1 className="mt-6 font-serif text-7xl font-light tracking-[0.18em] text-zinc-900 sm:text-8xl lg:text-9xl">
-            OMIYA
-          </h1>
-          <p className="mt-6 font-serif text-xl font-light tracking-wide text-zinc-600 sm:text-2xl">
-            Tratamientos personalizados
-          </p>
-
-          <Link
-            href="/tratamientos"
-            className="btn-luxe mt-12 px-10 py-4 text-xs text-zinc-900"
-            style={
-              {
-                "--luxe-fill": "#18181b",
-                "--luxe-fill-text": "#ffffff",
-              } as React.CSSProperties
-            }
-          >
-            Explora nuestros tratamientos
-          </Link>
-        </div>
-
-        <div className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3 text-zinc-500">
-          <span className="text-[10px] uppercase tracking-[0.3em]">
-            Scroll para descubrir
-          </span>
-          <span aria-hidden="true" className="animate-bounce text-lg">
-            ↓
-          </span>
-        </div>
-      </section>
-
-      {/* CLINIC INTRO — sube con fondo blanco sobre el hero, logo al centro */}
-      <section className="relative z-10 flex min-h-screen items-center bg-white">
-        <IntroReveal>
-          <div className="mx-auto max-w-3xl px-6 py-24 text-center">
-          {/* Cajita con el monograma, al estilo sensei.tech */}
-          <div className="mx-auto flex h-16 w-16 items-center justify-center border border-[#b08a4f]/40">
-            <LogoMark className="h-7 w-auto text-[#b08a4f]" />
-          </div>
-          <h2 className="mt-10 font-serif text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
-            El well-aging en Omiya Clinic.
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-zinc-600">
-            Nuestro enfoque busca crear un espacio donde el bienestar se
-            construye de manera consciente, personalizada y sostenible en cada
-            etapa de la vida.
-          </p>
-          <Link
-            href="/tratamientos"
-            className="btn-underline mt-10 inline-block text-xs text-[#b08a4f]"
-          >
-            Explora nuestros tratamientos
-          </Link>
-          </div>
-        </IntroReveal>
-      </section>
-      </div>
+      {/* HERO + INTRO — transición de máscara hacia la cajita del logo */}
+      <HeroStage />
 
       {/* CATEGORÍAS */}
       <section className="border-t border-zinc-200 bg-white">
