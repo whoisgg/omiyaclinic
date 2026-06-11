@@ -151,8 +151,14 @@ export default async function HomePage() {
       {/* FUNDADORA — wireframe placeholder */}
       <section className="bg-white">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2 sm:items-center">
-          <div className="flex aspect-[4/5] items-center justify-center border border-dashed border-zinc-300 bg-zinc-100 text-xs uppercase tracking-widest text-zinc-400">
-            Retrato fundadora
+          <div className="relative aspect-[4/5] overflow-hidden">
+            <Image
+              src="/founder-portrait.webp"
+              alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
+              fill
+              sizes="(min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
           </div>
           <div>
             <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">

@@ -83,10 +83,18 @@ export default function AcercaPage() {
       {/* Fundadora */}
       <section className="border-b border-zinc-200">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2">
-          <div className="aspect-[4/5] bg-gradient-to-br from-zinc-200 to-zinc-300" />
+          <div className="relative aspect-[4/5] overflow-hidden">
+            <Image
+              src="/founder-portrait.webp"
+              alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
+              fill
+              sizes="(min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
           <div className="flex flex-col justify-center">
             <p className="text-xs uppercase tracking-[0.4em] text-zinc-500">
-              Retrato fundadora
+              Fundadora
             </p>
             <h2 className="mt-2 text-2xl font-light text-zinc-900">
               Historia y enfoque de la Dra. Antonieta Ortega
