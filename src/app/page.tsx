@@ -59,8 +59,9 @@ export default async function HomePage() {
             El well-aging en Omiya Clinic.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-zinc-600">
-            Cuidamos cómo envejecemos. Tratamientos médicos seguros, productos
-            certificados y un equipo que te conoce por tu nombre.
+            Nuestro enfoque busca crear un espacio donde el bienestar se
+            construye de manera consciente, personalizada y sostenible en cada
+            etapa de la vida.
           </p>
           <Link
             href="/tratamientos"
