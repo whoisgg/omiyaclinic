@@ -48,7 +48,7 @@ export const CATEGORIES: {
   },
   {
     id: "lift",
-    image: "/treatments/endymed-pro.webp",
+    image: "/treatments/cat-lift.webp",
     label: "Lift",
     tagline: "Firmeza",
     subtitle: "Firmeza y soporte facial",
