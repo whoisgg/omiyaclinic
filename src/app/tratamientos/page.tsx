@@ -23,51 +23,48 @@ export default async function TratamientosPage({
 
   return (
     <main className="bg-[#fdf9f0]">
-      {/* Header — título a la izquierda, filtros a la derecha */}
-      <section className="mx-auto max-w-7xl px-6 pb-20 pt-40 lg:px-10">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <h1 className="font-serif text-5xl font-light leading-tight text-zinc-900 sm:text-6xl">
-              Tratamientos Personalizados
-            </h1>
-            {activeCategory ? (
-              <div className="mt-8 max-w-lg">
-                <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
-                  {activeCategory.subtitle}
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-zinc-600">
-                  {activeCategory.description}
-                </p>
-              </div>
-            ) : (
-              <p className="mt-8 max-w-lg text-base leading-relaxed text-zinc-600">
-                El well-aging en Omiya Clinic es un compromiso con la salud de
-                tu piel. Técnicas avanzadas diseñadas para realzar tu belleza
-                natural con resultados armónicos.
+      {/* Header — título + intro */}
+      <section className="mx-auto max-w-7xl px-6 pb-10 pt-36 lg:px-10">
+        <div className="max-w-2xl">
+          <h1 className="font-serif text-5xl font-light leading-tight text-zinc-900 sm:text-6xl">
+            Tratamientos Personalizados
+          </h1>
+          {activeCategory ? (
+            <div className="mt-6 max-w-lg">
+              <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
+                {activeCategory.subtitle}
               </p>
-            )}
-          </div>
-
-          {/* Filtros */}
-          <div className="flex flex-wrap gap-6 pb-2 md:gap-8">
-            <FilterLink href="/tratamientos" label="All" active={!active} />
-            {CATEGORIES.map((c) => (
-              <FilterLink
-                key={c.id}
-                href={`/tratamientos?cat=${c.id}`}
-                label={c.label}
-                active={active === c.id}
-              />
-            ))}
-          </div>
+              <p className="mt-3 text-base leading-relaxed text-zinc-600">
+                {activeCategory.description}
+              </p>
+            </div>
+          ) : (
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-zinc-600">
+              El well-aging en Omiya Clinic es un compromiso con la salud de
+              tu piel. Técnicas avanzadas diseñadas para realzar tu belleza
+              natural con resultados armónicos.
+            </p>
+          )}
         </div>
       </section>
 
-      {/* Grid de cards */}
+      {/* Grid de cards — filtros pegados sobre las imágenes */}
       <section
         id="catalogo"
-        className="mx-auto max-w-7xl scroll-mt-20 px-6 pb-28 pt-36 lg:px-10"
+        className="mx-auto max-w-7xl scroll-mt-20 px-6 pb-28 lg:px-10"
       >
+        <div className="mb-8 flex flex-wrap gap-6 md:justify-end md:gap-8">
+          <FilterLink href="/tratamientos" label="All" active={!active} />
+          {CATEGORIES.map((c) => (
+            <FilterLink
+              key={c.id}
+              href={`/tratamientos?cat=${c.id}`}
+              label={c.label}
+              active={active === c.id}
+            />
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
           {!activeCategory &&
             CATEGORIES.map((c, idx) => {
