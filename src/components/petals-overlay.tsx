@@ -20,10 +20,15 @@ export function PetalsOverlay() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // Con prefers-reduced-motion dibujamos un solo frame estático de
+    // pétalos esparcidos en vez de animar.
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     let width = 0;
     let height = 0;
@@ -96,21 +101,32 @@ export function PetalsOverlay() {
     resize();
     const petals = Array.from({ length: PETAL_COUNT }, () => new Petal(true));
 
-    const animate = () => {
+    const drawFrame = () => {
       ctx.clearRect(0, 0, width, height);
-      for (const p of petals) {
-        p.update();
-        p.draw(ctx);
-      }
+      for (const p of petals) p.draw(ctx);
+    };
+
+    const animate = () => {
+      for (const p of petals) p.update();
+      drawFrame();
       raf = window.requestAnimationFrame(animate);
     };
 
-    window.addEventListener("resize", resize);
-    raf = window.requestAnimationFrame(animate);
+    const handleResize = () => {
+      resize();
+      if (reduced) drawFrame();
+    };
+
+    window.addEventListener("resize", handleResize);
+    if (reduced) {
+      drawFrame();
+    } else {
+      raf = window.requestAnimationFrame(animate);
+    }
 
     return () => {
       window.cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
