@@ -130,28 +130,30 @@ export function ProductsAssemblySection() {
 
         {/* Texto — aparece cuando la composición está armada */}
         <div
-          className={`pointer-events-none absolute inset-x-0 bottom-0 z-40 flex flex-col items-center px-6 pb-8 transition-opacity duration-500 md:bottom-auto md:top-0 md:px-12 md:pb-0 md:pt-24 lg:px-20 ${
+          className={`pointer-events-none absolute inset-x-0 bottom-0 z-40 pb-8 transition-opacity duration-500 md:bottom-auto md:top-0 md:pb-0 md:pt-24 ${
             showText ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className="max-w-xl text-left">
-            <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
-              Productos
-            </p>
-            <h2 className="mt-3 font-serif text-3xl font-medium uppercase leading-tight text-zinc-900 lg:text-4xl xl:text-5xl">
-              Elegimos calidad
-            </h2>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-600 lg:text-base">
-              Trabajamos con productos certificados y cuidadosamente
-              seleccionados, pensados para realzar tu belleza de forma natural.
-            </p>
-            <div className="pointer-events-auto mt-6">
-              <Link
-                href="/tratamientos"
-                className="btn-underline inline-block text-xs text-[#b08a4f]"
-              >
-                Ver tratamientos
-              </Link>
+          <div className="mx-auto w-full max-w-6xl px-6">
+            <div className="max-w-xl text-left">
+              <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
+                Productos
+              </p>
+              <h2 className="mt-3 font-serif text-3xl font-medium uppercase leading-tight text-zinc-900 lg:text-4xl xl:text-5xl">
+                Elegimos calidad
+              </h2>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-zinc-600 lg:text-base">
+                Trabajamos con productos certificados y cuidadosamente
+                seleccionados, pensados para realzar tu belleza de forma natural.
+              </p>
+              <div className="pointer-events-auto mt-6">
+                <Link
+                  href="/tratamientos"
+                  className="btn-underline inline-block text-xs text-[#b08a4f]"
+                >
+                  Ver tratamientos
+                </Link>
+              </div>
             </div>
           </div>
         </div>
