@@ -4,7 +4,34 @@
 
 ---
 
-## 🔄 Para retomar (estado al 2026-06-10)
+## 🔄 Para retomar (estado al 2026-06-11)
+
+**Lo hecho en la sesión del 11-06:**
+- **Landing nuevo**: hero crema de marca con pétalos de cerezo en canvas
+  (`petals-overlay.tsx`) + transición de máscara estilo sensei.tech
+  (`hero-stage.tsx`): el lienzo se recorta y el lockup viaja achicándose a un
+  layout de 2 columnas (logo izq. / texto well-aging der.), pétalos se
+  desvanecen al scrollear y vuelven al landing; lockup queda pinned y las
+  secciones lo cubren; todo reversible con scroll natural (sin snap/hijack).
+- **Logos vectoriales de marca** (svgo de los AI exports, currentColor):
+  `logo-wordmark.tsx` (OMIYA con O-ligadura), `logo-clinic.tsx` (franja CLINIC
+  del lockup oficial), `logo-full.tsx` (lockup completo, usado en footer),
+  `logo-mark.tsx` (monograma navbar/favicon).
+- **/tratamientos rediseñado**: grid de cards con fotos Unsplash license-free
+  (desaturadas, color al hover), vista All con 4 cards de categoría, filtros
+  sobre el grid sin saltos de scroll (`scroll={false}` + anchor #catalogo),
+  banda CTA full-width de cierre. Sin descriptores de duración en cards.
+- **Home**: retrato HD de la doctora + cita nueva, sección productos estática
+  (foto limpia `products/composicion.webp`, generada por IA + segmentación;
+  se eliminaron los 192 frames y las animaciones de scrub/capas).
+- **Navbar**: transparente absoluto en todas las páginas, botón Agendar
+  cuadrado (btn-luxe). Loader con tipografía del sistema (serif + eyebrow).
+- Si las imágenes no se actualizan tras un cambio: renombrar el archivo
+  (cache-bust) — los caches de imagen optimizada retienen la URL vieja.
+
+---
+
+## (sesión anterior) estado al 2026-06-10
 
 **Setup en un computador nuevo:**
 ```bash
