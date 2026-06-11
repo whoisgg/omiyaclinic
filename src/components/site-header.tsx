@@ -76,13 +76,19 @@ export function SiteHeader() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`btn-underline text-xs ${
-              overHero
-                ? "text-[#f3ede3] hover:text-white"
-                : "text-zinc-900 hover:text-[#b08a4f]"
+            className={`btn-luxe px-6 py-2.5 text-[10px] ${
+              overHero ? "text-[#f3ede3]" : "text-zinc-900"
             }`}
+            style={
+              (overHero
+                ? { "--luxe-fill": "#f3ede3", "--luxe-fill-text": "#18181b" }
+                : {
+                    "--luxe-fill": "#18181b",
+                    "--luxe-fill-text": "#ffffff",
+                  }) as React.CSSProperties
+            }
           >
-            Agendar <span aria-hidden="true">↗</span>
+            Agendar
           </a>
         </div>
       </div>
