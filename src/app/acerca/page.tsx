@@ -15,16 +15,15 @@ export default function AcercaPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:py-28">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
-              Nuestra filosofía
+              Nuestro concepto
             </p>
-            <h1 className="mt-6 font-serif text-5xl font-medium leading-[1.05] tracking-tight text-zinc-900 sm:text-6xl">
-              Well-aging, no anti-aging.
+            <h1 className="mt-6 font-serif text-5xl font-medium uppercase leading-[1.05] tracking-tight text-zinc-900 sm:text-6xl">
+              Well Aging
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-              En Omiya Clinic, entendemos que la belleza no es una lucha contra
-              el tiempo, sino una alianza con él. Creemos en un enfoque
-              arquitectónico del rostro, donde la armonía y la salud prevalecen
-              sobre el cambio artificial.
+              En OMIYA, entendemos como wellaging a la forma consciente de
+              acompañar a cada persona en su proceso de bienestar, con criterio
+              clínico, respeto y sensibilidad.
             </p>
           </div>
           <div className="relative aspect-[4/5] max-h-[640px] w-full overflow-hidden">
