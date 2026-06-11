@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { PetalsOverlay } from "@/components/petals-overlay";
+import { LogoWordmark } from "@/components/logo-wordmark";
 import { BOOKING_URL } from "@/lib/links";
 
 /**
@@ -15,7 +16,7 @@ import { BOOKING_URL } from "@/lib/links";
  * Wrapper de 200vh con stage sticky de 100vh; progreso = scrollY/100vh.
  * Scroll natural, sin snap ni hijack.
  */
-export function HeroStage() {
+export function HeroStage({ children }: { children: React.ReactNode }) {
   const heroLayerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
@@ -93,15 +94,15 @@ export function HeroStage() {
   }, []);
 
   return (
-    <div className="relative h-[200vh]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-white">
+    <div className="relative">
+      <div className="sticky top-0 z-0 h-screen overflow-hidden bg-white">
         {/* Capa intro (detrás del hero): texto well-aging */}
         <div
           ref={introRef}
           className="absolute inset-x-0 z-10 flex flex-col items-center px-6 text-center"
         >
           <div ref={introTextRef} className="max-w-3xl" style={{ opacity: 0 }}>
-            <h2 className="mt-12 font-serif text-2xl font-light leading-tight text-zinc-900 sm:text-3xl">
+            <h2 className="font-serif text-2xl font-light leading-tight text-zinc-900 sm:text-3xl">
               El well-aging en Omiya Clinic.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-zinc-600">
@@ -133,11 +134,9 @@ export function HeroStage() {
               Premium well-aging clinic
             </p>
             <div className="relative">
-              <h1
-                ref={titleRef}
-                className="mt-6 font-serif text-7xl font-light tracking-[0.18em] text-zinc-900 sm:text-8xl lg:text-9xl"
-              >
-                OMIYA
+              <h1 ref={titleRef} className="mt-6">
+                <LogoWordmark className="h-auto w-[min(76vw,680px)] text-zinc-900" />
+                <span className="sr-only">OMIYA</span>
               </h1>
               {/* CLINIC vive dentro de la máscara para completar el logo;
                   absoluto para no alterar el layout inicial del hero. */}
@@ -182,6 +181,10 @@ export function HeroStage() {
           </div>
         </div>
       </div>
+
+      {/* Las secciones siguientes suben cubriendo el logo pinned; el margen
+          extra deja ~40vh de pausa para leer el lockup + texto antes del cover */}
+      <div className="relative z-30 mt-[140vh]">{children}</div>
     </div>
   );
 }

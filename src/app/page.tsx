@@ -9,8 +9,8 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* HERO + INTRO — transición de máscara hacia la cajita del logo */}
-      <HeroStage />
+      {/* HERO + INTRO — máscara hacia el logo; el resto cubre al scrollear */}
+      <HeroStage>
 
       {/* CATEGORÍAS */}
       <section className="border-t border-zinc-200 bg-white">
@@ -171,6 +171,7 @@ export default async function HomePage() {
           </a>
         </div>
       </section>
+      </HeroStage>
     </>
   );
 }
