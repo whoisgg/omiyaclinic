@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
+import { PetalsOverlay } from "@/components/petals-overlay";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -19,6 +20,9 @@ export default async function HomePage() {
         />
         {/* Legibility overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
+
+        {/* Pétalos de cerezo a la deriva */}
+        <PetalsOverlay />
 
         <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#f3ede3]/80">
