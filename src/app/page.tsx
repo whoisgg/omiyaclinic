@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
+import { ProductsFramesSection } from "@/components/products-frames-section";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -169,6 +170,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* PRODUCTOS — scrubbing de frames */}
+      <ProductsFramesSection />
 
       {/* CTA */}
       <section className="bg-zinc-900 text-white">
