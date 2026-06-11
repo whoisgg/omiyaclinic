@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 import { PetalsOverlay } from "@/components/petals-overlay";
+import { IntroReveal } from "@/components/intro-reveal";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -48,9 +49,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CLINIC INTRO */}
-      <section className="snap-start bg-white">
-        <div className="mx-auto max-w-3xl px-6 py-24 text-center">
+      {/* CLINIC INTRO — full viewport, aparece con la salida del hero */}
+      <section className="flex min-h-screen snap-start items-center bg-white">
+        <IntroReveal>
+          <div className="mx-auto max-w-3xl px-6 py-24 text-center">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
             Clinic
           </p>
@@ -68,7 +70,8 @@ export default async function HomePage() {
           >
             Explora nuestros tratamientos
           </Link>
-        </div>
+          </div>
+        </IntroReveal>
       </section>
 
       {/* CATEGORÍAS */}
