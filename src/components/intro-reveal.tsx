@@ -23,8 +23,8 @@ export function IntroReveal({ children }: { children: React.ReactNode }) {
         1,
         Math.max(0, window.scrollY / (window.innerHeight * 0.85)),
       );
-      el.style.opacity = String(p);
-      el.style.transform = `translateY(${(1 - p) * 32}px)`;
+      el.style.opacity = String(p * p);
+      el.style.transform = `translateY(${(1 - p) * 56}px)`;
       ticking = false;
     };
 
