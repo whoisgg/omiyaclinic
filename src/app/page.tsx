@@ -4,6 +4,7 @@ import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 import { PetalsOverlay } from "@/components/petals-overlay";
 import { IntroReveal } from "@/components/intro-reveal";
+import { HeroScrollGate } from "@/components/hero-scroll-gate";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -11,8 +12,9 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO — fondo crema de la marca, pétalos de cerezo a la deriva */}
-      <section className="relative isolate min-h-screen snap-start overflow-hidden bg-[#faf6ec]">
+      <section className="relative isolate min-h-screen overflow-hidden bg-[#faf6ec]">
         <PetalsOverlay />
+        <HeroScrollGate />
 
         <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
@@ -50,7 +52,7 @@ export default async function HomePage() {
       </section>
 
       {/* CLINIC INTRO — full viewport, aparece con la salida del hero */}
-      <section className="flex min-h-screen snap-start items-center bg-white">
+      <section className="flex min-h-screen items-center bg-white">
         <IntroReveal>
           <div className="mx-auto max-w-3xl px-6 py-24 text-center">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
