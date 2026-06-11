@@ -10,7 +10,7 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO — fondo crema de la marca, pétalos de cerezo a la deriva */}
-      <section className="relative isolate min-h-screen overflow-hidden bg-[#faf6ec]">
+      <section className="relative isolate min-h-screen snap-start overflow-hidden bg-[#faf6ec]">
         <PetalsOverlay />
 
         <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
@@ -49,7 +49,7 @@ export default async function HomePage() {
       </section>
 
       {/* CLINIC INTRO */}
-      <section className="bg-white">
+      <section className="snap-start bg-white">
         <div className="mx-auto max-w-3xl px-6 py-24 text-center">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
             Clinic
