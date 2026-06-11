@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 
@@ -7,37 +8,41 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* HERO — wireframe style: 4 IMG columns + OMIYA centered */}
-      <section className="relative isolate overflow-hidden bg-zinc-100">
-        <div className="absolute inset-0 grid grid-cols-4">
-          {[0, 1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center border-r border-dashed border-zinc-300 bg-zinc-200/70 text-[10px] uppercase tracking-widest text-zinc-400 last:border-r-0"
-            >
-              IMG
-            </div>
-          ))}
-        </div>
-        <div className="relative mx-auto flex min-h-[78vh] max-w-6xl flex-col items-center justify-center px-6 py-32 text-center">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
-            Premium well-aging clinic
-          </p>
-          <h1 className="mt-6 text-7xl font-light tracking-[0.4em] text-zinc-900 sm:text-8xl">
+      {/* HERO — full-bleed photo, serif wordmark, outlined CTA */}
+      <section className="relative isolate min-h-screen overflow-hidden">
+        <Image
+          src="/hero-clinic.webp"
+          alt="Recepción de Omiya Clinic"
+          fill
+          priority
+          className="object-cover"
+        />
+        {/* Legibility overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
+
+        <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
+          <h1 className="font-serif text-7xl font-light tracking-[0.18em] text-[#f3ede3] sm:text-8xl lg:text-9xl">
             OMIYA
           </h1>
-          <p className="mt-6 text-[10px] uppercase tracking-[0.5em] text-zinc-600">
-            Tratamientos personalizados
+          <p className="mt-6 font-serif text-xl font-light tracking-wide text-[#f3ede3]/90 sm:text-2xl">
+            El santuario del well-aging
           </p>
-          <span className="mt-16 text-xs uppercase tracking-widest text-zinc-500">
-            ↓ scroll
-          </span>
+
+          <Link
+            href="/tratamientos"
+            className="mt-12 border border-[#f3ede3]/70 px-10 py-4 text-xs uppercase tracking-[0.25em] text-[#f3ede3] transition-colors hover:bg-[#f3ede3] hover:text-zinc-900"
+          >
+            Explora nuestros tratamientos
+          </Link>
         </div>
-        <div className="mx-auto flex max-w-2xl gap-2 px-6 pb-10">
-          <div className="h-[2px] flex-1 rounded bg-[#b08a4f]" />
-          <div className="h-[2px] flex-1 rounded bg-zinc-300" />
-          <div className="h-[2px] flex-1 rounded bg-zinc-300" />
-          <div className="h-[2px] flex-1 rounded bg-zinc-300" />
+
+        <div className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3 text-[#f3ede3]/80">
+          <span className="text-[10px] uppercase tracking-[0.3em]">
+            Scroll para descubrir
+          </span>
+          <span aria-hidden="true" className="animate-bounce text-lg">
+            ↓
+          </span>
         </div>
       </section>
 
