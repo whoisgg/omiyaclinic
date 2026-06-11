@@ -15,6 +15,34 @@ const FRAME_COUNT = 192;
 const FINAL_FRAME_THRESHOLD = 180;
 const TEXT_THRESHOLD = 100;
 
+/**
+ * Mapeo no lineal scroll → frame. El render original "deforma" la caja de
+ * Sculptra mientras gira (frames ~64–96), así que ese tramo se reproduce
+ * ~4x más rápido para disimular el artefacto; el resto corre normal.
+ */
+const SEGMENTS = [
+  { from: 0, to: 64, weight: 64 },
+  { from: 64, to: 96, weight: 8 },
+  { from: 96, to: FRAME_COUNT, weight: 96 },
+];
+const TOTAL_WEIGHT = SEGMENTS.reduce((acc, s) => acc + s.weight, 0);
+
+function progressToFrame(progress: number) {
+  let acc = 0;
+  for (const s of SEGMENTS) {
+    const end = (acc + s.weight) / TOTAL_WEIGHT;
+    if (progress <= end) {
+      const local = (progress - acc / TOTAL_WEIGHT) / (s.weight / TOTAL_WEIGHT);
+      return Math.min(
+        FRAME_COUNT - 1,
+        Math.floor(s.from + local * (s.to - s.from)),
+      );
+    }
+    acc += s.weight;
+  }
+  return FRAME_COUNT - 1;
+}
+
 export function ProductsFramesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -117,10 +145,7 @@ export function ProductsFramesSection() {
         0,
         Math.min(1, (viewportHeight - rect.top) / scrollRange),
       );
-      const frameIndex = Math.min(
-        FRAME_COUNT - 1,
-        Math.floor(scrollProgress * FRAME_COUNT),
-      );
+      const frameIndex = progressToFrame(scrollProgress);
 
       if (!ticking) {
         window.requestAnimationFrame(() => {

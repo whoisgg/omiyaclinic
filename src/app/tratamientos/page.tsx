@@ -17,6 +17,7 @@ export default async function TratamientosPage({
     ? (cat as Category)
     : null;
   const list = await getTreatments(active ?? undefined);
+  const all = await getTreatments();
   const activeCategory = active ? CATEGORIES.find((c) => c.id === active) : null;
 
   return (
@@ -67,7 +68,51 @@ export default async function TratamientosPage({
       {/* Grid de cards */}
       <section className="mx-auto max-w-7xl px-6 pb-28 lg:px-10">
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
-          {list.map((t, idx) => {
+          {!activeCategory &&
+            CATEGORIES.map((c, idx) => {
+              const count = all.filter((t) => t.category === c.id).length;
+              return (
+                <article key={c.id} className="group">
+                  <Link href={`/tratamientos?cat=${c.id}`} className="block">
+                    {/* Imagen — placeholder con monograma hasta tener fotos */}
+                    <div className="relative aspect-[4/5] overflow-hidden">
+                      <div
+                        className={`absolute inset-0 flex items-center justify-center transition-transform duration-700 group-hover:scale-105 ${
+                          idx % 2 === 0 ? "bg-[#f3ede3]" : "bg-[#e8e2d8]"
+                        }`}
+                      >
+                        <LogoMark className="h-16 w-auto text-[#b08a4f]/25" />
+                      </div>
+                      <div className="absolute left-4 top-4 bg-white/90 px-3 py-1 text-[10px] uppercase tracking-widest text-zinc-900 backdrop-blur">
+                        {c.tagline}
+                      </div>
+                    </div>
+
+                    <div className="mt-6 flex items-start justify-between gap-4">
+                      <h3 className="font-serif text-2xl font-normal text-zinc-900">
+                        {c.label}
+                      </h3>
+                      <span className="mt-1.5 shrink-0 text-[10px] uppercase tracking-widest text-zinc-500">
+                        {count} tratamiento{count === 1 ? "" : "s"}
+                      </span>
+                    </div>
+                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-600">
+                      {c.subtitle}.{" "}
+                      {c.description}
+                    </p>
+                  </Link>
+                  <Link
+                    href={`/tratamientos?cat=${c.id}`}
+                    className="btn-underline mt-5 inline-block text-xs text-zinc-900"
+                  >
+                    Ver tratamientos
+                  </Link>
+                </article>
+              );
+            })}
+
+          {activeCategory &&
+            list.map((t, idx) => {
             const catLabel =
               CATEGORIES.find((c) => c.id === t.category)?.label ?? "General";
             return (
