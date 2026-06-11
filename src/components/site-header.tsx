@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BOOKING_URL } from "@/lib/links";
+import { LogoMark } from "@/components/logo-mark";
 
 const NAV = [
   { href: "/acerca", label: "Acerca de" },
@@ -37,11 +38,14 @@ export function SiteHeader() {
       >
         <Link
           href="/"
-          className={`font-serif text-2xl tracking-[0.25em] ${
-            overHero ? "text-[#f3ede3]" : "text-zinc-900"
+          aria-label="Omiya Clinic — Home"
+          className={`transition-colors ${
+            overHero
+              ? "text-[#f3ede3] hover:text-white"
+              : "text-[#a4884f] hover:text-[#8e6e3a]"
           }`}
         >
-          OMIYA
+          <LogoMark className="h-8 w-auto" />
         </Link>
 
         <div className="flex items-center gap-8">
