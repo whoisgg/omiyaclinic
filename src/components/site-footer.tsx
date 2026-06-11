@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { LogoFull } from "@/components/logo-full";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-zinc-200/60 bg-white">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 py-12 sm:grid-cols-3">
-        <div className="text-2xl font-semibold tracking-[0.3em] text-zinc-300">
-          OMIYA
+        <div>
+          <LogoFull className="h-14 w-auto text-zinc-400" />
         </div>
         <ul className="space-y-2 text-sm text-zinc-600">
           <li>
