@@ -76,7 +76,7 @@ export function SiteHeader() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${linkBase} ${
+            className={`btn-underline text-xs ${
               overHero
                 ? "text-[#f3ede3] hover:text-white"
                 : "text-zinc-900 hover:text-[#b08a4f]"

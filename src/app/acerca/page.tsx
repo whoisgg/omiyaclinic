@@ -98,7 +98,7 @@ export default function AcercaPage() {
             </p>
             <a
               href="https://instagram.com"
-              className="mt-8 inline-block border-b border-[#b08a4f] pb-1 text-xs uppercase tracking-widest text-[#b08a4f]"
+              className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
             >
               Instagram →
             </a>

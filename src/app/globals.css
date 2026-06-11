@@ -23,3 +23,46 @@ body {
 [data-loader-done] #site-loader {
   display: none;
 }
+
+/* ── Botones "silent luxury" (referencia Stitch) ─────────────────────────
+   Primario: outline 1px que se rellena al hover.
+   Secundario: texto editorial con subrayado que se expande desde la
+   izquierda. Ambos con easing expo-out de 0.5s. */
+.btn-luxe,
+.btn-underline {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-luxe {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid currentColor;
+  background: transparent;
+}
+.btn-luxe:hover {
+  background: var(--luxe-fill);
+  border-color: var(--luxe-fill);
+  color: var(--luxe-fill-text);
+}
+
+.btn-underline {
+  position: relative;
+  padding-bottom: 4px;
+}
+.btn-underline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0.12);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.btn-underline:hover::after {
+  transform: scaleX(1);
+}

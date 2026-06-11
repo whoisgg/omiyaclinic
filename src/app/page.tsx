@@ -33,7 +33,13 @@ export default async function HomePage() {
 
           <Link
             href="/tratamientos"
-            className="mt-12 border border-[#f3ede3]/70 px-10 py-4 text-xs uppercase tracking-[0.25em] text-[#f3ede3] transition-colors hover:bg-[#f3ede3] hover:text-zinc-900"
+            className="btn-luxe mt-12 px-10 py-4 text-xs text-[#f3ede3]"
+            style={
+              {
+                "--luxe-fill": "#f3ede3",
+                "--luxe-fill-text": "#18181b",
+              } as React.CSSProperties
+            }
           >
             Explora nuestros tratamientos
           </Link>
@@ -65,7 +71,7 @@ export default async function HomePage() {
           </p>
           <Link
             href="/tratamientos"
-            className="mt-10 inline-block border-b border-[#b08a4f] pb-1 text-xs uppercase tracking-widest text-[#b08a4f]"
+            className="btn-underline mt-10 inline-block text-xs text-[#b08a4f]"
           >
             Explora nuestros tratamientos →
           </Link>
@@ -156,7 +162,7 @@ export default async function HomePage() {
             </blockquote>
             <Link
               href="/acerca"
-              className="mt-8 inline-block border-b border-[#b08a4f] pb-1 text-xs uppercase tracking-widest text-[#b08a4f]"
+              className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
             >
               Ver más →
             </Link>
@@ -172,7 +178,13 @@ export default async function HomePage() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-block rounded-full border border-white/30 px-8 py-3 text-xs uppercase tracking-widest transition-colors hover:bg-white hover:text-zinc-900"
+            className="btn-luxe mt-8 inline-block px-10 py-4 text-xs text-white/90"
+            style={
+              {
+                "--luxe-fill": "#ffffff",
+                "--luxe-fill-text": "#18181b",
+              } as React.CSSProperties
+            }
           >
             ↘ Agendar consulta
           </a>

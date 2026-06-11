@@ -75,7 +75,13 @@ export default async function TratamientosPage({
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-full border border-[#b08a4f] px-4 py-2 text-xs uppercase tracking-widest text-[#b08a4f] transition-colors hover:bg-[#b08a4f] hover:text-white"
+                  className="btn-luxe inline-block px-6 py-3 text-xs text-[#b08a4f]"
+                  style={
+                    {
+                      "--luxe-fill": "#b08a4f",
+                      "--luxe-fill-text": "#ffffff",
+                    } as React.CSSProperties
+                  }
                 >
                   Reservar →
                 </a>

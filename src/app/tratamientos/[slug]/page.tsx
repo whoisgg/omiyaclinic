@@ -60,7 +60,13 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 rounded-full border border-[#b08a4f] bg-[#b08a4f] px-6 py-3 text-center text-xs uppercase tracking-widest text-white transition-colors hover:bg-[#8e6e3a]"
+              className="btn-luxe shrink-0 px-8 py-4 text-center text-xs text-[#b08a4f]"
+              style={
+                {
+                  "--luxe-fill": "#b08a4f",
+                  "--luxe-fill-text": "#ffffff",
+                } as React.CSSProperties
+              }
             >
               ↘ Agendar evaluación
             </a>

@@ -34,7 +34,7 @@ export default function ContactoPage() {
                 href={PAYMENT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-block text-sm text-[#b08a4f] hover:text-[#8e6e3a]"
+                className="btn-underline mt-2 inline-block text-xs text-[#b08a4f]"
               >
                 Link de pago en línea →
               </a>
