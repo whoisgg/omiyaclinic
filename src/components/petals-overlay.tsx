@@ -6,7 +6,6 @@ import { useEffect, useRef } from "react";
  * Pétalos de cerezo a la deriva sobre el hero. Canvas 2D liviano
  * (~40 partículas), adaptado del sistema "Sakura Wind" de Stitch:
  * caen con brisa hacia la derecha, rotan y se voltean suavemente.
- * Respeta prefers-reduced-motion (no se anima, queda vacío).
  */
 
 const PETAL_COUNT = 40;
@@ -23,12 +22,6 @@ export function PetalsOverlay() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    // Con prefers-reduced-motion dibujamos un solo frame estático de
-    // pétalos esparcidos en vez de animar.
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
 
     let width = 0;
     let height = 0;
@@ -112,21 +105,12 @@ export function PetalsOverlay() {
       raf = window.requestAnimationFrame(animate);
     };
 
-    const handleResize = () => {
-      resize();
-      if (reduced) drawFrame();
-    };
-
-    window.addEventListener("resize", handleResize);
-    if (reduced) {
-      drawFrame();
-    } else {
-      raf = window.requestAnimationFrame(animate);
-    }
+    window.addEventListener("resize", resize);
+    raf = window.requestAnimationFrame(animate);
 
     return () => {
       window.cancelAnimationFrame(raf);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", resize);
     };
   }, []);
 
