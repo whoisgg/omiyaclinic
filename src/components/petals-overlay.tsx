@@ -55,17 +55,17 @@ export function PetalsOverlay() {
         this.y = scatter ? Math.random() * height : -20;
         this.r = Math.random() * 8 + 4;
         this.d = Math.random() * PETAL_COUNT;
-        this.speedX = Math.random() * 2 + 1;
-        this.speedY = Math.random() * 1.5 + 0.5;
+        this.speedX = Math.random() * 1 + 0.5;
+        this.speedY = Math.random() * 0.8 + 0.3;
         this.rotation = Math.random() * 360;
-        this.rotationSpeed = (Math.random() - 0.5) * 1.5;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.8;
         this.flip = Math.random();
-        this.flipSpeed = Math.random() * 0.03;
+        this.flipSpeed = Math.random() * 0.015;
         this.color = Math.random() > 0.5 ? COLOR_A : COLOR_B;
       }
 
       update() {
-        this.x += this.speedX + Math.sin(this.d) * 0.5;
+        this.x += this.speedX + Math.sin(this.d) * 0.3;
         this.y += this.speedY;
         this.rotation += this.rotationSpeed;
         this.flip += this.flipSpeed;
