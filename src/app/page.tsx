@@ -21,11 +21,14 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
 
         <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
-          <h1 className="font-serif text-7xl font-light tracking-[0.18em] text-[#f3ede3] sm:text-8xl lg:text-9xl">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-[#f3ede3]/80">
+            Premium well-aging clinic
+          </p>
+          <h1 className="mt-6 font-serif text-7xl font-light tracking-[0.18em] text-[#f3ede3] sm:text-8xl lg:text-9xl">
             OMIYA
           </h1>
           <p className="mt-6 font-serif text-xl font-light tracking-wide text-[#f3ede3]/90 sm:text-2xl">
-            El santuario del well-aging
+            Tratamientos personalizados
           </p>
 
           <Link
