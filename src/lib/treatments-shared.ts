@@ -39,7 +39,7 @@ export const CATEGORIES: {
   },
   {
     id: "smooth",
-    image: "/treatments/rellenos-acido-hialuronico.webp",
+    image: "/treatments/rellenos-acido-hialuronico-v2.webp",
     label: "Smooth",
     tagline: "Arrugas",
     subtitle: "Arrugas y líneas de expresión",
@@ -48,7 +48,7 @@ export const CATEGORIES: {
   },
   {
     id: "lift",
-    image: "/treatments/cat-lift.webp",
+    image: "/treatments/cat-lift-v2.webp",
     label: "Lift",
     tagline: "Firmeza",
     subtitle: "Firmeza y soporte facial",

@@ -52,7 +52,7 @@ const TREATMENTS: Treatment[] = [
   // ── SMOOTH · Arrugas y líneas de expresión ───────────────────────────────
   {
     slug: "rellenos-acido-hialuronico",
-    image: "/treatments/rellenos-acido-hialuronico.webp",
+    image: "/treatments/rellenos-acido-hialuronico-v2.webp",
     name: "Rellenos de ácido hialurónico",
     shortDescription:
       "Hidratación y volumen natural para pómulos, ojeras, labios, mentón y contorno.",
