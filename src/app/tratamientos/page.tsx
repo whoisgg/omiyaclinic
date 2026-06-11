@@ -23,53 +23,48 @@ export default async function TratamientosPage({
 
   return (
     <main className="bg-[#fdf9f0]">
-      {/* Header — eyebrow, serif display title, intro + filtros a la derecha */}
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-32 lg:px-10">
-        <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <p className="text-[10px] uppercase tracking-[0.3em] text-[#b08a4f]">
-              Catálogo médico
+      {/* Header — serif display title + intro */}
+      <section className="mx-auto max-w-7xl px-6 pb-10 pt-32 lg:px-10">
+        <h1 className="font-serif text-5xl font-light leading-tight text-zinc-900 sm:text-6xl">
+          Tratamientos Personalizados
+        </h1>
+        {activeCategory ? (
+          <div className="mt-8 max-w-lg">
+            <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
+              {activeCategory.subtitle}
             </p>
-            <h1 className="mt-4 font-serif text-5xl font-light leading-tight text-zinc-900 sm:text-6xl">
-              Tratamientos Personalizados
-            </h1>
-            {activeCategory ? (
-              <div className="mt-8 max-w-lg">
-                <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
-                  {activeCategory.subtitle}
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-zinc-600">
-                  {activeCategory.description}
-                </p>
-              </div>
-            ) : (
-              <p className="mt-8 max-w-lg text-base leading-relaxed text-zinc-600">
-                El well-aging en Omiya Clinic es un compromiso con la salud de
-                tu piel. Técnicas avanzadas diseñadas para realzar tu belleza
-                natural con resultados armónicos.
-              </p>
-            )}
+            <p className="mt-3 text-base leading-relaxed text-zinc-600">
+              {activeCategory.description}
+            </p>
           </div>
-
-          {/* Filtros */}
-          <div className="flex flex-wrap gap-6 pb-1 md:gap-8">
-            <FilterLink href="/tratamientos" label="All" active={!active} />
-            {CATEGORIES.map((c) => (
-              <FilterLink
-                key={c.id}
-                href={`/tratamientos?cat=${c.id}`}
-                label={c.label}
-                active={active === c.id}
-              />
-            ))}
-          </div>
-        </div>
+        ) : (
+          <p className="mt-8 max-w-lg text-base leading-relaxed text-zinc-600">
+            El well-aging en Omiya Clinic es un compromiso con la salud de tu
+            piel. Técnicas avanzadas diseñadas para realzar tu belleza natural
+            con resultados armónicos.
+          </p>
+        )}
       </section>
+
+      {/* Filtros — barra sticky: cambiar de categoría sin viajar por la página */}
+      <div className="sticky top-0 z-30 border-y border-zinc-900/10 bg-[#fdf9f0]/90 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl gap-6 overflow-x-auto px-6 py-4 md:gap-8 lg:px-10">
+          <FilterLink href="/tratamientos" label="All" active={!active} />
+          {CATEGORIES.map((c) => (
+            <FilterLink
+              key={c.id}
+              href={`/tratamientos?cat=${c.id}`}
+              label={c.label}
+              active={active === c.id}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* Grid de cards */}
       <section
         id="catalogo"
-        className="mx-auto max-w-7xl scroll-mt-24 px-6 pb-28 lg:px-10"
+        className="mx-auto max-w-7xl scroll-mt-20 px-6 pb-28 pt-12 lg:px-10"
       >
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
           {!activeCategory &&
@@ -233,7 +228,8 @@ function FilterLink({
   return (
     <Link
       href={href}
-      className={`relative pb-1 text-xs uppercase tracking-widest transition-colors after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:bg-zinc-900 after:transition-transform after:duration-300 ${
+      scroll={false}
+      className={`relative shrink-0 whitespace-nowrap pb-1 text-xs uppercase tracking-widest transition-colors after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:bg-zinc-900 after:transition-transform after:duration-300 ${
         active
           ? "text-zinc-900 after:scale-x-100"
           : "text-zinc-500 hover:text-zinc-900 after:scale-x-0"
