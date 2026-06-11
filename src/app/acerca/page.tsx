@@ -100,7 +100,7 @@ export default function AcercaPage() {
               href="https://instagram.com"
               className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
             >
-              Instagram →
+              Instagram
             </a>
           </div>
         </div>

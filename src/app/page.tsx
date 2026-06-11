@@ -73,7 +73,7 @@ export default async function HomePage() {
             href="/tratamientos"
             className="btn-underline mt-10 inline-block text-xs text-[#b08a4f]"
           >
-            Explora nuestros tratamientos →
+            Explora nuestros tratamientos
           </Link>
         </div>
       </section>
@@ -164,7 +164,7 @@ export default async function HomePage() {
               href="/acerca"
               className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
             >
-              Ver más →
+              Ver más
             </Link>
           </div>
         </div>

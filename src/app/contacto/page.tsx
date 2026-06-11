@@ -36,7 +36,7 @@ export default function ContactoPage() {
                 rel="noopener noreferrer"
                 className="btn-underline mt-2 inline-block text-xs text-[#b08a4f]"
               >
-                Link de pago en línea →
+                Link de pago en línea
               </a>
             </li>
           </ul>
