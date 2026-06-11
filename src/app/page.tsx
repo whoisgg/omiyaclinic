@@ -157,7 +157,7 @@ export default async function HomePage() {
               alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
               fill
               sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-cover"
+              className="object-cover object-top"
             />
           </div>
           <div>
