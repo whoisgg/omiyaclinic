@@ -156,32 +156,35 @@ export default async function TratamientosPage({
             );
           })}
 
-          {/* CTA — diagnóstico */}
-          <article className="flex flex-col justify-between bg-zinc-900 p-8 text-white">
-            <div>
-              <h3 className="font-serif text-3xl font-light leading-snug">
-                ¿No sabes qué elegir?
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-white/80">
-                Agenda una consulta de diagnóstico personalizada con la Dra.
-                Antonieta Ortega para definir tu plan de tratamiento.
-              </p>
-            </div>
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-luxe mt-12 block w-full py-4 text-center text-xs text-white/90"
-              style={
-                {
-                  "--luxe-fill": "#ffffff",
-                  "--luxe-fill-text": "#18181b",
-                } as React.CSSProperties
-              }
-            >
-              Agendar diagnóstico
-            </a>
-          </article>
+        </div>
+      </section>
+
+      {/* CTA — diagnóstico, banda de cierre full-width */}
+      <section className="bg-zinc-900 text-white">
+        <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-20 md:flex-row md:items-center md:justify-between lg:px-10">
+          <div className="max-w-xl">
+            <h3 className="font-serif text-3xl font-light leading-snug sm:text-4xl">
+              ¿No sabes qué elegir?
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-white/80">
+              Agenda una consulta de diagnóstico personalizada con la Dra.
+              Antonieta Ortega para definir tu plan de tratamiento.
+            </p>
+          </div>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-luxe shrink-0 px-10 py-4 text-center text-xs text-white/90"
+            style={
+              {
+                "--luxe-fill": "#ffffff",
+                "--luxe-fill-text": "#18181b",
+              } as React.CSSProperties
+            }
+          >
+            Agendar diagnóstico
+          </a>
         </div>
       </section>
     </main>
