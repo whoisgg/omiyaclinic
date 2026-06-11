@@ -11,11 +11,12 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* HERO — fondo crema de la marca, pétalos de cerezo a la deriva */}
-      <section className="relative isolate min-h-screen overflow-hidden bg-[#faf6ec]">
+      {/* HERO pinned + INTRO que sube como lámina blanca encima (cover) */}
+      <div className="relative">
+      <section className="sticky top-0 z-0 h-screen overflow-hidden bg-[#faf6ec]">
         <PetalsOverlay />
 
-        <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
+        <div className="relative flex h-full flex-col items-center justify-center px-6 pt-20 text-center">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
             Premium well-aging clinic
           </p>
@@ -50,8 +51,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CLINIC INTRO — full viewport, aparece con la salida del hero */}
-      <section className="flex min-h-screen items-center bg-white">
+      {/* CLINIC INTRO — sube con fondo blanco sobre el hero, logo al centro */}
+      <section className="relative z-10 flex min-h-screen items-center bg-white">
         <IntroReveal>
           <div className="mx-auto max-w-3xl px-6 py-24 text-center">
           {/* Cajita con el monograma, al estilo sensei.tech */}
@@ -75,6 +76,7 @@ export default async function HomePage() {
           </div>
         </IntroReveal>
       </section>
+      </div>
 
       {/* CATEGORÍAS */}
       <section className="border-t border-zinc-200 bg-white">
