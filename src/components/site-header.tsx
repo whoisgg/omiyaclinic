@@ -13,10 +13,9 @@ const NAV = [
 
 export function SiteHeader() {
   const pathname = usePathname();
-  // El header siempre es absoluto y transparente sobre la página (como el
-  // home); solo cambia la paleta: crema sobre el hero oscuro, zinc sobre
-  // los fondos claros interiores.
-  const overHero = pathname === "/";
+  // El header siempre es absoluto y transparente sobre la página. Con el
+  // hero crema del home, la paleta zinc oscura funciona en todas partes.
+  const overHero = false;
 
   const linkBase = "text-xs uppercase tracking-[0.18em] transition-colors";
   const linkColor = overHero

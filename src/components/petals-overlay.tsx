@@ -10,8 +10,9 @@ import { useEffect, useRef } from "react";
  */
 
 const PETAL_COUNT = 40;
-const COLOR_A = "rgba(255, 230, 235, 0.6)";
-const COLOR_B = "rgba(255, 209, 220, 0.4)";
+// Rosas empolvados con suficiente contraste sobre el crema #faf6ec del hero.
+const COLOR_A = "rgba(228, 180, 188, 0.55)";
+const COLOR_B = "rgba(206, 154, 166, 0.4)";
 
 export function PetalsOverlay() {
   const canvasRef = useRef<HTMLCanvasElement>(null);

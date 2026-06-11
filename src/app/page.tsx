@@ -9,39 +9,28 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* HERO — full-bleed photo, serif wordmark, outlined CTA */}
-      <section className="relative isolate min-h-screen overflow-hidden">
-        <Image
-          src="/hero-clinic.webp"
-          alt="Recepción de Omiya Clinic"
-          fill
-          priority
-          className="object-cover"
-        />
-        {/* Legibility overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55" />
-
-        {/* Pétalos de cerezo a la deriva */}
+      {/* HERO — fondo crema de la marca, pétalos de cerezo a la deriva */}
+      <section className="relative isolate min-h-screen overflow-hidden bg-[#faf6ec]">
         <PetalsOverlay />
 
         <div className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-20 text-center">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-[#f3ede3]/80">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
             Premium well-aging clinic
           </p>
-          <h1 className="mt-6 font-serif text-7xl font-light tracking-[0.18em] text-[#f3ede3] sm:text-8xl lg:text-9xl">
+          <h1 className="mt-6 font-serif text-7xl font-light tracking-[0.18em] text-zinc-900 sm:text-8xl lg:text-9xl">
             OMIYA
           </h1>
-          <p className="mt-6 font-serif text-xl font-light tracking-wide text-[#f3ede3]/90 sm:text-2xl">
+          <p className="mt-6 font-serif text-xl font-light tracking-wide text-zinc-600 sm:text-2xl">
             Tratamientos personalizados
           </p>
 
           <Link
             href="/tratamientos"
-            className="btn-luxe mt-12 px-10 py-4 text-xs text-[#f3ede3]"
+            className="btn-luxe mt-12 px-10 py-4 text-xs text-zinc-900"
             style={
               {
-                "--luxe-fill": "#f3ede3",
-                "--luxe-fill-text": "#18181b",
+                "--luxe-fill": "#18181b",
+                "--luxe-fill-text": "#ffffff",
               } as React.CSSProperties
             }
           >
@@ -49,7 +38,7 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        <div className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3 text-[#f3ede3]/80">
+        <div className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3 text-zinc-500">
           <span className="text-[10px] uppercase tracking-[0.3em]">
             Scroll para descubrir
           </span>
