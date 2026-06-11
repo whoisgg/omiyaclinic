@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
-import { ProductsAssemblySection } from "@/components/products-assembly-section";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -185,8 +184,38 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* PRODUCTOS — composición por capas al scroll */}
-      <ProductsAssemblySection />
+      {/* PRODUCTOS */}
+      <section className="border-t border-zinc-200 bg-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[2fr_3fr] lg:gap-16 lg:py-28">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
+              Productos
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-medium uppercase leading-tight text-zinc-900 lg:text-4xl">
+              Elegimos calidad
+            </h2>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-zinc-600 lg:text-base">
+              Trabajamos con productos certificados y cuidadosamente
+              seleccionados, pensados para realzar tu belleza de forma natural.
+            </p>
+            <Link
+              href="/tratamientos"
+              className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
+            >
+              Ver tratamientos
+            </Link>
+          </div>
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <Image
+              src="/products/composicion.webp"
+              alt="Productos Sculptra y Restylane de Galderma"
+              fill
+              sizes="(min-width: 1024px) 60vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="bg-zinc-900 text-white">
