@@ -24,7 +24,7 @@ export default async function TratamientosPage({
   return (
     <main className="bg-[#fdf9f0]">
       {/* Header — eyebrow, serif display title, intro + filtros a la derecha */}
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-20 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 pb-16 pt-32 lg:px-10">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <p className="text-[10px] uppercase tracking-[0.3em] text-[#b08a4f]">

@@ -162,11 +162,19 @@ export default async function HomePage() {
           </div>
           <div>
             <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
-              Dra. Antonieta Ortega
+              Dra. Antonieta Ortega · Fundadora, Omiya Clinic
             </p>
-            <blockquote className="mt-6 text-xl font-light leading-snug text-zinc-900">
-              &ldquo;Mi compromiso es que cada paciente sienta que el tiempo le pertenece.&rdquo;
+            <blockquote className="mt-6 font-serif text-2xl font-light leading-snug text-zinc-900 sm:text-3xl">
+              &ldquo;El verdadero cuidado comienza comprendiendo la historia de
+              cada paciente.&rdquo;
             </blockquote>
+            <p className="mt-6 text-base leading-relaxed text-zinc-600">
+              Cada decisión clínica se basa en la armonía entre salud, calma y
+              precisión, priorizando siempre lo natural por sobre la
+              corrección. Nuestro enfoque busca crear un espacio donde el
+              bienestar se construye de manera consciente, personalizada y
+              sostenible en cada etapa de la vida.
+            </p>
             <Link
               href="/acerca"
               className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"

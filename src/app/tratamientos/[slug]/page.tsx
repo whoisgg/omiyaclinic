@@ -13,7 +13,7 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
 
   return (
     <main className="bg-white">
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 pb-20 pt-32 sm:grid-cols-2">
         {/* Galería */}
         <div className="aspect-[4/5] bg-gradient-to-br from-zinc-200 to-zinc-300" />
 

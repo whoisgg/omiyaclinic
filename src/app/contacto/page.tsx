@@ -3,7 +3,7 @@ import { PAYMENT_URL } from "@/lib/links";
 export default function ContactoPage() {
   return (
     <main className="bg-white">
-      <div className="mx-auto max-w-6xl px-6 py-20">
+      <div className="mx-auto max-w-6xl px-6 pb-20 pt-32">
         <h1 className="text-4xl font-light text-zinc-900">Visítanos</h1>
 
         <div className="mt-10 grid gap-10 sm:grid-cols-2">

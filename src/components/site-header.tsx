@@ -13,8 +13,9 @@ const NAV = [
 
 export function SiteHeader() {
   const pathname = usePathname();
-  // On home the header overlays the full-bleed hero: absolute, cream text,
-  // hairline bottom border. Elsewhere it's the sticky white bar.
+  // El header siempre es absoluto y transparente sobre la página (como el
+  // home); solo cambia la paleta: crema sobre el hero oscuro, zinc sobre
+  // los fondos claros interiores.
   const overHero = pathname === "/";
 
   const linkBase = "text-xs uppercase tracking-[0.18em] transition-colors";
@@ -24,16 +25,10 @@ export function SiteHeader() {
   const activeColor = overHero ? "text-[#f3ede3]" : "italic text-zinc-900";
 
   return (
-    <header
-      className={
-        overHero
-          ? "absolute inset-x-0 top-0 z-50"
-          : "sticky top-0 z-50 border-b border-zinc-200/60 bg-white/80 backdrop-blur"
-      }
-    >
+    <header className="absolute inset-x-0 top-0 z-50">
       <div
-        className={`mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10 ${
-          overHero ? "border-b border-[#f3ede3]/25" : ""
+        className={`mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10 border-b ${
+          overHero ? "border-[#f3ede3]/25" : "border-zinc-900/10"
         }`}
       >
         <Link

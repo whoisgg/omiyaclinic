@@ -12,7 +12,7 @@ export default function AcercaPage() {
     <main className="bg-white">
       {/* Nuestra filosofía */}
       <section className="bg-[#faf6ec]">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:py-28">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-32 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:pb-28 lg:pt-36">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
               Nuestro concepto
