@@ -20,21 +20,41 @@ export function HeroScrollGate() {
 
     const easeInOutCubic = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+    const easeOutQuad = (t: number) => 1 - (1 - t) * (1 - t);
 
-    const tween = (to: number, dur = 1100) => {
-      animating = true;
+    const setGust = (v: number) =>
+      window.dispatchEvent(new CustomEvent("omiya:gust", { detail: v }));
+
+    const tween = (to: number, dur: number, done?: () => void) => {
       const from = window.scrollY;
       const start = performance.now();
       const step = (now: number) => {
         const t = Math.min(1, (now - start) / dur);
         window.scrollTo(0, from + (to - from) * easeInOutCubic(t));
-        if (t < 1) {
-          window.requestAnimationFrame(step);
-        } else {
-          animating = false;
-        }
+        if (t < 1) window.requestAnimationFrame(step);
+        else done?.();
       };
       window.requestAnimationFrame(step);
+    };
+
+    /** Fase 1: el viento arrecia con el viewport quieto. Fase 2: viaje. */
+    const gustThenTravel = (to: number) => {
+      animating = true;
+      const GUST_MS = 650;
+      const start = performance.now();
+      const ramp = (now: number) => {
+        const t = Math.min(1, (now - start) / GUST_MS);
+        setGust(easeOutQuad(t));
+        if (t < 1) {
+          window.requestAnimationFrame(ramp);
+        } else {
+          tween(to, 1400, () => {
+            setGust(-1); // volver al control por scroll
+            animating = false;
+          });
+        }
+      };
+      window.requestAnimationFrame(ramp);
     };
 
     const onWheel = (e: WheelEvent) => {
@@ -47,13 +67,16 @@ export function HeroScrollGate() {
         return;
       }
       if (e.deltaY > 8 && y < heroH - 4) {
-        // Dentro del hero, un tick hacia abajo = viaje completo a la intro.
+        // Dentro del hero: primero sopla el viento, luego el viaje.
         e.preventDefault();
-        tween(heroH);
+        gustThenTravel(heroH);
       } else if (e.deltaY < -8 && y > 4 && y <= heroH + 40) {
         // En el tope de la intro, un tick hacia arriba = volver al hero.
         e.preventDefault();
-        tween(0);
+        animating = true;
+        tween(0, 1100, () => {
+          animating = false;
+        });
       }
     };
 

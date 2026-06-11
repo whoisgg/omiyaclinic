@@ -33,6 +33,9 @@ export function PetalsOverlay() {
     let height = 0;
     let raf = 0;
     let gust = 0;
+    // Override manual de la ráfaga (lo usa HeroScrollGate para soplar
+    // ANTES de iniciar el viaje). null = usar el valor ligado al scroll.
+    let gustOverride: number | null = null;
 
     const resize = () => {
       const rect = canvas.parentElement?.getBoundingClientRect();
@@ -43,7 +46,17 @@ export function PetalsOverlay() {
     // Fuerza de la ráfaga según cuánto del hero ya salió del viewport.
     const updateGust = () => {
       const heroH = canvas.parentElement?.offsetHeight ?? window.innerHeight;
-      gust = Math.min(1, Math.max(0, window.scrollY / (heroH * 0.85)));
+      const scrollGust = Math.min(
+        1,
+        Math.max(0, window.scrollY / (heroH * 0.85)),
+      );
+      gust = gustOverride !== null ? Math.max(gustOverride, scrollGust) : scrollGust;
+    };
+
+    const onGustOverride = (e: Event) => {
+      const v = (e as CustomEvent<number>).detail;
+      gustOverride = v < 0 ? null : Math.min(1, v);
+      updateGust();
     };
 
     class Petal {
@@ -134,12 +147,14 @@ export function PetalsOverlay() {
 
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", updateGust, { passive: true });
+    window.addEventListener("omiya:gust", onGustOverride);
     raf = window.requestAnimationFrame(animate);
 
     return () => {
       window.cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", updateGust);
+      window.removeEventListener("omiya:gust", onGustOverride);
     };
   }, []);
 

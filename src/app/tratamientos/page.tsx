@@ -119,16 +119,9 @@ export default async function TratamientosPage({
                     idx={idx}
                   />
 
-                  <div className="mt-6 flex items-start justify-between gap-4">
-                    <h3 className="font-serif text-2xl font-normal text-zinc-900">
-                      {t.name}
-                    </h3>
-                    {t.duration && (
-                      <span className="mt-1.5 shrink-0 text-[10px] uppercase tracking-widest text-zinc-500">
-                        {t.duration}
-                      </span>
-                    )}
-                  </div>
+                  <h3 className="mt-6 font-serif text-2xl font-normal text-zinc-900">
+                    {t.name}
+                  </h3>
                   <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-600">
                     {t.shortDescription}
                   </p>
