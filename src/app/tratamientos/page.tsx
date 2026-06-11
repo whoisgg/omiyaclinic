@@ -66,14 +66,20 @@ export default async function TratamientosPage({
       </section>
 
       {/* Grid de cards */}
-      <section className="mx-auto max-w-7xl px-6 pb-28 lg:px-10">
+      <section
+        id="catalogo"
+        className="mx-auto max-w-7xl scroll-mt-24 px-6 pb-28 lg:px-10"
+      >
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
           {!activeCategory &&
             CATEGORIES.map((c, idx) => {
               const count = all.filter((t) => t.category === c.id).length;
               return (
                 <article key={c.id} className="group">
-                  <Link href={`/tratamientos?cat=${c.id}`} className="block">
+                  <Link
+                    href={`/tratamientos?cat=${c.id}#catalogo`}
+                    className="block"
+                  >
                     {/* Imagen — placeholder con monograma hasta tener fotos */}
                     <div className="relative aspect-[4/5] overflow-hidden">
                       <div
@@ -102,7 +108,7 @@ export default async function TratamientosPage({
                     </p>
                   </Link>
                   <Link
-                    href={`/tratamientos?cat=${c.id}`}
+                    href={`/tratamientos?cat=${c.id}#catalogo`}
                     className="btn-underline mt-5 inline-block text-xs text-zinc-900"
                   >
                     Ver tratamientos
