@@ -130,7 +130,7 @@ export function WellagingPillars() {
               <span className="block text-3xl font-light leading-none text-zinc-300">
                 {romanNumerals[index]}
               </span>
-              <h3 className="mt-3 text-lg font-medium leading-tight text-zinc-900">
+              <h3 className="mt-3 text-xl font-light leading-tight tracking-tight text-zinc-900">
                 {pillar.title}
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-zinc-600">
@@ -198,16 +198,16 @@ export function WellagingPillars() {
                 </div>
                 <div className="flex-1 pt-1 lg:pt-2 xl:pt-3">
                   <h3
-                    className={`font-medium leading-tight text-zinc-900 ${
+                    className={`font-light leading-tight tracking-tight text-zinc-900 ${
                       isLarge
-                        ? "text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
-                        : "text-base lg:text-lg xl:text-xl 2xl:text-2xl"
+                        ? "text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
+                        : "text-lg lg:text-xl xl:text-2xl 2xl:text-3xl"
                     }`}
                   >
                     {pillar.title}
                   </h3>
                   <p
-                    className={`mt-2 leading-relaxed text-zinc-500 lg:mt-3 ${
+                    className={`mt-2 leading-relaxed text-zinc-600 lg:mt-3 ${
                       isLarge
                         ? "text-sm lg:text-base xl:text-lg"
                         : "text-xs lg:text-sm xl:text-base"
