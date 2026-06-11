@@ -26,6 +26,13 @@ export function PetalsOverlay() {
     let width = 0;
     let height = 0;
     let raf = 0;
+    // Congelados mientras corre la máscara del hero; se reactivan al
+    // volver al landing (scroll arriba).
+    let paused = false;
+
+    const updatePaused = () => {
+      paused = window.scrollY > window.innerHeight * 0.04;
+    };
 
     const resize = () => {
       const rect = canvas.parentElement?.getBoundingClientRect();
@@ -95,20 +102,25 @@ export function PetalsOverlay() {
     const petals = Array.from({ length: PETAL_COUNT }, () => new Petal(true));
 
     const animate = () => {
-      ctx.clearRect(0, 0, width, height);
-      for (const p of petals) {
-        p.update();
-        p.draw(ctx);
+      if (!paused) {
+        ctx.clearRect(0, 0, width, height);
+        for (const p of petals) {
+          p.update();
+          p.draw(ctx);
+        }
       }
       raf = window.requestAnimationFrame(animate);
     };
 
     window.addEventListener("resize", resize);
+    window.addEventListener("scroll", updatePaused, { passive: true });
+    updatePaused();
     raf = window.requestAnimationFrame(animate);
 
     return () => {
       window.cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", updatePaused);
     };
   }, []);
 

@@ -48,26 +48,27 @@ export function HeroStage() {
       const p = clamp01(window.scrollY / vh);
       const e = easeInOutCubic(p);
 
-      // Rect destino: el wordmark OMIYA con un margen de aire.
-      const r = title.getBoundingClientRect();
+      // Rect destino: lockup OMIYA + CLINIC con un margen de aire.
+      const rT = title.getBoundingClientRect();
+      const rC = clinic.getBoundingClientRect();
       const padX = 36;
-      const padY = 22;
-      const top = Math.max(0, r.top - padY) * e;
-      const left = Math.max(0, r.left - padX) * e;
-      const right = Math.max(0, vw - r.right - padX) * e;
-      const bottom = Math.max(0, vh - r.bottom - padY) * e;
+      const padY = 26;
+      const top = Math.max(0, rT.top - padY) * e;
+      const left = Math.max(0, rT.left - padX) * e;
+      const right = Math.max(0, vw - rT.right - padX) * e;
+      const bottom = Math.max(0, vh - rC.bottom - padY) * e;
       heroLayer.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px)`;
 
       // Eyebrow, tagline, botón y hint se desvanecen temprano.
       const fade = String(clamp01(1 - p / 0.35));
       for (const el of extras) el.style.opacity = fade;
 
-      // Contenido intro anclado bajo el wordmark.
-      intro.style.top = `${r.bottom + padY + 28}px`;
-
-      // "CLINIC" aparece primero, luego sube el texto well-aging.
-      const cm = clamp01((p - 0.55) / 0.3);
+      // "CLINIC" aparece dentro de la máscara completando el logo.
+      const cm = clamp01((p - 0.45) / 0.3);
       clinic.style.opacity = String(cm);
+
+      // Texto well-aging anclado bajo el marco, sube al final.
+      intro.style.top = `${rC.bottom + padY + 32}px`;
       const ti = clamp01((p - 0.65) / 0.35);
       introText.style.opacity = String(ti * ti);
       introText.style.transform = `translateY(${(1 - ti) * 40}px)`;
@@ -94,18 +95,11 @@ export function HeroStage() {
   return (
     <div className="relative h-[200vh]">
       <div className="sticky top-0 h-screen overflow-hidden bg-white">
-        {/* Capa intro (detrás del hero): CLINIC + texto well-aging */}
+        {/* Capa intro (detrás del hero): texto well-aging */}
         <div
           ref={introRef}
           className="absolute inset-x-0 z-10 flex flex-col items-center px-6 text-center"
         >
-          <p
-            ref={clinicRef}
-            className="text-sm uppercase tracking-[0.6em] text-zinc-900"
-            style={{ opacity: 0 }}
-          >
-            Clinic
-          </p>
           <div ref={introTextRef} className="max-w-3xl" style={{ opacity: 0 }}>
             <h2 className="mt-12 font-serif text-2xl font-light leading-tight text-zinc-900 sm:text-3xl">
               El well-aging en Omiya Clinic.
@@ -138,12 +132,23 @@ export function HeroStage() {
             >
               Premium well-aging clinic
             </p>
-            <h1
-              ref={titleRef}
-              className="mt-6 font-serif text-7xl font-light tracking-[0.18em] text-zinc-900 sm:text-8xl lg:text-9xl"
-            >
-              OMIYA
-            </h1>
+            <div className="relative">
+              <h1
+                ref={titleRef}
+                className="mt-6 font-serif text-7xl font-light tracking-[0.18em] text-zinc-900 sm:text-8xl lg:text-9xl"
+              >
+                OMIYA
+              </h1>
+              {/* CLINIC vive dentro de la máscara para completar el logo;
+                  absoluto para no alterar el layout inicial del hero. */}
+              <p
+                ref={clinicRef}
+                className="absolute left-1/2 top-full mt-5 -translate-x-1/2 text-sm uppercase tracking-[0.6em] text-zinc-900"
+                style={{ opacity: 0 }}
+              >
+                Clinic
+              </p>
+            </div>
             <div data-hero-extra>
               <p className="mt-6 font-serif text-xl font-light tracking-wide text-zinc-600 sm:text-2xl">
                 Tratamientos personalizados
