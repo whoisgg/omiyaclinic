@@ -1,3 +1,5 @@
+import { WellagingPillars } from "@/components/wellaging-pillars";
+
 export default function AcercaPage() {
   const team = [
     { name: "Profesional 1", role: "Dermatólogo" },
@@ -44,6 +46,9 @@ export default function AcercaPage() {
           </div>
         </div>
       </section>
+
+      {/* Pilares del Well Aging */}
+      <WellagingPillars />
 
       {/* Equipo */}
       <section className="border-b border-zinc-200">
