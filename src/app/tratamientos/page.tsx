@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { CATEGORIES, getTreatments, type Category } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 import { LogoMark } from "@/components/logo-mark";
@@ -80,19 +81,12 @@ export default async function TratamientosPage({
                     href={`/tratamientos?cat=${c.id}#catalogo`}
                     className="block"
                   >
-                    {/* Imagen — placeholder con monograma hasta tener fotos */}
-                    <div className="relative aspect-[4/5] overflow-hidden">
-                      <div
-                        className={`absolute inset-0 flex items-center justify-center transition-transform duration-700 group-hover:scale-105 ${
-                          idx % 2 === 0 ? "bg-[#f3ede3]" : "bg-[#e8e2d8]"
-                        }`}
-                      >
-                        <LogoMark className="h-16 w-auto text-[#b08a4f]/25" />
-                      </div>
-                      <div className="absolute left-4 top-4 bg-white/90 px-3 py-1 text-[10px] uppercase tracking-widest text-zinc-900 backdrop-blur">
-                        {c.tagline}
-                      </div>
-                    </div>
+                    <CardImage
+                      image={c.image}
+                      alt={`Tratamientos ${c.label}`}
+                      badge={c.tagline}
+                      idx={idx}
+                    />
 
                     <div className="mt-6 flex items-start justify-between gap-4">
                       <h3 className="font-serif text-2xl font-normal text-zinc-900">
@@ -124,19 +118,12 @@ export default async function TratamientosPage({
             return (
               <article key={t.slug} className="group">
                 <Link href={`/tratamientos/${t.slug}`} className="block">
-                  {/* Imagen — placeholder con monograma hasta tener fotos */}
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <div
-                      className={`absolute inset-0 flex items-center justify-center transition-transform duration-700 group-hover:scale-105 ${
-                        idx % 2 === 0 ? "bg-[#f3ede3]" : "bg-[#e8e2d8]"
-                      }`}
-                    >
-                      <LogoMark className="h-16 w-auto text-[#b08a4f]/25" />
-                    </div>
-                    <div className="absolute left-4 top-4 bg-white/90 px-3 py-1 text-[10px] uppercase tracking-widest text-zinc-900 backdrop-blur">
-                      {catLabel}
-                    </div>
-                  </div>
+                  <CardImage
+                    image={t.image}
+                    alt={t.name}
+                    badge={catLabel}
+                    idx={idx}
+                  />
 
                   <div className="mt-6 flex items-start justify-between gap-4">
                     <h3 className="font-serif text-2xl font-normal text-zinc-900">
@@ -194,6 +181,43 @@ export default async function TratamientosPage({
         </div>
       </section>
     </main>
+  );
+}
+
+function CardImage({
+  image,
+  alt,
+  badge,
+  idx,
+}: {
+  image?: string;
+  alt: string;
+  badge: string;
+  idx: number;
+}) {
+  return (
+    <div className="relative aspect-[4/5] overflow-hidden">
+      {image ? (
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          className="object-cover grayscale-[0.7] transition-[transform,filter] duration-700 group-hover:scale-105 group-hover:grayscale-0"
+        />
+      ) : (
+        <div
+          className={`absolute inset-0 flex items-center justify-center transition-transform duration-700 group-hover:scale-105 ${
+            idx % 2 === 0 ? "bg-[#f3ede3]" : "bg-[#e8e2d8]"
+          }`}
+        >
+          <LogoMark className="h-16 w-auto text-[#b08a4f]/25" />
+        </div>
+      )}
+      <div className="absolute left-4 top-4 bg-white/90 px-3 py-1 text-[10px] uppercase tracking-widest text-zinc-900 backdrop-blur">
+        {badge}
+      </div>
+    </div>
   );
 }
 

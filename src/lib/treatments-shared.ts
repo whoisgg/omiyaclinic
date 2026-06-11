@@ -15,6 +15,8 @@ export type Treatment = {
   category: Category;
   /** Free text, e.g. "45–90 min" or "Resultados de 12–18 meses". Optional. */
   duration?: string;
+  /** Ruta pública de la imagen de la card (4:5). Optional. */
+  image?: string;
 };
 
 export const CATEGORIES: {
@@ -23,9 +25,12 @@ export const CATEGORIES: {
   tagline: string;
   subtitle: string;
   description: string;
+  /** Imagen representativa para la card de categoría (vista All). */
+  image?: string;
 }[] = [
   {
     id: "glow",
+    image: "/treatments/limpieza-facial.webp",
     label: "Glow",
     tagline: "Luminosidad",
     subtitle: "Calidad y luminosidad de la piel",
@@ -34,6 +39,7 @@ export const CATEGORIES: {
   },
   {
     id: "smooth",
+    image: "/treatments/rellenos-acido-hialuronico.webp",
     label: "Smooth",
     tagline: "Arrugas",
     subtitle: "Arrugas y líneas de expresión",
@@ -42,6 +48,7 @@ export const CATEGORIES: {
   },
   {
     id: "lift",
+    image: "/treatments/endymed-pro.webp",
     label: "Lift",
     tagline: "Firmeza",
     subtitle: "Firmeza y soporte facial",
@@ -50,6 +57,7 @@ export const CATEGORIES: {
   },
   {
     id: "smile",
+    image: "/treatments/blanqueamiento-dental.webp",
     label: "Smile",
     tagline: "Dental",
     subtitle: "Salud y estética dental",

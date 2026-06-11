@@ -16,6 +16,7 @@ const TREATMENTS: Treatment[] = [
   // ── GLOW · Calidad y luminosidad de la piel ──────────────────────────────
   {
     slug: "limpieza-facial",
+    image: "/treatments/limpieza-facial.webp",
     name: "Limpieza facial",
     shortDescription:
       "Elimina impurezas, exfolia y revitaliza la piel para una apariencia saludable y radiante.",
@@ -32,6 +33,7 @@ const TREATMENTS: Treatment[] = [
   },
   {
     slug: "mesoterapia",
+    image: "/treatments/mesoterapia.webp",
     name: "Mesoterapia",
     shortDescription:
       "Microinyecciones de vitaminas y compuestos esenciales directamente en la dermis.",
@@ -50,6 +52,7 @@ const TREATMENTS: Treatment[] = [
   // ── SMOOTH · Arrugas y líneas de expresión ───────────────────────────────
   {
     slug: "rellenos-acido-hialuronico",
+    image: "/treatments/rellenos-acido-hialuronico.webp",
     name: "Rellenos de ácido hialurónico",
     shortDescription:
       "Hidratación y volumen natural para pómulos, ojeras, labios, mentón y contorno.",
@@ -70,6 +73,7 @@ const TREATMENTS: Treatment[] = [
   // ── LIFT · Firmeza y soporte facial ──────────────────────────────────────
   {
     slug: "bioestimulacion",
+    image: "/treatments/bioestimulacion.webp",
     name: "Bioestimulación",
     shortDescription:
       "Radiesse®, Sculptra® e hilos PDO: firmeza estimulando tu propio colágeno.",
@@ -92,6 +96,7 @@ const TREATMENTS: Treatment[] = [
   },
   {
     slug: "endymed-pro",
+    image: "/treatments/endymed-pro.webp",
     name: "Endymed PRO™",
     shortDescription:
       "Radiofrecuencia 3DEEP™: calor profundo controlado que reafirma la piel.",
@@ -108,6 +113,7 @@ const TREATMENTS: Treatment[] = [
   },
   {
     slug: "lipopapadas",
+    image: "/treatments/lipopapadas.webp",
     name: "Lipopapadas",
     shortDescription:
       "Reducción de la grasa submentoniana para un contorno más definido.",
@@ -122,6 +128,7 @@ const TREATMENTS: Treatment[] = [
   // ── SMILE · Salud y estética dental (línea propia de Omiya) ──────────────
   {
     slug: "limpieza-dental",
+    image: "/treatments/limpieza-dental.webp",
     name: "Limpieza dental",
     shortDescription:
       "Higiene profesional: destartraje y pulido para encías y dientes sanos.",
@@ -134,6 +141,7 @@ const TREATMENTS: Treatment[] = [
   },
   {
     slug: "endodoncia",
+    image: "/treatments/endodoncia.webp",
     name: "Endodoncia",
     shortDescription:
       "Tratamiento de conducto especializado que conserva tu diente natural.",
@@ -146,6 +154,7 @@ const TREATMENTS: Treatment[] = [
   },
   {
     slug: "blanqueamiento-dental",
+    image: "/treatments/blanqueamiento-dental.webp",
     name: "Blanqueamiento dental",
     shortDescription: "Sonrisa más blanca con sensibilidad controlada.",
     longDescription:
