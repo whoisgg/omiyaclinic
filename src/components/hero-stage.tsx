@@ -108,7 +108,10 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative">
-      <div className="sticky top-0 z-0 h-screen overflow-hidden bg-white">
+      {/* Rango del sticky: 100vh de máscara + ~20vh de pausa; después el
+          bloque completo scrollea natural como cualquier sección */}
+      <div className="h-[220vh]">
+      <div className="sticky top-0 h-screen overflow-hidden bg-white">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 pt-16 lg:grid-cols-2 lg:gap-16 lg:pt-0">
@@ -209,9 +212,10 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      {/* Las secciones siguientes suben cubriendo el lockup pinned; el margen
-          extra deja ~40vh de pausa para leer antes del cover */}
-      <div className="relative z-30 mt-[140vh]">{children}</div>
+      </div>
+
+      {/* Flujo natural después del stage */}
+      {children}
     </div>
   );
 }
