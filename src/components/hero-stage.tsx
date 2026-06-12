@@ -74,12 +74,13 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       lockup.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
 
       // Al final, el lockup pasa al dorado de la marca (#a4884f). El fondo
-      // que revela la máscara es el crema de la marca, nunca blanco.
+      // que revela la máscara es el blanco de la sección (igual al resto
+      // del sitio), no el crema del hero.
       const cb = clamp01((p - 0.55) / 0.4);
       const lerp = (a: number, b: number) => Math.round(a + (b - a) * cb);
       lockup.style.color = `rgb(${lerp(24, 164)}, ${lerp(24, 136)}, ${lerp(27, 79)})`;
       // La foto se desvanece al aterrizar: el lockup queda limpio sobre el
-      // crema de la sección, sin recorte de foto detrás.
+      // blanco de la sección, sin recorte de foto detrás.
       if (photo) photo.style.opacity = String(1 - cb);
 
       // Eyebrow, tagline, botón y hint se desvanecen temprano.
@@ -118,7 +119,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       {/* Rango del sticky: 100vh de máscara + ~20vh de pausa; después el
           bloque completo scrollea natural como cualquier sección */}
       <div className="h-[220vh]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-[#faf6ec]">
+      <div className="sticky top-0 h-screen overflow-hidden bg-white">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
@@ -153,7 +154,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
         {/* Capa hero: se enmascara hacia la caja destino */}
         <div
           ref={heroLayerRef}
-          className="absolute inset-0 z-20 overflow-hidden bg-[#faf6ec]"
+          className="absolute inset-0 z-20 overflow-hidden bg-white"
         >
           {/* Foto de escena (rama de momiji + sombras sobre muro crema) */}
           <Image
