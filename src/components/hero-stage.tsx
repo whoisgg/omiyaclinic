@@ -38,6 +38,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
     const extras = Array.from(
       document.querySelectorAll<HTMLElement>("[data-hero-extra]"),
     );
+    const photo = heroLayer.querySelector<HTMLImageElement>("img");
 
     let raf = 0;
     let ticking = false;
@@ -77,6 +78,9 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       const cb = clamp01((p - 0.55) / 0.4);
       const lerp = (a: number, b: number) => Math.round(a + (b - a) * cb);
       lockup.style.color = `rgb(${lerp(24, 164)}, ${lerp(24, 136)}, ${lerp(27, 79)})`;
+      // La foto se desvanece al aterrizar: el lockup queda limpio sobre el
+      // crema de la sección, sin recorte de foto detrás.
+      if (photo) photo.style.opacity = String(1 - cb);
 
       // Eyebrow, tagline, botón y hint se desvanecen temprano.
       const fade = String(clamp01(1 - p / 0.3));
