@@ -130,17 +130,17 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
               className="mx-auto aspect-[9/5] w-full max-w-[300px] sm:max-w-[420px] lg:mx-0 lg:max-w-[480px]"
             />
             <div ref={introTextRef} style={{ opacity: 0 }}>
-              <h2 className="font-serif text-3xl font-light leading-snug text-zinc-900 sm:text-4xl">
-                El well-aging en Omiya Clinic.
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-zinc-600">
+              <p className="text-[10px] uppercase tracking-[0.5em] text-[#a4884f]">
+                El well-aging en Omiya Clinic
+              </p>
+              <h2 className="mt-6 font-serif text-2xl font-light leading-[1.35] text-zinc-800 sm:text-3xl lg:text-[2.1rem]">
                 Nuestro enfoque busca crear un espacio donde el bienestar se
                 construye de manera consciente, personalizada y sostenible en
                 cada etapa de la vida.
-              </p>
+              </h2>
               <Link
                 href="/tratamientos"
-                className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
+                className="btn-underline mt-10 inline-block text-xs text-[#a4884f]"
               >
                 Explora nuestros tratamientos
               </Link>
