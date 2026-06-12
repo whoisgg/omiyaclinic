@@ -77,6 +77,13 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       // Pétalos: desaparecen apenas comienza el efecto, vuelven al landing.
       if (canvas) canvas.style.opacity = String(clamp01(1 - p / 0.4));
 
+      // Al final la máscara se disuelve: el crema funde a blanco y el
+      // lockup pasa al dorado de la marca (#a4884f).
+      const cb = clamp01((p - 0.55) / 0.4);
+      const lerp = (a: number, b: number) => Math.round(a + (b - a) * cb);
+      heroLayer.style.backgroundColor = `rgb(${lerp(250, 255)}, ${lerp(246, 255)}, ${lerp(236, 255)})`;
+      lockup.style.color = `rgb(${lerp(24, 164)}, ${lerp(24, 136)}, ${lerp(27, 79)})`;
+
       // Eyebrow, tagline, botón y hint se desvanecen temprano.
       const fade = String(clamp01(1 - p / 0.3));
       for (const el of extras) el.style.opacity = fade;
@@ -160,10 +167,15 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
             <div ref={anchorRef} className="mt-6">
               <div
                 ref={lockupRef}
-                style={{ "--lw": "min(76vw, 640px)" } as React.CSSProperties}
+                style={
+                  {
+                    "--lw": "min(76vw, 640px)",
+                    color: "#18181b",
+                  } as React.CSSProperties
+                }
               >
                 <h1>
-                  <LogoWordmark className="h-auto w-[var(--lw)] text-zinc-900" />
+                  <LogoWordmark className="h-auto w-[var(--lw)]" />
                   <span className="sr-only">OMIYA</span>
                 </h1>
                 <div
@@ -175,7 +187,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
                     marginTop: "calc(var(--lw) * 0.0562)",
                   }}
                 >
-                  <LogoClinic className="h-auto w-full text-zinc-900" />
+                  <LogoClinic className="h-auto w-full" />
                 </div>
               </div>
             </div>
