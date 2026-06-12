@@ -51,16 +51,18 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
     const apply = () => {
       ticking = false;
       const vh = window.innerHeight;
-      const vw = window.innerWidth;
       const p = clamp01(window.scrollY / vh);
       const e = easeInOutCubic(p);
 
-      // Caja destino (columna izquierda del layout final).
+      // Caja destino (columna izquierda del layout final). El inset se mide
+      // contra la propia capa hero: tras des-pinnearse el stage, sus
+      // coordenadas ya no coinciden con el viewport.
       const rT = target.getBoundingClientRect();
-      const top = rT.top * e;
-      const left = rT.left * e;
-      const right = (vw - rT.right) * e;
-      const bottom = (vh - rT.bottom) * e;
+      const hl = heroLayer.getBoundingClientRect();
+      const top = (rT.top - hl.top) * e;
+      const left = (rT.left - hl.left) * e;
+      const right = (hl.right - rT.right) * e;
+      const bottom = (hl.bottom - rT.bottom) * e;
       heroLayer.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px)`;
 
       // El lockup viaja del centro del hero al centro de la caja destino,
