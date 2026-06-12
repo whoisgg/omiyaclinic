@@ -79,7 +79,16 @@ export function PetalsOverlay() {
         this.d += 0.01;
         if (this.y > height || this.x > width) {
           this.init();
-          this.x = Math.random() * width - 100;
+          if (Math.random() < 0.4) {
+            // Reentra desde arriba.
+            this.x = Math.random() * width - 100;
+          } else {
+            // Reentra desde la izquierda a altura aleatoria: en pantallas
+            // angostas los pétalos salen por la derecha antes de bajar, y
+            // sin esto se concentran solo en la parte superior.
+            this.x = -20;
+            this.y = Math.random() * height;
+          }
         }
       }
 
