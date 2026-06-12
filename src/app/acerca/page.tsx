@@ -82,14 +82,14 @@ export default function AcercaPage() {
 
       {/* Fundadora */}
       <section className="border-b border-zinc-200">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2">
-          <div className="relative aspect-[4/5] overflow-hidden">
+        <div className="founder-card mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2">
+          <div className="group founder-photo relative aspect-[4/5] overflow-hidden">
             <Image
               src="/founder-portrait.webp"
               alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
               fill
               sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-cover object-top"
+              className="object-cover object-top grayscale-[0.7] sepia-[0.1] brightness-[1.08] contrast-[0.95] transition-[transform,filter] duration-1000 group-hover:scale-105 group-hover:grayscale-0 group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100"
             />
           </div>
           <div className="flex flex-col justify-center">

@@ -88,7 +88,10 @@ export function HomeTreatmentsGallery() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-white md:-mt-24 lg:-mt-40">
+    <section
+      data-header-white
+      className="relative overflow-hidden bg-white md:-mt-24 lg:-mt-40"
+    >
       <div className="mx-auto max-w-6xl px-6 pb-24 pt-6 lg:pb-32 lg:pt-8">
         {/* Header editorial */}
         <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-baseline">

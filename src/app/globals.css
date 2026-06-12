@@ -63,6 +63,7 @@ body {
   transform-origin: left;
   transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.btn-underline:hover::after {
+.btn-underline:hover::after,
+.founder-card:has(.founder-photo:hover) .btn-underline::after {
   transform: scaleX(1);
 }

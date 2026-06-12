@@ -38,7 +38,9 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
     const extras = Array.from(
       document.querySelectorAll<HTMLElement>("[data-hero-extra]"),
     );
-    const photo = heroLayer.querySelector<HTMLImageElement>("img");
+    const photos = Array.from(
+      heroLayer.querySelectorAll<HTMLImageElement>("img"),
+    );
 
     let raf = 0;
     let ticking = false;
@@ -74,14 +76,14 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       lockup.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
 
       // Al final, el lockup pasa al dorado de la marca (#a4884f). El fondo
-      // que revela la máscara es el blanco de la sección (igual al resto
-      // del sitio), no el crema del hero.
+      // que revela la máscara es crema (#faf6ec), continuo con el muro de
+      // la foto para que la transición no salte de color.
       const cb = clamp01((p - 0.55) / 0.4);
       const lerp = (a: number, b: number) => Math.round(a + (b - a) * cb);
       lockup.style.color = `rgb(${lerp(24, 164)}, ${lerp(24, 136)}, ${lerp(27, 79)})`;
       // La foto se desvanece al aterrizar: el lockup queda limpio sobre el
       // blanco de la sección, sin recorte de foto detrás.
-      if (photo) photo.style.opacity = String(1 - cb);
+      for (const ph of photos) ph.style.opacity = String(1 - cb);
 
       // Eyebrow, tagline, botón y hint se desvanecen temprano.
       const fade = String(clamp01(1 - p / 0.3));
@@ -119,7 +121,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       {/* Rango del sticky: 100vh de máscara + ~20vh de pausa; después el
           bloque completo scrollea natural como cualquier sección */}
       <div className="h-[220vh]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-white">
+      <div className="sticky top-0 h-screen overflow-hidden bg-[#faf6ec]">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
           <div className="mx-auto grid w-full max-w-6xl translate-y-[5vh] grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
@@ -154,19 +156,31 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
         {/* Capa hero: se enmascara hacia la caja destino */}
         <div
           ref={heroLayerRef}
-          className="absolute inset-0 z-20 overflow-hidden bg-white"
+          className="absolute inset-0 z-20 overflow-hidden bg-[#faf6ec]"
         >
-          {/* Foto de escena (rama de momiji + sombras sobre muro crema) */}
+          {/* Foto de escena: composición vertical dedicada en mobile
+              (follaje arriba + bandeja abajo), panorámica en desktop */}
           <Image
-            src="/momiji/hero-photo.webp"
+            src="/momiji/hero-momiji-mobile-3.webp"
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center select-none"
+            className="object-cover object-center select-none sm:hidden"
+          />
+          <Image
+            src="/momiji/hero-momiji-mesa-8.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hidden object-cover object-center select-none sm:block"
           />
 
-          <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 pt-20 text-center">
+          <div
+            className="relative z-20 flex h-full max-sm:translate-y-11 flex-col items-center justify-center px-6 pt-20 text-center"
+            style={{ "--lw": "min(76vw, 640px)" } as React.CSSProperties}
+          >
             <p
               data-hero-extra
               className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]"
@@ -178,12 +192,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
             <div ref={anchorRef} className="mt-6">
               <div
                 ref={lockupRef}
-                style={
-                  {
-                    "--lw": "min(76vw, 640px)",
-                    color: "#18181b",
-                  } as React.CSSProperties
-                }
+                style={{ color: "#18181b" }}
               >
                 <h1>
                   <LogoWordmark className="h-auto w-[var(--lw)]" />
@@ -210,7 +219,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
               <Link
                 href="/tratamientos"
-                className="btn-luxe mt-12 inline-block px-10 py-4 text-xs text-zinc-900"
+                className="btn-luxe mt-8 inline-block px-10 py-4 text-xs text-zinc-900 sm:mt-12"
                 style={
                   {
                     "--luxe-fill": "#18181b",
@@ -224,7 +233,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
             <div
               data-hero-extra
-              className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3 text-zinc-500"
+              className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3 text-zinc-900"
             >
               <span className="text-[10px] uppercase tracking-[0.3em]">
                 Scroll para descubrir
