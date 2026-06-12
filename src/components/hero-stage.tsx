@@ -233,7 +233,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
             <div
               data-hero-extra
-              className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-3 text-zinc-900"
+              className="absolute inset-x-0 bottom-28 flex flex-col items-center gap-3 text-zinc-900 sm:bottom-10"
             >
               <span className="text-[10px] uppercase tracking-[0.3em]">
                 Scroll para descubrir
