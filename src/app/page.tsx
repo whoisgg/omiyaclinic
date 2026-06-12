@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CATEGORIES, getFeaturedTreatments } from "@/lib/treatments";
+import { getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 import { HeroStage } from "@/components/hero-stage";
+import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
 
 export default async function HomePage() {
   const featured = await getFeaturedTreatments(3);
@@ -12,37 +13,8 @@ export default async function HomePage() {
       {/* HERO + INTRO — máscara hacia el logo; el resto cubre al scrollear */}
       <HeroStage>
 
-      {/* CATEGORÍAS */}
-      <section className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-zinc-500">
-            Tratamientos
-          </p>
-          <ul className="mt-8 divide-y divide-zinc-200 border-y border-zinc-200">
-            {CATEGORIES.map((cat, idx) => (
-              <li key={cat.id}>
-                <Link
-                  href={`/tratamientos?cat=${cat.id}`}
-                  className="group flex items-center justify-between py-6 transition-colors hover:bg-zinc-50"
-                >
-                  <span className="w-12 text-xs text-zinc-400">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex-1 text-2xl font-light tracking-tight text-zinc-900 sm:text-3xl">
-                    {cat.label}
-                  </span>
-                  <span className="text-xs uppercase tracking-widest text-zinc-500">
-                    {cat.tagline}
-                  </span>
-                  <span className="ml-6 text-zinc-400 transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      {/* TRATAMIENTOS — galería editorial con parallax */}
+      <HomeTreatmentsGallery />
 
       {/* DESTACADOS */}
       <section className="bg-zinc-50">
