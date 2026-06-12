@@ -28,6 +28,14 @@
   cuadrado (btn-luxe). Loader con tipografía del sistema (serif + eyebrow).
 - Si las imágenes no se actualizan tras un cambio: renombrar el archivo
   (cache-bust) — los caches de imagen optimizada retienen la URL vieja.
+- **Sesión tarde 11-06**: transición de máscara final en `hero-stage.tsx`
+  (lockup oficial OMIYA/CLINIC viaja a columna izq., crema funde a blanco y
+  logo a dorado #a4884f, texto "Nuestro enfoque" a la der.; pinned + dwell
+  20vh y luego scroll natural; reversible). Navbar ahora fixed con velo
+  blanco/blur al scrollear. Galería editorial de tratamientos en el home
+  (`home-treatments-gallery.tsx`): grilla escalonada con parallax vertical
+  por imagen, Omiya Glow/Smooth/Lift/Smile → /tratamientos?cat=. Pétalos
+  con respawn lateral para cubrir todo el alto en mobile.
 
 ---
 

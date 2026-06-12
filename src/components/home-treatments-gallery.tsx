@@ -88,7 +88,7 @@ export function HomeTreatmentsGallery() {
   }, []);
 
   return (
-    <section className="overflow-hidden border-t border-zinc-200 bg-white">
+    <section className="overflow-hidden bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         {/* Header editorial */}
         <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-baseline">
