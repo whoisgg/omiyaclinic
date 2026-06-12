@@ -123,20 +123,20 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       <div className="sticky top-0 h-screen overflow-hidden bg-white">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
-          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 pt-16 lg:grid-cols-2 lg:gap-16 lg:pt-0">
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
             {/* Caja destino del lockup (la máscara aterriza aquí) */}
             <div
               ref={targetRef}
               className="mx-auto aspect-[9/5] w-full max-w-[300px] sm:max-w-[420px] lg:mx-0 lg:max-w-[480px]"
             />
             <div ref={introTextRef} style={{ opacity: 0 }}>
-              <p className="text-[10px] uppercase tracking-[0.5em] text-[#a4884f]">
-                El well-aging en Omiya Clinic
+              <p className="text-[10px] uppercase tracking-[0.5em] text-zinc-900">
+                Nuestro enfoque
               </p>
               <h2 className="mt-6 font-serif text-2xl font-light leading-[1.35] text-zinc-800 sm:text-3xl lg:text-[2.1rem]">
-                Nuestro enfoque busca crear un espacio donde el bienestar se
-                construye de manera consciente, personalizada y sostenible en
-                cada etapa de la vida.
+                Buscamos crear un espacio donde el bienestar se construye de
+                manera consciente, personalizada y sostenible en cada etapa de
+                la vida.
               </h2>
               <Link
                 href="/tratamientos"

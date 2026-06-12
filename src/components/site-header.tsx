@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BOOKING_URL } from "@/lib/links";
@@ -13,9 +14,18 @@ const NAV = [
 
 export function SiteHeader() {
   const pathname = usePathname();
-  // El header siempre es absoluto y transparente sobre la página. Con el
-  // hero crema del home, la paleta zinc oscura funciona en todas partes.
+  // El header es fijo (no desaparece al scrollear). Arriba del todo es
+  // transparente; con scroll gana un velo blanco con blur para mantener
+  // legibilidad sobre cualquier sección.
   const overHero = false;
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const linkBase = "text-xs uppercase tracking-[0.18em] transition-colors";
   const linkColor = overHero
@@ -24,10 +34,14 @@ export function SiteHeader() {
   const activeColor = overHero ? "text-[#f3ede3]" : "italic text-zinc-900";
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+        scrolled ? "bg-white/80 backdrop-blur" : "bg-transparent"
+      }`}
+    >
       <div
-        className={`mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10 border-b ${
-          overHero ? "border-[#f3ede3]/25" : "border-zinc-900/10"
+        className={`mx-auto flex h-20 max-w-7xl items-center justify-between border-b px-6 lg:px-10 ${
+          scrolled ? "border-zinc-900/10" : "border-zinc-900/10"
         }`}
       >
         <Link
