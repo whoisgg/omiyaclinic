@@ -8,12 +8,11 @@ import { LogoClinic } from "@/components/logo-clinic";
 import { BOOKING_URL } from "@/lib/links";
 
 /**
- * Transición de máscara estilo sensei.tech: el lienzo del hero (crema +
- * hojas de momiji) se recorta y el lockup OMIYA/CLINIC viaja achicándose
- * hasta la columna izquierda de un layout de 2 columnas, con el texto
- * well-aging a la derecha. Las hojas se desvanecen al comenzar el scroll y
- * vuelven en el landing. El lockup final queda pinned y las secciones lo
- * cubren al seguir scrolleando; subiendo, todo se revierte.
+ * Transición de máscara estilo sensei.tech: la foto del hero (rama de
+ * momiji sobre muro crema) se recorta y el lockup OMIYA/CLINIC viaja
+ * achicándose hasta la columna izquierda de un layout de 2 columnas, con el
+ * texto well-aging a la derecha. El lockup final queda pinned y las
+ * secciones lo cubren al seguir scrolleando; subiendo, todo se revierte.
  *
  * Geometría del lockup tomada del AI original: CLINIC ocupa 665/801 del
  * ancho del wordmark, inset izquierdo 108/801, separación vertical 45/801.
@@ -39,7 +38,6 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
     const extras = Array.from(
       document.querySelectorAll<HTMLElement>("[data-hero-extra]"),
     );
-    const leaves = heroLayer.querySelector<HTMLElement>("[data-hero-leaves]");
 
     let raf = 0;
     let ticking = false;
@@ -74,14 +72,10 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       const ty = (rT.top + rT.height / 2 - (rA.top + rA.height / 2)) * e;
       lockup.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
 
-      // Hojas: desaparecen apenas comienza el efecto, vuelven al landing.
-      if (leaves) leaves.style.opacity = String(clamp01(1 - p / 0.4));
-
-      // Al final la máscara se disuelve: el crema funde a blanco y el
-      // lockup pasa al dorado de la marca (#a4884f).
+      // Al final, el lockup pasa al dorado de la marca (#a4884f). El fondo
+      // que revela la máscara es el crema de la marca, nunca blanco.
       const cb = clamp01((p - 0.55) / 0.4);
       const lerp = (a: number, b: number) => Math.round(a + (b - a) * cb);
-      heroLayer.style.backgroundColor = `rgb(${lerp(250, 255)}, ${lerp(246, 255)}, ${lerp(236, 255)})`;
       lockup.style.color = `rgb(${lerp(24, 164)}, ${lerp(24, 136)}, ${lerp(27, 79)})`;
 
       // Eyebrow, tagline, botón y hint se desvanecen temprano.
@@ -120,7 +114,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       {/* Rango del sticky: 100vh de máscara + ~20vh de pausa; después el
           bloque completo scrollea natural como cualquier sección */}
       <div className="h-[220vh]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-white">
+      <div className="sticky top-0 h-screen overflow-hidden bg-[#faf6ec]">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
