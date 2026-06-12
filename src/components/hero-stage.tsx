@@ -122,7 +122,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       <div className="sticky top-0 h-screen overflow-hidden bg-white">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
-          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
+          <div className="mx-auto grid w-full max-w-6xl translate-y-[5vh] grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
             {/* Caja destino del lockup (la máscara aterriza aquí) */}
             <div
               ref={targetRef}
