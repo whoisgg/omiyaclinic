@@ -42,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# momiji: originales acuarela en bruto (pesados, solo fuente local)
+/scripts/momiji-src/

@@ -2,17 +2,17 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { PetalsOverlay } from "@/components/petals-overlay";
+import Image from "next/image";
 import { LogoWordmark } from "@/components/logo-wordmark";
 import { LogoClinic } from "@/components/logo-clinic";
 import { BOOKING_URL } from "@/lib/links";
 
 /**
  * Transición de máscara estilo sensei.tech: el lienzo del hero (crema +
- * pétalos) se recorta y el lockup OMIYA/CLINIC viaja achicándose hasta la
- * columna izquierda de un layout de 2 columnas, con el texto well-aging a
- * la derecha. Los pétalos se desvanecen al comenzar el scroll y vuelven en
- * el landing. El lockup final queda pinned y las secciones siguientes lo
+ * hojas de momiji) se recorta y el lockup OMIYA/CLINIC viaja achicándose
+ * hasta la columna izquierda de un layout de 2 columnas, con el texto
+ * well-aging a la derecha. Las hojas se desvanecen al comenzar el scroll y
+ * vuelven en el landing. El lockup final queda pinned y las secciones lo
  * cubren al seguir scrolleando; subiendo, todo se revierte.
  *
  * Geometría del lockup tomada del AI original: CLINIC ocupa 665/801 del
@@ -39,7 +39,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
     const extras = Array.from(
       document.querySelectorAll<HTMLElement>("[data-hero-extra]"),
     );
-    const canvas = heroLayer.querySelector("canvas");
+    const leaves = heroLayer.querySelector<HTMLElement>("[data-hero-leaves]");
 
     let raf = 0;
     let ticking = false;
@@ -74,8 +74,8 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       const ty = (rT.top + rT.height / 2 - (rA.top + rA.height / 2)) * e;
       lockup.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
 
-      // Pétalos: desaparecen apenas comienza el efecto, vuelven al landing.
-      if (canvas) canvas.style.opacity = String(clamp01(1 - p / 0.4));
+      // Hojas: desaparecen apenas comienza el efecto, vuelven al landing.
+      if (leaves) leaves.style.opacity = String(clamp01(1 - p / 0.4));
 
       // Al final la máscara se disuelve: el crema funde a blanco y el
       // lockup pasa al dorado de la marca (#a4884f).
@@ -157,9 +157,17 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
           ref={heroLayerRef}
           className="absolute inset-0 z-20 overflow-hidden bg-[#faf6ec]"
         >
-          <PetalsOverlay />
+          {/* Foto de escena (rama de momiji + sombras sobre muro crema) */}
+          <Image
+            src="/momiji/hero-photo.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center select-none"
+          />
 
-          <div className="relative flex h-full flex-col items-center justify-center px-6 pt-20 text-center">
+          <div className="relative z-20 flex h-full flex-col items-center justify-center px-6 pt-20 text-center">
             <p
               data-hero-extra
               className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]"
