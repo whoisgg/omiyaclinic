@@ -129,7 +129,11 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
               ref={targetRef}
               className="mx-auto aspect-[9/5] w-full max-w-[300px] sm:max-w-[420px] lg:mx-0 lg:max-w-[480px]"
             />
-            <div ref={introTextRef} style={{ opacity: 0 }}>
+            <div
+              ref={introTextRef}
+              className="text-center lg:text-left"
+              style={{ opacity: 0 }}
+            >
               <p className="text-[10px] uppercase tracking-[0.5em] text-zinc-900">
                 Nuestro enfoque
               </p>

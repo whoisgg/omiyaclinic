@@ -45,7 +45,7 @@ const ITEMS = [
     name: "Omiya Smile",
     tagline: "Salud y estética dental",
     img: "/treatments/blanqueamiento-dental.webp",
-    wrap: "md:col-span-5 md:col-start-8 md:-mt-24",
+    wrap: "md:col-span-5 md:col-start-8 md:mt-16 lg:mt-12",
     aspect: "aspect-[4/5]",
     speed: 0.07,
   },
