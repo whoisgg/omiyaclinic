@@ -97,6 +97,7 @@ export function Loader() {
               src="/logo-white.png"
               alt=""
               fill
+              sizes="(min-width: 1024px) 384px, (min-width: 768px) 320px, 256px"
               className="object-contain opacity-20"
               priority
             />
@@ -110,6 +111,7 @@ export function Loader() {
                 src="/logo-white.png"
                 alt="Omiya Clinic"
                 fill
+                sizes="(min-width: 1024px) 384px, (min-width: 768px) 320px, 256px"
                 className="object-contain"
                 priority
               />

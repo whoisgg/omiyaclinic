@@ -2,10 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { LogoWordmark } from "@/components/logo-wordmark";
 import { LogoClinic } from "@/components/logo-clinic";
-import { BOOKING_URL } from "@/lib/links";
 
 /**
  * Transición de máscara estilo sensei.tech: la foto del hero (rama de
@@ -120,8 +118,8 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
     <div className="relative">
       {/* Rango del sticky: 100vh de máscara + ~20vh de pausa; después el
           bloque completo scrollea natural como cualquier sección */}
-      <div className="h-[220vh]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-[#faf6ec]">
+      <div className="h-[220svh] bg-[#faf6ec]">
+      <div className="sticky top-0 h-[100dvh] overflow-hidden bg-[#faf6ec]">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
           <div className="mx-auto grid w-full max-w-6xl translate-y-[5vh] grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
@@ -158,27 +156,27 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
           ref={heroLayerRef}
           className="absolute inset-0 z-20 overflow-hidden bg-[#faf6ec]"
         >
-          {/* Foto de escena: composición vertical dedicada en mobile
-              (follaje arriba + bandeja abajo), panorámica en desktop */}
-          <Image
-            src="/momiji/hero-momiji-mobile-3.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center select-none sm:hidden"
-          />
-          <Image
-            src="/momiji/hero-momiji-mesa-8.webp"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="hidden object-cover object-center select-none sm:block"
-          />
+          {/* Foto de escena art-directed: composición vertical dedicada en
+              mobile (follaje arriba + bandeja abajo), panorámica en desktop.
+              <picture> nativo para cargar solo el crop visible por media
+              query (evita precargar ambos) y no disparar el warning de
+              next/image sobre el crop oculto. */}
+          <picture>
+            <source
+              media="(min-width: 640px)"
+              srcSet="/momiji/hero-momiji-mesa-8.webp"
+            />
+            <img
+              src="/momiji/hero-momiji-mobile-3.webp"
+              alt=""
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full select-none object-cover object-center"
+            />
+          </picture>
 
           <div
-            className="relative z-20 flex h-full max-sm:translate-y-11 flex-col items-center justify-center px-6 pt-20 text-center"
+            className="relative z-20 flex h-full flex-col items-center justify-center px-6 pt-20 text-center"
             style={{ "--lw": "min(76vw, 640px)" } as React.CSSProperties}
           >
             <p
@@ -233,7 +231,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
             <div
               data-hero-extra
-              className="absolute inset-x-0 bottom-28 flex flex-col items-center gap-3 text-zinc-900 sm:bottom-10"
+              className="absolute inset-x-0 bottom-6 flex flex-col items-center gap-3 text-zinc-900 sm:bottom-10"
             >
               <span className="text-[10px] uppercase tracking-[0.3em]">
                 Scroll para descubrir

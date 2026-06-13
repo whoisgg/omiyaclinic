@@ -21,8 +21,8 @@ export function SiteHeader() {
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
 
-  // En el home, la línea inferior nace junto a "Acerca de" y el logo está
-  // oculto; ambos crecen/aparecen en sincronía con la máscara del hero
+  // En el home, la línea inferior nace con ancho 0 y el logo está oculto;
+  // ambos crecen/aparecen en sincronía con la máscara del hero
   // (mismo rango: scrollY 0 → 1vh, mismo easing).
   const barRef = useRef<HTMLDivElement>(null);
   const clusterRef = useRef<HTMLDivElement>(null);
@@ -64,7 +64,7 @@ export function SiteHeader() {
     if (!bar || !cluster || !line || !logo) return;
 
     if (!isHome) {
-      line.style.left = "0px";
+      line.style.transform = "scaleX(1)";
       logo.style.opacity = "1";
       logo.style.pointerEvents = "auto";
       return;
@@ -77,11 +77,9 @@ export function SiteHeader() {
     const apply = () => {
       const p = clamp01(window.scrollY / window.innerHeight);
       const e = easeInOutCubic(p);
-      const start =
-        cluster.getBoundingClientRect().left -
-        bar.getBoundingClientRect().left -
-        28;
-      line.style.left = `${Math.max(0, start) * (1 - e)}px`;
+      // La línea nace con ancho 0 (sin barra en el hero) y crece desde la
+      // derecha hasta cubrir todo el ancho cuando la máscara aterriza.
+      line.style.transform = `scaleX(${e})`;
       // El logo aparece al final, cuando el lockup aterriza (mismo rango
       // que el cambio de color del lockup en hero-stage).
       const cb = clamp01((p - 0.55) / 0.4);
@@ -119,11 +117,12 @@ export function SiteHeader() {
         ref={barRef}
         className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10"
       >
-        {/* Línea inferior: en el home nace junto al nav y crece con la máscara */}
+        {/* Línea inferior: en el home nace con ancho 0 y crece con la máscara */}
         <span
           ref={lineRef}
           aria-hidden="true"
-          className="absolute bottom-0 left-0 right-0 h-px bg-zinc-900/10"
+          className="absolute bottom-0 left-0 right-0 h-px origin-right bg-zinc-900/10"
+          style={{ transform: isHome ? "scaleX(0)" : "scaleX(1)" }}
         />
         <Link
           ref={logoRef}
