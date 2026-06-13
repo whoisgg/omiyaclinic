@@ -100,11 +100,11 @@ export function HomeTreatmentsGallery() {
               Tratamientos
             </p>
             <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
-              Curaduría de Bienestar Personalizado
+              Cada experiencia responde a necesidades específicas de tu piel y bienestar.
             </h2>
           </div>
           <p className="max-w-[220px] font-serif text-sm italic leading-relaxed text-zinc-500">
-            Resultados invisibles, sensaciones tangibles.
+            El mejor tratamiento es el que se adapta a ti.
           </p>
         </div>
 

@@ -211,8 +211,8 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
             </div>
 
             <div data-hero-extra>
-              <p className="mt-6 font-serif text-xl font-light tracking-wide text-zinc-600 sm:text-2xl">
-                Tratamientos personalizados
+              <p className="mt-2 font-serif text-xl font-light tracking-wide text-zinc-600 sm:text-2xl">
+                El arte de envejecer mejor
               </p>
 
               <Link
