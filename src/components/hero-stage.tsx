@@ -217,7 +217,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
               <Link
                 href="/tratamientos"
-                className="btn-luxe mt-8 inline-block px-10 py-4 text-xs text-zinc-900 sm:mt-12"
+                className="btn-luxe mt-8 inline-block px-7 py-3 text-[11px] text-zinc-900 sm:mt-12 sm:px-10 sm:py-4 sm:text-xs"
                 style={
                   {
                     "--luxe-fill": "#18181b",
@@ -234,7 +234,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
               className="absolute inset-x-0 bottom-6 flex flex-col items-center gap-3 text-zinc-900 sm:bottom-10"
             >
               <span className="text-[10px] uppercase tracking-[0.3em]">
-                Scroll para descubrir
+                Scroll
               </span>
               <span aria-hidden="true" className="animate-bounce text-lg">
                 ↓

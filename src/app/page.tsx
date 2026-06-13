@@ -1,13 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getFeaturedTreatments } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
 import { HeroStage } from "@/components/hero-stage";
 import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
 
-export default async function HomePage() {
-  const featured = await getFeaturedTreatments(3);
+const COMPROMISO = [
+  {
+    title: "Resultados naturales",
+    desc: "Buscamos armonizar, no transformar.",
+  },
+  {
+    title: "Progresión gradual",
+    desc: "Cambios que evolucionan contigo.",
+  },
+  {
+    title: "Acompañamiento médico",
+    desc: "Seguimiento antes, durante y después.",
+  },
+  {
+    title: "Protocolos personalizados",
+    desc: "Adaptados a tus necesidades y objetivos.",
+  },
+];
 
+export default function HomePage() {
   return (
     <>
       {/* HERO + INTRO — máscara hacia el logo; el resto cubre al scrollear */}
@@ -16,40 +32,28 @@ export default async function HomePage() {
       {/* TRATAMIENTOS — galería editorial con parallax */}
       <HomeTreatmentsGallery />
 
-      {/* DESTACADOS */}
-      <section className="bg-zinc-50">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
-            Destacados
+      {/* NUESTRO COMPROMISO */}
+      <section className="bg-zinc-900 text-white">
+        <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-[#c2a25f]">
+            Nuestro compromiso
           </p>
-          <h2 className="mt-4 text-2xl font-light text-zinc-900">
-            Los más reservados.
+          <h2 className="mt-4 max-w-2xl font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
+            Cada tratamiento está guiado por los mismos principios.
           </h2>
-          <ul className="mt-8 grid gap-px bg-zinc-200 sm:grid-cols-3">
-            {featured.map((t) => (
-              <li key={t.slug} className="bg-white">
-                <Link
-                  href={`/tratamientos/${t.slug}`}
-                  className="block h-full p-6 transition-colors hover:bg-zinc-50"
-                >
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-[#b08a4f]">
-                    {t.category}
-                  </p>
-                  <h3 className="mt-3 text-lg font-medium text-zinc-900">
-                    {t.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-zinc-600">
-                    {t.shortDescription}
-                  </p>
-                  {t.duration && (
-                    <p className="mt-6 text-xs uppercase tracking-widest text-zinc-500">
-                      {t.duration}
-                    </p>
-                  )}
-                </Link>
-              </li>
+
+          <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+            {COMPROMISO.map((c) => (
+              <div key={c.title} className="border-t border-white/15 pt-6">
+                <h3 className="font-serif text-lg italic leading-snug text-zinc-100">
+                  {c.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                  {c.desc}
+                </p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 
