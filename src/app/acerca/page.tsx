@@ -2,145 +2,287 @@ import Image from "next/image";
 import { WellagingPillars } from "@/components/wellaging-pillars";
 
 export default function AcercaPage() {
-  const team = [
-    { name: "Profesional 1", role: "Dermatólogo" },
-    { name: "Profesional 2", role: "Cosmiatra" },
-    { name: "Profesional 3", role: "Odontólogo" },
-  ];
-
   return (
     <main className="bg-white">
-      {/* Nuestra filosofía */}
+      {/* HERO */}
       <section className="bg-[#faf6ec]">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-32 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:pb-28 lg:pt-36">
+        <div className="mx-auto max-w-7xl px-6 pb-20 pt-32 lg:px-10 lg:pb-28 lg:pt-40">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+            Filosofía Omiya
+          </p>
+          <h1 className="mt-6 font-serif text-5xl font-light leading-[1.05] tracking-tight text-zinc-900 sm:text-6xl lg:text-7xl">
+            Acerca de Omiya
+          </h1>
+          <p className="mt-8 max-w-2xl font-serif text-xl font-light leading-relaxed text-zinc-600 sm:text-2xl">
+            Una visión de la medicina estética centrada en el well-aging, donde
+            salud, prevención y bienestar conviven en equilibrio.
+          </p>
+        </div>
+      </section>
+
+      {/* ¿QUÉ ES WELL-AGING? */}
+      <section className="bg-[#f0eee8]">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:py-28">
           <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
               Nuestro concepto
             </p>
-            <h1 className="mt-6 font-serif text-5xl font-medium uppercase leading-[1.05] tracking-tight text-zinc-900 sm:text-6xl">
-              Well Aging
-            </h1>
-            <p className="mt-8 max-w-xl text-base leading-relaxed text-zinc-600 sm:text-lg">
-              En OMIYA, entendemos como wellaging a la forma consciente de
-              acompañar a cada persona en su proceso de bienestar, con criterio
-              clínico, respeto y sensibilidad.
+            <h2 className="mt-6 font-serif text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
+              ¿Qué es Well-aging?
+            </h2>
+            <p className="mt-8 text-base leading-relaxed text-zinc-700 sm:text-lg">
+              El well-aging es el arte de envejecer con plenitud. A diferencia
+              del concepto tradicional de &ldquo;anti-envejecimiento&rdquo;,
+              abrazamos el paso del tiempo como un proceso natural que puede
+              gestionarse con elegancia y consciencia.
+            </p>
+            <p className="mt-6 font-serif text-xl font-light italic leading-relaxed text-zinc-800">
+              &ldquo;La belleza más duradera nace de hábitos, prevención y
+              bienestar sostenidos en el tiempo.&rdquo;
             </p>
           </div>
           <div className="relative aspect-[4/5] max-h-[640px] w-full overflow-hidden">
             <Image
               src="/esencia.webp"
-              alt="Interior de Omiya Clinic"
+              alt="Atmósfera de bienestar en Omiya Clinic"
               fill
-              className="object-cover object-[20%_center]"
+              priority
               sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-[20%_center] grayscale-[0.4] transition-[filter] duration-1000 hover:grayscale-0"
             />
           </div>
         </div>
       </section>
 
-      {/* Cita + historia */}
+      {/* PILARES — nuestro diseño */}
+      <WellagingPillars />
+
+      {/* EL SIGNIFICADO DE OMIYA */}
       <section className="bg-[#f0eee8]">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-[2fr_3fr] lg:gap-20 lg:px-10 lg:py-28">
-          <blockquote className="font-serif text-3xl font-light italic leading-snug text-zinc-900 sm:text-4xl">
-            &ldquo;Mi compromiso es que cada paciente sienta que el tiempo le
-            pertenece.&rdquo;
-          </blockquote>
-          <div>
-            <p className="text-base leading-relaxed text-zinc-700">
-              Omiya nació de la visión de crear un santuario donde la medicina
-              estética se encuentra con la hospitalidad de lujo. No buscamos
-              transformar rostros, sino potenciar la identidad de cada persona
-              que cruza nuestra puerta.
+        <div className="mx-auto max-w-3xl px-6 py-24 text-center lg:py-32">
+          <div
+            aria-hidden="true"
+            className="font-serif text-7xl leading-none text-[#b08a4f]/25 sm:text-8xl"
+          >
+            大宮
+          </div>
+          <h2 className="mt-8 font-serif text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
+            El significado de Omiya
+          </h2>
+          <p className="mt-8 text-base leading-loose text-zinc-600 sm:text-lg">
+            Inspirado en la serenidad de los templos japoneses y la precisión de
+            la medicina contemporánea, Omiya (大宮) simboliza el &ldquo;Gran
+            Palacio&rdquo; del bienestar. Para nosotros, el cuerpo es un templo
+            que merece ser cuidado con la máxima delicadeza, honrando su
+            historia y su evolución natural a través del tiempo.
+          </p>
+        </div>
+      </section>
+
+      {/* NUESTRA FILOSOFÍA */}
+      <section className="bg-white">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-12 lg:gap-16 lg:px-10 lg:py-28">
+          <div className="lg:col-span-6">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+              Nuestra filosofía
             </p>
-            <p className="mt-6 text-base leading-relaxed text-zinc-700">
-              Nuestro nombre evoca la idea de un lugar sagrado, un refugio donde
-              el bienestar comienza por el reconocimiento propio. Aquí, cada
-              tratamiento es una pieza de diseño personalizada, ejecutada con
-              precisión médica y sensibilidad artística.
-            </p>
-            <div className="mt-10 grid gap-8 border-t border-zinc-300/60 pt-8 sm:grid-cols-2">
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
-                  Tratamientos
-                </p>
-                <p className="mt-2 text-base text-zinc-800">
-                  Médicamente seguros y certificados.
-                </p>
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-zinc-500">
-                  Atención
-                </p>
-                <p className="mt-2 text-base text-zinc-800">
-                  Un equipo que te conoce por tu nombre.
-                </p>
+            <blockquote className="mt-8 font-serif text-3xl font-light leading-snug text-zinc-900 sm:text-4xl">
+              &ldquo;Creemos que la medicina estética debe ayudar a las personas
+              a sentirse mejor consigo mismas, sin perder aquello que las hace
+              únicas.&rdquo;
+            </blockquote>
+            <div className="mt-10 space-y-6 text-base leading-relaxed text-zinc-600">
+              <p>
+                En Omiya rechazamos la estandarización de la belleza. Cada
+                rostro cuenta una historia única, y nuestro objetivo es
+                preservar su carácter mientras optimizamos su vitalidad.
+              </p>
+              <p>
+                Nuestra metodología combina técnicas avanzadas con una visión
+                artística, asegurando que cada intervención sea sutil, elegante
+                y, sobre todo, imperceptible. Es la belleza del silencio.
+              </p>
+            </div>
+          </div>
+          <div className="lg:col-span-5 lg:col-start-8">
+            <div className="aspect-[3/4] overflow-hidden border border-zinc-200 p-4">
+              <div className="relative h-full w-full overflow-hidden">
+                <Image
+                  src="/hero-clinic.webp"
+                  alt="Interior de Omiya Clinic"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Fundadora */}
-      <section className="border-b border-zinc-200">
-        <div className="founder-card mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2">
-          <div className="group founder-photo relative aspect-[4/5] overflow-hidden">
-            <Image
-              src="/founder-portrait.webp"
-              alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
-              fill
-              sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-cover object-top grayscale-[0.7] sepia-[0.1] brightness-[1.08] contrast-[0.95] transition-[transform,filter] duration-1000 group-hover:scale-105 group-hover:grayscale-0 group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100"
-            />
-          </div>
-          <div className="flex flex-col justify-center">
-            <p className="text-xs uppercase tracking-[0.4em] text-zinc-500">
-              Fundadora
+      {/* LA FUNDADORA — grilla editorial */}
+      <section className="overflow-hidden bg-[#faf6ec]">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+          {/* Encabezado */}
+          <div className="mb-16 lg:mb-20">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+              La Fundadora
             </p>
-            <h2 className="mt-2 text-2xl font-light text-zinc-900">
-              Historia y enfoque de la Dra. Antonieta Ortega
+            <h2 className="mt-4 font-serif text-4xl font-light text-zinc-900 sm:text-5xl">
+              Dra. Antonieta Ortega
             </h2>
-            <p className="mt-6 text-sm leading-relaxed text-zinc-700">
-              Médica con especialización en estética facial y bienestar. Fundó Omiya con
-              la convicción de que cada paciente merece un plan diseñado para su edad,
-              su piel y su historia.
-            </p>
-            <a
-              href="https://instagram.com"
-              className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
-            >
-              Instagram
-            </a>
+            <div className="mt-6 h-px w-16 bg-[#b08a4f]" />
           </div>
-        </div>
-      </section>
 
-      {/* Pilares del Well Aging */}
-      <WellagingPillars />
-
-      {/* Equipo */}
-      <section className="border-b border-zinc-200">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-xs uppercase tracking-[0.4em] text-zinc-500">Equipo</p>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {team.map((p) => (
-              <div key={p.name} className="border border-zinc-200 bg-white p-4">
-                <div className="aspect-[4/5] bg-gradient-to-br from-zinc-200 to-zinc-300" />
-                <p className="mt-4 text-sm font-medium text-zinc-900">{p.name}</p>
-                <p className="text-xs uppercase tracking-widest text-zinc-500">{p.role}</p>
+          {/* Grilla asimétrica */}
+          <div className="grid grid-cols-12 items-start gap-8 lg:gap-12">
+            {/* Retrato principal vertical */}
+            <div className="col-span-12 md:col-span-5">
+              <div className="group relative aspect-[2/3] overflow-hidden bg-zinc-100">
+                <Image
+                  src="/founder-portrait.webp"
+                  alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
+                  fill
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover object-top transition-transform duration-[3s] group-hover:scale-105"
+                />
+                <div className="absolute inset-x-6 bottom-6">
+                  <p className="font-serif text-2xl italic text-white drop-shadow">
+                    Liderando la medicina del bienestar.
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
 
-      {/* El espacio */}
-      <section>
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-xs uppercase tracking-[0.4em] text-zinc-500">El espacio</p>
-          <div className="mt-8 aspect-[21/9] bg-gradient-to-br from-zinc-200 to-zinc-300" />
-          <p className="mt-4 text-xs uppercase tracking-widest text-zinc-500">
-            Galería de la clínica
-          </p>
+            {/* Contenido editorial lateral */}
+            <div className="col-span-12 space-y-12 md:col-span-7">
+              {/* Fila superior: cita + imagen cuadrada */}
+              <div className="grid grid-cols-12 items-center gap-8">
+                <div className="col-span-12 md:col-span-7">
+                  <blockquote className="relative font-serif text-[28px] font-light leading-tight text-zinc-900 sm:text-[36px]">
+                    <span
+                      aria-hidden="true"
+                      className="absolute -left-4 -top-6 font-serif text-6xl text-[#b08a4f]/30"
+                    >
+                      &ldquo;
+                    </span>
+                    La estética debe ayudarnos a sentirnos mejor con quienes
+                    somos,{" "}
+                    <span className="italic text-[#b08a4f]">
+                      no a convertirnos en alguien diferente.
+                    </span>
+                  </blockquote>
+                </div>
+                <div className="col-span-12 md:col-span-5">
+                  <div className="relative aspect-square overflow-hidden bg-zinc-100">
+                    <Image
+                      src="/treatments/bioestimulacion.webp"
+                      alt="Detalle de un tratamiento facial en Omiya"
+                      fill
+                      sizes="(min-width: 768px) 20vw, 100vw"
+                      className="object-cover grayscale transition-all duration-1000 hover:grayscale-0"
+                    />
+                  </div>
+                  <p className="mt-4 font-serif text-sm italic text-zinc-500">
+                    Visión artística y rigor científico.
+                  </p>
+                </div>
+              </div>
+
+              {/* Fila inferior: contexto clínico + espacio */}
+              <div className="grid grid-cols-12 items-end gap-8">
+                <div className="col-span-12 md:col-span-4">
+                  <div className="aspect-[3/4] overflow-hidden border border-zinc-200 bg-zinc-100 p-2">
+                    <div className="relative h-full w-full overflow-hidden">
+                      <Image
+                        src="/hero-clinic.webp"
+                        alt="Contexto clínico de Omiya"
+                        fill
+                        sizes="(min-width: 768px) 18vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-6 space-y-2">
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#b08a4f]">
+                      Trayectoria
+                    </h4>
+                    <p className="text-sm leading-relaxed text-zinc-600">
+                      Más de una década integrando bienestar y salud celular.
+                    </p>
+                  </div>
+                </div>
+                <div className="col-span-12 md:col-span-8">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-zinc-100">
+                    <Image
+                      src="/esencia.webp"
+                      alt="Espacio de consulta de Omiya"
+                      fill
+                      sizes="(min-width: 768px) 36vw, 100vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <p className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[0.2em] text-white/90">
+                      Silent luxury space
+                    </p>
+                  </div>
+                  <div className="mt-8 grid grid-cols-2 gap-8 border-t border-zinc-200 pt-8">
+                    <div className="space-y-2">
+                      <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#b08a4f]">
+                        Especialidad
+                      </h4>
+                      <p className="text-sm leading-relaxed text-zinc-600">
+                        Medicina estética preventiva y personalizada.
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-end gap-5 text-[#b08a4f]">
+                      <a
+                        href="mailto:hola@omiya.cl"
+                        aria-label="Enviar correo"
+                        className="transition-colors hover:text-zinc-900"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          className="h-5 w-5"
+                        >
+                          <rect x="3" y="5" width="18" height="14" rx="2" />
+                          <path d="m3 7 9 6 9-6" />
+                        </svg>
+                      </a>
+                      <a
+                        href="https://instagram.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        className="transition-colors hover:text-zinc-900"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          className="h-5 w-5"
+                        >
+                          <rect x="3" y="3" width="18" height="18" rx="5" />
+                          <circle cx="12" cy="12" r="4" />
+                          <circle
+                            cx="17.5"
+                            cy="6.5"
+                            r="1"
+                            fill="currentColor"
+                            stroke="none"
+                          />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>

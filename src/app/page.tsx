@@ -74,15 +74,15 @@ export default function HomePage() {
               Dra. Antonieta Ortega · Fundadora, Omiya Clinic
             </p>
             <blockquote className="mt-6 font-serif text-2xl font-light leading-snug text-zinc-900 sm:text-3xl">
-              &ldquo;El verdadero cuidado comienza comprendiendo la historia de
-              cada paciente.&rdquo;
+              &ldquo;La estética debe ayudarnos a sentirnos mejor con quienes
+              somos, no a convertirnos en alguien diferente.&rdquo;
             </blockquote>
             <p className="mt-6 text-base leading-relaxed text-zinc-600">
-              Cada decisión clínica se basa en la armonía entre salud, calma y
-              precisión, priorizando siempre lo natural por sobre la
-              corrección. Nuestro enfoque busca crear un espacio donde el
-              bienestar se construye de manera consciente, personalizada y
-              sostenible en cada etapa de la vida.
+              Creé Omiya con la convicción de que el cuidado estético puede
+              acompañar el paso del tiempo sin alterar aquello que nos hace
+              únicos. Cada decisión dentro de la clínica busca reflejar esa
+              filosofía: priorizar la armonía, la autenticidad y el bienestar
+              por sobre las tendencias o los cambios excesivos.
             </p>
             <Link
               href="/acerca"
@@ -94,48 +94,71 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PRODUCTOS */}
-      <section className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[2fr_3fr] lg:gap-16 lg:py-28">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
-              Productos
+      {/* TU EXPERIENCIA — imagen del box con fade hacia el crema */}
+      <section className="relative overflow-hidden border-t border-zinc-200 bg-[#faf6ec]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[62%]"
+        >
+          <Image
+            src="/box-omiya-2.webp"
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 62vw, 100vw"
+            className="object-cover object-center"
+          />
+          {/* Fade horizontal hacia la columna de texto */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#faf6ec] via-[#faf6ec]/90 to-[#faf6ec]/30 lg:via-[#faf6ec]/40 lg:to-transparent" />
+          {/* Fade vertical suave para fundir con las secciones vecinas */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ec]/40 via-transparent to-[#faf6ec]/40" />
+        </div>
+        <div className="relative z-10 mx-auto flex min-h-[560px] max-w-7xl items-center px-6 py-20 lg:min-h-[680px] lg:px-10 lg:py-28">
+          <div className="max-w-xl">
+            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+              Tu experiencia en Omiya
             </p>
-            <h2 className="mt-4 font-serif text-3xl font-medium uppercase leading-tight text-zinc-900 lg:text-4xl">
-              Elegimos calidad
+            <h2 className="mt-6 font-serif text-4xl font-light leading-[1.1] text-zinc-900 sm:text-5xl">
+              Lo más importante es comprender qué necesita tu piel hoy.
             </h2>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-zinc-600 lg:text-base">
-              Trabajamos con productos certificados y cuidadosamente
-              seleccionados, pensados para realzar tu belleza de forma natural.
+            <div className="mt-8 h-px w-16 bg-[#b08a4f]" />
+            <p className="mt-8 max-w-md text-base leading-relaxed text-zinc-700">
+              Cada tratamiento comienza con una evaluación personalizada que nos
+              permite comprender tu piel, tus objetivos y la etapa en la que te
+              encuentras.
             </p>
-            <Link
-              href="/tratamientos"
-              className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-luxe mt-10 inline-block px-8 py-4 text-xs text-[#b08a4f]"
+              style={
+                {
+                  "--luxe-fill": "#b08a4f",
+                  "--luxe-fill-text": "#ffffff",
+                } as React.CSSProperties
+              }
             >
-              Ver tratamientos
-            </Link>
-          </div>
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <Image
-              src="/products/composicion.webp"
-              alt="Productos Sculptra y Restylane de Galderma"
-              fill
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              className="object-cover"
-            />
+              Agenda tu evaluación
+            </a>
           </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="bg-zinc-900 text-white">
-        <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-          <p className="text-2xl font-light">Tu bienestar comienza aquí.</p>
+        <div className="mx-auto max-w-3xl px-6 py-20 text-center lg:py-24">
+          <h2 className="font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
+            Cada piel tiene una historia diferente.
+          </h2>
+          <div className="mx-auto mt-6 h-px w-16 bg-[#b08a4f]" />
+          <p className="mt-8 text-lg font-light text-zinc-300">
+            Tu bienestar comienza aquí.
+          </p>
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-luxe mt-8 inline-block px-10 py-4 text-xs text-white/90"
+            className="btn-luxe mt-10 inline-block px-10 py-4 text-xs text-white"
             style={
               {
                 "--luxe-fill": "#ffffff",

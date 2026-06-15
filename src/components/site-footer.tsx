@@ -27,17 +27,26 @@ export function SiteFooter() {
         </ul>
         <ul className="space-y-2 text-sm text-zinc-600">
           <li>
-            <a href="https://instagram.com" className="hover:text-zinc-900">
-              Instagram
-            </a>
-          </li>
-          <li>
             <Link href="/contacto" className="hover:text-zinc-900">
               Contacto
             </Link>
           </li>
-          <li className="text-zinc-400">© 2026 Omiya</li>
         </ul>
+      </div>
+
+      {/* Fila inferior: copyright a la izquierda · crédito a la derecha */}
+      <div className="border-t border-zinc-200/60">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <p className="text-xs text-zinc-400">© 2026 Omiya</p>
+          <a
+            href="https://instagram.com/gaspar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[10px] tracking-[0.15em] text-zinc-300 transition-colors hover:text-[#b08a4f]"
+          >
+            Designed by GG
+          </a>
+        </div>
       </div>
     </footer>
   );

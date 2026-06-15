@@ -106,6 +106,7 @@ Ahora vive en código: `src/lib/treatments.ts` (datos estáticos, editar ahí).
 - [ ] Teléfono real en /contacto (hoy dice "+56 9 …") + botón WhatsApp
 - [ ] SEO: metadata por página, sitemap, robots.txt, Open Graph images
 - [ ] Accesibilidad: contraste de cremoso/dorado sobre blanco, focus states, alt text
+- [ ] Banner de consentimiento de cookies (Accept / Reject / Preferences) + link a Privacy Policy; persistir elección y cargar analytics/marketing solo tras aceptar. Diseñarlo en nuestro estilo (sutil, no el genérico amarillo).
 
 ## ⚙️ Infra y deploys
 
