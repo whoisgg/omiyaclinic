@@ -164,10 +164,10 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
           <picture>
             <source
               media="(min-width: 640px)"
-              srcSet="/momiji/hero-momiji-mesa-8.webp"
+              srcSet="/momiji/hero-momiji-mesa-9.webp"
             />
             <img
-              src="/momiji/hero-momiji-mobile-3.webp"
+              src="/momiji/hero-momiji-mobile-4.webp"
               alt=""
               fetchPriority="high"
               decoding="async"
