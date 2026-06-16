@@ -176,7 +176,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
           </picture>
 
           <div
-            className="relative z-20 flex h-full flex-col items-center justify-center px-6 pt-20 text-center"
+            className="hero-intro relative z-20 flex h-full flex-col items-center justify-center px-6 pt-20 text-center"
             style={{ "--lw": "min(76vw, 640px)" } as React.CSSProperties}
           >
             <p

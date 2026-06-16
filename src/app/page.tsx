@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BOOKING_URL } from "@/lib/links";
 import { HeroStage } from "@/components/hero-stage";
 import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
+import { Reveal } from "@/components/reveal";
 
 const COMPROMISO = [
   {
@@ -35,23 +36,29 @@ export default function HomePage() {
       {/* NUESTRO COMPROMISO */}
       <section id="compromiso" className="scroll-mt-20 bg-zinc-900 text-white">
         <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
-          <p className="text-[10px] uppercase tracking-[0.5em] text-[#c2a25f]">
-            Nuestro compromiso
-          </p>
-          <h2 className="mt-4 max-w-2xl font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
-            Cada tratamiento está guiado por los mismos principios.
-          </h2>
+          <Reveal>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[#c2a25f]">
+              Nuestro compromiso
+            </p>
+            <h2 className="mt-4 max-w-2xl font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
+              Cada tratamiento está guiado por los mismos principios.
+            </h2>
+          </Reveal>
 
           <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
-            {COMPROMISO.map((c) => (
-              <div key={c.title} className="border-t border-white/15 pt-6">
+            {COMPROMISO.map((c, i) => (
+              <Reveal
+                key={c.title}
+                delay={i * 80}
+                className="border-t border-white/15 pt-6"
+              >
                 <h3 className="font-serif text-lg italic leading-snug text-zinc-100">
                   {c.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-zinc-400">
                   {c.desc}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -69,7 +76,7 @@ export default function HomePage() {
               className="object-cover object-top grayscale-[0.7] sepia-[0.1] brightness-[1.08] contrast-[0.95] transition-[transform,filter] duration-1000 group-hover:scale-105 group-hover:grayscale-0 group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100"
             />
           </div>
-          <div>
+          <Reveal>
             <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
               Dra. Antonieta Ortega · Fundadora, Omiya Clinic
             </p>
@@ -90,7 +97,7 @@ export default function HomePage() {
             >
               Ver más
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -113,7 +120,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ec]/40 via-transparent to-[#faf6ec]/40" />
         </div>
         <div className="relative z-10 mx-auto flex min-h-[560px] max-w-7xl items-center px-6 py-20 lg:min-h-[680px] lg:px-10 lg:py-28">
-          <div className="max-w-xl">
+          <Reveal className="max-w-xl">
             <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
               Tu experiencia en Omiya
             </p>
@@ -140,34 +147,40 @@ export default function HomePage() {
             >
               Agenda tu evaluación
             </a>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* CTA */}
       <section className="bg-zinc-900 text-white">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center lg:py-24">
-          <h2 className="font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
-            Cada piel tiene una historia diferente.
-          </h2>
-          <div className="mx-auto mt-6 h-px w-16 bg-[#b08a4f]" />
-          <p className="mt-8 text-lg font-light text-zinc-300">
-            Tu bienestar comienza aquí.
-          </p>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-luxe mt-10 inline-block px-10 py-4 text-xs text-white"
-            style={
-              {
-                "--luxe-fill": "#ffffff",
-                "--luxe-fill-text": "#18181b",
-              } as React.CSSProperties
-            }
-          >
-            ↘ Agendar consulta
-          </a>
+          <Reveal>
+            <h2 className="font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
+              Cada piel tiene una historia diferente.
+            </h2>
+            <div className="mx-auto mt-6 h-px w-16 bg-[#b08a4f]" />
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="mt-8 text-lg font-light text-zinc-300">
+              Tu bienestar comienza aquí.
+            </p>
+          </Reveal>
+          <Reveal delay={300}>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-luxe mt-10 inline-block px-10 py-4 text-xs text-white"
+              style={
+                {
+                  "--luxe-fill": "#ffffff",
+                  "--luxe-fill-text": "#18181b",
+                } as React.CSSProperties
+              }
+            >
+              Agendar consulta
+            </a>
+          </Reveal>
         </div>
       </section>
       </HeroStage>

@@ -23,14 +23,14 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-zinc-200/60 bg-white">
       <div className="mx-auto max-w-6xl px-6 pt-16 lg:px-10 lg:pt-20">
-        <div className="flex flex-col gap-12 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-10 lg:flex-nowrap">
+        <div className="flex flex-col gap-y-8 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-10 sm:gap-y-10 lg:flex-nowrap">
           {/* Logo */}
-          <div>
+          <div className="flex justify-center sm:block sm:justify-start">
             <LogoFull className="h-14 w-auto text-zinc-700 lg:h-16" />
           </div>
 
           {/* Menú */}
-          <div>
+          <div className="order-3 sm:order-none">
             <h3 className={headingClass}>Menú</h3>
             <ul className="mt-6 space-y-3 text-sm text-zinc-600">
               {MENU.map((item) => (
@@ -47,7 +47,7 @@ export function SiteFooter() {
           </div>
 
           {/* Horario */}
-          <div>
+          <div className="order-2 sm:order-none">
             <h3 className={headingClass}>Horario de atención</h3>
             <ul className="mt-6 max-w-[240px] space-y-4 text-sm text-zinc-600">
               {HORARIO.map((item) => (
@@ -60,9 +60,30 @@ export function SiteFooter() {
           </div>
 
           {/* Contacto */}
-          <div>
+          <div className="order-1 sm:order-none">
             <h3 className={headingClass}>Contacto</h3>
             <ul className="mt-6 space-y-4 text-sm text-zinc-600">
+              <li>
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 transition-colors hover:text-zinc-900"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 text-[#b08a4f]"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  Del Pucará 50, Machalí
+                </a>
+              </li>
               <li>
                 <a
                   href="https://instagram.com"
@@ -106,27 +127,6 @@ export function SiteFooter() {
                     <path d="M9 10a.5 .5 0 0 0 1 0V9a.5 .5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0-1h-1a.5 .5 0 0 0 0 1" />
                   </svg>
                   WhatsApp
-                </a>
-              </li>
-              <li>
-                <a
-                  href={MAPS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 transition-colors hover:text-zinc-900"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    aria-hidden="true"
-                    className="h-4 w-4 shrink-0 text-[#b08a4f]"
-                  >
-                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  Del Pucará 50, Machalí
                 </a>
               </li>
             </ul>

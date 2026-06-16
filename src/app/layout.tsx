@@ -44,7 +44,7 @@ export default function RootLayout({
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
-            __html: `try{if(sessionStorage.getItem("omiya-loader-shown"))document.documentElement.setAttribute("data-loader-done","")}catch(e){}`,
+            __html: `try{if(sessionStorage.getItem("omiya-loader-shown")){document.documentElement.setAttribute("data-loader-done","");document.documentElement.setAttribute("data-hero-reveal","")}}catch(e){}`,
           }}
         />
       </head>

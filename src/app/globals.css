@@ -67,3 +67,58 @@ body {
 .founder-card:has(.founder-photo:hover) .btn-underline::after {
   transform: scaleX(1);
 }
+
+/* ── Filosofía de animación única ────────────────────────────────────────
+   Una sola regla en todo el sitio: fade + lift muy sutil.
+   opacity 0→1, translateY(12px)→0, 0.8s, cubic-bezier(0.22, 1, 0.36, 1).
+   El fade de opacidad se mantiene siempre (accesible); el lift solo se
+   aplica cuando el usuario no pidió reducir movimiento. */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    transform: translateY(12px);
+  }
+}
+
+/* Entrada del hero: el bloque completo sube como una unidad al revelarse
+   (carga directa o cuando el loader termina). Misma regla que el resto. */
+.hero-intro {
+  opacity: 1;
+}
+[data-hero-reveal] .hero-intro {
+  animation: omiya-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes omiya-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes omiya-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Sin movimiento: el bloque solo hace fade (sin lift), igual que .reveal. */
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-reveal] .hero-intro {
+    animation-name: omiya-fade;
+  }
+}

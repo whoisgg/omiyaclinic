@@ -65,8 +65,12 @@ export function Loader() {
   useEffect(() => {
     if (!isReady) return;
 
-    // Small delay after load complete, then start slide animation
-    const timer = setTimeout(() => setIsAnimating(true), 800);
+    // Small delay after load complete, then start slide animation. Al
+    // iniciar la salida, revelamos el hero: sube mientras el overlay baja.
+    const timer = setTimeout(() => {
+      setIsAnimating(true);
+      document.documentElement.setAttribute("data-hero-reveal", "");
+    }, 800);
     const removeTimer = setTimeout(() => setIsLoading(false), 2000);
 
     return () => {

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Reveal } from "@/components/reveal";
 
 /**
  * Galería editorial de tratamientos del home: grilla escalonada de 12
@@ -111,10 +112,10 @@ export function HomeTreatmentsGallery() {
         {/* Grilla escalonada con parallax */}
         <div className="grid grid-cols-1 gap-y-20 md:grid-cols-12 md:gap-x-8 md:gap-y-0">
           {ITEMS.map((item, i) => (
+            <Reveal key={item.cat} className={item.wrap}>
             <Link
-              key={item.cat}
               href={`/tratamientos?cat=${item.cat}`}
-              className={`group block ${item.wrap}`}
+              className="group block"
             >
               <div className={`relative overflow-hidden ${item.aspect}`}>
                 <div
@@ -149,6 +150,7 @@ export function HomeTreatmentsGallery() {
                 </span>
               </div>
             </Link>
+            </Reveal>
           ))}
         </div>
       </div>
