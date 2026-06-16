@@ -16,7 +16,7 @@ import { Reveal } from "@/components/reveal";
 const ITEMS = [
   {
     cat: "glow",
-    name: "Omiya Glow",
+    name: "Glow",
     tagline: "Calidad y luminosidad de la piel",
     img: "/treatments/limpieza-facial.webp",
     wrap: "md:col-span-7",
@@ -25,16 +25,16 @@ const ITEMS = [
   },
   {
     cat: "smooth",
-    name: "Omiya Smooth",
+    name: "Smooth",
     tagline: "Arrugas y líneas de expresión",
-    img: "/treatments/rellenos-acido-hialuronico-v2.webp",
+    img: "/treatments/smooth-menton.webp",
     wrap: "md:col-span-4 md:col-start-9 md:mt-48",
     aspect: "aspect-[3/4]",
     speed: 0.11,
   },
   {
     cat: "lift",
-    name: "Omiya Lift",
+    name: "Lift",
     tagline: "Firmeza y soporte facial",
     img: "/treatments/cat-lift-v2.webp",
     wrap: "md:col-span-6 md:mt-32",
@@ -43,7 +43,7 @@ const ITEMS = [
   },
   {
     cat: "smile",
-    name: "Omiya Smile",
+    name: "Smile",
     tagline: "Salud y estética dental",
     img: "/treatments/blanqueamiento-dental.webp",
     wrap: "md:col-span-5 md:col-start-8 md:mt-16 lg:mt-12",
