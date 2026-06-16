@@ -107,6 +107,7 @@ Ahora vive en código: `src/lib/treatments.ts` (datos estáticos, editar ahí).
 - [ ] SEO: metadata por página, sitemap, robots.txt, Open Graph images
 - [ ] Accesibilidad: contraste de cremoso/dorado sobre blanco, focus states, alt text
 - [ ] Banner de consentimiento de cookies (Accept / Reject / Preferences) + link a Privacy Policy; persistir elección y cargar analytics/marketing solo tras aceptar. Diseñarlo en nuestro estilo (sutil, no el genérico amarillo).
+- [ ] Páginas legales (Términos, Privacidad, Cookies) y sumar sus links a la barra inferior del footer (donde hoy van © · Designed by GG).
 
 ## ⚙️ Infra y deploys
 
