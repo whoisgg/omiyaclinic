@@ -23,7 +23,7 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-zinc-200/60 bg-white">
       <div className="mx-auto max-w-6xl px-6 pt-16 lg:px-10 lg:pt-20">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+        <div className="flex flex-col gap-12 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-10 lg:flex-nowrap">
           {/* Logo */}
           <div>
             <LogoFull className="h-14 w-auto text-zinc-700 lg:h-16" />
