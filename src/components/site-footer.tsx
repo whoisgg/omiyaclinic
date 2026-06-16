@@ -17,7 +17,7 @@ const headingClass =
   "text-[11px] font-medium uppercase tracking-[0.3em] text-zinc-800";
 
 const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Del%20Pucar%C3%A1%2050%2C%20Oficina%20410%2C%20Edificio%20Don%20Octavio";
+  "https://www.google.com/maps/search/?api=1&query=Del%20Pucar%C3%A1%2050%2C%20Oficina%20410%2C%20Edificio%20Don%20Octavio%2C%20Machal%C3%AD";
 
 export function SiteFooter() {
   return (
@@ -123,10 +123,10 @@ export function SiteFooter() {
                     aria-hidden="true"
                     className="h-4 w-4 shrink-0 text-[#b08a4f]"
                   >
-                    <path d="M12 21s-6-5.686-6-10a6 6 0 1 1 12 0c0 4.314-6 10-6 10Z" />
-                    <circle cx="12" cy="11" r="2" />
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
                   </svg>
-                  Del Pucará 50, Rancagua
+                  Del Pucará 50, Machalí
                 </a>
               </li>
             </ul>
