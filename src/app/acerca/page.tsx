@@ -121,7 +121,7 @@ export default function AcercaPage() {
       </section>
 
       {/* LA FUNDADORA — grilla editorial */}
-      <section className="overflow-hidden bg-[#faf6ec]">
+      <section id="fundadora" className="scroll-mt-20 overflow-hidden bg-[#faf6ec]">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           {/* Encabezado */}
           <div className="mb-16 lg:mb-20">

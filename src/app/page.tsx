@@ -33,7 +33,7 @@ export default function HomePage() {
       <HomeTreatmentsGallery />
 
       {/* NUESTRO COMPROMISO */}
-      <section className="bg-zinc-900 text-white">
+      <section id="compromiso" className="scroll-mt-20 bg-zinc-900 text-white">
         <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#c2a25f]">
             Nuestro compromiso
