@@ -235,18 +235,14 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
               {/* Descriptor al pie de la columna derecha, todo en blanco: el
                   dorado sobre el muro claro de esta foto no alcanza contraste. */}
-              <div
-                className="mt-10 lg:mt-0"
-                style={{
-                  // La línea baja al pie del titular: dos interlineados
-                  // exactos del display (0.92 de su font-size cada uno), así
-                  // queda alineada a cualquier ancho. Va con translate y no
-                  // con padding para que al crecer no empuje el titular.
-                  ["--display-lead" as string]:
-                    "calc(clamp(3.25rem, 10vw, 8.75rem) * 0.92)",
-                  transform: "translateY(calc(var(--display-lead) * 2))",
-                }}
-              >
+              {/* Solo en desktop el bloque baja al pie del titular: son dos
+                  interlineados exactos del display (0.92 de su font-size cada
+                  uno), así queda alineado a cualquier ancho. En mobile las
+                  filas van apiladas y no hay nada que compensar — con el
+                  desplazamiento puesto, el párrafo caía sobre el hint de
+                  scroll. Va con translate y no con padding para que al crecer
+                  no empuje el titular hacia arriba. */}
+              <div className="mt-10 lg:mt-0 lg:translate-y-[calc(clamp(3.25rem,10vw,8.75rem)*0.92*2)]">
                 <div className="h-px w-full max-w-[300px] bg-white/50" />
                 <p className="mt-5 text-[11px] uppercase leading-[1.7] tracking-[0.28em] text-white">
                   Clínica premium
