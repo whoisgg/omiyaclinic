@@ -4,6 +4,7 @@ import { BOOKING_URL } from "@/lib/links";
 import { HeroStage } from "@/components/hero-stage";
 import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
 import { Reveal } from "@/components/reveal";
+import { DisplayHeading } from "@/components/display-heading";
 
 const COMPROMISO = [
   {
@@ -40,10 +41,13 @@ export default function HomePage() {
             <p className="text-[10px] uppercase tracking-[0.5em] text-[#c2a25f]">
               Nuestro compromiso
             </p>
-            <h2 className="mt-4 max-w-2xl font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
-              Cada tratamiento está guiado por los mismos principios.
-            </h2>
           </Reveal>
+          <DisplayHeading
+            lines={["Cada tratamiento,", "los mismos", "principios."]}
+            tone="dark"
+            size="sm"
+            className="mt-6 text-white"
+          />
 
           <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
             {COMPROMISO.map((c, i) => (
@@ -120,13 +124,18 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ec]/40 via-transparent to-[#faf6ec]/40" />
         </div>
         <div className="relative z-10 mx-auto flex min-h-[560px] max-w-7xl items-center px-6 py-20 lg:min-h-[680px] lg:px-10 lg:py-28">
-          <Reveal className="max-w-xl">
-            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
-              Tu experiencia en Omiya
-            </p>
-            <h2 className="mt-6 font-serif text-4xl font-light leading-[1.1] text-zinc-900 sm:text-5xl">
-              Lo más importante es comprender qué necesita tu piel hoy.
-            </h2>
+          <div className="max-w-xl">
+            <Reveal>
+              <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+                Tu experiencia en Omiya
+              </p>
+            </Reveal>
+            <DisplayHeading
+              lines={["Comprender", "tu piel", "hoy."]}
+              dimFrom={2}
+              size="sm"
+              className="mt-6 text-zinc-900"
+            />
             <div className="mt-8 h-px w-16 bg-[#b08a4f]" />
             <p className="mt-8 max-w-md text-base leading-relaxed text-zinc-700">
               Cada tratamiento comienza con una evaluación personalizada que nos
@@ -147,22 +156,26 @@ export default function HomePage() {
             >
               Agenda tu evaluación
             </a>
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="bg-zinc-900 text-white">
-        <div className="mx-auto max-w-3xl px-6 py-20 text-center lg:py-24">
+        <div className="mx-auto max-w-5xl px-6 py-24 text-center lg:py-32">
+          {/* Momento firma de la home: la cascada va letra por letra */}
+          <DisplayHeading
+            lines={["Tu bienestar", "empieza aquí."]}
+            split="letter"
+            tone="dark"
+            className="text-white"
+          />
           <Reveal>
-            <h2 className="font-serif text-3xl font-light leading-tight text-white sm:text-4xl">
-              Cada piel tiene una historia diferente.
-            </h2>
-            <div className="mx-auto mt-6 h-px w-16 bg-[#b08a4f]" />
+            <div className="mx-auto mt-8 h-px w-16 bg-[#b08a4f]" />
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 text-lg font-light text-zinc-300">
-              Tu bienestar comienza aquí.
+              Cada piel tiene una historia diferente.
             </p>
           </Reveal>
           <Reveal delay={300}>

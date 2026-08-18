@@ -90,6 +90,81 @@ body {
   }
 }
 
+/* ── Tipografía display ──────────────────────────────────────────────────
+   Titulares de escala editorial: 2–3 palabras por línea, serif light,
+   interlineado cerrado y tracking negativo, para que el titular se lea como
+   un bloque y no como un párrafo. La jerarquía vive dentro de la frase: las
+   primeras líneas van a color pleno y las siguientes atenuadas.
+   El movimiento entra por partes (línea o letra) con blur + lift. */
+.display {
+  font-size: clamp(2.75rem, 8.5vw, 7.25rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+.display-sm {
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  line-height: 0.95;
+}
+/* Escala del hero: manda toda la pantalla, así que va un punto más grande. */
+.display-xl {
+  font-size: clamp(3.25rem, 10vw, 8.75rem);
+}
+.display .line {
+  display: block;
+}
+/* Atenuado: mismo tamaño, menos presencia. Crea la jerarquía interna. */
+.display .dim {
+  color: rgb(24 24 27 / 0.3);
+}
+.display-dark .dim {
+  color: rgb(255 255 255 / 0.32);
+}
+
+/* Cada parte (línea o letra) entra desenfocada y desde abajo. El delay se
+   asigna inline desde el componente para escalonar la cascada. */
+.display-part {
+  display: inline-block;
+  opacity: 0;
+  transition:
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .display-part {
+    transform: translateY(0.35em);
+    filter: blur(14px);
+  }
+  .display-letters .display-part {
+    transform: translateY(0.28em);
+    filter: blur(8px);
+  }
+}
+/* Variante sin desenfoque: solo fade + lift.
+   Ojo: no basta con dejar el filtro en blur(0). Cualquier valor distinto de
+   `none` promueve el texto a su propia capa y apaga el antialiasing
+   subpixel, y a 140px eso ya se lee como un desenfoque leve. Hay que sacar
+   el filtro del todo, y también de transition/will-change para que la capa
+   ni se cree. El segundo selector le gana al estado revelado, que si no
+   devuelve blur(0). */
+.display.display-noblur .display-part,
+.display.display-noblur.is-visible .display-part {
+  filter: none;
+  transition-property: opacity, transform;
+  will-change: opacity, transform;
+}
+/* El estado revelado va después y con más peso que las reglas de arriba:
+   `.display-letters .display-part` empata en especificidad con un simple
+   `.is-visible .display-part`, y al ir después le ganaba — el blur del modo
+   letra no se limpiaba nunca. */
+.display.is-visible .display-part {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
 /* Entrada del hero: el bloque completo sube como una unidad al revelarse
    (carga directa o cuando el loader termina). Misma regla que el resto. */
 .hero-intro {

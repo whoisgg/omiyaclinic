@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
+import { DisplayHeading } from "@/components/display-heading";
 
 /**
  * Galería editorial de tratamientos del home: grilla escalonada de 12
@@ -96,13 +97,22 @@ export function HomeTreatmentsGallery() {
       <div className="mx-auto max-w-6xl px-6 pb-24 pt-6 lg:pb-32 lg:pt-8">
         {/* Header editorial */}
         <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-baseline">
-          <div className="max-w-xl">
-            <p className="text-[10px] uppercase tracking-[0.5em] text-[#a4884f]">
-              Tratamientos
-            </p>
-            <h2 className="mt-4 font-serif text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
-              Cada experiencia responde a necesidades específicas de tu piel y bienestar.
-            </h2>
+          <div className="max-w-2xl">
+            <Reveal>
+              <p className="text-[10px] uppercase tracking-[0.5em] text-[#a4884f]">
+                Tratamientos
+              </p>
+            </Reveal>
+            <DisplayHeading
+              lines={["Cada piel", "es distinta."]}
+              className="mt-6 text-zinc-900"
+            />
+            <Reveal delay={400}>
+              <p className="mt-8 max-w-md text-base leading-relaxed text-zinc-600">
+                Cada experiencia responde a necesidades específicas de tu piel y
+                bienestar.
+              </p>
+            </Reveal>
           </div>
           <p className="max-w-[220px] font-serif text-sm italic leading-relaxed text-zinc-500">
             El mejor tratamiento es el que se adapta a ti.
