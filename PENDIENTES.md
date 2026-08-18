@@ -4,6 +4,53 @@
 
 ---
 
+## 🔄 Para retomar (estado al 2026-08-18)
+
+**Hero rehecho con foto real de la recepción.** Base fotográfica de Claudia
+Ferrer (`_DSC4822`) reinterpretada con IA para vestir el arce, que en la toma
+real está pelado. Layout editorial tomado de una referencia: bloque abajo a la
+izquierda, sin CTA en el hero, scroll con raya al pie. Velo parejo sobre la
+foto (sube el contraste del texto blanco de 1.1:1 a 9-11:1).
+
+**Sistema de tipografía display** (`src/components/display-heading.tsx`):
+titulares de 2-3 palabras por línea, serif light, interlineado 0.92. Aplicado
+al hero y a las cuatro secciones del home.
+
+**Eje único**: header, hero, secciones y footer comparten
+`max-w-[1600px]` con los mismos paddings. Antes eran cuatro ejes distintos.
+
+### Pendiente
+
+- [ ] **Texto del bloque descriptor del hero.** Hoy dice "Combinamos ciencia,
+      tecnología y un enfoque médico integral…", que viene de un mockup y está
+      a revisar. Se propusieron ~10 alternativas; la mejor evaluada fue
+      "Cuatro líneas de tratamiento —piel, expresión, firmeza y sonrisa— bajo
+      un mismo criterio médico" (informa el alcance completo, incluido dental).
+- [ ] **Contraste de ese bloque: 3.7–3.9:1**, bajo el mínimo AA de 4.5 para
+      texto chico. Cae sobre la zona más luminosa del muro. Se arregla bajando
+      el bloque a una zona más oscura o reforzando el velo solo ahí.
+- [ ] **Ancho del texto en el panel "Nuestro enfoque".** Topado en `max-w-2xl`
+      (672px) cuando en tablet/desktop hay >900 disponibles, así que queda aire
+      muerto a la derecha. Alternativa descartada por ahora: centrar el bloque
+      en tablet, que rompería el eje único.
+- [ ] **Resolución de la foto del hero.** El archivo mide 1448px y se sirve a
+      resolución nativa, así que no está estirada, pero en pantalla retina
+      queda blanda. Falta pasarla por el upscaler y regenerar los dos `.webp`.
+- [ ] **Unificar el criterio de animación.** El hero quedó sin blur ni duotono;
+      las cuatro secciones del home los conservan. Hoy conviven dos criterios.
+- [ ] `public/clinica/ritual.webp` está commiteada pero sin usar: es para la
+      sección Acerca de (bandeja de bienvenida con la publicación de Galderma).
+
+### Notas de entorno
+
+- **No correr `next build` con el dev server encendido**: pisa el `.next` que
+  el server tiene en uso y deja el sitio sirviendo CSS roto. Apagar primero.
+- Con el proyecto en OneDrive el watcher se pierde ediciones de `globals.css`.
+  Si una regla nueva no aparece en el bundle, escribirla como utilidades de
+  Tailwind en el JSX, que sí se regeneran.
+
+---
+
 ## 🔄 Para retomar (estado al 2026-06-11)
 
 **Lo hecho en la sesión del 11-06:**

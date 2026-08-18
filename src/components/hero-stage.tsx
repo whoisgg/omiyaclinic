@@ -141,7 +141,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       <div className="sticky top-0 h-[100dvh] overflow-hidden bg-zinc-900">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
-          <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 grid grid-cols-1 lg:translate-y-[5vh] items-center gap-8 pt-4 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] lg:gap-20 lg:pt-0">
+          <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 grid grid-cols-1 items-center gap-8 pt-4 xl:translate-y-[5vh] xl:grid-cols-[minmax(0,460px)_minmax(0,1fr)] xl:gap-20 xl:pt-0">
             {/* Caja destino del lockup (la máscara aterriza aquí) */}
             <div
               ref={targetRef}
@@ -221,7 +221,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
                 transición. */}
             <div
               data-hero-extra
-              className="w-full lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)] lg:items-start lg:gap-16"
+              className="w-full xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(0,300px)] xl:items-start xl:gap-16"
             >
               <div className="relative">
                 <DisplayHeading
@@ -242,7 +242,7 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
                   desplazamiento puesto, el párrafo caía sobre el hint de
                   scroll. Va con translate y no con padding para que al crecer
                   no empuje el titular hacia arriba. */}
-              <div className="mt-10 lg:mt-0 lg:translate-y-[calc(clamp(3.25rem,10vw,8.75rem)*0.92*2)]">
+              <div className="mt-10 xl:mt-0 xl:translate-y-[calc(clamp(3.25rem,10vw,8.75rem)*0.92*2)]">
                 <div className="h-px w-full max-w-[300px] bg-white/50" />
                 <p className="mt-5 text-[11px] uppercase leading-[1.7] tracking-[0.28em] text-white">
                   Clínica premium
