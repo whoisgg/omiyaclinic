@@ -36,7 +36,7 @@ export default function HomePage() {
 
       {/* NUESTRO COMPROMISO */}
       <section id="compromiso" className="scroll-mt-20 bg-zinc-900 text-white">
-        <div className="mx-auto max-w-6xl px-6 py-20 lg:py-28">
+        <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 py-20 lg:py-28">
           <Reveal>
             <p className="text-[10px] uppercase tracking-[0.5em] text-[#c2a25f]">
               Nuestro compromiso
@@ -70,7 +70,7 @@ export default function HomePage() {
 
       {/* FUNDADORA — wireframe placeholder */}
       <section className="bg-white">
-        <div className="founder-card mx-auto grid max-w-6xl gap-12 px-6 py-20 sm:grid-cols-2 sm:items-center">
+        <div className="founder-card mx-auto w-full max-w-[1600px] grid gap-12 px-6 py-20 sm:grid-cols-2 sm:items-center sm:px-8 lg:px-12">
           <div className="group founder-photo relative aspect-[4/5] overflow-hidden">
             <Image
               src="/founder-portrait.webp"
@@ -123,7 +123,7 @@ export default function HomePage() {
           {/* Fade vertical suave para fundir con las secciones vecinas */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ec]/40 via-transparent to-[#faf6ec]/40" />
         </div>
-        <div className="relative z-10 mx-auto flex min-h-[560px] max-w-7xl items-center px-6 py-20 lg:min-h-[680px] lg:px-10 lg:py-28">
+        <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 relative z-10 flex min-h-[560px] items-center py-20 lg:min-h-[680px] lg:py-28">
           <div className="max-w-xl">
             <Reveal>
               <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
@@ -162,7 +162,7 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="bg-zinc-900 text-white">
-        <div className="mx-auto max-w-5xl px-6 py-24 text-center lg:py-32">
+        <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 py-24 text-center lg:py-32">
           {/* Momento firma de la home: la cascada va letra por letra */}
           <DisplayHeading
             lines={["Tu bienestar", "empieza aquí."]}

@@ -44,7 +44,7 @@ export function SiteHeader() {
     // durante la transición el header queda transparente sobre el crema.
     const onScroll = () => {
       setScrolled(
-        window.scrollY > (isHome ? window.innerHeight * 0.95 : 24),
+        window.scrollY > (isHome ? window.innerHeight * 0.6 : 24),
       );
       // Cambia a blanco cuando la sección de tratamientos empieza a
       // solaparse con el navbar (su borde superior toca el alto del header).
@@ -81,7 +81,8 @@ export function SiteHeader() {
       t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
 
     const apply = () => {
-      const p = clamp01(window.scrollY / window.innerHeight);
+      // Mismo 0.62 que la máscara del hero, para que la línea crezca en sincronía
+      const p = clamp01(window.scrollY / (window.innerHeight * 0.62));
       const e = easeInOutCubic(p);
       // La línea nace con ancho 0 (sin barra en el hero) y crece desde la
       // derecha hasta cubrir todo el ancho cuando la máscara aterriza.
@@ -119,7 +120,7 @@ export function SiteHeader() {
     >
       <div
         ref={barRef}
-        className="relative flex h-20 items-center justify-between px-6 sm:px-8 lg:px-12"
+        className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 relative flex h-20 items-center justify-between"
       >
         {/* Línea inferior: en el home nace con ancho 0 y crece con la máscara */}
         <span

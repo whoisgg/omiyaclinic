@@ -53,7 +53,10 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
 
     const apply = () => {
       ticking = false;
-      const vh = window.innerHeight;
+      // La máscara se completa en 0.62 de viewport, no en uno entero: el
+      // recorrido largo hacía que el logo llegara tarde y la pausa posterior
+      // se sintiera muerta.
+      const vh = window.innerHeight * 0.62;
       const p = clamp01(window.scrollY / vh);
       const e = easeInOutCubic(p);
 
@@ -68,10 +71,13 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       const bottom = (hl.bottom - rT.bottom) * e;
       heroLayer.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px)`;
 
-      // El lockup viaja del centro del hero al centro de la caja destino,
-      // achicándose para ocupar ~72% del ancho de la caja.
+      // El lockup viaja del centro del hero al centro de la caja destino.
+      // Ocupa el 96% del ancho de esa caja: al 72% quedaban ~64px de margen a
+      // cada lado y el logo se veía indentado respecto al eje del sitio.
+      // Se agranda el logo en vez de moverlo, porque desplazarlo lo saca del
+      // recorte de la máscara y lo deja cortado.
       const rA = anchor.getBoundingClientRect();
-      const sTarget = (rT.width * 0.72) / rA.width;
+      const sTarget = (rT.width * 0.96) / rA.width;
       const s = 1 + (sTarget - 1) * e;
       const tx = (rT.left + rT.width / 2 - (rA.left + rA.width / 2)) * e;
       const ty = (rT.top + rT.height / 2 - (rA.top + rA.height / 2)) * e;
@@ -135,21 +141,21 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
       <div className="sticky top-0 h-[100dvh] overflow-hidden bg-zinc-900">
         {/* Capa intro (detrás del hero): layout final de 2 columnas */}
         <div className="absolute inset-0 z-10 flex items-center">
-          <div className="mx-auto grid w-full max-w-6xl translate-y-[5vh] grid-cols-1 items-center gap-10 px-6 pt-24 lg:grid-cols-2 lg:gap-16 lg:pt-0">
+          <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 grid grid-cols-1 lg:translate-y-[5vh] items-center gap-8 pt-4 lg:grid-cols-[minmax(0,460px)_minmax(0,1fr)] lg:gap-20 lg:pt-0">
             {/* Caja destino del lockup (la máscara aterriza aquí) */}
             <div
               ref={targetRef}
-              className="mx-auto aspect-[9/5] w-full max-w-[300px] sm:max-w-[420px] lg:mx-0 lg:max-w-[480px]"
+              className="aspect-[9/5] w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[460px]"
             />
             <div
               ref={introTextRef}
-              className="text-center lg:text-left"
+              className="text-left"
               style={{ opacity: 0 }}
             >
               <p className="text-[10px] uppercase tracking-[0.5em] text-white/70">
                 Nuestro enfoque
               </p>
-              <h2 className="mt-6 font-serif text-2xl font-light leading-[1.35] text-white sm:text-3xl lg:text-[2.1rem]">
+              <h2 className="mt-6 max-w-2xl font-serif text-[1.75rem] font-light leading-[1.25] text-white sm:text-4xl lg:text-[2.9rem]">
                 Buscamos crear un espacio donde el bienestar se construye de
                 manera consciente, personalizada y sostenible en cada etapa de
                 la vida.
@@ -206,28 +212,53 @@ export function HeroStage({ children }: { children: React.ReactNode }) {
           />
 
           <div
-            className="hero-intro relative z-20 flex h-full w-full flex-col items-start justify-end px-6 pb-[18vh] text-left sm:pb-[38vh] sm:px-8 lg:px-12"
+            className="hero-intro mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 relative z-20 flex h-full flex-col items-start justify-end pb-[18vh] text-left sm:pb-[38vh]"
             style={{ "--lw": "min(76vw, 560px)" } as React.CSSProperties}
           >
-            <p
-              data-hero-extra
-              className="text-[10px] uppercase tracking-[0.28em] text-white/75 sm:text-[11px] sm:tracking-[0.4em]"
-            >
-              Premium well-aging clinic
-            </p>
-
             {/* El titular manda el alto del bloque; el lockup se superpone
                 centrado sobre él y solo aparece al scrollear. El ancla
                 conserva su ancho (--lw) porque de ahí sale la escala de la
                 transición. */}
-            <div className="relative mt-3" data-hero-extra>
-              <DisplayHeading
+            <div
+              data-hero-extra
+              className="w-full lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,300px)] lg:items-start lg:gap-16"
+            >
+              <div className="relative">
+                <DisplayHeading
                 as="h1"
                 lines={["El arte de", "envejecer mejor."]}
                 dimFrom={2}
                 immediate
-                className="display-xl display-noblur whitespace-nowrap text-white"
-              />
+                  className="display-xl display-noblur whitespace-nowrap text-white"
+                />
+              </div>
+
+              {/* Descriptor al pie de la columna derecha, todo en blanco: el
+                  dorado sobre el muro claro de esta foto no alcanza contraste. */}
+              <div
+                className="mt-10 lg:mt-0"
+                style={{
+                  // La línea baja al pie del titular: dos interlineados
+                  // exactos del display (0.92 de su font-size cada uno), así
+                  // queda alineada a cualquier ancho. Va con translate y no
+                  // con padding para que al crecer no empuje el titular.
+                  ["--display-lead" as string]:
+                    "calc(clamp(3.25rem, 10vw, 8.75rem) * 0.92)",
+                  transform: "translateY(calc(var(--display-lead) * 2))",
+                }}
+              >
+                <div className="h-px w-full max-w-[300px] bg-white/50" />
+                <p className="mt-5 text-[11px] uppercase leading-[1.7] tracking-[0.28em] text-white">
+                  Clínica premium
+                  <br />
+                  de well-aging
+                </p>
+                <p className="mt-5 max-w-[300px] text-sm leading-relaxed text-white/70">
+                  Combinamos ciencia, tecnología y un enfoque médico integral
+                  para potenciar tu bienestar y belleza natural a lo largo del
+                  tiempo.
+                </p>
+              </div>
             </div>
             <div
               ref={anchorRef}

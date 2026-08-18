@@ -22,7 +22,7 @@ const MAPS_URL =
 export function SiteFooter() {
   return (
     <footer className="border-t border-zinc-200/60 bg-white">
-      <div className="mx-auto max-w-6xl px-6 pt-16 lg:px-10 lg:pt-20">
+      <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 pt-16 lg:pt-20">
         <div className="flex flex-col gap-y-8 sm:flex-row sm:flex-wrap sm:justify-between sm:gap-x-10 sm:gap-y-10 lg:flex-nowrap">
           {/* Logo */}
           <div className="flex justify-center sm:block sm:justify-start">
