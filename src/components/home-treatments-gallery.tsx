@@ -96,8 +96,8 @@ export function HomeTreatmentsGallery() {
     >
       <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 pb-24 pt-6 lg:pb-32 lg:pt-8">
         {/* Header editorial */}
-        <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-baseline">
-          <div className="max-w-2xl">
+        <div className="mb-20 max-w-2xl">
+          <div>
             <Reveal>
               <p className="text-[10px] uppercase tracking-[0.5em] text-[#a4884f]">
                 Tratamientos
@@ -114,9 +114,6 @@ export function HomeTreatmentsGallery() {
               </p>
             </Reveal>
           </div>
-          <p className="max-w-[220px] font-serif text-sm italic leading-relaxed text-zinc-500">
-            El mejor tratamiento es el que se adapta a ti.
-          </p>
         </div>
 
         {/* Grilla escalonada con parallax */}
