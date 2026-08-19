@@ -4,6 +4,91 @@
 
 ---
 
+## 🔄 Sección I — Nuestro enfoque (2026-08-19)
+
+`src/components/home-enfoque.tsx`. Reemplaza la sección provisoria que quedó
+al desarmar el stage del hero.
+
+**El bloque de texto es idéntico en los dos breakpoints; lo único que cambia
+es dónde cae la foto.** Por eso todo vive en un solo grid de dos columnas que
+en móvil colapsa a una — no hay marcado duplicado.
+
+- **Móvil:** el bloque arriba, la foto a sangre por los dos lados debajo.
+- **Desktop:** el bloque en la mitad izquierda, la foto ocupando la mitad
+  derecha entera, a toda altura y sangrando por el borde.
+
+Composición del bloque, de izquierda a derecha: numeral romano `I` —el hero
+se quedó sin numeral, así que ésta abre la numeración—, el
+japonés `私たちの考え方` a escala de titular en vertical, el título "NUESTRO
+ENFOQUE" en `upright` a su lado formando pareja con él, y el párrafo a la
+derecha de ambos con un hairline vertical al pie.
+
+**La foto es la de la recepción** (`hero-recepcion-v4.webp`), que era el hero
+hasta el rediseño. Acá funciona mejor: el logo de bronce del muro —que en el
+hero había que recortar para que no compitiera con el lockup— es justamente lo
+que pone el oro en el cuadro.
+
+### Los encuadres se midieron, no se estimaron
+
+La fuente es apaisada (1448×814) y las dos cajas son más verticales, así que
+sobrevive poco ancho: **63% en móvil y solo 43% en desktop**. Se recortó el
+archivo fuente en esas proporciones a cuatro posiciones distintas y se eligió
+donde entran a la vez el sillón, el momiji, el logo de bronce y la ventana:
+`object-[62%_50%]` en móvil y `object-[72%_50%]` en desktop. Más a la
+izquierda se corta el logo; más a la derecha se pierde la vista.
+
+### Encuadre en pantallas anchas
+
+El grid se acota al mismo eje de 1600px que el resto del sitio, pero la foto
+sigue sangrando por el borde derecho: el margen
+`min(0px, (1600px - 100vw)/2)` vale 0 mientras la pantalla es más angosta que
+el eje y se vuelve negativo cuando lo supera, empujando la foto hasta el borde
+real del viewport. Sin ese tope, a 2000px la sección se volvía una banda ancha
+y chata y el recorte de la foto perdía la verticalidad del diseño.
+
+El bloque de texto va alineado arriba y no centrado: centrado en los 760px de
+la sección, el numeral caía al 29% de la altura y se leía como un hueco de
+padding. Verificado a 1280px: numeral al 14.7% (el diseño lo pone al 16%) y el
+japonés con el título al 25.1% (diseño 25%).
+
+### La firma sobre la foto
+
+"Machalí, Chile" va sobre la esquina inferior derecha de la imagen, con un
+velo en degradado que **no es decorativo**: medido sobre los píxeles reales,
+ese rincón mezcla muro claro (L 0.62) con el zócalo oscuro cruzándolo (L 0.055
+en el p10), así que ningún color plano se lee en las dos zonas —el blanco se
+pierde en el muro y la tinta en el zócalo—. Con el degradado el texto claro
+queda sobre 4.8:1 en el peor punto.
+
+### Decisiones de contenido
+
+- **Sin enlace de cierre.** El wireframe 12c traía "EXPLORA NUESTROS
+  TRATAMIENTOS" y 12d "CONOCE MÁS SOBRE NOSOTROS", pero los mocks finales no
+  llevan ninguno y la sección se lee más limpia sin él.
+- **"Machalí, Chile" salió del bloque de texto** y pasó a la foto.
+- **Sin el segundo párrafo** ("Combinamos ciencia, tecnología…"), que era el
+  descriptor heredado del hero viejo y repetía lo que el primero ya dice.
+- **`私たちの考え方` y no `生きがい`** (ikigai), que se evaluó: son 4
+  caracteres contra los 14 en upright de "NUESTRO ENFOQUE", así que la columna
+  quedaba a menos de la mitad de alto y las dos dejaban de leerse como pareja.
+
+### Notas de tipografía
+
+Se probó `text-wrap: balance` en el párrafo para emparejar los largos de línea
+y evitar la palabra suelta al final. Mejora en desktop, pero en móvil —donde
+la columna ya viene angosta entre las dos verticales— parte el texto en tiras
+cortas, así que se revirtió al corte natural. `text-align: justify` está
+descartado de plano: en columna angosta y con palabras largas del español
+abre ríos de blanco entre palabras.
+
+### Pendiente
+
+- [ ] **Móvil sin verificar a ojo.** El emulador de Chrome de esta sesión dejó
+      de aplicar los resize de forma fiable. Desktop sí se verificó en vivo
+      (sección de 760px, todos los elementos dentro).
+
+---
+
 ## 🔄 Para retomar (estado al 2026-08-19)
 
 **Hero rehecho de cero: layout japonés.** Se descartó el hero de la foto de
