@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BOOKING_URL } from "@/lib/links";
@@ -12,7 +12,10 @@ const MENU_BG = "#151310";
 const MENU_FG = "#f5f1ea";
 const GOLD = "#b08a4f";
 
+const DIRECCION = "Del Pucará 50, Machalí";
+
 const NAV = [
+  { href: "/", label: "Inicio" },
   { href: "/acerca", label: "Acerca de" },
   { href: "/tratamientos", label: "Tratamientos" },
   { href: "/contacto", label: "Contacto" },
@@ -20,9 +23,12 @@ const NAV = [
 
 export function SiteHeader() {
   const pathname = usePathname();
-  // El header es fijo (no desaparece al scrollear). Arriba del todo es
-  // transparente; con scroll gana un velo blanco con blur para mantener
-  // legibilidad sobre cualquier sección.
+  // El header es fijo. Arriba del todo es transparente; con scroll gana un
+  // velo blanco translúcido. Se bajó del 85% al 70% porque, con el nav
+  // horizontal fuera, la barra solo lleva el logo y un velo opaco a todo el
+  // ancho era mucho aparato para una palabra. No puede ser transparente del
+  // todo: el logo va en tinta y el sitio tiene dos secciones negras donde
+  // desaparecería. Al 70% el logo queda en 9.1:1 sobre la más oscura.
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,16 +51,8 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
-  // En el home la línea inferior nace con ancho 0 y crece al salir del hero.
-  const barRef = useRef<HTMLDivElement>(null);
-  const clusterRef = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<HTMLSpanElement>(null);
-  const logoRef = useRef<HTMLAnchorElement>(null);
-
-  // El hero del home pasó a ser claro (blanco, con la rama de momiji), así
-  // que el header va en tinta oscura desde el primer scroll en todas las
-  // páginas. Antes había que alternar a blanco mientras el hero era una foto
-  // con velo oscuro y un panel negro detrás; nada de eso existe ya.
+  // El hero del home es claro, así que el header va en tinta oscura en todas
+  // las páginas: solo gana un velo blanco con blur al scrollear.
 
   useEffect(() => {
     const onScroll = () => {
@@ -65,70 +63,14 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
 
-  useEffect(() => {
-    const bar = barRef.current;
-    const cluster = clusterRef.current;
-    const line = lineRef.current;
-    const logo = logoRef.current;
-    if (!bar || !cluster || !line || !logo) return;
-
-    logo.style.opacity = "1";
-    logo.style.pointerEvents = "auto";
-
-    if (!isHome) {
-      line.style.transform = "scaleX(1)";
-      return;
-    }
-
-    const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
-    const easeInOutCubic = (t: number) =>
-      t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
-
-    const apply = () => {
-      // La línea termina de crecer justo cuando el hero sale de pantalla.
-      const p = clamp01(window.scrollY / (window.innerHeight * 0.62));
-      const e = easeInOutCubic(p);
-      // La línea nace con ancho 0 (sin barra sobre el hero) y crece desde la
-      // derecha hasta cubrir todo el ancho al terminar el hero.
-      line.style.transform = `scaleX(${e})`;
-      // El nombre va siempre visible: el hero ya no lleva lockup en reposo,
-      // así que es la única marca en pantalla al entrar.
-    };
-
-    window.addEventListener("scroll", apply, { passive: true });
-    window.addEventListener("resize", apply);
-    apply();
-
-    return () => {
-      window.removeEventListener("scroll", apply);
-      window.removeEventListener("resize", apply);
-    };
-  }, [isHome]);
-
-  const linkBase =
-    "text-xs font-medium uppercase tracking-[0.18em] transition-colors";
-  const linkColor = "text-zinc-900 hover:text-zinc-900";
-  const activeColor = "italic text-zinc-900";
-
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled ? "bg-white/85 backdrop-blur" : "bg-transparent"
+        scrolled ? "bg-white/70 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <div
-        ref={barRef}
-        className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 relative flex h-20 items-center justify-between"
-      >
-        {/* Línea inferior: en el home nace con ancho 0 y crece al salir del hero */}
-        <span
-          ref={lineRef}
-          aria-hidden="true"
-          className="absolute bottom-0 left-0 right-0 h-px origin-right bg-zinc-900/10"
-          style={{ transform: isHome ? "scaleX(0)" : "scaleX(1)" }}
-        />
+      <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 relative flex h-20 items-center">
         <Link
-          ref={logoRef}
           href="/"
           aria-label="Omiya Clinic — Home"
           className="text-zinc-900 transition-colors hover:text-zinc-900"
@@ -137,189 +79,205 @@ export function SiteHeader() {
             Omiya Clinic
           </span>
         </Link>
+      </div>
 
-        <div ref={clusterRef} className="flex items-center gap-8">
-          <nav className="hidden items-center gap-8 md:flex">
-            {NAV.map((item) => {
-              const isActive =
-                pathname === item.href || pathname.startsWith(item.href + "/");
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`${linkBase} ${isActive ? activeColor : linkColor}`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+      {/* Bloque negro pegado al canto derecho: la hamburguesa arriba y
+          "AGENDAR" en vertical debajo. Reemplaza al nav horizontal y al botón
+          suelto — ahora los tres enlaces viven dentro del panel en todos los
+          tamaños, no solo en móvil.
 
-          <span
-            aria-hidden="true"
-            className="hidden h-5 w-px bg-zinc-300 md:block"
-          />
-
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-luxe hidden px-6 py-2.5 text-[10px] font-medium text-white md:inline-block"
-            style={
-              {
-                // Todos los fondos bajo el header son claros, así que el
-                // botón va sólido negro y se invierte a blanco al hover.
-                background: "#18181b",
-                borderColor: "#18181b",
-                "--luxe-fill": "#ffffff",
-                "--luxe-fill-text": "#18181b",
-              } as React.CSSProperties
-            }
-          >
-            Agendar
-          </a>
-
-          {/* En móvil el botón Agendar cede el lugar al menú: hasta ahora era
-              lo único en la barra y los tres links quedaban inalcanzables,
-              porque el <nav> es `hidden md:flex`. Agendar no desaparece, pasa
-              a ser el cierre del panel. */}
+          El bloque mide 224px y al scrollear se encoge a 64, dejando solo la
+          hamburguesa. Se anima la altura con `overflow-hidden`, así el
+          separador y "AGENDAR" se recortan solos en vez de tener que
+          desmontarlos. Mismo comportamiento en todos los tamaños. */}
+      <div
+        className={`fixed right-0 top-0 z-50 w-[54px] overflow-hidden transition-[height] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
+          scrolled ? "h-16" : "h-56"
+        }`}
+        style={{ backgroundColor: MENU_BG }}
+      >
+        <div className="flex flex-col items-center pt-[26px]">
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
             aria-label="Abrir menú"
             aria-expanded={menuOpen}
             aria-controls="menu-movil"
-            className="-mr-3 flex h-14 w-14 items-center justify-center md:hidden"
+            className="flex flex-col items-center gap-[5px] pb-[22px]"
           >
-            <span aria-hidden="true" className="flex w-6 flex-col gap-[5px]">
-              <span className="h-px w-full bg-zinc-900" />
-              <span className="h-px w-full bg-zinc-900" />
-            </span>
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                aria-hidden="true"
+                className={`h-px transition-[width] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
+                  scrolled ? "w-6" : "w-5"
+                }`}
+                style={{ backgroundColor: MENU_FG }}
+              />
+            ))}
           </button>
-        </div>
-      </div>
 
-      {/* Panel de navegación móvil: cortina negra a pantalla completa.
-
-          El negro pleno no contradice la regla de marca —negro + dorado sobre
-          fondo claro—: el negro ES el primario, y acá va a sangre. Lo que
-          rompía el sistema era un hero oscuro, porque ahí el dorado tenía que
-          cargar el lockup. En el menú el dorado sigue en su papel de acento
-          (la ruta activa y la hairline).
-
-          Queda siempre montado y se anima con clip-path en vez de montarse y
-          desmontarse: así la salida también se ve. `inert` lo saca del árbol
-          de accesibilidad y del foco cuando está cerrado, que es lo que
-          `hidden` hacía antes sin dejar animar. */}
-      <div
-        id="menu-movil"
-        inert={!menuOpen}
-        aria-hidden={!menuOpen}
-        className={`fixed inset-0 z-50 flex flex-col transition-[clip-path] duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] md:hidden motion-reduce:transition-none ${
-          menuOpen
-            ? "[clip-path:inset(0_0_0%_0)]"
-            : "pointer-events-none [clip-path:inset(0_0_100%_0)]"
-        }`}
-        style={{ backgroundColor: MENU_BG }}
-      >
-        <div className="mx-auto flex h-20 w-full max-w-[1600px] shrink-0 items-center justify-between px-6 sm:px-8">
           <span
-            className="text-sm font-semibold uppercase tracking-[0.28em]"
-            style={{ color: MENU_FG }}
-          >
-            Omiya Clinic
-          </span>
-          <button
-            type="button"
-            onClick={() => setMenuOpen(false)}
-            aria-label="Cerrar menú"
-            className="-mr-3 flex h-14 w-14 items-center justify-center"
-          >
-            {/* Las dos rayas de la hamburguesa giran hasta la X en el mismo
-                punto de la pantalla donde estaban: se lee como que el control
-                se transforma, no como dos botones distintos. */}
-            <span aria-hidden="true" className="relative block h-4 w-6">
-              <span
-                className={`absolute left-0 h-px w-full transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
-                  menuOpen ? "top-1/2 rotate-45" : "top-0 rotate-0"
-                }`}
-                style={{ backgroundColor: MENU_FG }}
-              />
-              <span
-                className={`absolute left-0 h-px w-full transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
-                  menuOpen ? "top-1/2 -rotate-45" : "top-full rotate-0"
-                }`}
-                style={{ backgroundColor: MENU_FG }}
-              />
-            </span>
-          </button>
-        </div>
+            aria-hidden="true"
+            className={`h-px w-5 transition-opacity duration-500 ${
+              scrolled ? "opacity-0" : "opacity-100"
+            }`}
+            style={{ backgroundColor: "rgba(241,237,229,.25)" }}
+          />
 
-        <nav className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-6 sm:px-8">
-          {NAV.map((item, i) => {
-            const isActive =
-              pathname === item.href || pathname.startsWith(item.href + "/");
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                // Cerrar acá y no en un efecto sobre `pathname`: la regla
-                // react-hooks/set-state-in-effect prohíbe el setState suelto
-                // dentro de un efecto, y de paso el link a la ruta actual
-                // también cierra.
-                onClick={() => setMenuOpen(false)}
-                className="group border-b py-5"
-                style={{ borderColor: "rgba(245,241,234,.12)" }}
-              >
-                {/* Cada línea entra desde abajo detrás de su propia máscara,
-                    escalonada. El `overflow-hidden` es la máscara; sin él el
-                    texto se vería subir desde fuera del renglón. */}
-                <span className="block overflow-hidden">
-                  <span
-                    className={`block font-serif text-[2.6rem] font-light leading-[1.15] transition-transform duration-[700ms] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
-                      menuOpen ? "translate-y-0" : "translate-y-full"
-                    } ${isActive ? "italic" : ""}`}
-                    style={{
-                      color: isActive ? GOLD : MENU_FG,
-                      // Escalonado sólo al abrir. Al cerrar salen todas
-                      // juntas, porque un cierre escalonado se siente lento.
-                      transitionDelay: menuOpen ? `${140 + i * 90}ms` : "0ms",
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                </span>
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="mx-auto w-full max-w-[1600px] shrink-0 px-6 pb-10 sm:px-8">
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => setMenuOpen(false)}
-            className={`btn-luxe block w-full px-6 py-4 text-center text-[11px] font-medium transition-opacity duration-500 motion-reduce:transition-none ${
-              menuOpen ? "opacity-100" : "opacity-0"
+            className={`pt-5 font-sans text-[10px] font-medium uppercase leading-none tracking-[0.46em] [text-orientation:upright] [writing-mode:vertical-rl] transition-opacity duration-500 ${
+              scrolled ? "pointer-events-none opacity-0" : "opacity-100"
             }`}
-            style={
-              {
-                // Sobre negro el botón se invierte: contorno claro que se
-                // rellena al hover, con el texto pasando a negro.
-                color: MENU_FG,
-                background: "transparent",
-                borderColor: MENU_FG,
-                "--luxe-fill": MENU_FG,
-                "--luxe-fill-text": MENU_BG,
-                transitionDelay: menuOpen ? "420ms" : "0ms",
-              } as React.CSSProperties
-            }
+            style={{ color: MENU_FG }}
+            tabIndex={scrolled ? -1 : undefined}
           >
             Agendar
           </a>
         </div>
       </div>
+
+      {/* Overlay del menú (wireframes 16b/16c).
+
+          Entra deslizándose desde el borde derecho, como la referencia
+          villakujoyama.jp: el panel va de `translate-x-full` a 0. Eso
+          reemplaza la cortina que bajaba desde arriba — con el rail vertical
+          fijo a la derecha, la entrada lateral es la que tiene sentido: el
+          panel parece salir de detrás del propio rail.
+
+          En desktop cubre 3/4 del ancho y deja ver la página por la izquierda
+          —eso es lo que se asomaba en el wireframe, no una foto dentro del
+          menú—. En móvil va a pantalla completa: una franja de un cuarto en un
+          teléfono no muestra nada legible.
+
+          Queda siempre montado y se anima con transform en vez de montarse y
+          desmontarse, así la salida también se ve. `inert` lo saca del árbol
+          de accesibilidad y del foco mientras está cerrado. */}
+      {/* Fondo que captura el clic en la franja de página que queda a la
+          vista. Va transparente: el diseño muestra esa franja a plena luz, no
+          atenuada, así que el único papel del fondo es cerrar al tocar fuera. */}
+      <div
+        aria-hidden="true"
+        onClick={() => setMenuOpen(false)}
+        className={`fixed inset-0 z-[55] transition-opacity duration-500 ${
+          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      />
+
+      <div
+        id="menu-movil"
+        inert={!menuOpen}
+        aria-hidden={!menuOpen}
+        className={`fixed inset-y-0 right-0 z-[60] flex w-full transition-transform duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none lg:w-3/4 ${
+          menuOpen ? "translate-x-0" : "pointer-events-none translate-x-full"
+        }`}
+        style={{ backgroundColor: MENU_BG }}
+      >
+        <div className="relative flex flex-1 flex-col justify-center px-8 sm:px-12 lg:px-20">
+          <span
+            className="absolute left-8 top-7 text-[12px] font-semibold uppercase tracking-[0.28em] sm:left-12 lg:hidden"
+            style={{ color: MENU_FG }}
+          >
+            Omiya Clinic
+          </span>
+
+          <nav className="flex flex-col items-start">
+            {NAV.map((item, i) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname === item.href ||
+                    pathname.startsWith(item.href + "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  // Cerrar acá y no en un efecto sobre `pathname`: la regla
+                  // react-hooks/set-state-in-effect prohíbe el setState suelto
+                  // dentro de un efecto, y de paso el enlace a la ruta actual
+                  // también cierra.
+                  onClick={() => setMenuOpen(false)}
+                  className="block overflow-hidden py-1"
+                >
+                  {/* Cada línea entra desde abajo detrás de su propia máscara,
+                      escalonada. El `overflow-hidden` del padre es la máscara. */}
+                  <span
+                    className={`block font-serif text-[2.2rem] font-light leading-[1.35] transition-transform duration-[700ms] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none lg:text-[2.8rem] ${
+                      menuOpen ? "translate-y-0" : "translate-y-full"
+                    } ${isActive ? "italic" : ""}`}
+                    style={{
+                      color: isActive ? GOLD : MENU_FG,
+                      // Escalonado solo al abrir. Al cerrar salen todas juntas,
+                      // porque un cierre escalonado se siente lento.
+                      transitionDelay: menuOpen ? `${260 + i * 80}ms` : "0ms",
+                    }}
+                  >
+                    {item.label}
+                  </span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <p
+            className={`absolute bottom-8 left-8 font-sans text-[9px] uppercase tracking-[0.24em] transition-opacity duration-500 sm:left-12 lg:bottom-10 lg:left-20 lg:text-[10px] ${
+              menuOpen ? "opacity-100" : "opacity-0"
+            }`}
+            style={{
+              color: "rgba(245,241,234,.55)",
+              transitionDelay: menuOpen ? "620ms" : "0ms",
+            }}
+          >
+            {DIRECCION}
+          </p>
+        </div>
+
+        {/* Mismo rail de 54px que en reposo, para que la hamburguesa se lea
+            como que se transforma en la X sin moverse de sitio. */}
+        <div
+          className="flex w-[54px] shrink-0 flex-col items-center pt-[26px]"
+          style={{ borderLeft: "1px solid rgba(245,241,234,.12)" }}
+        >
+          <button
+            type="button"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Cerrar menú"
+            className="pb-[22px]"
+          >
+            <span aria-hidden="true" className="relative block h-4 w-5">
+              <span
+                className="absolute left-0 top-1/2 h-px w-full rotate-45"
+                style={{ backgroundColor: MENU_FG }}
+              />
+              <span
+                className="absolute left-0 top-1/2 h-px w-full -rotate-45"
+                style={{ backgroundColor: MENU_FG }}
+              />
+            </span>
+          </button>
+
+          <span
+            aria-hidden="true"
+            className="h-px w-5"
+            style={{ backgroundColor: "rgba(241,237,229,.25)" }}
+          />
+
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
+            className="pt-5 font-sans text-[10px] font-medium uppercase leading-none tracking-[0.46em] [text-orientation:upright] [writing-mode:vertical-rl]"
+            style={{ color: MENU_FG }}
+          >
+            Agendar
+          </a>
+        </div>
+      </div>
+
     </header>
   );
 }

@@ -168,7 +168,7 @@ export function HomeTreatmentsGallery() {
         </div>
 
         {/* Grilla escalonada con parallax */}
-        <div className="grid grid-cols-1 gap-y-20 md:grid-cols-12 md:gap-x-8 md:gap-y-0">
+        <div className="grid grid-cols-1 gap-y-14 md:grid-cols-12 md:gap-x-8 md:gap-y-0">
           {ITEMS.map((item, i) => (
             <Reveal key={item.cat} className={item.wrap}>
             <Link
@@ -200,11 +200,11 @@ export function HomeTreatmentsGallery() {
                   serían tres líneas en una card. El `flex-1` de la raya la
                   hace calzar siempre con el ancho exacto de su imagen, que
                   cambia card a card. */}
-              <div className="mt-7">
+              <div className="mt-5">
                 <h3 className="font-serif text-[30px] font-light leading-none text-zinc-900 lg:text-[36px]">
                   {item.name}
                 </h3>
-                <div className="mt-5 flex items-center gap-5 lg:mt-6">
+                <div className="mt-2.5 flex items-center gap-5 lg:mt-3">
                   <p className="text-[10px] uppercase leading-[1.9] tracking-[0.18em] text-zinc-500 lg:text-[11px]">
                     {item.tagline}
                   </p>

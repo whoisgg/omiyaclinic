@@ -150,20 +150,23 @@ export function HomeEnfoque() {
           Sangra por el borde en los dos breakpoints: en móvil por los dos
           lados, en desktop por el derecho y a toda altura.
 
-          Los encuadres no son arbitrarios. La fuente es apaisada (1448x814) y
-          las dos cajas son más verticales, así que sobrevive poco ancho: 63%
-          en móvil y 43% en desktop. Se eligieron midiendo sobre el archivo el
-          punto donde entran a la vez el sillón, el momiji, el logo de bronce
-          y la ventana. Más a la izquierda se corta el logo; más a la derecha
-          se pierde la vista. */}
+          El archivo `-v5` viene recortado a 1252px de ancho, justo antes del
+          canto del muro que empieza en el 1257 del original. Eso lo resuelve
+          de raíz: el canto ya no está en la imagen, así que no puede asomarse
+          por el borde derecho en ningún breakpoint. Antes había que acertarle
+          a una ventana de solo 37px —el círculo del logo termina en el 1220 y
+          el canto empieza en el 1257—, y bastaba una caja un poco más ancha
+          de lo previsto para que se colara.
+          Con la fuente recortada, alinear a la derecha garantiza el logo y su
+          círculo completos en cualquier proporción de caja. */}
       <Reveal delay={200}>
         <div className="relative aspect-[10/9] w-full lg:h-full lg:aspect-auto lg:mr-[min(0px,calc((1600px_-_100vw)/2))]">
           <Image
-            src="/momiji/hero-recepcion-v4.webp"
+            src="/momiji/hero-recepcion-v5.webp"
             alt="Recepción de Omiya Clinic: un momiji junto al muro con el logo de bronce"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover object-[62%_50%] lg:object-[72%_50%]"
+            className="object-cover object-right"
           />
 
           {/* Velo inferior para la firma. Es necesario, no decorativo: medida
