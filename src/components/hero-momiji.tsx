@@ -132,6 +132,14 @@ export function HeroMomiji() {
               <br />
               de well-aging
             </p>
+            {/* Cierra el rail con una horizontal. El motivo que se repite en
+                el sitio es un par de rayas formando una L: como el bloque ya
+                abre con una vertical, la que cierra tiene que ir cruzada. */}
+            <span
+              aria-hidden="true"
+              className="mt-8 block h-px w-16 lg:mt-10 lg:w-20"
+              style={{ backgroundColor: GOLD }}
+            />
           </div>
         </div>
 

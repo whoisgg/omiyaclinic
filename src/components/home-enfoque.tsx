@@ -26,7 +26,6 @@ const CREAM = "#f2eee7";
 const INK = "#1e1c19";
 const INK_SOFT = "#2a2622";
 const GOLD = "#b08a4f";
-const GOLD_SOFT = "#c3a878";
 
 const PARRAFO =
   "Buscamos crear un espacio donde el bienestar se construye de manera consciente, personalizada y sostenible en cada etapa de la vida.";
@@ -84,7 +83,7 @@ export function HomeEnfoque() {
               <span
                 aria-hidden="true"
                 className="mt-4 block h-px w-9 lg:mt-5 lg:w-11"
-                style={{ backgroundColor: GOLD_SOFT }}
+                style={{ backgroundColor: GOLD }}
               />
             </div>
           </Reveal>
@@ -138,7 +137,7 @@ export function HomeEnfoque() {
                 <span
                   aria-hidden="true"
                   className="mt-6 block h-10 w-px lg:mt-9 lg:h-14"
-                  style={{ backgroundColor: GOLD_SOFT }}
+                  style={{ backgroundColor: GOLD }}
                 />
               </div>
             </Reveal>

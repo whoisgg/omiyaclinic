@@ -15,7 +15,6 @@ import { DisplayHeading } from "@/components/display-heading";
  */
 
 const GOLD = "#b08a4f";
-const GOLD_SOFT = "#c3a878";
 
 const ITEMS = [
   {
@@ -100,15 +99,10 @@ export function HomeTreatmentsGallery() {
       <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 pb-24 pt-6 lg:pb-32 lg:pt-8">
         {/* Header editorial. Toma el lenguaje de la sección I —numeral romano,
             regla, y un rail vertical en japonés al costado— sin tocar la
-            grilla de fotos, que se queda tal cual. */}
+            grilla de fotos, que se queda tal cual.
+            Dos líneas por sección y no más: la regla bajo el numeral y la
+            vertical bajo el kanji. */}
         <div className="relative mb-20 flex items-start justify-between gap-8 pt-20 lg:pt-24">
-          {/* Hairline colgando del borde superior, igual que en la sección I. */}
-          <span
-            aria-hidden="true"
-            className="absolute left-0 top-0 h-14 w-px lg:h-16"
-            style={{ backgroundColor: GOLD }}
-          />
-
           <div className="max-w-2xl">
             <Reveal>
               {/* Sección II: el hero no lleva numeral y "Nuestro enfoque" es
@@ -123,7 +117,7 @@ export function HomeTreatmentsGallery() {
               <span
                 aria-hidden="true"
                 className="mt-4 block h-px w-9 lg:mt-5 lg:w-11"
-                style={{ backgroundColor: GOLD_SOFT }}
+                style={{ backgroundColor: GOLD }}
               />
             </Reveal>
             <Reveal delay={80}>
@@ -151,23 +145,22 @@ export function HomeTreatmentsGallery() {
               la sección I: en WebKit un elemento con writing-mode vertical no
               propaga su ancho al ítem flex y la columna colapsa sobre sus
               hermanas. El valor es font-size x line-height. */}
-          <Reveal delay={200} className="w-10 shrink-0 lg:w-12">
-            <div className="flex flex-col items-center gap-5">
+          {/* El margen superior no es decorativo: baja el rail hasta que el
+              kanji arranca a la misma altura que "TRATAMIENTOS". Sale de sumar
+              lo que hay encima del eyebrow —el numeral, su regla y los
+              márgenes—, que da unos 58px en móvil y 67 en desktop. */}
+          <Reveal delay={200} className="mr-4 mt-14 w-11 shrink-0 lg:mr-16 lg:mt-[4.2rem] lg:w-14">
+            <div className="flex flex-col items-center gap-6">
               <span
                 lang="ja"
-                className="w-7 font-jp text-[15px] leading-[1.6] [writing-mode:vertical-rl] lg:w-8 lg:text-[18px]"
+                className="w-9 font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl] lg:w-11 lg:text-[24px]"
                 style={{ color: GOLD }}
               >
                 肌はそれぞれ違う
               </span>
               <span
                 aria-hidden="true"
-                className="h-14 w-px lg:h-16"
-                style={{ backgroundColor: GOLD_SOFT }}
-              />
-              <span
-                aria-hidden="true"
-                className="h-1 w-1 rounded-full"
+                className="h-32 w-px lg:h-40"
                 style={{ backgroundColor: GOLD }}
               />
             </div>
@@ -197,22 +190,30 @@ export function HomeTreatmentsGallery() {
                     className="object-cover grayscale-[0.7] transition-[transform,filter] duration-1000 group-hover:scale-105 group-hover:grayscale-0"
                   />
                 </div>
+
               </div>
-              <div className="mt-7 flex items-end justify-between border-b border-zinc-200 pb-4">
-                <div>
-                  <h3 className="font-serif text-xl italic text-zinc-900">
-                    {item.name}
-                  </h3>
-                  <p className="mt-2 text-[10px] uppercase tracking-widest text-zinc-500">
+
+              {/* Pie de la card: nombre y descripción, con una horizontal que
+                  arranca donde termina el texto y llega hasta el borde de la
+                  foto. No lleva vertical ni numeral a propósito: la vertical
+                  que cierra la L ya está sobre la imagen, y con otra acá
+                  serían tres líneas en una card. El `flex-1` de la raya la
+                  hace calzar siempre con el ancho exacto de su imagen, que
+                  cambia card a card. */}
+              <div className="mt-7">
+                <h3 className="font-serif text-[30px] font-light leading-none text-zinc-900 lg:text-[36px]">
+                  {item.name}
+                </h3>
+                <div className="mt-5 flex items-center gap-5 lg:mt-6">
+                  <p className="text-[10px] uppercase leading-[1.9] tracking-[0.18em] text-zinc-500 lg:text-[11px]">
                     {item.tagline}
                   </p>
+                  <span
+                    aria-hidden="true"
+                    className="h-px min-w-8 flex-1"
+                    style={{ backgroundColor: GOLD }}
+                  />
                 </div>
-                <span
-                  aria-hidden="true"
-                  className="text-lg text-zinc-900 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
-                >
-                  ↗
-                </span>
               </div>
             </Link>
             </Reveal>
