@@ -137,7 +137,7 @@ export function HeroMomiji() {
                 abre con una vertical, la que cierra tiene que ir cruzada. */}
             <span
               aria-hidden="true"
-              className="mt-8 block h-px w-16 lg:mt-10 lg:w-20"
+              className="mt-5 block h-px w-16 lg:mt-6 lg:w-20"
               style={{ backgroundColor: GOLD }}
             />
           </div>
