@@ -14,6 +14,9 @@ import { DisplayHeading } from "@/components/display-heading";
  * escalada para que el desplazamiento no muestre bordes.
  */
 
+const GOLD = "#b08a4f";
+const GOLD_SOFT = "#c3a878";
+
 const ITEMS = [
   {
     cat: "glow",
@@ -95,11 +98,39 @@ export function HomeTreatmentsGallery() {
       className="relative overflow-hidden bg-white md:-mt-24 lg:-mt-40"
     >
       <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 pb-24 pt-6 lg:pb-32 lg:pt-8">
-        {/* Header editorial */}
-        <div className="mb-20 max-w-2xl">
-          <div>
+        {/* Header editorial. Toma el lenguaje de la sección I —numeral romano,
+            regla, y un rail vertical en japonés al costado— sin tocar la
+            grilla de fotos, que se queda tal cual. */}
+        <div className="relative mb-20 flex items-start justify-between gap-8 pt-20 lg:pt-24">
+          {/* Hairline colgando del borde superior, igual que en la sección I. */}
+          <span
+            aria-hidden="true"
+            className="absolute left-0 top-0 h-14 w-px lg:h-16"
+            style={{ backgroundColor: GOLD }}
+          />
+
+          <div className="max-w-2xl">
             <Reveal>
-              <p className="text-[10px] uppercase tracking-[0.5em] text-[#a4884f]">
+              {/* Sección II: el hero no lleva numeral y "Nuestro enfoque" es
+                  la I. Va en la serif de marca porque en la sans los romanos
+                  se leen como rayas. */}
+              <p
+                className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px]"
+                style={{ color: GOLD }}
+              >
+                II
+              </p>
+              <span
+                aria-hidden="true"
+                className="mt-4 block h-px w-9 lg:mt-5 lg:w-11"
+                style={{ backgroundColor: GOLD_SOFT }}
+              />
+            </Reveal>
+            <Reveal delay={80}>
+              <p
+                className="mt-6 text-[10px] uppercase tracking-[0.5em]"
+                style={{ color: GOLD }}
+              >
                 Tratamientos
               </p>
             </Reveal>
@@ -114,6 +145,33 @@ export function HomeTreatmentsGallery() {
               </p>
             </Reveal>
           </div>
+
+          {/* Rail vertical: el titular dicho en japonés, "cada piel es
+              distinta". Ancho explícito y shrink-0 por el mismo motivo que en
+              la sección I: en WebKit un elemento con writing-mode vertical no
+              propaga su ancho al ítem flex y la columna colapsa sobre sus
+              hermanas. El valor es font-size x line-height. */}
+          <Reveal delay={200} className="w-10 shrink-0 lg:w-12">
+            <div className="flex flex-col items-center gap-5">
+              <span
+                lang="ja"
+                className="w-7 font-jp text-[15px] leading-[1.6] [writing-mode:vertical-rl] lg:w-8 lg:text-[18px]"
+                style={{ color: GOLD }}
+              >
+                肌はそれぞれ違う
+              </span>
+              <span
+                aria-hidden="true"
+                className="h-14 w-px lg:h-16"
+                style={{ backgroundColor: GOLD_SOFT }}
+              />
+              <span
+                aria-hidden="true"
+                className="h-1 w-1 rounded-full"
+                style={{ backgroundColor: GOLD }}
+              />
+            </div>
+          </Reveal>
         </div>
 
         {/* Grilla escalonada con parallax */}

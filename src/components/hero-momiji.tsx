@@ -13,6 +13,13 @@ import Image from "next/image";
  * y tres líneas cortas— y la rama de momiji entra por abajo, centrada,
  * cruzando en diagonal entre el verso y el rail.
  *
+ * La altura va en `svh` y no en `dvh`. `dvh` cambia mientras se scrollea en
+ * móvil, porque la barra de URL se colapsa: la sección crecía en pleno scroll
+ * y la rama —anclada a un porcentaje de esa altura— se deslizaba hacia abajo,
+ * como si el hero se estirara. `svh` es la altura con la barra desplegada, un
+ * valor fijo, así que nada se mueve. El costo es que con la barra oculta
+ * asoma un poco la sección siguiente, que es el intercambio correcto.
+ *
  * Sobre el corte de columnas del verso: en `vertical-rl` las columnas avanzan
  * hacia la izquierda, así que el `<br>` deja `美しく、` en la columna derecha
  * y `時を重ねるということ。` en la de al lado. Va explícito y no por altura
@@ -29,7 +36,7 @@ const GOLD = "#b08a4f";
 
 export function HeroMomiji() {
   return (
-    <section className="relative h-[100dvh] min-h-[640px] w-full overflow-hidden bg-white">
+    <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-white">
       {/* Rama de momiji: entra por abajo y cruza en diagonal saliendo por el
           borde derecho. El archivo ya trae el fondo llevado a blanco puro y
           los bordes desvanecidos a alfa, así que no hay rectángulo que tapar
