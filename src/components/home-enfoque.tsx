@@ -90,7 +90,16 @@ export function HomeEnfoque() {
           </Reveal>
 
           <div className="mt-7 flex items-start gap-5 pl-8 lg:mt-9 lg:gap-8 lg:pl-14">
-            <Reveal delay={100}>
+            {/* Ancho explícito y `shrink-0` en los dos ítems verticales. En
+                WebKit —o sea todo navegador en iPhone, Chrome incluido— un
+                elemento con `writing-mode: vertical-rl` no propaga su ancho
+                intrínseco al ítem flex que lo contiene: el ítem colapsa a
+                ancho 0 y las dos columnas se montan una sobre otra. En Blink
+                se ve bien, así que el bug solo aparece en iOS.
+                El valor sale de la cuenta: una columna vertical mide
+                font-size x line-height. 26px x 1.5 = 39px en móvil (w-11 = 44)
+                y 42px x 1.5 = 63px en desktop (w-16 = 64). */}
+            <Reveal delay={100} className="w-11 shrink-0 lg:w-16">
               <p
                 lang="ja"
                 className="font-jp text-[26px] font-normal leading-[1.5] [writing-mode:vertical-rl] lg:text-[42px]"
@@ -100,7 +109,7 @@ export function HomeEnfoque() {
               </p>
             </Reveal>
 
-            <Reveal delay={180}>
+            <Reveal delay={180} className="w-4 shrink-0 lg:w-5">
               {/* El título va en vertical con las letras derechas, en pareja
                   con el japonés. No se repite en horizontal en ninguna parte
                   de la sección, así que acá sí es el encabezado. */}
