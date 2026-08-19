@@ -11,6 +11,11 @@
   --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
   --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  /* Serif japonesa del verso del hero. Los fallbacks son las mincho que ya
+     vienen instaladas en Windows y macOS: si la webfont todavía no cargó, el
+     texto se compone con la misma estructura y no salta a una sans. */
+  --font-jp: var(--font-jp), "Hiragino Mincho ProN", "Yu Mincho",
+    "MS PMincho", serif;
 }
 
 body {

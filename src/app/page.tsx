@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BOOKING_URL } from "@/lib/links";
-import { HeroStage } from "@/components/hero-stage";
+import { HeroMomiji } from "@/components/hero-momiji";
 import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
 import { Reveal } from "@/components/reveal";
 import { DisplayHeading } from "@/components/display-heading";
@@ -28,8 +28,35 @@ const COMPROMISO = [
 export default function HomePage() {
   return (
     <>
-      {/* HERO + INTRO — máscara hacia el logo; el resto cubre al scrollear */}
-      <HeroStage>
+      {/* HERO — verso japonés en vertical y la rama de momiji */}
+      <HeroMomiji />
+
+      {/* NUESTRO ENFOQUE — vivía dentro del stage del hero, como destino de
+          la transición de máscara. Sin esa transición es una sección más. */}
+      <section className="border-t border-zinc-200 bg-[#faf6ec]">
+        <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 py-20 lg:py-28">
+          <Reveal>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
+              Nuestro enfoque
+            </p>
+          </Reveal>
+          <Reveal delay={150}>
+            <h2 className="mt-6 max-w-4xl font-serif text-[1.75rem] font-light leading-[1.25] text-zinc-900 sm:text-4xl lg:text-[2.9rem]">
+              Buscamos crear un espacio donde el bienestar se construye de
+              manera consciente, personalizada y sostenible en cada etapa de la
+              vida.
+            </h2>
+          </Reveal>
+          <Reveal delay={300}>
+            <Link
+              href="/tratamientos"
+              className="btn-underline mt-10 inline-block text-xs text-[#a4884f]"
+            >
+              Explora nuestros tratamientos
+            </Link>
+          </Reveal>
+        </div>
+      </section>
 
       {/* TRATAMIENTOS — galería editorial con parallax */}
       <HomeTreatmentsGallery />
@@ -196,7 +223,6 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
-      </HeroStage>
     </>
   );
 }

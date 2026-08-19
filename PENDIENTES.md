@@ -4,6 +4,117 @@
 
 ---
 
+## 🔄 Para retomar (estado al 2026-08-19)
+
+**Hero rehecho de cero: layout japonés.** Se descartó el hero de la foto de
+recepción y con él toda la transición de máscara. `hero-stage.tsx` ya no
+existe; en su lugar está `src/components/hero-momiji.tsx`, una sección normal
+de `100dvh` sobre blanco.
+
+La jerarquía se invierte: el protagonista es el verso `美しく、時を重ねると
+いうこと。` en vertical (`writing-mode: vertical-rl`, dos columnas, corte
+explícito con `<br>` porque el automático partía palabras). El titular en
+español baja a un rail lateral horizontal —hairline dorado largo y tres líneas
+cortas, sin número de sección— y la rama de momiji entra por abajo, centrada,
+cruzando en diagonal entre ambos. Al pie: hint de scroll a la izquierda y
+"Machalí, Chile" a la derecha.
+
+El `h1` es la frase en español, no el verso: es un sitio en español. El verso
+va como `<p lang="ja">` con el texto plano en `aria-label`, porque leído
+carácter por carácter en vertical el lector de pantalla lo destroza.
+
+**Probado y descartado:** el rail en vertical con las letras derechas
+(`text-orientation: upright`), como en 12b, y con numeral romano. Con las dos
+columnas verticales simétricas el hero perdía el contrapunto —el japonés
+vertical se lee como gesto justamente porque lo latino no lo acompaña— y la
+"I" romana en sans quedaba idéntica al hairline que tenía debajo.
+
+Nace del layout que el usuario tenía en mente desde el principio, no de los
+wireframes 12a/12b del canvas de diseño (esos eran sobre crema, con el árbol
+de pie y el rail en vertical; quedaron descartados).
+
+### Consecuencias en otros archivos
+
+- `page.tsx`: el hero ya no envuelve a la página. "Nuestro enfoque", que vivía
+  dentro del stage como destino de la máscara, es ahora una sección propia
+  sobre `#faf6ec`.
+- `site-header.tsx`: se eliminaron `overHero`, `pastStage` y `onBlackPanel`.
+  Existían para alternar el header a blanco mientras el hero era una foto
+  oscura con un panel negro detrás; con el hero claro el header va en tinta en
+  todas las páginas y el velo al scrollear es siempre blanco.
+- `layout.tsx` + `globals.css`: se sumó **Shippori Mincho** como `--font-jp`.
+  Va con `subsets: ["latin", "japanese"]` — con solo `latin` la webfont no
+  trae los kanji y el verso caía al mincho del sistema. Google parte el subset
+  japonés por `unicode-range`, así que de las 245 declaraciones `@font-face`
+  el navegador baja **solo 4**: las de los caracteres del verso. Sin `preload`
+  para no competir con el LCP.
+
+### La imagen de la rama
+
+`public/momiji/momiji-rama-v6.webp` (1800×1187, alfa). Generada con Gemini y
+procesada en tres pasos, todos necesarios:
+
+1. **Campo plano.** El original traía degradado de fondo (245 a la izquierda,
+   230 a la derecha). Se estima el campo de iluminación dilatando el claro con
+   `MaxFilter` sobre una versión reducida y difuminando; dividir por ese campo
+   deja el fondo parejo sin aplastar las hojas.
+2. **Punto blanco en 250.** Tras el campo plano el fondo quedaba en 252 y esos
+   tres niveles contra el blanco de la página **se veían como un rectángulo**.
+3. **Fundido de alfa** del 3.5% en los bordes.
+
+El sufijo versionado importa: el cache de imagen optimizada de Next retiene la URL,
+así que reencuadrar el archivo sin renombrarlo sigue sirviendo el recorte
+viejo.
+
+### Pendiente
+
+### Tratamiento por breakpoint de la rama
+
+No es la misma imagen escalada: en desktop va anclada abajo, centrada y con
+tope `min(78%, 86vh)`. En móvil se pasa del ancho del viewport (`w-[135%]`,
+`left-[-14%]`) y se despega del borde inferior (`bottom-[6%]`) — dimensionada
+por ancho y pegada abajo quedaba minúscula y arrinconada contra los 930px de
+alto de un teléfono. Sangra por los dos lados y su masa cae al centro.
+
+**"Machalí, Chile" no se muestra en móvil** (`hidden lg:flex`): con la rama
+ocupando el centro, el pie se llenaba de dos líneas apiladas y la pantalla
+perdía el aire. La ubicación sigue en el footer del sitio.
+
+### Pendiente
+
+- [ ] **Tablet (768–1024px) sin revisar.** El tramo `sm:` no lo vi corriendo.
+- [ ] **Móvil verificado por geometría, no a ojo.** La ventana de Chrome quedó
+      físicamente chica y las capturas salían a 215px aunque el viewport
+      emulado fuera 430×932, así que el último ajuste de la rama en móvil se
+      comprobó midiendo rects (verso 129–479 bajo el header, rail 291–510,
+      rama 493–876, scroll 891 sin solape). Falta mirarlo.
+- [x] ~~"Machalí, Chile" roza el follaje~~ — resuelto en dos pasos: centrar
+      la rama (`left-[24%]`, `w-[min(78%,86vh)]`), que despejó el rail, y
+      bajar la ubicación al pie, donde el texto es corto y no alcanza al
+      tronco. En móvil además se alinea a la izquierda, porque a la derecha
+      caía sobre la parte densa del follaje. El tope en `vh` de la rama se
+      mantiene: sin él, en pantallas bajas y anchas crece por ancho hasta
+      tapar el rail.
+- [x] ~~El verso chocaba con el logo del header en móvil~~ — el contenedor
+      lleva `pt-20 lg:pt-0`. El padding va solo bajo `lg` a propósito: en
+      desktop corría el verso 57px hacia abajo sin necesidad.
+- [ ] `public/momiji/momiji-arbol.webp` (1400×2087) quedó **sin usar**: es el
+      árbol de pie sobre crema con su sombra proyectada, generado antes de
+      cambiar de rumbo. Sirve para otra sección.
+- [ ] Quedaron sin usar los recortes de la foto de recepción
+      (`hero-recepcion-v4*.webp`) y `public/clinica/ritual.webp`.
+- [ ] Lint: 3 errores preexistentes de `react-hooks/set-state-in-effect` en
+      `display-heading.tsx` y `loader.tsx`. No son de este cambio.
+
+### Pendientes que este rediseño dejó sin objeto
+
+Del estado al 2026-08-18: el copy del bloque descriptor del hero y su
+contraste de 3.7:1, el ancho del texto de "Nuestro enfoque" en su versión
+dentro del stage, y la resolución de la foto de recepción. Ninguno de esos
+elementos existe ya.
+
+---
+
 ## 🔄 Para retomar (estado al 2026-08-18)
 
 **Hero rehecho con foto real de la recepción.** Base fotográfica de Claudia
