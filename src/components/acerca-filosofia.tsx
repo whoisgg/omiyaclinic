@@ -22,6 +22,14 @@ const PARRAFOS = [
  *
  * La foto cierra la columna de la derecha, debajo de los párrafos, y no al
  * lado de la cita: puesta arriba competía con ella por el mismo peso visual.
+ *
+ * Va a 5:4 y no al 16:10 del wireframe porque es la proporción nativa del
+ * archivo: recortarla a una banda ancha le cortaba la cabeza a la doctora y
+ * la lámpara del techo, que son las dos cosas que sitúan la escena.
+ *
+ * El `-v2` del nombre no es un capricho: el optimizador de Next cachea por
+ * URL, así que reemplazar el archivo sin renombrarlo sigue sirviendo la foto
+ * vieja. Es la misma razón por la que la rama del hero del home es `-v6`.
  */
 export function AcercaFilosofia() {
   return (
@@ -63,10 +71,10 @@ export function AcercaFilosofia() {
               </Reveal>
 
               <Reveal delay={280}>
-                <div className="relative mt-10 aspect-[16/10] w-full overflow-hidden lg:mt-12">
+                <div className="relative mt-10 aspect-[5/4] w-full overflow-hidden lg:mt-12">
                   <Image
-                    src="/acerca/filosofia.webp"
-                    alt="La doctora evaluando el rostro de una paciente durante la consulta"
+                    src="/acerca/filosofia-v2.webp"
+                    alt="La doctora marcando los puntos del tratamiento mientras le muestra el espejo a la paciente"
                     fill
                     sizes="(min-width: 1024px) 42vw, 100vw"
                     className="object-cover object-center"
