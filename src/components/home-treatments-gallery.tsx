@@ -14,8 +14,6 @@ import { DisplayHeading } from "@/components/display-heading";
  * escalada para que el desplazamiento no muestre bordes.
  */
 
-const GOLD = "#b08a4f";
-
 const ITEMS = [
   {
     cat: "glow",
@@ -109,21 +107,18 @@ export function HomeTreatmentsGallery() {
                   la I. Va en la serif de marca porque en la sans los romanos
                   se leen como rayas. */}
               <p
-                className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px]"
-                style={{ color: GOLD }}
+                className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px] text-gold"
               >
                 II
               </p>
               <span
                 aria-hidden="true"
-                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11"
-                style={{ backgroundColor: GOLD }}
+                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11 bg-gold"
               />
             </Reveal>
             <Reveal delay={80}>
               <p
-                className="mt-6 text-[10px] uppercase tracking-[0.5em]"
-                style={{ color: GOLD }}
+                className="mt-6 eyebrow text-gold"
               >
                 Tratamientos
               </p>
@@ -153,15 +148,13 @@ export function HomeTreatmentsGallery() {
             <div className="flex flex-col items-center gap-6">
               <span
                 lang="ja"
-                className="w-9 font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl] lg:w-11 lg:text-[24px]"
-                style={{ color: GOLD }}
+                className="w-9 font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl] lg:w-11 lg:text-[24px] text-gold"
               >
                 肌はそれぞれ違う
               </span>
               <span
                 aria-hidden="true"
-                className="h-32 hairline-v lg:h-40"
-                style={{ backgroundColor: GOLD }}
+                className="h-32 hairline-v lg:h-40 bg-gold"
               />
             </div>
           </Reveal>
@@ -210,8 +203,7 @@ export function HomeTreatmentsGallery() {
                   </p>
                   <span
                     aria-hidden="true"
-                    className="hairline-h min-w-8 flex-1"
-                    style={{ backgroundColor: GOLD }}
+                    className="hairline-h min-w-8 flex-1 bg-gold"
                   />
                 </div>
               </div>

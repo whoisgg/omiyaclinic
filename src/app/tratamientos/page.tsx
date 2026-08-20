@@ -32,7 +32,7 @@ export default async function TratamientosPage({
           </h1>
           {activeCategory ? (
             <div className="mt-6 max-w-lg">
-              <p className="text-xs uppercase tracking-[0.3em] text-[#b08a4f]">
+              <p className="text-xs uppercase tracking-[0.3em] text-gold">
                 {activeCategory.subtitle}
               </p>
               <p className="mt-3 text-base leading-relaxed text-zinc-600">
@@ -156,7 +156,7 @@ export default async function TratamientosPage({
             href={BOOKING_URL}
             external
             ruleClass="w-20 lg:w-28"
-            className="shrink-0 text-[#b08a4f]"
+            className="shrink-0 text-gold"
           >
             Agendar diagnóstico
           </RuleLink>
@@ -193,7 +193,7 @@ function CardImage({
             idx % 2 === 0 ? "bg-[#f3ede3]" : "bg-[#e8e2d8]"
           }`}
         >
-          <LogoMark className="h-16 w-auto text-[#b08a4f]/25" />
+          <LogoMark className="h-16 w-auto text-gold/25" />
         </div>
       )}
       <div className="absolute left-4 top-4 bg-white/90 px-3 py-1 text-[10px] uppercase tracking-widest text-zinc-900 backdrop-blur">

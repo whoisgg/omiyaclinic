@@ -7,7 +7,7 @@ export default function AcercaPage() {
       {/* HERO */}
       <section className="bg-[#faf6ec]">
         <div className="mx-auto max-w-7xl px-6 pb-20 pt-32 lg:px-10 lg:pb-28 lg:pt-40">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+          <p className="text-xs uppercase tracking-[0.4em] text-gold">
             Filosofía Omiya
           </p>
           <h1 className="mt-6 font-serif text-5xl font-light leading-[1.05] tracking-tight text-zinc-900 sm:text-6xl lg:text-7xl">
@@ -24,7 +24,7 @@ export default function AcercaPage() {
       <section className="bg-[#f0eee8]">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:py-28">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold">
               Nuestro concepto
             </p>
             <h2 className="mt-6 font-serif text-3xl font-light leading-tight text-zinc-900 sm:text-4xl">
@@ -62,7 +62,7 @@ export default function AcercaPage() {
         <div className="mx-auto max-w-3xl px-6 py-24 text-center lg:py-32">
           <div
             aria-hidden="true"
-            className="font-serif text-7xl leading-none text-[#b08a4f]/25 sm:text-8xl"
+            className="font-serif text-7xl leading-none text-gold/25 sm:text-8xl"
           >
             大宮
           </div>
@@ -83,7 +83,7 @@ export default function AcercaPage() {
       <section className="bg-white">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-12 lg:gap-16 lg:px-10 lg:py-28">
           <div className="lg:col-span-6">
-            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold">
               Nuestra filosofía
             </p>
             <blockquote className="mt-8 font-serif text-3xl font-light leading-snug text-zinc-900 sm:text-4xl">
@@ -125,13 +125,13 @@ export default function AcercaPage() {
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           {/* Encabezado */}
           <div className="mb-16 lg:mb-20">
-            <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+            <p className="text-xs uppercase tracking-[0.4em] text-gold">
               La Fundadora
             </p>
             <h2 className="mt-4 font-serif text-4xl font-light text-zinc-900 sm:text-5xl">
               Dra. Antonieta Ortega
             </h2>
-            <div className="mt-6 hairline-h w-16 bg-[#b08a4f]" />
+            <div className="mt-6 hairline-h w-16 bg-gold" />
           </div>
 
           {/* Grilla asimétrica */}
@@ -162,13 +162,13 @@ export default function AcercaPage() {
                   <blockquote className="relative font-serif text-[28px] font-light leading-tight text-zinc-900 sm:text-[36px]">
                     <span
                       aria-hidden="true"
-                      className="absolute -left-4 -top-6 font-serif text-6xl text-[#b08a4f]/30"
+                      className="absolute -left-4 -top-6 font-serif text-6xl text-gold/30"
                     >
                       &ldquo;
                     </span>
                     La estética debe ayudarnos a sentirnos mejor con quienes
                     somos,{" "}
-                    <span className="italic text-[#b08a4f]">
+                    <span className="italic text-gold">
                       no a convertirnos en alguien diferente.
                     </span>
                   </blockquote>
@@ -204,7 +204,7 @@ export default function AcercaPage() {
                     </div>
                   </div>
                   <div className="mt-6 space-y-2">
-                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#b08a4f]">
+                    <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold">
                       Trayectoria
                     </h4>
                     <p className="text-sm leading-relaxed text-zinc-600">
@@ -228,14 +228,14 @@ export default function AcercaPage() {
                   </div>
                   <div className="mt-8 grid grid-cols-2 gap-8 border-t border-zinc-200 pt-8">
                     <div className="space-y-2">
-                      <h4 className="text-[10px] uppercase tracking-[0.2em] text-[#b08a4f]">
+                      <h4 className="text-[10px] uppercase tracking-[0.2em] text-gold">
                         Especialidad
                       </h4>
                       <p className="text-sm leading-relaxed text-zinc-600">
                         Medicina estética preventiva y personalizada.
                       </p>
                     </div>
-                    <div className="flex items-center justify-end gap-5 text-[#b08a4f]">
+                    <div className="flex items-center justify-end gap-5 text-gold">
                       <a
                         href="mailto:hola@omiya.cl"
                         aria-label="Enviar correo"

@@ -77,7 +77,7 @@ export function WellagingPillars() {
     <section ref={sectionRef} className="border-b border-zinc-200 bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <div className="text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+          <p className="text-xs uppercase tracking-[0.4em] text-gold">
             Nuestra mirada
           </p>
           <h2 className="mt-4 text-3xl font-light tracking-tight text-zinc-900 sm:text-4xl">
@@ -92,7 +92,7 @@ export function WellagingPillars() {
               data-pillar
               className={`border-t border-zinc-200 pt-6 ${offsets[index]}`}
             >
-              <span className="text-sm tracking-[0.2em] text-[#b08a4f]">
+              <span className="text-sm tracking-[0.2em] text-gold">
                 {romanNumerals[index]}
               </span>
               <h3 className="mt-4 text-lg font-light leading-snug tracking-tight text-zinc-900">

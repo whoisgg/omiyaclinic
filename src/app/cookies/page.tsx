@@ -9,7 +9,7 @@ export default function CookiesPage() {
     <main className="bg-white">
       <section className="bg-[#faf6ec]">
         <div className="mx-auto max-w-3xl px-6 pb-24 pt-32 lg:pb-32 lg:pt-40">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+          <p className="text-xs uppercase tracking-[0.4em] text-gold">
             Legal
           </p>
           <h1 className="mt-6 font-serif text-4xl font-light leading-tight text-zinc-900 sm:text-5xl">

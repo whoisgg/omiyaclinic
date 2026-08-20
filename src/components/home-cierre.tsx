@@ -34,15 +34,13 @@ import { RuleLink } from "@/components/rule-link";
 
 // Negro cálido, el mismo de la cortina del menú: con la tinta #1e1c19 del
 // sitio casa, y un #18181b puro le tira el oro a verde.
-const NEGRO = "#151310";
-const GOLD = "#b08a4f";
 
 // "Empieza desde aquí".
 const JA = "ここから始まる";
 
 export function HomeCierre() {
   return (
-    <section className="relative" style={{ backgroundColor: NEGRO }}>
+    <section className="relative bg-night">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-24 sm:px-8 lg:px-12 lg:py-36">
         <div className="mx-auto w-fit max-w-full">
           {/* El verso abre el bloque colgado de su propia vertical, como los
@@ -51,15 +49,13 @@ export function HomeCierre() {
             <div className="flex flex-col items-center">
               <span
                 lang="ja"
-                className="font-jp text-[15px] leading-[2] [writing-mode:vertical-rl] lg:text-[17px]"
-                style={{ color: GOLD }}
+                className="font-jp text-[15px] leading-[2] [writing-mode:vertical-rl] lg:text-[17px] text-gold"
               >
                 {JA}
               </span>
               <span
                 aria-hidden="true"
-                className="mt-7 h-10 hairline-v lg:h-12"
-                style={{ backgroundColor: GOLD }}
+                className="mt-7 h-10 hairline-v lg:h-12 bg-gold"
               />
             </div>
           </Reveal>
@@ -90,7 +86,7 @@ export function HomeCierre() {
               href={BOOKING_URL}
               external
               wide
-              className="mt-10 text-[#b08a4f] lg:mt-14"
+              className="mt-10 text-gold lg:mt-14"
             >
               Agendar consulta
             </RuleLink>

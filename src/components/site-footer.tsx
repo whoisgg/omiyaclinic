@@ -47,10 +47,7 @@ const LEGALES = [
   { label: "Cookies", href: "/cookies" },
 ];
 
-const CREMA = "#f2eee7";
-const GOLD = "#b08a4f";
-
-const rotulo = "text-[10px] uppercase tracking-[0.4em]";
+const rotulo = "eyebrow tracking-[0.4em] text-gold";
 const enlace = "text-sm text-zinc-600 transition-colors hover:text-zinc-900";
 
 function DisenadoPor({ className = "" }: { className?: string }) {
@@ -59,7 +56,7 @@ function DisenadoPor({ className = "" }: { className?: string }) {
       href="https://www.instagram.com/gasprlab"
       target="_blank"
       rel="noopener noreferrer"
-      className={`text-xs text-zinc-400 transition-colors hover:text-[#b08a4f] ${className}`}
+      className={`text-xs text-zinc-400 transition-colors hover:text-gold ${className}`}
     >
       Designed by GG
     </a>
@@ -68,7 +65,7 @@ function DisenadoPor({ className = "" }: { className?: string }) {
 
 function Rotulo({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className={rotulo} style={{ color: GOLD }}>
+    <h3 className={rotulo}>
       {children}
     </h3>
   );
@@ -76,7 +73,7 @@ function Rotulo({ children }: { children: React.ReactNode }) {
 
 export function SiteFooter() {
   return (
-    <footer style={{ backgroundColor: CREMA }}>
+    <footer className="bg-cream">
       <div className="mx-auto w-full max-w-[1600px] px-6 pt-16 sm:px-8 lg:px-12 lg:pt-24">
         {/* En desktop pasa a `flex justify-between`: con columnas `1fr` los
             cuatro bloques quedaban mucho más anchos que su contenido y cada

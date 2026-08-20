@@ -22,11 +22,6 @@ import { Reveal } from "@/components/reveal";
  * oro en el cuadro.
  */
 
-const CREAM = "#f2eee7";
-const INK = "#1e1c19";
-const INK_SOFT = "#2a2622";
-const GOLD = "#b08a4f";
-
 const PARRAFO =
   "Buscamos crear un espacio donde el bienestar se construye de manera consciente, personalizada y sostenible en cada etapa de la vida.";
 
@@ -40,8 +35,7 @@ export function HomeEnfoque() {
   return (
     <section
       id="enfoque"
-      className="relative overflow-hidden"
-      style={{ backgroundColor: CREAM }}
+      className="relative overflow-hidden bg-cream"
     >
       {/* El grid se acota al mismo eje de 1600px que el resto del sitio, pero
           la foto sigue sangrando por el borde derecho: el margen negativo
@@ -75,15 +69,13 @@ export function HomeEnfoque() {
                   como dos rayas apiladas; la Cormorant le pone remates arriba
                   y abajo y ahí sí se lee como numeral. */}
               <p
-                className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px]"
-                style={{ color: GOLD }}
+                className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px] text-gold"
               >
                 I
               </p>
               <span
                 aria-hidden="true"
-                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11"
-                style={{ backgroundColor: GOLD }}
+                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11 bg-gold"
               />
             </div>
           </Reveal>
@@ -101,8 +93,7 @@ export function HomeEnfoque() {
             <Reveal delay={100} className="w-11 shrink-0 lg:w-16">
               <p
                 lang="ja"
-                className="font-jp text-[26px] font-normal leading-[1.5] [writing-mode:vertical-rl] lg:text-[42px]"
-                style={{ color: INK }}
+                className="font-jp text-[26px] font-normal leading-[1.5] [writing-mode:vertical-rl] lg:text-[42px] text-ink"
               >
                 {JA}
               </p>
@@ -113,8 +104,7 @@ export function HomeEnfoque() {
                   con el japonés. No se repite en horizontal en ninguna parte
                   de la sección, así que acá sí es el encabezado. */}
               <h2
-                className="font-sans text-[10px] font-normal uppercase leading-none tracking-[0.42em] [text-orientation:upright] [writing-mode:vertical-rl] lg:text-[13px] lg:tracking-[0.5em]"
-                style={{ color: INK }}
+                className="font-sans text-[10px] font-normal uppercase leading-none tracking-[0.42em] [text-orientation:upright] [writing-mode:vertical-rl] lg:text-[13px] lg:tracking-[0.5em] text-ink"
               >
                 Nuestro enfoque
               </h2>
@@ -129,15 +119,13 @@ export function HomeEnfoque() {
                     `justify` está descartado de plano: en columna angosta y con
                     palabras largas del español abre ríos de blanco. */}
                 <p
-                  className="font-serif text-[13px] font-light leading-[1.8] lg:text-[17px] lg:leading-[1.75]"
-                  style={{ color: INK_SOFT }}
+                  className="font-serif text-[13px] font-light leading-[1.8] lg:text-[17px] lg:leading-[1.75] text-ink-body"
                 >
                   {PARRAFO}
                 </p>
                 <span
                   aria-hidden="true"
-                  className="mt-6 block h-10 hairline-v lg:mt-9 lg:h-14"
-                  style={{ backgroundColor: GOLD }}
+                  className="mt-6 block h-10 hairline-v lg:mt-9 lg:h-14 bg-gold"
                 />
               </div>
             </Reveal>
@@ -190,8 +178,7 @@ export function HomeEnfoque() {
           <p className="absolute bottom-5 right-5 flex items-center gap-3 font-sans text-[9px] uppercase tracking-[0.24em] text-[#f5f1ea] sm:bottom-7 sm:right-7 lg:bottom-9 lg:right-9 lg:text-[10px]">
             <span
               aria-hidden="true"
-              className="h-1 w-1 shrink-0 rounded-full"
-              style={{ backgroundColor: GOLD }}
+              className="h-1 w-1 shrink-0 rounded-full bg-gold"
             />
             Machalí, Chile
           </p>

@@ -41,8 +41,6 @@ import { RuleLink } from "@/components/rule-link";
 // El fondo va blanco y no crema, igual que la galería de tratamientos. La
 // home alterna crema y blanco sección a sección, y con el crema de acá
 // quedaban dos seguidos —la fundadora y ésta— sin corte entre ellos.
-const FONDO = "#ffffff";
-const GOLD = "#b08a4f";
 
 // "Conocer la piel".
 const JA = "肌を知る";
@@ -70,15 +68,13 @@ function Riel() {
     <div className="flex flex-col items-center">
       <span
         lang="ja"
-        className="w-9 font-jp text-[24px] leading-[1.6] [writing-mode:vertical-rl]"
-        style={{ color: GOLD }}
+        className="w-9 font-jp text-[24px] leading-[1.6] [writing-mode:vertical-rl] text-gold"
       >
         {JA}
       </span>
       <span
         aria-hidden="true"
-        className="mt-8 h-28 hairline-v"
-        style={{ backgroundColor: GOLD }}
+        className="mt-8 h-28 hairline-v bg-gold"
       />
     </div>
   );
@@ -95,21 +91,18 @@ function Marcador() {
     <>
       <Reveal>
         <p
-          className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px]"
-          style={{ color: GOLD }}
+          className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px] text-gold"
         >
           V
         </p>
         <span
           aria-hidden="true"
-          className="mt-4 block w-9 hairline-h lg:mt-5 lg:w-11"
-          style={{ backgroundColor: GOLD }}
+          className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11 bg-gold"
         />
       </Reveal>
       <Reveal delay={80}>
         <p
-          className="mt-6 text-[10px] uppercase tracking-[0.5em]"
-          style={{ color: GOLD }}
+          className="mt-6 eyebrow text-gold"
         >
           Tu experiencia en Omiya
         </p>
@@ -122,8 +115,7 @@ export function HomeExperiencia() {
   return (
     <section
       id="experiencia"
-      className="relative scroll-mt-20 overflow-hidden"
-      style={{ backgroundColor: FONDO }}
+      className="relative scroll-mt-20 overflow-hidden bg-white"
     >
       {/* ══ MÓVIL — wireframe 36b ═══════════════════════════════════════ */}
       {/* La foto arriba a sangre completa y el texto debajo. El riel se
@@ -167,7 +159,7 @@ export function HomeExperiencia() {
                 <RuleLink
                   href={BOOKING_URL}
                   external
-                  className="mt-10 text-[#b08a4f]"
+                  className="mt-10 text-gold"
                 >
                   Agenda tu evaluación
                 </RuleLink>
@@ -184,15 +176,13 @@ export function HomeExperiencia() {
               <div className="flex flex-col items-center gap-6">
                 <span
                   lang="ja"
-                  className="w-8 font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl]"
-                  style={{ color: GOLD }}
+                  className="w-9 font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl] text-gold"
                 >
                   {JA}
                 </span>
                 <span
                   aria-hidden="true"
-                  className="h-32 hairline-v"
-                  style={{ backgroundColor: GOLD }}
+                  className="h-32 hairline-v bg-gold"
                 />
               </div>
             </Reveal>
@@ -246,7 +236,7 @@ export function HomeExperiencia() {
               href={BOOKING_URL}
               external
               ruleClass="w-36"
-              className="mt-10 text-[#b08a4f]"
+              className="mt-10 text-gold"
             >
               Agenda tu evaluación
             </RuleLink>

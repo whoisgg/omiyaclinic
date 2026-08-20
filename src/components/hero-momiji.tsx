@@ -30,9 +30,6 @@ import Image from "next/image";
 // Gris cálido para las etiquetas chicas. El dorado de marca sobre blanco da
 // 3.6:1 y estas van a 8-9px, así que el dorado queda solo para el punto y las
 // líneas —donde no hay que leer— y el texto va en un tono que sí se lee.
-const INK = "#1e1c19";
-const INK_SOFT = "#6b6259";
-const GOLD = "#b08a4f";
 
 export function HeroMomiji() {
   return (
@@ -85,7 +82,7 @@ export function HeroMomiji() {
             aria-label="美しく、時を重ねるということ。"
             className="absolute left-0 top-[6%] font-jp font-normal leading-[1.5] [writing-mode:vertical-rl] sm:left-[2%] sm:top-[10%] lg:left-[6%] lg:top-[13%]"
             style={{
-              color: INK,
+              color: "var(--color-ink)",
               // Se dimensiona contra el ALTO, no el ancho: el verso es una
               // columna vertical, así que lo que tiene que caber es su largo.
               // Con vw se pasaba de 700px de alto en desktop y se comía el
@@ -111,12 +108,10 @@ export function HeroMomiji() {
                 hero no continúa. */}
             <span
               aria-hidden="true"
-              className="mb-6 h-16 hairline-v lg:mb-8 lg:h-20"
-              style={{ backgroundColor: GOLD }}
+              className="mb-6 h-16 hairline-v lg:mb-8 lg:h-20 bg-gold"
             />
             <h1
-              className="font-sans text-[10px] font-normal uppercase leading-[2.1] tracking-[0.26em] lg:text-[11px] lg:tracking-[0.3em]"
-              style={{ color: INK }}
+              className="font-sans text-[10px] font-normal uppercase leading-[2.1] tracking-[0.26em] lg:text-[11px] lg:tracking-[0.3em] text-ink"
             >
               El arte de
               <br />
@@ -125,8 +120,7 @@ export function HeroMomiji() {
               mejor
             </h1>
             <p
-              className="mt-8 font-sans text-[9px] uppercase leading-[2] tracking-[0.22em] lg:mt-10 lg:text-[10px]"
-              style={{ color: INK_SOFT }}
+              className="mt-8 font-sans text-[9px] uppercase leading-[2] tracking-[0.22em] lg:mt-10 lg:text-[10px] text-ink-muted"
             >
               Clínica premium
               <br />
@@ -137,8 +131,7 @@ export function HeroMomiji() {
                 abre con una vertical, la que cierra tiene que ir cruzada. */}
             <span
               aria-hidden="true"
-              className="mt-5 block hairline-h w-16 lg:mt-6 lg:w-20"
-              style={{ backgroundColor: GOLD }}
+              className="mt-5 block hairline-h w-16 lg:mt-6 lg:w-20 bg-gold"
             />
           </div>
         </div>
@@ -155,12 +148,10 @@ export function HeroMomiji() {
           <div className="flex items-center gap-4">
             <span
               aria-hidden="true"
-              className="hairline-h w-7 sm:w-9"
-              style={{ backgroundColor: GOLD }}
+              className="hairline-h w-7 sm:w-9 bg-gold"
             />
             <span
-              className="font-sans text-[9px] uppercase tracking-[0.26em] lg:text-[10px]"
-              style={{ color: INK_SOFT }}
+              className="font-sans text-[9px] uppercase tracking-[0.26em] lg:text-[10px] text-ink-muted"
             >
               Scroll para explorar
             </span>
@@ -169,10 +160,9 @@ export function HeroMomiji() {
           <p className="hidden items-center gap-3 self-start font-sans text-[9px] uppercase tracking-[0.24em] lg:flex lg:self-end lg:text-[10px]">
             <span
               aria-hidden="true"
-              className="h-1 w-1 shrink-0 rounded-full"
-              style={{ backgroundColor: GOLD }}
+              className="h-1 w-1 shrink-0 rounded-full bg-gold"
             />
-            <span style={{ color: INK_SOFT }}>Machalí, Chile</span>
+            <span className="text-ink-muted">Machalí, Chile</span>
           </p>
         </div>
       </div>

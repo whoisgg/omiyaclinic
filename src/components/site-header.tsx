@@ -8,9 +8,6 @@ import { BOOKING_URL } from "@/lib/links";
 // Paleta de la cortina del menú móvil. El negro va cálido (no zinc puro) para
 // que case con la tinta #1e1c19 del sitio, y el blanco tira a crema por lo
 // mismo: un #fff puro sobre este negro se ve azulado.
-const MENU_BG = "#151310";
-const MENU_FG = "#f5f1ea";
-const GOLD = "#b08a4f";
 
 const DIRECCION = "Del Pucará 50, Machalí";
 
@@ -120,8 +117,7 @@ export function SiteHeader() {
       <div
         className={`fixed right-0 top-0 z-50 w-[54px] overflow-hidden transition-[height] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
           scrolled ? "h-20" : "h-56"
-        }`}
-        style={{ backgroundColor: MENU_BG }}
+        } bg-night`}
       >
         <div
           className={`flex flex-col items-center transition-[padding] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
@@ -142,8 +138,7 @@ export function SiteHeader() {
                 aria-hidden="true"
                 className={`hairline-h transition-[width] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
                   scrolled ? "w-6" : "w-5"
-                }`}
-                style={{ backgroundColor: MENU_FG }}
+                } bg-night-fg`}
               />
             ))}
           </button>
@@ -162,8 +157,7 @@ export function SiteHeader() {
             rel="noopener noreferrer"
             className={`pt-5 font-sans text-[10px] font-medium uppercase leading-none tracking-[0.46em] [text-orientation:upright] [writing-mode:vertical-rl] transition-opacity duration-500 ${
               scrolled ? "pointer-events-none opacity-0" : "opacity-100"
-            }`}
-            style={{ color: MENU_FG }}
+            } text-night-fg`}
             tabIndex={scrolled ? -1 : undefined}
           >
             Agendar
@@ -204,8 +198,7 @@ export function SiteHeader() {
         aria-hidden={!menuOpen}
         className={`fixed inset-y-0 right-0 z-[60] flex w-full transition-transform duration-[900ms] ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none lg:w-1/2 ${
           menuOpen ? "translate-x-0" : "pointer-events-none translate-x-full"
-        }`}
-        style={{ backgroundColor: MENU_BG }}
+        } bg-night`}
       >
         {/* En desktop la lista se ancla arriba y no centrada. El 13vh no es
             arbitrario: es la misma altura a la que arranca el verso japonés
@@ -226,8 +219,7 @@ export function SiteHeader() {
               dos palabras sobre la misma línea óptica dentro de la barra de
               80px. */}
           <span
-            className="absolute left-8 top-7 text-[12px] font-semibold uppercase tracking-[0.28em] sm:left-12 lg:left-20 lg:top-[30px]"
-            style={{ color: MENU_FG }}
+            className="absolute left-8 top-7 text-[12px] font-semibold uppercase tracking-[0.28em] sm:left-12 lg:left-20 lg:top-[30px] text-night-fg"
           >
             Omiya Clinic
           </span>
@@ -257,7 +249,7 @@ export function SiteHeader() {
                       menuOpen ? "translate-y-0" : "translate-y-full"
                     } ${isActive ? "italic" : ""}`}
                     style={{
-                      color: isActive ? GOLD : MENU_FG,
+                      color: isActive ? "var(--color-gold)" : "var(--color-night-fg)",
                       // Escalonado solo al abrir. Al cerrar salen todas juntas,
                       // porque un cierre escalonado se siente lento.
                       transitionDelay: menuOpen ? `${260 + i * 80}ms` : "0ms",
@@ -286,8 +278,7 @@ export function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
-              className="group flex items-center gap-6 py-2"
-              style={{ color: MENU_FG }}
+              className="group flex items-center gap-6 py-2 text-night-fg"
             >
               <span className="font-sans text-[11px] font-medium uppercase tracking-[0.3em] lg:text-[12px]">
                 Agendar
@@ -323,12 +314,10 @@ export function SiteHeader() {
           >
             <span aria-hidden="true" className="relative block h-4 w-5">
               <span
-                className="absolute left-0 top-1/2 hairline-h w-full rotate-45"
-                style={{ backgroundColor: MENU_FG }}
+                className="absolute left-0 top-1/2 hairline-h w-full rotate-45 bg-night-fg"
               />
               <span
-                className="absolute left-0 top-1/2 hairline-h w-full -rotate-45"
-                style={{ backgroundColor: MENU_FG }}
+                className="absolute left-0 top-1/2 hairline-h w-full -rotate-45 bg-night-fg"
               />
             </span>
           </button>

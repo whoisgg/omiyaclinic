@@ -41,10 +41,6 @@ import { RuleLink } from "@/components/rule-link";
  * aire de abajo lo pone el `pb` de la columna de texto, no el de la sección.
  */
 
-const CREAM = "#f2eee7";
-const INK = "#1e1c19";
-const GOLD = "#b08a4f";
-
 // "La belleza está en la armonía". Es la frase de la referencia y sostiene el
 // riel: 7 caracteres dan una columna de alto parecido al de los verticales de
 // las otras secciones. En móvil no hay riel y se usa solo el primer carácter,
@@ -72,12 +68,10 @@ function Firma({ className = "" }: { className?: string }) {
     <div className={className}>
       <span
         aria-hidden="true"
-        className="block hairline-h w-9"
-        style={{ backgroundColor: GOLD }}
+        className="block hairline-h w-9 bg-gold"
       />
       <p
-        className="mt-6 text-[10px] uppercase tracking-[0.5em]"
-        style={{ color: GOLD }}
+        className="mt-6 eyebrow text-gold"
       >
         Dra.
       </p>
@@ -90,8 +84,7 @@ function Firma({ className = "" }: { className?: string }) {
         Ortega
       </p>
       <p
-        className="mt-5 text-[10px] uppercase leading-[2] tracking-[0.35em]"
-        style={{ color: GOLD }}
+        className="mt-5 text-[10px] uppercase leading-[2] tracking-[0.35em] text-gold"
       >
         Fundadora, Omiya Clinic
       </p>
@@ -103,8 +96,7 @@ export function HomeFounder() {
   return (
     <section
       id="fundadora"
-      className="relative scroll-mt-20 overflow-hidden"
-      style={{ backgroundColor: CREAM }}
+      className="relative scroll-mt-20 overflow-hidden bg-cream"
     >
       {/* ══ MÓVIL — wireframe 29a ══════════════════════════════════════ */}
       {/* La cita no va al lado de la foto sino encima, al pie, sobre el fondo
@@ -139,15 +131,13 @@ export function HomeFounder() {
           <div className="absolute right-6 top-8 flex flex-col items-center">
             <span
               lang="ja"
-              className="font-jp text-[16px] leading-[1.7] [writing-mode:vertical-rl]"
-              style={{ color: GOLD }}
+              className="font-jp text-[16px] leading-[1.6] [writing-mode:vertical-rl] text-gold"
             >
               院長の言葉
             </span>
             <span
               aria-hidden="true"
-              className="mt-5 h-12 hairline-v"
-              style={{ backgroundColor: GOLD }}
+              className="mt-5 h-12 hairline-v bg-gold"
             />
           </div>
           {/* Pie: la firma en oro y, debajo, la cita en blanco. Acá la cita va
@@ -157,8 +147,7 @@ export function HomeFounder() {
           <div className="absolute inset-x-0 bottom-0 px-6 pb-9">
             <Reveal>
               <p
-                className="text-[10px] uppercase leading-[1.9] tracking-[0.28em]"
-                style={{ color: GOLD }}
+                className="text-[10px] uppercase leading-[1.9] tracking-[0.28em] text-gold"
               >
                 Dra. Antonieta Ortega
                 <br />
@@ -172,8 +161,7 @@ export function HomeFounder() {
                   metía 70px de aire entre la foto y el párrafo. */}
               <span
                 aria-hidden="true"
-                className="mt-7 block w-9 hairline-h"
-                style={{ backgroundColor: GOLD }}
+                className="mt-7 block hairline-h w-9 bg-gold"
               />
             </Reveal>
           </div>
@@ -184,7 +172,7 @@ export function HomeFounder() {
             <p className="text-[13px] leading-[2] text-zinc-600">
               {PARRAFO}
             </p>
-            <RuleLink href="/acerca" wide className="mt-10 text-[#b08a4f]">
+            <RuleLink href="/acerca" wide className="mt-10 text-gold">
               Ver más
             </RuleLink>
           </Reveal>
@@ -209,15 +197,13 @@ export function HomeFounder() {
           <div className="flex flex-col items-center">
             <span
               lang="ja"
-              className="font-jp text-[24px] leading-[1.7] [writing-mode:vertical-rl]"
-              style={{ color: INK }}
+              className="font-jp text-[24px] leading-[1.6] [writing-mode:vertical-rl] text-ink"
             >
               {JA}
             </span>
             <span
               aria-hidden="true"
-              className="mt-8 h-14 hairline-v"
-              style={{ backgroundColor: GOLD }}
+              className="mt-8 h-14 hairline-v bg-gold"
             />
             {/* El lugar que en la referencia ocupa la firma de la clínica lo
                 toma acá el marcador de sección: numeral romano y eyebrow, los
@@ -227,14 +213,12 @@ export function HomeFounder() {
                 de arriba, y dos columnas verticales seguidas se leerían como
                 una sola tira larga. */}
             <span
-              className="mt-8 font-serif text-[20px] leading-none tracking-[0.12em]"
-              style={{ color: GOLD }}
+              className="mt-8 font-serif text-[22px] leading-none tracking-[0.12em] text-gold"
             >
               IV
             </span>
             <span
-              className="mt-5 text-center text-[10px] uppercase leading-[2.2] tracking-[0.4em]"
-              style={{ color: GOLD }}
+              className="mt-5 text-center text-[10px] uppercase leading-[2.2] tracking-[0.4em] text-gold"
             >
               La
               <br />
@@ -281,7 +265,7 @@ export function HomeFounder() {
                 {PARRAFO}
               </p>
               <div className="mt-10">
-                <RuleLink href="/acerca" className="text-[#b08a4f]">
+                <RuleLink href="/acerca" className="text-gold">
                   Ver más
                 </RuleLink>
               </div>

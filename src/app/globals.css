@@ -5,11 +5,49 @@
   --foreground: #171717;
 }
 
+/* ── Paleta ──────────────────────────────────────────────────────────────
+   Dos colores y una escala de tinta, como manda la marca: negro sobre fondo
+   claro, y el dorado reservado para acentos chicos.
+
+   Vive acá y no en cada componente porque antes el dorado estaba escrito 48
+   veces en 18 archivos, con ocho `const GOLD` que decían lo mismo. Cambiar el
+   acento de la marca era una búsqueda y reemplazo con riesgo de dejar una
+   copia atrás.
+
+   Las tres tintas se distinguen por rol y no por nombre de color, que es lo
+   que las hacía confundibles: había dos constantes `INK_SOFT` con valores muy
+   distintos —#6b6259 y #2a2622— porque cada componente bautizó la suya. */
+@theme {
+  --color-gold: #b08a4f;
+
+  /* Titulares y texto principal. */
+  --color-ink: #1e1c19;
+  /* Párrafos largos: un punto más claro que el titular para que el bloque no
+     pese tanto como el encabezado que lo abre. */
+  --color-ink-body: #2a2622;
+  /* Rótulos secundarios y de pie —ubicación, meta, labels de 9-10px—. */
+  --color-ink-muted: #6b6259;
+
+  /* Fondo cálido de las secciones del home. */
+  --color-cream: #f2eee7;
+  /* Casi blanco: la variante de "Nuestro compromiso", que va más clara para
+     no competir con la foto a todo el ancho que lleva en el medio. */
+  --color-cream-pale: #fbfaf7;
+
+  /* Los dos paneles oscuros del sitio: el menú y el cierre. Estaban
+     declarados por separado como MENU_BG y NEGRO, con el mismo valor. */
+  --color-night: #151310;
+  --color-night-fg: #f5f1ea;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  /* Sin webfont: la Geist Mono se precargaba en cada página y no se usa en
+     ningún lado del sitio. Si alguna vez hace falta un monoespaciado, el
+     stack del sistema alcanza y no cuesta una descarga. */
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
   --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
   /* Serif japonesa del verso del hero. Los fallbacks son las mincho que ya
      vienen instaladas en Windows y macOS: si la webfont todavía no cargó, el
@@ -84,6 +122,22 @@ body {
 .btn-underline:hover::after,
 .founder-card:has(.founder-photo:hover) .btn-underline::after {
   transform: scaleX(1);
+}
+
+/* ── Eyebrow ─────────────────────────────────────────────────────────────
+   El rótulo chico en versalitas que abre cada sección: 10px, mayúsculas y
+   tracking de 0.5em. Estaba escrito a mano en cada sección y había derivado a
+   cuatro tamaños (10, 11, 12 y 13px) con seis trackings distintos, así que el
+   mismo elemento no se veía igual en dos páginas seguidas.
+
+   Las variantes que quedan fuera son deliberadas y no descuidos: el hero va a
+   11px/0.3em porque compite con el verso vertical, el riel del header va
+   vertical con las letras derechas, y el rótulo del riel de la fundadora va a
+   0.4em porque a 0.5em se desborda todavía más de su columna de 56px. */
+.eyebrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
 }
 
 /* ── Hairlines ───────────────────────────────────────────────────────────

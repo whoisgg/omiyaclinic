@@ -10,15 +10,15 @@ export default function ContactoPage() {
         <div className="mt-10 grid gap-10 sm:grid-cols-2">
           <ul className="space-y-4 text-sm text-zinc-700">
             <li className="flex items-start gap-3">
-              <span className="text-[#b08a4f]">📍</span>
+              <span className="text-gold">📍</span>
               <span>Del Pucará 50, Of. 410 — Machalí</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="text-[#b08a4f]">📞</span>
+              <span className="text-gold">📞</span>
               <a href="tel:+569" className="hover:text-zinc-900">+56 9 …</a>
             </li>
             <li className="flex items-start gap-3">
-              <span className="text-[#b08a4f]">✉</span>
+              <span className="text-gold">✉</span>
               <a href="mailto:hello@omiyaclinic.cl" className="hover:text-zinc-900">
                 hello@omiyaclinic.cl
               </a>
@@ -34,7 +34,7 @@ export default function ContactoPage() {
               <RuleLink
                 href={PAYMENT_URL}
                 external
-                className="mt-2 text-[#b08a4f]"
+                className="mt-2 text-gold"
               >
                 Link de pago en línea
               </RuleLink>
@@ -48,7 +48,7 @@ export default function ContactoPage() {
           </div>
         </div>
 
-        <p className="mt-10 max-w-2xl border-l-2 border-[#b08a4f]/40 pl-4 text-sm text-zinc-600">
+        <p className="mt-10 max-w-2xl border-l-2 border-gold/40 pl-4 text-sm text-zinc-600">
           <strong>Decisión:</strong> el botón <em>Agendar</em> abre la agenda online de
           Dentalink; el pago se maneja con un link aparte. Esta página es para info y
           consultas generales, con WhatsApp como canal directo.

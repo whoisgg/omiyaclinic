@@ -20,7 +20,7 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
 
         {/* Info */}
         <div className="flex flex-col">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
+          <p className="text-xs uppercase tracking-[0.4em] text-gold">
             {(category?.label ?? "General").toUpperCase()}
             {t.duration ? ` · ${t.duration}` : ""}
           </p>
@@ -61,7 +61,7 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
               href={BOOKING_URL}
               external
               ruleClass="w-20 lg:w-28"
-              className="shrink-0 text-[#b08a4f]"
+              className="shrink-0 text-gold"
             >
               Agendar evaluación
             </RuleLink>

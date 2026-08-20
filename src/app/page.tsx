@@ -57,19 +57,17 @@ export default function HomePage() {
             <Reveal>
               {/* Sección III: Nuestro enfoque es la I y Tratamientos la II. */}
               <p
-                className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px]"
-                style={{ color: "#b08a4f" }}
+                className="font-serif text-[17px] leading-none tracking-[0.12em] lg:text-[22px] text-gold"
               >
                 III
               </p>
               <span
                 aria-hidden="true"
-                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11"
-                style={{ backgroundColor: "#b08a4f" }}
+                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11 bg-gold"
               />
             </Reveal>
             <Reveal delay={80}>
-              <p className="mt-6 text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
+              <p className="mt-6 eyebrow text-gold">
                 Nuestro compromiso
               </p>
             </Reveal>
@@ -93,15 +91,13 @@ export default function HomePage() {
             <div className="flex flex-col items-center gap-6">
               <span
                 lang="ja"
-                className="w-9 font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl] lg:w-11 lg:text-[24px]"
-                style={{ color: "#b08a4f" }}
+                className="w-9 font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl] lg:w-11 lg:text-[24px] text-gold"
               >
                 変わらぬ約束
               </span>
               <span
                 aria-hidden="true"
-                className="h-32 hairline-v lg:h-40"
-                style={{ backgroundColor: "#b08a4f" }}
+                className="h-32 hairline-v lg:h-40 bg-gold"
               />
             </div>
           </Reveal>
@@ -151,7 +147,7 @@ export default function HomePage() {
               delay={i * 80}
               className="border-t border-[#e6e0d5] py-4 lg:py-0 lg:pt-3"
             >
-              <span className="font-sans text-[9px] tracking-[0.2em] text-[#b08a4f]">
+              <span className="font-sans text-[9px] tracking-[0.2em] text-gold">
                 {`0${i + 1}`}
               </span>
               <h3 className="mt-2 font-serif text-lg italic leading-snug text-zinc-900">
