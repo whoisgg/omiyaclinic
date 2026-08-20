@@ -111,7 +111,7 @@ export function HeroMomiji() {
                 hero no continúa. */}
             <span
               aria-hidden="true"
-              className="mb-6 h-16 w-px lg:mb-8 lg:h-20"
+              className="mb-6 h-16 hairline-v lg:mb-8 lg:h-20"
               style={{ backgroundColor: GOLD }}
             />
             <h1
@@ -137,7 +137,7 @@ export function HeroMomiji() {
                 abre con una vertical, la que cierra tiene que ir cruzada. */}
             <span
               aria-hidden="true"
-              className="mt-5 block h-px w-16 lg:mt-6 lg:w-20"
+              className="mt-5 block hairline-h w-16 lg:mt-6 lg:w-20"
               style={{ backgroundColor: GOLD }}
             />
           </div>
@@ -155,7 +155,7 @@ export function HeroMomiji() {
           <div className="flex items-center gap-4">
             <span
               aria-hidden="true"
-              className="h-px w-7 sm:w-9"
+              className="hairline-h w-7 sm:w-9"
               style={{ backgroundColor: GOLD }}
             />
             <span

@@ -131,7 +131,7 @@ export default function AcercaPage() {
             <h2 className="mt-4 font-serif text-4xl font-light text-zinc-900 sm:text-5xl">
               Dra. Antonieta Ortega
             </h2>
-            <div className="mt-6 h-px w-16 bg-[#b08a4f]" />
+            <div className="mt-6 hairline-h w-16 bg-[#b08a4f]" />
           </div>
 
           {/* Grilla asimétrica */}

@@ -1,3 +1,4 @@
+import { RuleLink } from "@/components/rule-link";
 import { PAYMENT_URL } from "@/lib/links";
 
 export default function ContactoPage() {
@@ -30,14 +31,13 @@ export default function ContactoPage() {
             </li>
             <li className="mt-6 border-t border-zinc-200 pt-6">
               <p className="text-xs uppercase tracking-widest text-zinc-500">Pagos</p>
-              <a
+              <RuleLink
                 href={PAYMENT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-underline mt-2 inline-block text-xs text-[#b08a4f]"
+                external
+                className="mt-2 text-[#b08a4f]"
               >
                 Link de pago en línea
-              </a>
+              </RuleLink>
             </li>
           </ul>
 

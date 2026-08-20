@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { CATEGORIES, getTreatmentBySlug } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
+import { RuleLink } from "@/components/rule-link";
 
 type Params = Promise<{ slug: string }>;
 
@@ -56,20 +57,14 @@ export default async function TreatmentDetailPage({ params }: { params: Params }
               El plan y los valores se definen en una evaluación personalizada
               con la doctora.
             </p>
-            <a
+            <RuleLink
               href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-luxe shrink-0 px-8 py-4 text-center text-xs text-[#b08a4f]"
-              style={
-                {
-                  "--luxe-fill": "#b08a4f",
-                  "--luxe-fill-text": "#ffffff",
-                } as React.CSSProperties
-              }
+              external
+              ruleClass="w-20 lg:w-28"
+              className="shrink-0 text-[#b08a4f]"
             >
-              ↘ Agendar evaluación
-            </a>
+              Agendar evaluación
+            </RuleLink>
           </div>
         </div>
       </div>

@@ -82,7 +82,7 @@ export function HomeEnfoque() {
               </p>
               <span
                 aria-hidden="true"
-                className="mt-4 block h-px w-9 lg:mt-5 lg:w-11"
+                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11"
                 style={{ backgroundColor: GOLD }}
               />
             </div>
@@ -136,7 +136,7 @@ export function HomeEnfoque() {
                 </p>
                 <span
                   aria-hidden="true"
-                  className="mt-6 block h-10 w-px lg:mt-9 lg:h-14"
+                  className="mt-6 block h-10 hairline-v lg:mt-9 lg:h-14"
                   style={{ backgroundColor: GOLD }}
                 />
               </div>
@@ -160,7 +160,14 @@ export function HomeEnfoque() {
           Con la fuente recortada, alinear a la derecha garantiza el logo y su
           círculo completos en cualquier proporción de caja. */}
       <Reveal delay={200}>
-        <div className="relative aspect-[10/9] w-full lg:h-full lg:aspect-auto lg:mr-[min(0px,calc((1600px_-_100vw)/2))]">
+        {/* En lg la foto se detiene 48px antes del borde del eje, el mismo
+            padding derecho que llevan las demás secciones, en vez de sangrar
+            hasta el borde del viewport: así su borde queda alineado con el
+            del resto del sitio.
+            El `w-auto` va de la mano: con `w-full` el ancho queda fijado al de
+            la celda del grid y el margen solo correría la caja en vez de
+            achicarla. En móvil sí va a sangre completa. */}
+        <div className="relative aspect-[10/9] w-full lg:h-full lg:w-auto lg:aspect-auto lg:mr-12">
           <Image
             src="/momiji/hero-recepcion-v5.webp"
             alt="Recepción de Omiya Clinic: un momiji junto al muro con el logo de bronce"

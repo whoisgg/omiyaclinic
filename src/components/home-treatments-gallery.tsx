@@ -116,7 +116,7 @@ export function HomeTreatmentsGallery() {
               </p>
               <span
                 aria-hidden="true"
-                className="mt-4 block h-px w-9 lg:mt-5 lg:w-11"
+                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11"
                 style={{ backgroundColor: GOLD }}
               />
             </Reveal>
@@ -160,7 +160,7 @@ export function HomeTreatmentsGallery() {
               </span>
               <span
                 aria-hidden="true"
-                className="h-32 w-px lg:h-40"
+                className="h-32 hairline-v lg:h-40"
                 style={{ backgroundColor: GOLD }}
               />
             </div>
@@ -204,13 +204,13 @@ export function HomeTreatmentsGallery() {
                 <h3 className="font-serif text-[30px] font-light leading-none text-zinc-900 lg:text-[36px]">
                   {item.name}
                 </h3>
-                <div className="mt-2.5 flex items-center gap-5 lg:mt-3">
+                <div className="mt-2.5 flex items-end gap-5 lg:mt-3">
                   <p className="text-[10px] uppercase leading-[1.9] tracking-[0.18em] text-zinc-500 lg:text-[11px]">
                     {item.tagline}
                   </p>
                   <span
                     aria-hidden="true"
-                    className="h-px min-w-8 flex-1"
+                    className="hairline-h min-w-8 flex-1"
                     style={{ backgroundColor: GOLD }}
                   />
                 </div>

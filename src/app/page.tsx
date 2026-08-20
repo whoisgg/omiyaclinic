@@ -1,10 +1,11 @@
-import Link from "next/link";
-import Image from "next/image";
-import { BOOKING_URL } from "@/lib/links";
 import { HeroMomiji } from "@/components/hero-momiji";
 import { HomeEnfoque } from "@/components/home-enfoque";
 import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
 import { Reveal } from "@/components/reveal";
+import { HomeFounder } from "@/components/home-founder";
+import { HomeExperiencia } from "@/components/home-experiencia";
+import { HomeCierre } from "@/components/home-cierre";
+import { PhotoBand } from "@/components/photo-band";
 import { DisplayHeading } from "@/components/display-heading";
 
 const COMPROMISO = [
@@ -62,7 +63,7 @@ export default function HomePage() {
               </p>
               <span
                 aria-hidden="true"
-                className="mt-4 block h-px w-9 lg:mt-5 lg:w-11"
+                className="mt-4 block hairline-h w-9 lg:mt-5 lg:w-11"
                 style={{ backgroundColor: "#b08a4f" }}
               />
             </Reveal>
@@ -98,7 +99,7 @@ export default function HomePage() {
               </span>
               <span
                 aria-hidden="true"
-                className="h-32 w-px lg:h-40"
+                className="h-32 hairline-v lg:h-40"
                 style={{ backgroundColor: "#b08a4f" }}
               />
             </div>
@@ -109,20 +110,64 @@ export default function HomePage() {
             wireframe: con los mismos paddings que el resto de las secciones,
             su borde queda alineado con el del texto de arriba y el de los
             principios de abajo.
-            El encuadre vertical se eligió midiendo sobre el archivo: por
-            debajo del 60% se cortan los envases por abajo, y ahí es donde
-            está el producto. */}
+            El encuadre salió de medir el archivo: las tapas de los envases
+            altos arrancan en la fila 516 de 1440 y las bases apoyan en la
+            1345, o sea 834 filas de alto útil. Con una banda de 430px solo
+            entraban 662 y había que elegir entre las tapas o las bases.
+
+            El alto va por aspect-ratio y no en px porque las filas visibles
+            dependen del ancho: `cover` escala por ancho, así que un alto fijo
+            muestra más filas en una pantalla angosta que en una ancha.
+            1800/834 fija la ventana en esas 834 filas en cualquier viewport
+            —616px de alto a 1440, 697px a 1920—, y el 84% la ancla en las
+            filas 509–1343.
+
+            En móvil el ratio daría una banda de 158px, así que ahí sigue
+            mandando un alto fijo: a 390px la foto entra completa de todos
+            modos, porque el recorte pasa a ser horizontal. */}
         <Reveal delay={150}>
-          <div className="relative mx-auto mt-12 h-[300px] w-full max-w-[1600px] px-6 sm:px-8 lg:mt-16 lg:h-[430px] lg:px-12">
-            <div className="relative h-full w-full overflow-hidden">
-            <Image
-              src="/clinica/productos.webp"
-              alt="Selección de productos de cuidado de la piel sobre el mesón de la clínica"
-              fill
+          <div className="relative mx-auto mt-12 h-[340px] w-full max-w-[1600px] px-6 sm:px-8 lg:mt-16 lg:h-auto lg:px-12">
+            <PhotoBand
+              className="h-full w-full lg:aspect-[1800/834] lg:h-auto"
               sizes="100vw"
-                className="object-cover object-[50%_60%] lg:object-[50%_70%]"
-              />
-            </div>
+              imageClassName="object-cover object-[50%_86%] lg:object-[50%_84%]"
+              images={[
+                {
+                  src: "/clinica/productos.webp",
+                  alt: "Selección de productos de cuidado de la piel sobre el mesón de la clínica",
+                },
+                {
+                  src: "/clinica/productos-2.webp",
+                  alt: "Ficha de plan de tratamiento completándose junto a las cajas de producto",
+                  // Encuadre propio: esta toma es más cerrada que la anterior
+                  // de la misma escena, así que con el 84% común la banda se
+                  // iba al pie de la ficha y perdía las cajas. Al 30% entra la
+                  // fila de producto arriba y la ficha en foco abajo.
+                  className: "object-cover object-[50%_35%] lg:object-[50%_30%]",
+                },
+                {
+                  src: "/clinica/productos-3.webp",
+                  alt: "Box de atención de la clínica, con el sillón junto al ventanal y la vista de la ciudad",
+                  // Encuadre propio, el fijado en la 48a. El 84% común está
+                  // calibrado para que los envases de la primera foto queden
+                  // apoyados en el mesón, y acá dejaba el ventanal fuera.
+                  //
+                  // A diferencia de las otras dos, esta foto no se normalizó al
+                  // aspect 1.25: su ancla horizontal es 62% y no 50%, así que
+                  // recortarla por el centro habría movido ese porcentaje a
+                  // otro cuadro. En desktop la banda muestra el ancho completo
+                  // —el 62% no hace nada ahí— y recién en móvil, donde la caja
+                  // es más angosta, es el que deja el sillón y el ventanal
+                  // dentro del recorte.
+                  //
+                  // El 40% vertical de la 48a subió al 85%: dejaba el sillón
+                  // cortado a media altura y no se veía dónde apoya. La foto
+                  // ya llega hasta su base, así que el 85% es casi todo lo que
+                  // se le puede bajar.
+                  className: "object-cover object-[62%_85%]",
+                },
+              ]}
+            />
           </div>
         </Reveal>
 
@@ -147,134 +192,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FUNDADORA — wireframe placeholder */}
-      <section className="bg-white">
-        <div className="founder-card mx-auto w-full max-w-[1600px] grid gap-12 px-6 py-20 sm:grid-cols-2 sm:items-center sm:px-8 lg:px-12">
-          <div className="group founder-photo relative aspect-[4/5] overflow-hidden">
-            <Image
-              src="/founder-portrait.webp"
-              alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
-              fill
-              sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-cover object-top grayscale-[0.7] sepia-[0.1] brightness-[1.08] contrast-[0.95] transition-[transform,filter] duration-1000 group-hover:scale-105 group-hover:grayscale-0 group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100"
-            />
-          </div>
-          <Reveal>
-            <p className="text-[10px] uppercase tracking-[0.5em] text-[#b08a4f]">
-              Dra. Antonieta Ortega · Fundadora, Omiya Clinic
-            </p>
-            <blockquote className="mt-6 font-serif text-2xl font-light leading-snug text-zinc-900 sm:text-3xl">
-              &ldquo;La estética debe ayudarnos a sentirnos mejor con quienes
-              somos, no a convertirnos en alguien diferente.&rdquo;
-            </blockquote>
-            <p className="mt-6 text-base leading-relaxed text-zinc-600">
-              Creé Omiya con la convicción de que el cuidado estético puede
-              acompañar el paso del tiempo sin alterar aquello que nos hace
-              únicos. Cada decisión dentro de la clínica busca reflejar esa
-              filosofía: priorizar la armonía, la autenticidad y el bienestar
-              por sobre las tendencias o los cambios excesivos.
-            </p>
-            <Link
-              href="/acerca"
-              className="btn-underline mt-8 inline-block text-xs text-[#b08a4f]"
-            >
-              Ver más
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+      {/* LA FUNDADORA — sección IV, retrato recortado sobre el crema */}
+      <HomeFounder />
 
-      {/* TU EXPERIENCIA — imagen del box con fade hacia el crema */}
-      <section className="relative overflow-hidden border-t border-zinc-200 bg-[#faf6ec]">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[62%]"
-        >
-          <Image
-            src="/box-omiya-2.webp"
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 62vw, 100vw"
-            className="object-cover object-center"
-          />
-          {/* Fade horizontal hacia la columna de texto */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#faf6ec] via-[#faf6ec]/90 to-[#faf6ec]/30 lg:via-[#faf6ec]/40 lg:to-transparent" />
-          {/* Fade vertical suave para fundir con las secciones vecinas */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ec]/40 via-transparent to-[#faf6ec]/40" />
-        </div>
-        <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 relative z-10 flex min-h-[560px] items-center py-20 lg:min-h-[680px] lg:py-28">
-          <div className="max-w-xl">
-            <Reveal>
-              <p className="text-xs uppercase tracking-[0.4em] text-[#b08a4f]">
-                Tu experiencia en Omiya
-              </p>
-            </Reveal>
-            <DisplayHeading
-              lines={["Comprender", "tu piel", "hoy."]}
-              dimFrom={2}
-              size="sm"
-              className="mt-6 text-zinc-900"
-            />
-            <div className="mt-8 h-px w-16 bg-[#b08a4f]" />
-            <p className="mt-8 max-w-md text-base leading-relaxed text-zinc-700">
-              Cada tratamiento comienza con una evaluación personalizada que nos
-              permite comprender tu piel, tus objetivos y la etapa en la que te
-              encuentras.
-            </p>
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-luxe mt-10 inline-block px-8 py-4 text-xs text-[#b08a4f]"
-              style={
-                {
-                  "--luxe-fill": "#b08a4f",
-                  "--luxe-fill-text": "#ffffff",
-                } as React.CSSProperties
-              }
-            >
-              Agenda tu evaluación
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* TU EXPERIENCIA — sección V, wireframes 36a/36b */}
+      <HomeExperiencia />
 
-      {/* CTA */}
-      <section className="bg-zinc-900 text-white">
-        <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 py-24 text-center lg:py-32">
-          {/* Momento firma de la home: la cascada va letra por letra */}
-          <DisplayHeading
-            lines={["Tu bienestar", "empieza aquí."]}
-            split="letter"
-            tone="dark"
-            className="text-white"
-          />
-          <Reveal>
-            <div className="mx-auto mt-8 h-px w-16 bg-[#b08a4f]" />
-          </Reveal>
-          <Reveal delay={150}>
-            <p className="mt-8 text-lg font-light text-zinc-300">
-              Cada piel tiene una historia diferente.
-            </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-luxe mt-10 inline-block px-10 py-4 text-xs text-white"
-              style={
-                {
-                  "--luxe-fill": "#ffffff",
-                  "--luxe-fill-text": "#18181b",
-                } as React.CSSProperties
-              }
-            >
-              Agendar consulta
-            </a>
-          </Reveal>
-        </div>
-      </section>
+      {/* CIERRE — wireframes 38a/40b, la única sección centrada y sin numeral */}
+      <HomeCierre />
     </>
   );
 }

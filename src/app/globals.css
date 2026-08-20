@@ -34,10 +34,23 @@ body {
    Secundario: texto editorial con subrayado que se expande desde la
    izquierda. Ambos con easing expo-out de 0.5s. */
 .btn-luxe,
-.btn-underline {
+.btn-underline,
+.btn-rule {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Terciario: el texto con la regla al costado —"Ver más ————"— en vez de
+   debajo. Es el mismo gesto que `.btn-underline`, pero la raya nace visible y
+   se estira en horizontal, así que lee como una flecha sin serlo. */
+.btn-rule-line {
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.btn-rule:hover .btn-rule-line,
+.founder-card:has(.founder-photo:hover) .btn-rule-line {
+  transform: scaleX(1.7);
 }
 
 .btn-luxe {
@@ -62,7 +75,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 2px;
   background-color: currentColor;
   transform: scaleX(0.12);
   transform-origin: left;
@@ -71,6 +84,39 @@ body {
 .btn-underline:hover::after,
 .founder-card:has(.founder-photo:hover) .btn-underline::after {
   transform: scaleX(1);
+}
+
+/* ── Hairlines ───────────────────────────────────────────────────────────
+   Las rayas del sitio van a 1.5px y no a 1px. No es un ajuste de grosor: es
+   lo único que las hace verse iguales entre sí.
+
+   Una caja de 1px casi nunca cae sobre un pixel físico entero, y según dónde
+   aterrice el navegador la reparte entre dos o la pinta en uno solo. Medido
+   en el hero, a devicePixelRatio 1: la vertical caía en x=668.828 y se
+   repartía 17%/83% —se ve lavada—, mientras que la horizontal del pie caía en
+   y=864 exacto y pintaba un pixel al 100% —se ve sólida—. Misma declaración,
+   dos pesos distintos, y nada que se pueda corregir desde el marcado porque
+   la posición sale del layout.
+
+   Se probó primero a 1.5px, que reduce la dispersión a la mitad pero no la
+   elimina: una caja de 1.5px que aterriza en .25 se reparte 0.75/0.75 y sigue
+   viéndose más floja que una que cae entera. A 2px eso ya no puede pasar —
+   cualquier caja de 2px cubre siempre un pixel completo, caiga donde caiga—,
+   así que todas las rayas del sitio pintan con la misma intensidad máxima.
+
+   El costo es que la raya es un tercio más gruesa que a 1.5px. Es el precio
+   de que sean todas iguales; si se prefiere más fina y desparejas, se baja
+   este valor y listo.
+
+   También se probó compensar la horizontal bajándole la opacidad, partiendo
+   de que una horizontal pesa más que una vertical del mismo grosor —cierto en
+   tipografía—, pero acá ese efecto era menor que el del rasterizado y la
+   compensación solo tapaba el síntoma. */
+.hairline-h {
+  height: 2px;
+}
+.hairline-v {
+  width: 2px;
 }
 
 /* ── Filosofía de animación única ────────────────────────────────────────

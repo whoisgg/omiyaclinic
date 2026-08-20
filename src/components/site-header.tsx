@@ -77,10 +77,17 @@ export function SiteHeader() {
         }`}
       >
         <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 relative flex h-20 items-center">
+          {/* Con el menú abierto se apaga: el panel trae el suyo y en desktop,
+              donde el panel solo cubre la mitad derecha, si no se verían dos
+              "Omiya Clinic" al mismo tiempo. Es un relevo, no una
+              desaparición. */}
           <Link
             href="/"
             aria-label="Omiya Clinic — Home"
-            className="text-zinc-900 transition-colors hover:text-zinc-900"
+            className={`text-zinc-900 transition-opacity duration-500 ${
+              menuOpen ? "pointer-events-none opacity-0" : "opacity-100"
+            }`}
+            tabIndex={menuOpen ? -1 : undefined}
           >
             <span className="text-sm font-semibold uppercase tracking-[0.28em]">
               Omiya Clinic
@@ -94,17 +101,33 @@ export function SiteHeader() {
           suelto — ahora los tres enlaces viven dentro del panel en todos los
           tamaños, no solo en móvil.
 
-          El bloque mide 224px y al scrollear se encoge a 64, dejando solo la
+          El bloque mide 224px y al scrollear se encoge a 80, dejando solo la
           hamburguesa. Se anima la altura con `overflow-hidden`, así el
           separador y "AGENDAR" se recortan solos en vez de tener que
-          desmontarlos. Mismo comportamiento en todos los tamaños. */}
+          desmontarlos. Mismo comportamiento en todos los tamaños.
+
+          Los 80px del estado encogido son los mismos `h-20` del header, para
+          que el canto de abajo del bloque caiga justo donde termina la barra
+          blanca. Antes eran 64 y quedaba un escalón de 16px. Se emparejó por
+          acá y no bajando el header porque su altura está acoplada a los
+          `scroll-mt-20` de las secciones ancladas: bajarla dejaría los
+          anclajes 16px corridos.
+
+          El `pt` acompaña: en el estado encogido la hamburguesa tiene que
+          centrarse en 80px y no quedarse donde la dejaba el padding pensado
+          para el bloque largo. Anima con la misma curva y duración que la
+          altura, así los dos se mueven como una sola cosa. */}
       <div
         className={`fixed right-0 top-0 z-50 w-[54px] overflow-hidden transition-[height] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
-          scrolled ? "h-16" : "h-56"
+          scrolled ? "h-20" : "h-56"
         }`}
         style={{ backgroundColor: MENU_BG }}
       >
-        <div className="flex flex-col items-center pt-[26px]">
+        <div
+          className={`flex flex-col items-center transition-[padding] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
+            scrolled ? "pt-[33px]" : "pt-[26px]"
+          }`}
+        >
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
@@ -117,7 +140,7 @@ export function SiteHeader() {
               <span
                 key={i}
                 aria-hidden="true"
-                className={`h-px transition-[width] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
+                className={`hairline-h transition-[width] duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] motion-reduce:transition-none ${
                   scrolled ? "w-6" : "w-5"
                 }`}
                 style={{ backgroundColor: MENU_FG }}
@@ -127,7 +150,7 @@ export function SiteHeader() {
 
           <span
             aria-hidden="true"
-            className={`h-px w-5 transition-opacity duration-500 ${
+            className={`hairline-h w-5 transition-opacity duration-500 ${
               scrolled ? "opacity-0" : "opacity-100"
             }`}
             style={{ backgroundColor: "rgba(241,237,229,.25)" }}
@@ -191,8 +214,19 @@ export function SiteHeader() {
             centrada, que es donde cae bien con el logo arriba y el pie
             abajo. */}
         <div className="relative flex flex-1 flex-col justify-center px-8 sm:px-12 lg:justify-start lg:px-20 lg:pt-[13vh]">
+          {/* El wordmark vive dentro del panel en todos los tamaños. Antes
+              era `lg:hidden`, dando por hecho que en desktop bastaba con el
+              del header, que asoma por la mitad de página que el panel no
+              tapa. Pero ese va en tinta oscura sobre la página: si el menú se
+              abre estando sobre el cierre —que es negro— desaparece, y el
+              panel se queda sin marca. Acá siempre está, en el crema del
+              menú.
+
+              El `top` de desktop lo alinea con el del header: 30px deja las
+              dos palabras sobre la misma línea óptica dentro de la barra de
+              80px. */}
           <span
-            className="absolute left-8 top-7 text-[12px] font-semibold uppercase tracking-[0.28em] sm:left-12 lg:hidden"
+            className="absolute left-8 top-7 text-[12px] font-semibold uppercase tracking-[0.28em] sm:left-12 lg:left-20 lg:top-[30px]"
             style={{ color: MENU_FG }}
           >
             Omiya Clinic
@@ -260,7 +294,7 @@ export function SiteHeader() {
               </span>
               <span
                 aria-hidden="true"
-                className="h-px max-w-[22rem] flex-1 transition-opacity duration-500 group-hover:opacity-100"
+                className="hairline-h max-w-[22rem] flex-1 transition-opacity duration-500 group-hover:opacity-100"
                 style={{ backgroundColor: "rgba(245,241,234,.45)" }}
               />
             </a>
@@ -289,11 +323,11 @@ export function SiteHeader() {
           >
             <span aria-hidden="true" className="relative block h-4 w-5">
               <span
-                className="absolute left-0 top-1/2 h-px w-full rotate-45"
+                className="absolute left-0 top-1/2 hairline-h w-full rotate-45"
                 style={{ backgroundColor: MENU_FG }}
               />
               <span
-                className="absolute left-0 top-1/2 h-px w-full -rotate-45"
+                className="absolute left-0 top-1/2 hairline-h w-full -rotate-45"
                 style={{ backgroundColor: MENU_FG }}
               />
             </span>

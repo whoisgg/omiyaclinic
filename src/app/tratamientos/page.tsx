@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getTreatments, type Category } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
+import { RuleLink } from "@/components/rule-link";
 import { LogoMark } from "@/components/logo-mark";
 
 type SearchParams = Promise<{ cat?: string }>;
@@ -95,12 +96,12 @@ export default async function TratamientosPage({
                       {c.description}
                     </p>
                   </Link>
-                  <Link
+                  <RuleLink
                     href={`/tratamientos?cat=${c.id}#catalogo`}
-                    className="btn-underline mt-5 inline-block text-xs text-zinc-900"
+                    className="mt-5 text-zinc-900"
                   >
                     Ver tratamientos
-                  </Link>
+                  </RuleLink>
                 </article>
               );
             })}
@@ -126,12 +127,12 @@ export default async function TratamientosPage({
                     {t.shortDescription}
                   </p>
                 </Link>
-                <Link
+                <RuleLink
                   href={`/tratamientos/${t.slug}`}
-                  className="btn-underline mt-5 inline-block text-xs text-zinc-900"
+                  className="mt-5 text-zinc-900"
                 >
                   Ver detalles
-                </Link>
+                </RuleLink>
               </article>
             );
           })}
@@ -151,20 +152,14 @@ export default async function TratamientosPage({
               Antonieta Ortega para definir tu plan de tratamiento.
             </p>
           </div>
-          <a
+          <RuleLink
             href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-luxe shrink-0 px-10 py-4 text-center text-xs text-white/90"
-            style={
-              {
-                "--luxe-fill": "#ffffff",
-                "--luxe-fill-text": "#18181b",
-              } as React.CSSProperties
-            }
+            external
+            ruleClass="w-20 lg:w-28"
+            className="shrink-0 text-[#b08a4f]"
           >
             Agendar diagnóstico
-          </a>
+          </RuleLink>
         </div>
       </section>
     </main>
@@ -221,7 +216,7 @@ function FilterLink({
     <Link
       href={href}
       scroll={false}
-      className={`relative shrink-0 whitespace-nowrap pb-1 text-xs uppercase tracking-widest transition-colors after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:bg-zinc-900 after:transition-transform after:duration-300 ${
+      className={`relative shrink-0 whitespace-nowrap pb-1 text-xs uppercase tracking-widest transition-colors after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:origin-left after:bg-zinc-900 after:transition-transform after:duration-300 ${
         active
           ? "text-zinc-900 after:scale-x-100"
           : "text-zinc-500 hover:text-zinc-900 after:scale-x-0"
