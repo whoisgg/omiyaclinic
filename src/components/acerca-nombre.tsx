@@ -29,13 +29,27 @@ export function AcercaNombre() {
   return (
     <section className="relative overflow-hidden bg-night">
       <div className="lg:grid lg:min-h-[720px] lg:grid-cols-2">
-        {/* La foto no lleva Reveal propio: al ser media pantalla contra un
-            panel negro, el fade la haría aparecer como un agujero que se
-            rellena. Entra con la sección. */}
-        <div className="relative aspect-[16/10] w-full lg:aspect-auto lg:h-full">
+        {/* La foto es el monumento de la entrada del parque Ōmiya, con el
+            nombre tallado en la placa. Es la única del sitio que no sale del
+            reportaje de la clínica, y está acá porque la sección habla del
+            origen del nombre: enseñar el 大宮 real, tallado en piedra y
+            madera, dice eso mejor que cualquier interior.
+
+            Viene recortada a 4:3 desde un vertical, y el recorte se hizo a
+            mano en vez de dejárselo a `object-position`: la placa corre por
+            el centro en vertical, así que una ventana apaisada centrada la
+            partía por la mitad y se comía el 大 de arriba y el 園 de abajo.
+            La ventana arranca en la fila 265 del original, que deja la placa
+            entera con aire por los dos lados. Por eso el hueco de móvil pasó
+            de 16/10 a 4:3: para no volver a recortarla.
+
+            No lleva Reveal propio: al ser media pantalla contra un panel
+            negro, el fade la haría aparecer como un agujero que se rellena.
+            Entra con la sección. */}
+        <div className="relative aspect-[4/3] w-full lg:aspect-auto lg:h-full">
           <Image
-            src="/acerca/nombre.webp"
-            alt="El logotipo de Omiya Clinic en relieve sobre el muro, entre las ramas del momiji"
+            src="/acerca/nombre-v2.webp"
+            alt="Monumento de piedra a la entrada del parque Ōmiya, en Japón, con el nombre 大宮公園 tallado en una placa de madera, entre cerezos en flor"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover object-center"
