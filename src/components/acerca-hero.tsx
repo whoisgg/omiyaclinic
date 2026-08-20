@@ -34,7 +34,7 @@ const FOTO_FONDO: string | null = "/acerca/hero-jardin.webp";
 
 export function AcercaHero() {
   return (
-    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-cream">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-cream-pale">
       {/* En desktop la foto va detrás de todo, a pantalla completa. En móvil
           no: a 390px una foto de fondo bajo el titular lo deja sin contraste,
           así que el wireframe la baja a una banda en flujo y el texto vuelve
@@ -58,7 +58,7 @@ export function AcercaHero() {
               foto hasta que el negro del titular vuelva a leerse sin pelear.
               Va en el crema de la marca y no en blanco o negro: cualquiera de
               los dos le cambia la temperatura a la imagen. */}
-          <div className="absolute inset-0 bg-cream/65" />
+          <div className="absolute inset-0 bg-cream-pale/65" />
         </div>
       ) : null}
 

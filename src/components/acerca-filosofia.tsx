@@ -33,7 +33,7 @@ const PARRAFOS = [
  */
 export function AcercaFilosofia() {
   return (
-    <section className="bg-cream">
+    <section className="bg-cream-pale">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex items-start gap-6 lg:gap-16">
           <SectionRail kanji="私たちの信条" />

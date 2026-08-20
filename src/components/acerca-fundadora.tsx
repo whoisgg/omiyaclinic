@@ -31,7 +31,7 @@ const FICHA = [
  */
 export function AcercaFundadora() {
   return (
-    <section id="fundadora" className="scroll-mt-20 bg-cream-pale">
+    <section id="fundadora" className="scroll-mt-20 bg-cream">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex items-start gap-6 lg:gap-14">
           <SectionRail kanji="院長の言葉" />
