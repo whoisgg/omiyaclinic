@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { HeroMomiji } from "@/components/hero-momiji";
 import { HomeEnfoque } from "@/components/home-enfoque";
 import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
@@ -5,7 +7,6 @@ import { Reveal } from "@/components/reveal";
 import { HomeFounder } from "@/components/home-founder";
 import { HomeExperiencia } from "@/components/home-experiencia";
 import { HomeCierre } from "@/components/home-cierre";
-import { PhotoBand } from "@/components/photo-band";
 import { DisplayHeading } from "@/components/display-heading";
 
 const COMPROMISO = [
@@ -110,64 +111,36 @@ export default function HomePage() {
             wireframe: con los mismos paddings que el resto de las secciones,
             su borde queda alineado con el del texto de arriba y el de los
             principios de abajo.
-            El encuadre salió de medir el archivo: las tapas de los envases
-            altos arrancan en la fila 516 de 1440 y las bases apoyan en la
-            1345, o sea 834 filas de alto útil. Con una banda de 430px solo
-            entraban 662 y había que elegir entre las tapas o las bases.
+
+            Era una banda de tres fotos que se relevaban solas cada cinco
+            segundos; quedó fija en esta —la ficha de plan completándose junto
+            a las cajas de producto— porque es la que cuenta el acompañamiento
+            del que habla la sección. El componente `PhotoBand` salió del
+            proyecto al quedar sin uso: vive en el commit `ba5be32`.
+
+            El encuadre es el que traía esta toma y no el común de la banda:
+            es más cerrada que la de los envases, así que con el ancla de
+            aquélla se iba al pie de la ficha y perdía las cajas. Al 30% entra
+            la fila de producto arriba y la ficha en foco abajo.
 
             El alto va por aspect-ratio y no en px porque las filas visibles
             dependen del ancho: `cover` escala por ancho, así que un alto fijo
             muestra más filas en una pantalla angosta que en una ancha.
-            1800/834 fija la ventana en esas 834 filas en cualquier viewport
-            —616px de alto a 1440, 697px a 1920—, y el 84% la ancla en las
-            filas 509–1343.
 
             En móvil el ratio daría una banda de 158px, así que ahí sigue
             mandando un alto fijo: a 390px la foto entra completa de todos
             modos, porque el recorte pasa a ser horizontal. */}
         <Reveal delay={150}>
           <div className="relative mx-auto mt-12 h-[340px] w-full max-w-[1600px] px-6 sm:px-8 lg:mt-16 lg:h-auto lg:px-12">
-            <PhotoBand
-              className="h-full w-full lg:aspect-[1800/834] lg:h-auto"
-              sizes="100vw"
-              imageClassName="object-cover object-[50%_86%] lg:object-[50%_84%]"
-              images={[
-                {
-                  src: "/clinica/productos.webp",
-                  alt: "Selección de productos de cuidado de la piel sobre el mesón de la clínica",
-                },
-                {
-                  src: "/clinica/productos-2.webp",
-                  alt: "Ficha de plan de tratamiento completándose junto a las cajas de producto",
-                  // Encuadre propio: esta toma es más cerrada que la anterior
-                  // de la misma escena, así que con el 84% común la banda se
-                  // iba al pie de la ficha y perdía las cajas. Al 30% entra la
-                  // fila de producto arriba y la ficha en foco abajo.
-                  className: "object-cover object-[50%_35%] lg:object-[50%_30%]",
-                },
-                {
-                  src: "/clinica/productos-3.webp",
-                  alt: "Box de atención de la clínica, con el sillón junto al ventanal y la vista de la ciudad",
-                  // Encuadre propio, el fijado en la 48a. El 84% común está
-                  // calibrado para que los envases de la primera foto queden
-                  // apoyados en el mesón, y acá dejaba el ventanal fuera.
-                  //
-                  // A diferencia de las otras dos, esta foto no se normalizó al
-                  // aspect 1.25: su ancla horizontal es 62% y no 50%, así que
-                  // recortarla por el centro habría movido ese porcentaje a
-                  // otro cuadro. En desktop la banda muestra el ancho completo
-                  // —el 62% no hace nada ahí— y recién en móvil, donde la caja
-                  // es más angosta, es el que deja el sillón y el ventanal
-                  // dentro del recorte.
-                  //
-                  // El 40% vertical de la 48a subió al 85%: dejaba el sillón
-                  // cortado a media altura y no se veía dónde apoya. La foto
-                  // ya llega hasta su base, así que el 85% es casi todo lo que
-                  // se le puede bajar.
-                  className: "object-cover object-[62%_85%]",
-                },
-              ]}
-            />
+            <div className="relative h-full w-full overflow-hidden lg:aspect-[1800/834] lg:h-auto">
+              <Image
+                src="/clinica/productos-2.webp"
+                alt="Ficha de plan de tratamiento completándose junto a las cajas de producto"
+                fill
+                sizes="100vw"
+                className="object-cover object-[50%_35%] lg:object-[50%_30%]"
+              />
+            </div>
           </div>
         </Reveal>
 
