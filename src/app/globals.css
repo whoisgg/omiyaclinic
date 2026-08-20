@@ -245,6 +245,19 @@ body {
   font-size: clamp(2.25rem, 6vw, 4.75rem);
   line-height: 0.95;
 }
+/* Un punto más de aire entre renglones. El 0.92 de .display y el 0.95 de
+   .display-sm están calibrados para líneas que no bajan de la base: en
+   "¿Qué es / Well-aging?" el rabo del signo de apertura aterriza justo sobre
+   la W del renglón siguiente y las dos formas se tocan. Es el mismo motivo
+   por el que la escala display pide 2-3 palabras por línea; cuando la frase
+   trae un signo que desciende, hay que devolverle el espacio.
+
+   Va después de .display-sm a propósito: las dos son un selector de clase y
+   empatan en especificidad, así que gana la que viene última. */
+.display-loose {
+  line-height: 1.08;
+}
+
 /* Escala del hero: manda toda la pantalla, así que va un punto más grande. */
 .display-xl {
   font-size: clamp(3.25rem, 10vw, 8.75rem);
