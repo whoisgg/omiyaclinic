@@ -60,11 +60,29 @@ export function SectionMarker({
  * arranca a la altura del eyebrow, salteándose lo que ocupan el numeral, su
  * regla y sus márgenes. Son los mismos valores del home.
  */
-export function SectionRail({ kanji }: { kanji: string }) {
+export function SectionRail({
+  kanji,
+  align = "eyebrow",
+}: {
+  kanji: string;
+  /**
+   * `eyebrow` baja el riel hasta que el kanji arranca a la altura del rótulo,
+   * salteándose el numeral y su regla. Es el caso normal, con el marcador
+   * justo al lado.
+   *
+   * `top` lo ancla arriba del todo. Es para cuando el riel no acompaña al
+   * marcador sino a otra cosa —en "El nombre" cierra el bloque por la derecha,
+   * enfrentado a una foto que ocupa el alto completo— y bajarlo lo dejaría
+   * flotando a media altura.
+   */
+  align?: "eyebrow" | "top";
+}) {
   return (
     <Reveal
       delay={200}
-      className="mt-14 w-11 shrink-0 lg:mt-[4.2rem] lg:w-14"
+      className={`w-11 shrink-0 lg:w-14 ${
+        align === "top" ? "self-start" : "mt-14 lg:mt-[4.2rem]"
+      }`}
     >
       <div className="flex flex-col items-center gap-6">
         <span

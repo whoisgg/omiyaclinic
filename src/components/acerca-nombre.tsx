@@ -87,11 +87,23 @@ export function AcercaNombre() {
             </figure>
           </Reveal>
 
-          <div className="mt-12 flex items-center lg:mt-0">
-            <div className="flex items-start gap-6 lg:gap-14">
-              <SectionRail kanji="大いなる宮" />
+          <div className="mt-12 lg:mt-0 lg:h-full">
+            {/* El riel va a la derecha del texto y no a su izquierda como en
+                el resto de la página. Acá la foto ocupa la mitad izquierda,
+                así que con el riel entremedio quedaba varado entre las dos
+                columnas, sin pertenecer a ninguna. A la derecha cierra el
+                bloque, que además es como está en el hero del landing: el
+                marcador abre a la izquierda y el kanji cierra a la derecha.
 
-              <div className="flex-1">
+                Y arranca arriba del todo, a la altura del borde superior de
+                la foto. El desplazamiento que trae por defecto existe para
+                alinear el kanji con el eyebrow cuando el marcador está justo
+                al lado; acá el riel enfrenta una foto que ocupa el alto
+                completo, así que bajarlo lo dejaba flotando a media altura. */}
+            <div className="flex items-start gap-6 lg:h-full lg:gap-14">
+              {/* El texto se centra en el alto de la foto; el riel no lo
+                  acompaña, se queda arriba. */}
+              <div className="flex flex-1 flex-col justify-center lg:h-full">
                 <SectionMarker numeral="03" eyebrow="El nombre" />
 
                 {/* El kanji va como texto decorativo y no como encabezado: el
@@ -132,6 +144,8 @@ export function AcercaNombre() {
                   />
                 </Reveal>
               </div>
+
+              <SectionRail kanji="大いなる宮" align="top" />
             </div>
           </div>
         </div>
