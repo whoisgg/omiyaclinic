@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { Reveal } from "@/components/reveal";
-import { SectionRail } from "@/components/section-rail";
+import { SectionMarker, SectionRail } from "@/components/section-rail";
 
 const PARRAFO =
   "Inspirado en la serenidad de los templos japoneses y la precisión de la medicina contemporánea, Omiya (大宮) simboliza el “Gran Palacio” del bienestar. Para nosotros, el cuerpo es un templo que merece ser cuidado con la máxima delicadeza, honrando su historia y su evolución natural a través del tiempo.";
@@ -28,8 +28,8 @@ export function AcercaNombre() {
             rellena. Entra con la sección. */}
         <div className="relative aspect-[16/10] w-full lg:aspect-auto lg:h-full">
           <Image
-            src="/esencia.webp"
-            alt="Recepción de Omiya Clinic"
+            src="/acerca/nombre.webp"
+            alt="El logotipo de Omiya Clinic en relieve sobre el muro, entre las ramas del momiji"
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover object-center"
@@ -38,22 +38,19 @@ export function AcercaNombre() {
 
         <div className="flex items-center px-6 py-20 sm:px-8 lg:px-12 lg:py-24">
           <div className="flex items-start gap-6 lg:gap-14">
-            <SectionRail
-              kanji="大いなる宮"
-              numeral="03"
-              label="El nombre"
-              tone="dark"
-            />
+            <SectionRail kanji="大いなる宮" />
 
             <div className="flex-1">
+              <SectionMarker numeral="03" eyebrow="El nombre" />
+
               {/* El kanji va como texto decorativo y no como encabezado: el
                   h2 es la frase en español. En una página en español el
                   encabezado no puede ser el ideograma. */}
-              <Reveal delay={80}>
+              <Reveal delay={160}>
                 <p
                   aria-hidden="true"
                   lang="ja"
-                  className="font-jp text-[40px] font-normal leading-none text-gold lg:text-[52px]"
+                  className="mt-8 font-jp text-[40px] font-normal leading-none text-gold lg:text-[52px]"
                 >
                   大宮
                 </p>

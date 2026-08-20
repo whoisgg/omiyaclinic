@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { DisplayHeading } from "@/components/display-heading";
 import { Reveal } from "@/components/reveal";
-import { SectionRail } from "@/components/section-rail";
+import { SectionMarker, SectionRail } from "@/components/section-rail";
 
 const PARRAFO =
   "El well-aging es el arte de envejecer con plenitud. A diferencia del concepto tradicional de “anti-envejecimiento”, abrazamos el paso del tiempo como un proceso natural que puede gestionarse con elegancia y consciencia.";
@@ -25,13 +25,11 @@ export function AcercaConcepto() {
     <section className="bg-cream">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex items-start gap-6 lg:gap-16">
-          <SectionRail kanji="時を重ねる" numeral="01" label="Nuestro concepto" />
+          <SectionRail kanji="時を重ねる" />
 
           <div className="flex-1 lg:grid lg:grid-cols-[minmax(0,1fr)_44%] lg:items-start lg:gap-x-16">
             <div>
-              <Reveal delay={80}>
-                <p className="eyebrow text-gold">Nuestro concepto</p>
-              </Reveal>
+              <SectionMarker numeral="01" eyebrow="Nuestro concepto" />
 
               <DisplayHeading
                 lines={["¿Qué es", "Well-aging?"]}
@@ -40,21 +38,14 @@ export function AcercaConcepto() {
                 className="mt-6 display-loose text-zinc-900"
               />
 
-              <Reveal delay={200}>
-                <span
-                  aria-hidden="true"
-                  className="mt-8 block hairline-h w-12 bg-gold lg:w-16"
-                />
-              </Reveal>
-
               {/* La foto, solo en móvil. En desktop vive en la columna de la
                   derecha y no se repite: son dos posiciones del mismo bloque,
                   no dos bloques. */}
               <Reveal delay={280} className="lg:hidden">
                 <div className="relative mt-10 aspect-[4/3] w-full overflow-hidden">
                   <Image
-                    src="/esencia.webp"
-                    alt="Recepción de Omiya Clinic, con el logo iluminado sobre el muro"
+                    src="/acerca/concepto.webp"
+                    alt="Sala de espera de Omiya Clinic: una paciente con una infusión junto al ventanal"
                     fill
                     sizes="100vw"
                     className="object-cover object-center"
@@ -68,11 +59,22 @@ export function AcercaConcepto() {
                 </p>
               </Reveal>
 
-              {/* La cita se apoya en una vertical dorada en vez de comillas de
-                  adorno: es la misma raya que cierra las otras secciones,
-                  puesta de canto. */}
+              {/* Una sola raya en el bloque, y va acá: separando el párrafo de
+                  la cita, que es donde el texto cambia de voz. Antes había
+                  cuatro líneas en la sección —la regla del numeral, la
+                  vertical del kanji, una horizontal colgando del titular y la
+                  vertical de la cita— y la regla del sitio es dos por sección
+                  y no más. La del numeral y la del kanji se quedan porque
+                  arman el marcador; las otras dos se resuelven en ésta. */}
+              <Reveal delay={320}>
+                <span
+                  aria-hidden="true"
+                  className="mt-12 block hairline-h w-12 bg-gold lg:mt-14 lg:w-16"
+                />
+              </Reveal>
+
               <Reveal delay={360}>
-                <blockquote className="mt-10 max-w-xl border-l-2 border-gold pl-6 font-serif text-[22px] font-light leading-[1.45] text-zinc-900 lg:mt-12 lg:pl-8 lg:text-[28px]">
+                <blockquote className="mt-10 max-w-xl font-serif text-[22px] font-light leading-[1.45] text-zinc-900 lg:mt-12 lg:text-[28px]">
                   {CITA}
                 </blockquote>
               </Reveal>
@@ -81,8 +83,8 @@ export function AcercaConcepto() {
             <Reveal delay={200} className="hidden lg:block">
               <div className="relative aspect-[4/5] w-full overflow-hidden">
                 <Image
-                  src="/esencia.webp"
-                  alt="Recepción de Omiya Clinic, con el logo iluminado sobre el muro"
+                  src="/acerca/concepto.webp"
+                  alt="Sala de espera de Omiya Clinic: una paciente con una infusión junto al ventanal"
                   fill
                   sizes="44vw"
                   className="object-cover object-center"

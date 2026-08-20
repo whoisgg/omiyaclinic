@@ -1,6 +1,6 @@
 import { DisplayHeading } from "@/components/display-heading";
 import { Reveal } from "@/components/reveal";
-import { SectionRail } from "@/components/section-rail";
+import { SectionMarker, SectionRail } from "@/components/section-rail";
 
 const PILARES = [
   {
@@ -52,12 +52,10 @@ export function AcercaPilares() {
     <section className="bg-cream-pale">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex items-start gap-6 lg:gap-16">
-          <SectionRail kanji="五つの柱" numeral="02" label="Nuestra mirada" />
+          <SectionRail kanji="五つの柱" />
 
           <div className="flex-1">
-            <Reveal delay={80}>
-              <p className="eyebrow text-gold">Nuestra mirada</p>
-            </Reveal>
+            <SectionMarker numeral="02" eyebrow="Nuestra mirada" />
 
             <DisplayHeading
               lines={["Pilares del", "Well Aging"]}

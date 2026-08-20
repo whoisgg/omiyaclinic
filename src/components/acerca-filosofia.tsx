@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { Reveal } from "@/components/reveal";
-import { SectionRail } from "@/components/section-rail";
+import { SectionMarker, SectionRail } from "@/components/section-rail";
 
 const CITA =
   "“Creemos que la medicina estética debe ayudar a las personas a sentirse mejor consigo mismas, sin perder aquello que las hace únicas.”";
@@ -28,17 +28,11 @@ export function AcercaFilosofia() {
     <section className="bg-cream">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex items-start gap-6 lg:gap-16">
-          <SectionRail
-            kanji="私たちの信条"
-            numeral="04"
-            label="Nuestra filosofía"
-          />
+          <SectionRail kanji="私たちの信条" />
 
           <div className="flex-1 lg:grid lg:grid-cols-[minmax(0,1fr)_42%] lg:items-start lg:gap-x-16">
             <div>
-              <Reveal delay={80}>
-                <p className="eyebrow text-gold">Nuestra filosofía</p>
-              </Reveal>
+              <SectionMarker numeral="04" eyebrow="Nuestra filosofía" />
 
               <Reveal delay={160}>
                 <blockquote className="mt-6 max-w-2xl font-serif text-[26px] font-light leading-[1.3] text-zinc-900 lg:mt-8 lg:text-[40px]">
@@ -71,8 +65,8 @@ export function AcercaFilosofia() {
               <Reveal delay={280}>
                 <div className="relative mt-10 aspect-[16/10] w-full overflow-hidden lg:mt-12">
                   <Image
-                    src="/treatments/bioestimulacion.webp"
-                    alt="Detalle de un tratamiento facial en Omiya Clinic"
+                    src="/acerca/filosofia.webp"
+                    alt="La doctora evaluando el rostro de una paciente durante la consulta"
                     fill
                     sizes="(min-width: 1024px) 42vw, 100vw"
                     className="object-cover object-center"

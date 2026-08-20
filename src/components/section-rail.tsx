@@ -1,78 +1,82 @@
 import { Reveal } from "@/components/reveal";
 
 /**
- * Riel vertical de sección, la columna angosta que abre cada bloque de Acerca
- * de: kanji, hairline, numeral y el rótulo de la sección en vertical.
+ * El marcador de sección del sitio, en sus dos piezas.
  *
- * Es una variante del lenguaje del home y no un invento nuevo. Allá el
- * marcador se parte en dos zonas —numeral y eyebrow sobre el titular, kanji y
- * vertical en una columna aparte—; acá los cuatro elementos se apilan en una
- * sola columna a la izquierda, que es lo que pedía el wireframe 32.
+ * Es el mismo bloque con que abren las secciones del home y no una variante:
+ * a la izquierda el numeral con su regla y el eyebrow sobre el titular, y en
+ * una columna aparte el kanji con su vertical. Acerca de lo tenía al revés
+ * —numeral y rótulo apilados dentro del riel, y el kanji en tinta— así que
+ * el mismo elemento no se veía igual en dos páginas seguidas.
  *
- * El ancho va explícito y con `shrink-0` por el mismo motivo que en el home:
- * en WebKit —o sea todo navegador en iPhone, Chrome incluido— un elemento con
- * `writing-mode: vertical-rl` no le propaga su ancho intrínseco al ítem flex
- * que lo contiene, el ítem colapsa a cero y las columnas se montan una sobre
- * otra. El valor sale de la cuenta: font-size x line-height.
- *
- * El rótulo va con las letras derechas (`text-orientation: upright`) y no
- * girado: es el mismo gesto que el riel "AGENDAR" del header, y a esta escala
- * un texto girado 90° obliga a ladear la cabeza para leer dos palabras.
- *
- * Su tracking es 0.22em y no el 0.5em del eyebrow horizontal. En vertical el
- * tracking se convierte en separación entre renglones de una letra, así que
- * el valor del canon estiraba "FILOSOFÍA OMIYA" a más de 250px y el rótulo
- * terminaba midiendo más que el kanji que lo encabeza.
+ * Las dos piezas van separadas porque en el layout viven separadas: el
+ * marcador abre la columna de texto y el riel es una columna propia.
  */
-export function SectionRail({
-  kanji,
+
+/**
+ * Numeral, regla y eyebrow, apilados sobre el titular.
+ *
+ * Los tres tiempos de entrada —0 para el numeral, 80 para el eyebrow— son los
+ * de la cascada documentada en globals.css. El riel entra a 200.
+ */
+export function SectionMarker({
   numeral,
-  label,
-  tone = "light",
-  className = "",
+  eyebrow,
 }: {
-  /** El verso japonés de la sección, en vertical. */
-  kanji: string;
-  /** "01", "02"… El hero va sin numeral. */
-  numeral?: string;
-  /** El rótulo de la sección, en vertical y en versalitas. */
-  label: string;
-  /** `dark` es el panel negro de "El significado de Omiya". */
-  tone?: "light" | "dark";
-  className?: string;
+  /** "01", "02"… Va en la serif de marca: en la sans un numeral chico sobre
+   *  un hairline se lee como dos rayas apiladas. */
+  numeral: string;
+  eyebrow: string;
 }) {
   return (
-    <Reveal className={`w-9 shrink-0 lg:w-11 ${className}`}>
-      <div className="flex flex-col items-center">
+    <>
+      <Reveal>
+        <p className="font-serif text-[17px] leading-none tracking-[0.12em] text-gold lg:text-[22px]">
+          {numeral}
+        </p>
+        <span
+          aria-hidden="true"
+          className="mt-4 block hairline-h w-9 bg-gold lg:mt-5 lg:w-11"
+        />
+      </Reveal>
+      <Reveal delay={80}>
+        <p className="mt-6 eyebrow text-gold">{eyebrow}</p>
+      </Reveal>
+    </>
+  );
+}
+
+/**
+ * El riel: el kanji en vertical y su hairline colgando, nada más.
+ *
+ * Va en oro, como el de Tratamientos y el de Nuestro compromiso. El ancho es
+ * explícito y con `shrink-0` porque en WebKit —o sea todo navegador en
+ * iPhone, Chrome incluido— un elemento con `writing-mode: vertical-rl` no le
+ * propaga su ancho intrínseco al ítem flex que lo contiene: el ítem colapsa a
+ * cero y las columnas se montan una sobre otra. El valor sale de la cuenta,
+ * font-size x line-height.
+ *
+ * El margen superior tampoco es decorativo: baja el riel hasta que el kanji
+ * arranca a la altura del eyebrow, salteándose lo que ocupan el numeral, su
+ * regla y sus márgenes. Son los mismos valores del home.
+ */
+export function SectionRail({ kanji }: { kanji: string }) {
+  return (
+    <Reveal
+      delay={200}
+      className="mt-14 w-11 shrink-0 lg:mt-[4.2rem] lg:w-14"
+    >
+      <div className="flex flex-col items-center gap-6">
         <span
           lang="ja"
-          className={`font-jp text-[19px] leading-[1.6] [writing-mode:vertical-rl] lg:text-[24px] ${
-            tone === "dark" ? "text-night-fg" : "text-ink"
-          }`}
+          className="w-9 font-jp text-[19px] leading-[1.6] text-gold [writing-mode:vertical-rl] lg:w-11 lg:text-[24px]"
         >
           {kanji}
         </span>
-
         <span
           aria-hidden="true"
-          className="mt-6 h-16 hairline-v bg-gold lg:mt-8 lg:h-20"
+          className="h-32 hairline-v bg-gold lg:h-40"
         />
-
-        {numeral ? (
-          <span className="mt-6 font-sans text-[9px] tracking-[0.2em] text-gold lg:mt-8">
-            {numeral}
-          </span>
-        ) : null}
-
-        {/* El rótulo es decorativo: la sección ya lleva su eyebrow horizontal
-            con el mismo texto, y el titular es el encabezado real. Repetirlo
-            para un lector de pantalla sería oírlo dos veces seguidas. */}
-        <span
-          aria-hidden="true"
-          className="mt-6 font-sans text-[10px] uppercase leading-none tracking-[0.22em] text-gold [text-orientation:upright] [writing-mode:vertical-rl] lg:mt-7"
-        >
-          {label}
-        </span>
       </div>
     </Reveal>
   );

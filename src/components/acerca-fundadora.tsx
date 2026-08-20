@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { Reveal } from "@/components/reveal";
 import { RuleLink } from "@/components/rule-link";
-import { SectionRail } from "@/components/section-rail";
+import { SectionMarker, SectionRail } from "@/components/section-rail";
 
 const CITA =
   "“La estética debe ayudarnos a sentirnos mejor con quienes somos, no a convertirnos en alguien diferente.”";
@@ -34,11 +34,7 @@ export function AcercaFundadora() {
     <section id="fundadora" className="scroll-mt-20 bg-cream-pale">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-20 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex items-start gap-6 lg:gap-14">
-          <SectionRail
-            kanji="院長の言葉"
-            numeral="05"
-            label="La fundadora"
-          />
+          <SectionRail kanji="院長の言葉" />
 
           <div className="flex-1 lg:grid lg:grid-cols-[38%_minmax(0,1fr)] lg:items-start lg:gap-x-16">
             <Reveal>
@@ -54,9 +50,7 @@ export function AcercaFundadora() {
             </Reveal>
 
             <div className="mt-10 lg:mt-0">
-              <Reveal delay={80}>
-                <p className="eyebrow text-gold">La fundadora</p>
-              </Reveal>
+              <SectionMarker numeral="05" eyebrow="La fundadora" />
 
               {/* No usa DisplayHeading: el nombre es una sola línea larga y
                   aquel compone bloques de dos o tres palabras. A escala de
@@ -75,7 +69,7 @@ export function AcercaFundadora() {
               </Reveal>
 
               <Reveal delay={320}>
-                <blockquote className="mt-8 max-w-xl border-l-2 border-gold pl-6 font-serif text-[22px] font-light leading-[1.45] text-zinc-900 lg:mt-10 lg:pl-8 lg:text-[28px]">
+                <blockquote className="mt-8 max-w-xl font-serif text-[22px] font-light leading-[1.45] text-zinc-900 lg:mt-10 lg:text-[28px]">
                   {CITA}
                 </blockquote>
               </Reveal>

@@ -20,13 +20,17 @@ const DIRECCION = "Del Pucará 50, Machalí";
  * izquierda y el rótulo en el borde derecho—. Forzar el componente habría
  * sido reusarlo de nombre y no de forma.
  *
- * LA FOTO ESTÁ PENDIENTE. El wireframe la anota como "jardín/parque de Omiya
- * o exterior de la clínica" y todavía no existe en el proyecto. Mientras
- * tanto la portada se compone sobre el crema, que es como se ve el wireframe:
- * basta con apuntar FOTO_FONDO al archivo y el velo, el recorte y el resto
- * del bloque ya están puestos.
+ * La foto no es la que pedía el wireframe —anotaba "jardín/parque de Omiya o
+ * exterior de la clínica"— porque en las 325 fotos del reportaje de Claudia
+ * Ferrer no hay una sola de exterior: son todas interiores. Lo más cercano a
+ * un jardín es este macro del macetero del momiji, con el musgo, las hojas
+ * caídas y el pasto, y resuelve la misma idea con material propio en vez de
+ * con un banco de imágenes.
+ *
+ * Además calza con el encuadre: la mitad inferior izquierda, que es donde cae
+ * el titular, está desenfocada y clara, así que la tinta se lee sin pelear.
  */
-const FOTO_FONDO: string | null = null;
+const FOTO_FONDO: string | null = "/acerca/hero-jardin.webp";
 
 export function AcercaHero() {
   return (
@@ -48,7 +52,7 @@ export function AcercaHero() {
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-[50%_38%]"
           />
           {/* El velo no es para oscurecer sino para bajarle el contraste a la
               foto hasta que el negro del titular vuelva a leerse sin pelear.
@@ -58,7 +62,7 @@ export function AcercaHero() {
         </div>
       ) : null}
 
-      <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-6 pb-8 pt-28 sm:px-8 lg:px-12 lg:pb-10 lg:pt-32">
+      <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-6 pb-8 pt-24 sm:px-8 lg:px-12 lg:pb-10 lg:pt-32">
         {/* ── Franja superior: el kanji y, en desktop, el riel derecho ── */}
         <div className="flex items-start justify-between gap-8 lg:flex-1">
           <Reveal>
@@ -93,7 +97,7 @@ export function AcercaHero() {
             es el orden del wireframe 32b. */}
         {FOTO_FONDO ? (
           <Reveal delay={120} className="lg:hidden">
-            <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden">
+            <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden">
               <Image
                 src={FOTO_FONDO}
                 alt=""
