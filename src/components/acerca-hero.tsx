@@ -64,7 +64,7 @@ export function AcercaHero() {
 
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-6 pb-8 pt-24 sm:px-8 lg:px-12 lg:pb-10 lg:pt-32">
         {/* ── Franja superior: el kanji y, en desktop, el riel derecho ── */}
-        <div className="flex items-start justify-between gap-8 lg:flex-1">
+        <div className="relative flex items-start lg:flex-1">
           <Reveal>
             <p
               aria-hidden="true"
@@ -75,24 +75,44 @@ export function AcercaHero() {
             </p>
           </Reveal>
 
-          {/* El rótulo de la sección, contra el borde derecho, compuesto igual
-              que el "El arte de / envejecer / mejor" del hero del landing:
-              horizontal y en varias líneas, entre dos rayas —la vertical
-              arriba y la horizontal abajo— que arman la L que se repite en
-              todo el sitio. Antes iba en vertical con las letras derechas y
-              era el único de su especie.
+          {/* El riel, calcado del hero del landing: no va pegado al borde
+              derecho sino posicionado dentro del cuadro. Pegado a la derecha
+              quedaba contra el botón de agendar y arriba del todo, y por eso
+              no se leía como el mismo elemento aunque las piezas fueran las
+              mismas.
 
-              Va en tinta y no en oro, también como allá: a 11px sobre una
-              foto, el oro se lava y el rótulo desaparecía. El oro queda en
-              las dos rayas, que es donde el acento se ve.
+              El 68% del eje horizontal es el mismo número que allá y cae en
+              el mismo pixel, porque la caja que lo contiene mide igual: el
+              ancho del eje menos el padding lateral.
+
+              El vertical, en cambio, va a 20% y no al 26% del landing. No es
+              una discrepancia: el porcentaje se mide contra cajas distintas.
+              Allá la franja ocupa casi todo el hero, porque el hero no tiene
+              titular abajo; acá arranca bajo el padding superior y termina
+              donde empieza "Acerca de Omiya". Con el 26% el riel caía 34px
+              más abajo que el del landing. Lo que tiene que coincidir es
+              dónde queda en pantalla, y a 20% cae a 2px del original.
+
+              Las piezas también son las de allá: la vertical, el rótulo en
+              tinta, el descriptor atenuado y la horizontal que cierra. El
+              descriptor repite el del landing —"clínica premium de
+              well-aging"— y eso es deliberado: es la bajada de la marca, así
+              que las dos portadas del sitio la dicen igual en vez de inventar
+              una variante por página.
+
+              El rótulo va en tinta y no en oro: a 11px sobre una foto el oro
+              se lava. El oro queda en las dos rayas.
 
               En móvil no va: el wireframe deja ese lado libre para que la
               banda de foto respire. */}
           <Reveal
             delay={200}
-            className="hidden shrink-0 lg:flex lg:flex-col lg:items-start"
+            className="absolute right-0 top-[20%] hidden flex-col items-start lg:left-[68%] lg:right-auto lg:flex"
           >
-            <span aria-hidden="true" className="mb-8 h-20 hairline-v bg-gold" />
+            <span
+              aria-hidden="true"
+              className="mb-6 h-16 hairline-v bg-gold lg:mb-8 lg:h-20"
+            />
             <p
               aria-hidden="true"
               className="font-sans text-[10px] font-normal uppercase leading-[2.1] tracking-[0.26em] text-ink lg:text-[11px] lg:tracking-[0.3em]"
@@ -101,9 +121,17 @@ export function AcercaHero() {
               <br />
               Omiya
             </p>
+            <p
+              aria-hidden="true"
+              className="mt-8 font-sans text-[9px] uppercase leading-[2] tracking-[0.22em] text-ink-muted lg:mt-10 lg:text-[10px]"
+            >
+              Clínica premium
+              <br />
+              de well-aging
+            </p>
             <span
               aria-hidden="true"
-              className="mt-6 block hairline-h w-20 bg-gold"
+              className="mt-5 block hairline-h w-16 bg-gold lg:mt-6 lg:w-20"
             />
           </Reveal>
         </div>
