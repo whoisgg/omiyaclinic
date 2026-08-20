@@ -67,16 +67,22 @@ export function AcercaConcepto() {
                   y no más. La del numeral y la del kanji se quedan porque
                   arman el marcador; las otras dos se resuelven en ésta.
 
-                  Va notoriamente más larga que la del numeral —160px contra
-                  44— y eso es lo que la distingue. A 64px las dos medían casi
-                  lo mismo y la separadora se leía como una segunda regla de
-                  marcador en vez de como lo que es: el corte entre el párrafo
-                  y la cita. Cuando dos rayas cumplen funciones distintas, el
-                  largo es lo que lo dice. */}
+                  Va notoriamente más larga que la del numeral —44px— y eso
+                  es lo que la distingue: cuando dos rayas cumplen funciones
+                  distintas en el mismo bloque, el largo es lo que lo dice.
+                  Las cortas abren, las largas separan.
+
+                  Media columna con tope de 320px. La proporción la ata al
+                  titular mientras éste crece, y el tope la frena cuando deja
+                  de crecer: el `clamp` de la escala display topa la fuente en
+                  76px, así que de 1267px de viewport en adelante el titular
+                  mide siempre 328px de ancho mientras la columna sigue
+                  ensanchando. Sin el tope, a 1920 la raya se pasaba 28px del
+                  signo de cierre. Con él muere 8px antes. */}
               <Reveal delay={320}>
                 <span
                   aria-hidden="true"
-                  className="mt-12 block hairline-h w-24 bg-gold lg:mt-14 lg:w-40"
+                  className="mt-12 block hairline-h w-1/2 max-w-[20rem] bg-gold lg:mt-14"
                 />
               </Reveal>
 

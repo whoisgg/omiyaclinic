@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { SectionMarker, SectionRail } from "@/components/section-rail";
 
 const PARRAFO =
-  "Inspirado en la serenidad de los templos japoneses y la precisión de la medicina contemporánea, Omiya (大宮) simboliza el “Gran Palacio” del bienestar. Para nosotros, el cuerpo es un templo que merece ser cuidado con la máxima delicadeza, honrando su historia y su evolución natural a través del tiempo.";
+  "Inspirado en la serenidad de los templos japoneses y la precisión de la medicina contemporánea, Omiya (大宮) simboliza el “Gran Santuario” del bienestar. Para nosotros, el cuerpo es un templo que merece ser cuidado con la máxima delicadeza, honrando su historia y su evolución natural a través del tiempo.";
 
 /**
  * 03 · El nombre — wireframe 32a/32b.
@@ -18,6 +18,12 @@ const PARRAFO =
  * En desktop la foto ocupa la mitad izquierda y el texto la derecha. En móvil
  * la foto va arriba, a sangre, y el panel negro debajo: partir la pantalla en
  * dos a 390px deja las dos mitades sin aire.
+ *
+ * Dice "Gran Santuario" y no "Gran Palacio", que era la traducción anterior.
+ * El 宮 de 大宮 se traduce por palacio en abstracto, pero en topónimos
+ * japoneses remite al santuario sintoísta —el Ōmiya de Saitama se llama así
+ * por el santuario Hikawa—, y además es lo que sostiene la frase que sigue:
+ * el cuerpo como templo.
  */
 export function AcercaNombre() {
   return (
