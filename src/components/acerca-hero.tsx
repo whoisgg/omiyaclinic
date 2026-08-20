@@ -34,7 +34,7 @@ const FOTO_FONDO: string | null = "/acerca/hero-jardin.webp";
 
 export function AcercaHero() {
   return (
-    <section className="relative flex flex-col overflow-hidden bg-cream lg:min-h-[100dvh]">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-cream">
       {/* En desktop la foto va detrás de todo, a pantalla completa. En móvil
           no: a 390px una foto de fondo bajo el titular lo deja sin contraste,
           así que el wireframe la baja a una banda en flujo y el texto vuelve
@@ -93,10 +93,17 @@ export function AcercaHero() {
           </Reveal>
         </div>
 
-        {/* La banda de móvil. Va después del kanji y antes del titular, que
-            es el orden del wireframe 32b. */}
+        {/* La banda de móvil. Va después del kanji y antes del titular, que es
+            el orden del wireframe 32b, y sangra por los dos bordes con
+            márgenes negativos que cancelan el padding del contenedor.
+
+            Sangrar no es un capricho: es lo que hace que la portada se lea
+            como el hero del landing. Allá la rama se pasa del ancho del
+            viewport y toca los dos bordes; acá, metida dentro del padding, la
+            foto se leía como una tarjeta pegada sobre el crema en vez de como
+            el fondo de una portada. */}
         {FOTO_FONDO ? (
-          <Reveal delay={120} className="lg:hidden">
+          <Reveal delay={120} className="-mx-6 sm:-mx-8 lg:hidden">
             <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden">
               <Image
                 src={FOTO_FONDO}
@@ -110,8 +117,16 @@ export function AcercaHero() {
           </Reveal>
         ) : null}
 
-        {/* ── Bloque del titular, anclado al pie ── */}
-        <div className="mt-16 lg:mt-0">
+        {/* ── Bloque del titular, anclado al pie ──
+            `mt-auto` en móvil: con la sección midiendo una pantalla completa,
+            el titular tiene que caer abajo y no quedar flotando a media
+            altura. En desktop no hace falta porque la franja del kanji ya se
+            estira con `lg:flex-1`.
+
+            Sin padding propio: el margen automático ya se come todo el hueco
+            libre, y sumarle uno encima empujaba el bloque 64px de más y
+            dejaba la sección midiendo 818px contra los 812 de la pantalla. */}
+        <div className="mt-auto lg:mt-0">
           <Reveal>
             <span
               aria-hidden="true"
