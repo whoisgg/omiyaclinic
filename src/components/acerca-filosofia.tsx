@@ -48,10 +48,13 @@ export function AcercaFilosofia() {
                 </blockquote>
               </Reveal>
 
+              {/* Larga, como la de las secciones I y III: la del marcador,
+                  que va arriba, mide 44px y abre; ésta cierra. Con las dos
+                  cortas se leían como la misma raya repetida. */}
               <Reveal delay={240}>
                 <span
                   aria-hidden="true"
-                  className="mt-8 block hairline-h w-12 bg-gold lg:mt-10 lg:w-16"
+                  className="mt-8 block hairline-h w-1/2 max-w-[20rem] bg-gold lg:mt-10"
                 />
               </Reveal>
             </div>

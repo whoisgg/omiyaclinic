@@ -114,16 +114,22 @@ export function AcercaNombre() {
                 </Reveal>
 
                 <Reveal delay={240}>
+                  <p className="mt-10 max-w-xl text-sm leading-[2] text-zinc-600 lg:mt-12">
+                    {PARRAFO}
+                  </p>
+                </Reveal>
+
+                {/* La raya cierra el bloque en vez de partirlo. Entre el
+                    titular y el párrafo metía un corte donde no hay cambio de
+                    voz —el párrafo continúa lo que el titular enuncia— y
+                    dejaba el bloque en tres pedazos. Al final hace lo que
+                    hacen las horizontales del sitio: cerrar la L que abre la
+                    vertical del riel. */}
+                <Reveal delay={320}>
                   <span
                     aria-hidden="true"
                     className="mt-10 block hairline-h w-1/2 max-w-[20rem] bg-gold lg:mt-12"
                   />
-                </Reveal>
-
-                <Reveal delay={320}>
-                  <p className="mt-10 max-w-xl text-sm leading-[2] text-zinc-600 lg:mt-12">
-                    {PARRAFO}
-                  </p>
                 </Reveal>
               </div>
             </div>
