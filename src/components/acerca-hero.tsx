@@ -75,21 +75,36 @@ export function AcercaHero() {
             </p>
           </Reveal>
 
-          {/* El rótulo de la sección, contra el borde derecho. Abre con una
-              vertical, igual que el rail del hero del home. En móvil no va:
-              el wireframe deja ese lado libre para que la banda de foto
-              respire. */}
+          {/* El rótulo de la sección, contra el borde derecho, compuesto igual
+              que el "El arte de / envejecer / mejor" del hero del landing:
+              horizontal y en varias líneas, entre dos rayas —la vertical
+              arriba y la horizontal abajo— que arman la L que se repite en
+              todo el sitio. Antes iba en vertical con las letras derechas y
+              era el único de su especie.
+
+              Va en tinta y no en oro, también como allá: a 11px sobre una
+              foto, el oro se lava y el rótulo desaparecía. El oro queda en
+              las dos rayas, que es donde el acento se ve.
+
+              En móvil no va: el wireframe deja ese lado libre para que la
+              banda de foto respire. */}
           <Reveal
             delay={200}
-            className="hidden w-11 shrink-0 lg:flex lg:flex-col lg:items-center"
+            className="hidden shrink-0 lg:flex lg:flex-col lg:items-start"
           >
-            <span aria-hidden="true" className="h-16 hairline-v bg-gold" />
+            <span aria-hidden="true" className="mb-8 h-20 hairline-v bg-gold" />
+            <p
+              aria-hidden="true"
+              className="font-sans text-[10px] font-normal uppercase leading-[2.1] tracking-[0.26em] text-ink lg:text-[11px] lg:tracking-[0.3em]"
+            >
+              Filosofía
+              <br />
+              Omiya
+            </p>
             <span
               aria-hidden="true"
-              className="mt-6 font-sans text-[10px] uppercase leading-none tracking-[0.22em] text-gold [text-orientation:upright] [writing-mode:vertical-rl]"
-            >
-              Filosofía Omiya
-            </span>
+              className="mt-6 block hairline-h w-20 bg-gold"
+            />
           </Reveal>
         </div>
 
@@ -127,13 +142,6 @@ export function AcercaHero() {
             libre, y sumarle uno encima empujaba el bloque 64px de más y
             dejaba la sección midiendo 818px contra los 812 de la pantalla. */}
         <div className="mt-auto lg:mt-0">
-          <Reveal>
-            <span
-              aria-hidden="true"
-              className="block hairline-h w-12 bg-gold lg:w-16"
-            />
-          </Reveal>
-
           {/* Una sola línea: "Acerca de Omiya" son tres palabras y el
               wireframe las quiere juntas. `immediate` porque está sobre el
               pliegue, donde el observador no aporta nada. */}
@@ -143,7 +151,7 @@ export function AcercaHero() {
             dimFrom={1}
             size="sm"
             immediate
-            className="mt-6 text-zinc-900 lg:mt-8"
+            className="text-zinc-900"
           />
 
           <Reveal delay={280}>
