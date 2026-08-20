@@ -173,11 +173,45 @@ body {
   width: 2px;
 }
 
-/* ── Filosofía de animación única ────────────────────────────────────────
-   Una sola regla en todo el sitio: fade + lift muy sutil.
-   opacity 0→1, translateY(12px)→0, 0.8s, cubic-bezier(0.22, 1, 0.36, 1).
+/* ── Cascada de entrada ──────────────────────────────────────────────────
+   El `delay` de cada <Reveal> no es libre: la escala del sitio va de 80 en
+   80 —0, 80, 160, 240, 320, 400— y el encabezado de sección tiene una
+   cascada fija:
+
+       numeral   0
+       eyebrow   80
+       riel      200
+
+   Es la que usan Tratamientos (II), Compromiso (III) y Experiencia (V). Si
+   agregas una sección con ese bloque, copiá esos tres tiempos y no inventes
+   otros: el riel y el eyebrow entrando juntos —que es como estaba V— hace
+   que el bloque se lea como dos cosas y no como una secuencia.
+
+   Lo que viene DESPUÉS del encabezado —párrafo, enlace, firma— sí se afina
+   por sección, porque depende de cuánto contenido lleve cada una. Ahí los
+   valores no son todos múltiplos de 80 y está bien que no lo sean; son
+   decisiones a ojo, no descuidos.
+
+   Dos excepciones deliberadas al bloque de arriba:
+
+     La fundadora (IV) entra con un solo Reveal para todo el marcador. Su
+     numeral, eyebrow y kanji van apilados en una columna de 56px, y
+     escalonar cuatro elementos dentro de una columna angosta se lee como
+     una máquina tragamonedas en vez de como una cascada.
+
+     Nuestro enfoque (I) tiene su propio encabezado —el título va vertical,
+     en pareja con el japonés— así que no le aplica esta cascada. */
+
+/* ── Entrada base ────────────────────────────────────────────────────────
+   Todo lo que aparece al entrar en pantalla usa esta regla: fade + lift muy
+   sutil. opacity 0→1, translateY(12px)→0, 0.8s, cubic-bezier(0.22, 1, 0.36, 1).
    El fade de opacidad se mantiene siempre (accesible); el lift solo se
-   aplica cuando el usuario no pidió reducir movimiento. */
+   aplica cuando el usuario no pidió reducir movimiento.
+
+   La única que entra distinto es la tipografía display, más abajo: va a 1s y
+   suma blur, porque es el titular y tiene que pesar más que lo que lo rodea.
+   Antes acá decía que había "una sola regla en todo el sitio", y no era
+   exacto. Fuera de estas dos, no hay una tercera. */
 .reveal {
   opacity: 0;
   transition:

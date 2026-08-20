@@ -174,7 +174,7 @@ export function HomeExperiencia() {
                 numeral, hairline y sus márgenes—, y una vertical larga
                 colgando debajo. El ancho explícito es necesario: en WebKit un
                 texto vertical no le propaga su ancho al ítem flex. */}
-            <Reveal delay={80} className="mt-14">
+            <Reveal delay={200} className="mt-14">
               <div className="flex flex-col items-center gap-6">
                 <span
                   lang="ja"
@@ -216,7 +216,7 @@ export function HomeExperiencia() {
           </div>
         </Reveal>
 
-        <Reveal delay={80}>
+        <Reveal delay={200}>
           <Riel />
         </Reveal>
 
