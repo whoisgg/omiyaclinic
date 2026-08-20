@@ -121,15 +121,17 @@ export function HomeExperiencia() {
       {/* La foto arriba a sangre completa y el texto debajo. El riel se
           conserva —japonés y hairline— en una columna angosta a la derecha. */}
       <div className="lg:hidden">
-        <div className="relative aspect-[16/10] w-full">
-          <Image
-            src={FOTO}
-            alt="Detalle del espacio de Omiya Clinic"
-            fill
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-        </div>
+        <Reveal>
+          <div className="relative aspect-[16/10] w-full">
+            <Image
+              src={FOTO}
+              alt="Detalle del espacio de Omiya Clinic"
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+        </Reveal>
 
         <div className="px-6 pb-16 pt-10">
           {/* El riel es una columna propia a la derecha y todo el texto vive

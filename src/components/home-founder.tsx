@@ -109,6 +109,11 @@ export function HomeFounder() {
           La foto va a sangre completa y el texto de abajo con el padding del
           sitio, igual que en el wireframe. */}
       <div className="lg:hidden">
+        {/* El retrato entra con el mismo fade + lift que el resto de las
+            fotos del sitio. El Reveal envuelve la caja de aspecto y no el
+            <Image>: así sube el bloque entero y no queda un hueco de 12px al
+            pie mientras dura la animación. */}
+        <Reveal>
         <div className="relative aspect-[13/20] w-full overflow-hidden">
           <Image
             src="/founder-portrait.webp"
@@ -166,6 +171,7 @@ export function HomeFounder() {
             </Reveal>
           </div>
         </div>
+        </Reveal>
 
         <div className="px-6 pb-16 pt-8">
           <Reveal>
@@ -301,15 +307,17 @@ export function HomeFounder() {
             empieza en la 115). Con el 15% la ventana abre en la fila 61 y todo
             lo que sobra se va por abajo, que es donde la foto ya estaba
             cortada por el cuadro. */}
-        <div className="founder-photo relative h-full">
-          <Image
-            src="/founder-portrait.webp"
-            alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
-            fill
-            sizes="36vw"
-            className="object-cover object-[56%_15%]"
-          />
-        </div>
+        <Reveal className="h-full">
+          <div className="founder-photo relative h-full">
+            <Image
+              src="/founder-portrait.webp"
+              alt="Dra. Antonieta Ortega, fundadora de Omiya Clinic"
+              fill
+              sizes="36vw"
+              className="object-cover object-[56%_15%]"
+            />
+          </div>
+        </Reveal>
       </div>
     </section>
   );

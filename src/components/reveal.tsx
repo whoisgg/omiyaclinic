@@ -8,6 +8,10 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  * botones para mantener el lenguaje del sitio. Respeta prefers-reduced-motion
  * vía la regla en globals.css.
  */
+/** Fracción del elemento que tiene que estar en pantalla para disparar la
+ *  entrada. Compartido con DisplayHeading. */
+export const UMBRAL = 0.2;
+
 export function Reveal({
   children,
   className = "",
@@ -30,7 +34,11 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.25 }
+      // Mismo umbral que DisplayHeading. Iban a 0.25 y 0.2 respectivamente,
+      // así que dentro de una misma sección el titular arrancaba antes que su
+      // eyebrow y la cascada se descosía según a qué velocidad bajara cada
+      // lector. Un solo valor para todo lo que entra.
+      { threshold: UMBRAL }
     );
     io.observe(el);
     return () => io.disconnect();

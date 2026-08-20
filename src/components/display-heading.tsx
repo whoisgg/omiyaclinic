@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type ElementType } from "react";
 
+import { UMBRAL } from "@/components/reveal";
+
 /**
  * Titular de escala editorial con entrada escalonada (blur + lift).
  *
@@ -58,7 +60,7 @@ export function DisplayHeading({
           io.disconnect();
         }
       },
-      { threshold: 0.2 },
+      { threshold: UMBRAL },
     );
     io.observe(el);
     return () => io.disconnect();
