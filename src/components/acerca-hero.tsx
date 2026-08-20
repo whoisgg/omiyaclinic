@@ -1,65 +1,157 @@
+import Image from "next/image";
+
 import { DisplayHeading } from "@/components/display-heading";
 import { Reveal } from "@/components/reveal";
-import { SectionRail } from "@/components/section-rail";
 
 const DIRECCION = "Del Pucará 50, Machalí";
 
 /**
- * Hero de Acerca de — wireframe 32a/32b.
+ * Hero de Acerca de — wireframes 32a/32b, segunda versión.
  *
- * Va sin numeral: abre la página, igual que el hero del home abre el sitio, y
- * la numeración arranca en la sección siguiente. Lo que sí lleva es el rótulo
- * vertical, que acá hace de eyebrow.
+ * Cambió de un bloque de texto sobre crema a una portada con foto de fondo, y
+ * con eso se reordenó entero: el titular baja al pie en una sola línea, el
+ * rótulo vertical se va al riel derecho y la dirección pasa a horizontal
+ * abajo. Aparece además el hint de scroll, que es el mismo del hero del home
+ * —misma raya, mismo cuerpo, mismo tracking— porque las dos portadas del
+ * sitio tienen que invitar a bajar de la misma manera.
  *
- * Los dos rieles no son simétricos ni pretenden serlo: el de la izquierda es
- * el marcador de sección, y el de la derecha es la dirección de la clínica —
- * el mismo dato que el hero del home pone al pie. Puesto en vertical contra el
- * borde, cierra el cuadro sin competir con el titular.
+ * No usa `SectionRail`: aquel apila kanji, hairline, numeral y rótulo en una
+ * columna, y acá los dos elementos viven separados —el kanji arriba a la
+ * izquierda y el rótulo en el borde derecho—. Forzar el componente habría
+ * sido reusarlo de nombre y no de forma.
+ *
+ * LA FOTO ESTÁ PENDIENTE. El wireframe la anota como "jardín/parque de Omiya
+ * o exterior de la clínica" y todavía no existe en el proyecto. Mientras
+ * tanto la portada se compone sobre el crema, que es como se ve el wireframe:
+ * basta con apuntar FOTO_FONDO al archivo y el velo, el recorte y el resto
+ * del bloque ya están puestos.
  */
+const FOTO_FONDO: string | null = null;
+
 export function AcercaHero() {
   return (
-    <section className="relative bg-cream-pale">
-      <div className="mx-auto flex w-full max-w-[1600px] items-start justify-between gap-8 px-6 pb-24 pt-32 sm:px-8 lg:gap-16 lg:px-12 lg:pb-40 lg:pt-48">
-        <SectionRail kanji="大宮の哲学" label="Filosofía Omiya" />
-
-        <div className="flex-1">
-          <DisplayHeading
-            as="h1"
-            lines={["Acerca de", "Omiya"]}
-            // Ninguna línea atenuada: son dos palabras y el nombre de la
-            // clínica es la segunda. Atenuarlo sería enterrar la marca en su
-            // propia página.
-            dimFrom={2}
+    <section className="relative flex flex-col overflow-hidden bg-cream lg:min-h-[100dvh]">
+      {/* En desktop la foto va detrás de todo, a pantalla completa. En móvil
+          no: a 390px una foto de fondo bajo el titular lo deja sin contraste,
+          así que el wireframe la baja a una banda en flujo y el texto vuelve
+          al crema limpio. Son dos tratamientos distintos del mismo archivo, y
+          por eso cada uno se monta en su breakpoint en vez de reacomodar uno
+          solo con utilidades. */}
+      {FOTO_FONDO ? (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 hidden lg:block"
+        >
+          <Image
+            src={FOTO_FONDO}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
           />
+          {/* El velo no es para oscurecer sino para bajarle el contraste a la
+              foto hasta que el negro del titular vuelva a leerse sin pelear.
+              Va en el crema de la marca y no en blanco o negro: cualquiera de
+              los dos le cambia la temperatura a la imagen. */}
+          <div className="absolute inset-0 bg-cream/65" />
+        </div>
+      ) : null}
 
-          <Reveal delay={200}>
+      <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-6 pb-8 pt-28 sm:px-8 lg:px-12 lg:pb-10 lg:pt-32">
+        {/* ── Franja superior: el kanji y, en desktop, el riel derecho ── */}
+        <div className="flex items-start justify-between gap-8 lg:flex-1">
+          <Reveal>
+            <p
+              aria-hidden="true"
+              lang="ja"
+              className="font-jp text-[26px] font-normal leading-[1.5] text-ink [writing-mode:vertical-rl] lg:text-[34px]"
+            >
+              大宮の哲学
+            </p>
+          </Reveal>
+
+          {/* El rótulo de la sección, contra el borde derecho. Abre con una
+              vertical, igual que el rail del hero del home. En móvil no va:
+              el wireframe deja ese lado libre para que la banda de foto
+              respire. */}
+          <Reveal
+            delay={200}
+            className="hidden w-11 shrink-0 lg:flex lg:flex-col lg:items-center"
+          >
+            <span aria-hidden="true" className="h-16 hairline-v bg-gold" />
             <span
               aria-hidden="true"
-              className="mt-10 block hairline-h w-16 bg-gold lg:mt-12 lg:w-20"
+              className="mt-6 font-sans text-[10px] uppercase leading-none tracking-[0.22em] text-gold [text-orientation:upright] [writing-mode:vertical-rl]"
+            >
+              Filosofía Omiya
+            </span>
+          </Reveal>
+        </div>
+
+        {/* La banda de móvil. Va después del kanji y antes del titular, que
+            es el orden del wireframe 32b. */}
+        {FOTO_FONDO ? (
+          <Reveal delay={120} className="lg:hidden">
+            <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden">
+              <Image
+                src={FOTO_FONDO}
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center"
+              />
+            </div>
+          </Reveal>
+        ) : null}
+
+        {/* ── Bloque del titular, anclado al pie ── */}
+        <div className="mt-16 lg:mt-0">
+          <Reveal>
+            <span
+              aria-hidden="true"
+              className="block hairline-h w-12 bg-gold lg:w-16"
             />
           </Reveal>
 
+          {/* Una sola línea: "Acerca de Omiya" son tres palabras y el
+              wireframe las quiere juntas. `immediate` porque está sobre el
+              pliegue, donde el observador no aporta nada. */}
+          <DisplayHeading
+            as="h1"
+            lines={["Acerca de Omiya"]}
+            dimFrom={1}
+            size="sm"
+            immediate
+            className="mt-6 text-zinc-900 lg:mt-8"
+          />
+
           <Reveal delay={280}>
-            <p className="mt-8 max-w-xl text-sm leading-[2] text-zinc-600 lg:mt-10 lg:text-base">
+            <p className="mt-6 max-w-xl text-sm leading-[2] text-zinc-600 lg:mt-8 lg:text-base">
               Una visión de la medicina estética centrada en el well-aging,
               donde salud, prevención y bienestar conviven en equilibrio.
             </p>
           </Reveal>
         </div>
 
-        {/* La dirección, contra el borde derecho. Se oculta en móvil: con el
-            titular ya ocupando el ancho útil, un tercer riel deja la columna
-            del texto en nada. Sigue en el footer, como en el home. */}
+        {/* ── Pie: el hint de scroll y la ubicación ── */}
         <Reveal
-          delay={200}
-          className="hidden w-9 shrink-0 lg:block lg:w-11"
+          delay={360}
+          className="mt-12 flex flex-col-reverse items-start gap-4 lg:mt-16 lg:flex-row lg:items-end lg:justify-between"
         >
-          <span
-            aria-hidden="true"
-            className="block font-sans text-[10px] uppercase leading-none tracking-[0.22em] text-gold [text-orientation:upright] [writing-mode:vertical-rl]"
-          >
+          <div className="flex items-center gap-4">
+            <span aria-hidden="true" className="hairline-h w-7 bg-gold sm:w-9" />
+            <span className="font-sans text-[9px] uppercase tracking-[0.26em] text-ink-muted lg:text-[10px]">
+              Scroll para explorar
+            </span>
+          </div>
+
+          {/* La dirección pasó de vertical a horizontal en esta versión del
+              wireframe. En móvil no se muestra: sigue en el footer. */}
+          <p className="hidden font-sans text-[9px] uppercase tracking-[0.24em] text-ink-muted lg:block lg:text-[10px]">
             {DIRECCION}
-          </span>
+          </p>
         </Reveal>
       </div>
     </section>
