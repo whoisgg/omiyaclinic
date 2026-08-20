@@ -65,11 +65,18 @@ export function AcercaConcepto() {
                   vertical del kanji, una horizontal colgando del titular y la
                   vertical de la cita— y la regla del sitio es dos por sección
                   y no más. La del numeral y la del kanji se quedan porque
-                  arman el marcador; las otras dos se resuelven en ésta. */}
+                  arman el marcador; las otras dos se resuelven en ésta.
+
+                  Va notoriamente más larga que la del numeral —160px contra
+                  44— y eso es lo que la distingue. A 64px las dos medían casi
+                  lo mismo y la separadora se leía como una segunda regla de
+                  marcador en vez de como lo que es: el corte entre el párrafo
+                  y la cita. Cuando dos rayas cumplen funciones distintas, el
+                  largo es lo que lo dice. */}
               <Reveal delay={320}>
                 <span
                   aria-hidden="true"
-                  className="mt-12 block hairline-h w-12 bg-gold lg:mt-14 lg:w-16"
+                  className="mt-12 block hairline-h w-24 bg-gold lg:mt-14 lg:w-40"
                 />
               </Reveal>
 
