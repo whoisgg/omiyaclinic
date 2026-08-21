@@ -30,7 +30,23 @@ const DIRECCION = "Del Pucará 50, Machalí";
  * Además calza con el encuadre: la mitad inferior izquierda, que es donde cae
  * el titular, está desenfocada y clara, así que la tinta se lee sin pelear.
  */
-const FOTO_FONDO: string | null = "/acerca/hero-jardin.webp";
+const FOTO_FONDO: string | null = "/acerca/hero-equipo-v1.webp";
+
+/**
+ * El encuadre de la foto, que no es un `object-cover` normal.
+ *
+ * La imagen se agranda al 130% y se corre un 30% a la izquierda: eso saca del
+ * cuadro el televisor que ocupa el lado izquierdo real de la toma. Recién
+ * después `object-position` decide qué parte del encuadre ampliado queda
+ * centrada — la X mueve horizontal, más alto es más a la derecha; la Y mueve
+ * vertical, más bajo es más arriba, que es lo que muestra los cuerpos enteros
+ * en vez de solo los rostros.
+ *
+ * Los valores salen del wireframe 32 y están afinados por breakpoint: en
+ * desktop la banda es apaisada y hay que ir a la derecha (82%); en móvil es
+ * casi cuadrada y el punto se corre al centro (58%) subiendo el recorte (22%).
+ */
+const ENCUADRE = "absolute inset-0 h-[130%] w-[130%] max-w-none object-cover";
 
 export function AcercaHero() {
   return (
@@ -49,16 +65,30 @@ export function AcercaHero() {
           <Image
             src={FOTO_FONDO}
             alt=""
-            fill
+            width={2400}
+            height={1920}
             priority
-            sizes="100vw"
-            className="object-cover object-[50%_38%]"
+            sizes="130vw"
+            className={ENCUADRE}
+            style={{ left: "-30%", objectPosition: "82% 32%" }}
           />
           {/* El velo no es para oscurecer sino para bajarle el contraste a la
               foto hasta que el negro del titular vuelva a leerse sin pelear.
               Va en el crema de la marca y no en blanco o negro: cualquiera de
-              los dos le cambia la temperatura a la imagen. */}
-          <div className="absolute inset-0 bg-cream-pale/65" />
+              los dos le cambia la temperatura a la imagen.
+
+              Dejó de ser un velo plano: ahora es un degradado en diagonal que
+              tapa fuerte por la izquierda —donde cae el titular— y suelta la
+              foto en el centro, donde están ellas. Un velo parejo tenía que
+              subir hasta el 65% para que el texto se leyera, y a esa altura la
+              foto entera quedaba lavada. */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(100deg, rgba(240,236,228,.72) 0%, rgba(240,236,228,.18) 46%, rgba(240,236,228,.4) 100%)",
+            }}
+          />
         </div>
       ) : null}
 
@@ -147,14 +177,26 @@ export function AcercaHero() {
             el fondo de una portada. */}
         {FOTO_FONDO ? (
           <Reveal delay={120} className="-mx-6 sm:-mx-8 lg:hidden">
-            <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden">
+            <div className="relative mt-8 h-[460px] w-full overflow-hidden">
               <Image
                 src={FOTO_FONDO}
                 alt=""
-                fill
+                width={2400}
+                height={1920}
                 priority
-                sizes="100vw"
-                className="object-cover object-center"
+                sizes="130vw"
+                className={ENCUADRE}
+                style={{ left: "-30%", objectPosition: "58% 22%" }}
+              />
+              {/* Acá el degradado va vertical y no en diagonal: en la banda de
+                  móvil el texto no está al costado sino arriba y abajo. */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(180deg, rgba(240,236,228,.4) 0%, rgba(240,236,228,.08) 40%, rgba(240,236,228,.68) 100%)",
+                }}
               />
             </div>
           </Reveal>
