@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getTreatments, type Category } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
+import { Reveal } from "@/components/reveal";
 import { RuleLink } from "@/components/rule-link";
+import { SectionRail } from "@/components/section-rail";
 import { LogoMark } from "@/components/logo-mark";
 
 type SearchParams = Promise<{ cat?: string }>;
@@ -24,28 +26,91 @@ export default async function TratamientosPage({
 
   return (
     <main className="bg-[#fdf9f0]">
-      {/* Header — título + intro */}
+      {/* Header — título + intro.
+
+          Trae el marcador y el riel del resto del sitio, que es lo que las
+          páginas internas no tenían: la auditoría de agosto lo dejó anotado
+          como la deuda grande —el home se rehízo con un sistema y las
+          internas quedaron en el anterior, y las tres están en el nav, así
+          que la ruptura se ve al primer clic—.
+
+          Lo que entra es el tratamiento del texto, no el layout: la raya
+          corta que abre, el riel del kanji y la entrada en cascada. La
+          grilla, los filtros y las tarjetas se quedan como están.
+
+          **Sin numeral.** Los romanos numeran secciones dentro de una página;
+          esto es el encabezado de la página, igual que el hero de Acerca de,
+          que tampoco lo lleva. */}
       <section className="mx-auto max-w-7xl px-6 pb-10 pt-36 lg:px-10">
-        <div className="max-w-2xl">
-          <h1 className="font-serif text-5xl font-light leading-tight text-zinc-900 sm:text-6xl">
-            Tratamientos Personalizados
-          </h1>
-          {activeCategory ? (
-            <div className="mt-6 max-w-lg">
-              <p className="text-xs uppercase tracking-[0.3em] text-gold">
-                {activeCategory.subtitle}
-              </p>
-              <p className="mt-3 text-base leading-relaxed text-zinc-600">
-                {activeCategory.description}
-              </p>
-            </div>
-          ) : (
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-zinc-600">
-              El well-aging en Omiya Clinic es un compromiso con la salud de
-              tu piel. Técnicas avanzadas diseñadas para realzar tu belleza
-              natural con resultados armónicos.
-            </p>
-          )}
+        <div className="flex items-start gap-6 lg:gap-16">
+          <div className="max-w-2xl flex-1">
+            {/* Corta, porque abre. La regla de la página es que las cortas
+                abren y las largas cierran. */}
+            <Reveal>
+              <span
+                aria-hidden="true"
+                className="block hairline-h w-9 bg-gold lg:w-11"
+              />
+            </Reveal>
+
+            <Reveal delay={80}>
+              <h1 className="mt-6 font-serif text-5xl font-light leading-tight text-zinc-900 sm:text-6xl">
+                Tratamientos Personalizados
+              </h1>
+            </Reveal>
+
+            {activeCategory ? (
+              <Reveal delay={160} className="mt-6 max-w-lg">
+                {/* No usa `.eyebrow`, aunque sea una línea chica en oro:
+                    aquella clase lleva `letter-spacing: 0.5em` y está hecha
+                    para rótulos de una o dos palabras. El subtítulo de la
+                    categoría —"Calidad y luminosidad de la piel", 31
+                    caracteres— con ese tracking deja de leerse como frase.
+
+                    El 0.28em es el que el sitio usa para sus líneas doradas
+                    largas, como el cargo bajo la firma de la fundadora. */}
+                <p className="text-[10px] uppercase leading-[2] tracking-[0.28em] text-gold">
+                  {activeCategory.subtitle}
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-zinc-600">
+                  {activeCategory.description}
+                </p>
+              </Reveal>
+            ) : (
+              <Reveal delay={160}>
+                <p className="mt-6 max-w-lg text-base leading-relaxed text-zinc-600">
+                  El well-aging en Omiya Clinic es un compromiso con la salud de
+                  tu piel. Técnicas avanzadas diseñadas para realzar tu belleza
+                  natural con resultados armónicos.
+                </p>
+              </Reveal>
+            )}
+          </div>
+
+          {/* A la derecha, que es donde va cuando el bloque no está partido en
+              dos columnas —igual que "Nuestro compromiso" y la sección social
+              del landing—. Y `align="top"`: el desplazamiento que trae por
+              defecto existe para alinear el kanji con el eyebrow saltándose el
+              numeral, y acá no hay numeral.
+
+              El kanji repite el de Tratamientos en el home, y es a propósito:
+              es la misma materia. El sitio ya hace esto con la bajada de marca,
+              que las dos portadas dicen igual en vez de inventar una variante
+              por página. */}
+          <SectionRail
+            kanji="肌はそれぞれ違う"
+            align="top"
+            // Al borde derecho del contenedor y no pegado al texto: la columna
+            // de texto se topa en 2xl y el contenedor mide 7xl, así que
+            // apoyado contra el texto el riel quedaba flotando en la mitad
+            // del blanco, sin borde al que pertenecer.
+            className="ml-auto"
+            // Vertical corta, la del hero de Acerca de. La larga es para
+            // cuando acompaña una columna de texto que sigue bajando; acá el
+            // encabezado termina en el párrafo y la vertical se metía sola en
+            // el blanco.
+            linea="h-16 lg:h-20"
+          />
         </div>
       </section>
 
@@ -96,9 +161,12 @@ export default async function TratamientosPage({
                       {c.description}
                     </p>
                   </Link>
+                  {/* En oro, como todos los enlaces con regla del sitio. En
+                      tinta se leían como texto subrayado y no como el tercer
+                      botón de la marca. */}
                   <RuleLink
                     href={`/tratamientos?cat=${c.id}#catalogo`}
-                    className="mt-5 text-zinc-900"
+                    className="mt-5 text-gold"
                   >
                     Ver tratamientos
                   </RuleLink>
@@ -129,7 +197,7 @@ export default async function TratamientosPage({
                 </Link>
                 <RuleLink
                   href={`/tratamientos/${t.slug}`}
-                  className="mt-5 text-zinc-900"
+                  className="mt-5 text-gold"
                 >
                   Ver detalles
                 </RuleLink>
@@ -140,14 +208,29 @@ export default async function TratamientosPage({
         </div>
       </section>
 
-      {/* CTA — diagnóstico, banda de cierre full-width */}
-      <section className="bg-zinc-900 text-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-20 md:flex-row md:items-center md:justify-between lg:px-10">
+      {/* CTA — diagnóstico, banda de cierre full-width.
+
+          El fondo pasa de `zinc-900` a `night`, el negro cálido de la cortina
+          del menú y del cierre del landing. No es un matiz: sobre un neutro
+          frío el oro de la marca se ensucia, que es exactamente lo que pasaba
+          con el enlace de agendar. */}
+      <section className="bg-night text-night-fg">
+        {/* Grid y no un `justify-between`: con aquel el enlace se pegaba al
+            canto derecho y la raya tenía que medir un ancho fijo, o sea un
+            número que se descalibra en cada viewport. Acá la columna define
+            dónde arranca y la raya rellena lo que queda.
+
+            Las columnas van 3:2 y no 1:1. Con mitades iguales el enlace caía
+            justo en el medio y la raya se estiraba 406px: demasiada raya para
+            un rótulo de dos palabras. A 3:2 arranca cerca del 60% y la raya
+            queda en unos 280, que es lo que pesa un cierre sin volverse el
+            elemento principal de la banda. */}
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:grid-cols-[3fr_2fr] md:items-center lg:px-10">
           <div className="max-w-xl">
             <h3 className="font-serif text-3xl font-light leading-snug sm:text-4xl">
               ¿No sabes qué elegir?
             </h3>
-            <p className="mt-4 text-sm leading-relaxed text-white/80">
+            <p className="mt-4 text-sm leading-relaxed text-night-fg/70">
               Agenda una consulta de diagnóstico personalizada con la Dra.
               Antonieta Ortega para definir tu plan de tratamiento.
             </p>
@@ -155,8 +238,12 @@ export default async function TratamientosPage({
           <RuleLink
             href={BOOKING_URL}
             external
-            ruleClass="w-20 lg:w-28"
-            className="shrink-0 text-gold"
+            // `wide`: la raya rellena la columna en vez de medir un ancho
+            // fijo. Es el mismo cierre que la sección social del landing, y
+            // resuelve móvil solo: ahí se calcula sobre el ancho de la
+            // columna en vez de arrastrar la medida del escritorio.
+            wide
+            className="text-gold"
           >
             Agendar diagnóstico
           </RuleLink>

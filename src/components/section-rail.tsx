@@ -69,6 +69,7 @@ export function SectionRail({
   kanji,
   align = "eyebrow",
   className = "",
+  linea = "h-32 lg:h-40",
 }: {
   kanji: string;
   /**
@@ -85,6 +86,15 @@ export function SectionRail({
   /** Colocación en el layout de la sección: en qué columna cae y de qué lado.
    *  El riel no la conoce por su cuenta. */
   className?: string;
+  /**
+   * Alto de la vertical. El valor por omisión es el de las secciones, donde
+   * la vertical acompaña una columna de texto larga y puede colgar.
+   *
+   * Se hace configurable porque en un encabezado de página el riel no tiene
+   * nada al lado a partir del titular: con el alto de sección la vertical se
+   * mete sola en el blanco y el riel deja de leerse como una columna.
+   */
+  linea?: string;
 }) {
   return (
     <Reveal
@@ -100,10 +110,7 @@ export function SectionRail({
         >
           {kanji}
         </span>
-        <span
-          aria-hidden="true"
-          className="h-32 hairline-v bg-gold lg:h-40"
-        />
+        <span aria-hidden="true" className={`hairline-v bg-gold ${linea}`} />
       </div>
     </Reveal>
   );
