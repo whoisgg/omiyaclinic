@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import { HomeSocialGrid, type CeldaSocial } from "@/components/home-social-grid";
 import { Reveal } from "@/components/reveal";
 import { RuleLink } from "@/components/rule-link";
 import { SectionMarker } from "@/components/section-rail";
@@ -14,53 +13,70 @@ const HANDLE = "@omiyaclinic";
 const JA = "日々の記録";
 
 /**
- * El feed. Seis fotos, no cinco.
+ * El feed: seis celdas, doce publicaciones.
  *
  * El wireframe pide una franja de 5 en desktop y un grid 3×2 en móvil, que
- * son 6. Con 5 habría que esconder una en desktop —contenido distinto según
- * el dispositivo— o repartir dos sets. Con 6 el mismo set entra en una fila de
- * seis arriba y en dos de tres abajo, sin ocultar nada.
+ * son 6. Con 5 habría que esconder uno en desktop —contenido distinto según
+ * el dispositivo— o repartir dos sets.
  *
- * **Ninguna se repite con las del home.** El landing ya usa la rama del hero,
- * la recepción de Nuestro enfoque, los productos de Compromiso, el retrato de
- * la fundadora y el café de Tu experiencia; encontrarse cualquiera de esas
- * dentro de un supuesto feed, a dos pantallas de distancia, lo delataría como
- * relleno. Sí se repiten algunas con Acerca de y Tratamientos, y ahí no
- * molesta: son páginas distintas y un feed de la clínica está hecho
- * justamente de las fotos de la clínica.
+ * **Son publicaciones reales de la cuenta**, rescatadas del sitio de v0
+ * (`components/doctor-quote.tsx`, donde vivían en un abanico de tarjetas). No
+ * son fotos de la clínica haciendo de posts: son los posts. Eso importa porque
+ * la sección se titula `@omiyaclinic` y muestra una grilla — cualquier otra
+ * cosa ahí adentro estaría diciendo que la clínica publicó algo que no
+ * publicó. Y funcionan solas: las diseñó la misma mano que el sitio.
  *
- * El orden alterna espacio, detalle y persona en vez de agrupar por tipo, que
- * es lo que hace que una grilla de fotos se lea como un feed y no como un
- * catálogo.
+ * **Cada celda lleva dos, y se alternan.** De las veinte disponibles, diez son
+ * 4:5 —el formato del feed— y diez son 9:16 —stories—. Un 9:16 recortado a la
+ * caja pierde el 30%, y en estas piezas el texto es la pieza. Se revisaron las
+ * diez verticales una por una y cuatro sobreviven el recorte con el texto
+ * entero: ésas más las diez nativas dan catorce, y doce es el número que llena
+ * seis celdas sin dejar ninguna quieta.
  *
- * No hay archivos nuevos: las fotos se recortan a cuadrado con `object-cover`
- * y Next sirve la variante del tamaño que toca. El recorte centrado funciona
- * en las seis; se revisaron una por una antes de elegirlas.
+ * **Los pares van emparejados por tono** —oscura con oscura, crema con crema—
+ * para que el cambio se lea como que la superficie respira y no como que una
+ * casilla se prende mientras las otras cinco no se mueven.
+ *
+ * El orden de las primeras alterna claro y oscuro, y reparte persona, objeto y
+ * tipografía en vez de agrupar por tipo: es lo que hace que una grilla se lea
+ * como un feed y no como un catálogo.
  */
-const POSTS = [
+const CELDAS: CeldaSocial[] = [
   {
-    src: "/hero-clinic.webp",
-    alt: "El acceso a Omiya Clinic, con el letrero iluminado junto a la puerta",
+    piezas: [
+      { src: "/social/habito.webp", alt: "Publicación: envejecer bien no es cuestión de genética, sino de hábito" },
+      { src: "/social/cada-cuanto.webp", alt: "Publicación: ¿cada cuánto se puede aplicar el skin booster?" },
+    ],
   },
   {
-    src: "/clinica/ritual.webp",
-    alt: "Un café y la revista Historias de Piel sobre una bandeja de madera",
+    piezas: [
+      { src: "/social/serum.webp", alt: "Publicación: ¿qué te estás aplicando en la piel?" },
+      { src: "/social/labios.webp", alt: "Publicación sobre el resultado de una aplicación de ácido hialurónico" },
+    ],
   },
   {
-    src: "/acerca/filosofia-v2.webp",
-    alt: "La doctora mostrándole el espejo a una paciente durante el tratamiento",
+    piezas: [
+      { src: "/social/textura.webp", alt: "Publicación sobre incorporar un producto nuevo a la rutina" },
+      { src: "/social/reglas.webp", alt: "Publicación: tres reglas de oro para proteger tu inversión" },
+    ],
   },
   {
-    src: "/clinica/productos.webp",
-    alt: "Productos de cuidado de la piel dispuestos sobre el mesón",
+    piezas: [
+      { src: "/social/piel-dia.webp", alt: "Publicación: tu piel no se ve igual todo el día" },
+      { src: "/social/guia.webp", alt: "Publicación con la guía de cuidados posteriores a un procedimiento" },
+    ],
   },
   {
-    src: "/treatments/limpieza-facial.webp",
-    alt: "Una limpieza facial en curso, con la mascarilla aplicada",
+    piezas: [
+      { src: "/social/check-in.webp", alt: "Publicación: el check-in del final del día para observar tu piel" },
+      { src: "/social/botox-vial.webp", alt: "Publicación: el botox no congela, hace espacio entre lo que ya no sentimos" },
+    ],
   },
   {
-    src: "/clinica/productos-3.webp",
-    alt: "El sillón del box de atención junto al ventanal",
+    piezas: [
+      { src: "/social/reloj.webp", alt: "Publicación: el botox no frena el tiempo" },
+      { src: "/social/alimentacion.webp", alt: "Publicación sobre la alimentación como combustible de la piel" },
+    ],
   },
 ];
 
@@ -96,7 +112,7 @@ export function HomeSocial() {
           {/* La columna de contenido, con el enlace colocado por grid. En
               móvil el grid no existe y los tres bloques caen en orden de DOM
               —encabezado, fotos, enlace—, que es justo lo que pide la 50b. */}
-          <div className="flex-1 lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-x-10">
+          <div className="flex-1 lg:grid lg:grid-cols-2 lg:items-end lg:gap-x-10">
             <div>
               <SectionMarker numeral="VI" eyebrow="Síguenos" />
 
@@ -115,25 +131,15 @@ export function HomeSocial() {
               delay={240}
               className="mt-12 lg:col-span-2 lg:row-start-2 lg:mt-16"
             >
-              {/* Seis en una fila arriba, tres por fila abajo. El gap es
-                  chico a propósito: un feed se lee como una superficie
-                  continua, y con aire entre las fotos pasa a ser seis fotos
-                  sueltas. */}
-              <ul className="grid grid-cols-3 gap-2 lg:grid-cols-6 lg:gap-3">
-                {POSTS.map((post) => (
-                  <li key={post.src} className="relative aspect-square overflow-hidden bg-zinc-100">
-                    <Image
-                      src={post.src}
-                      alt={post.alt}
-                      fill
-                      // A 1600px de contenedor, seis columnas dan unos 250px
-                      // cada una; en móvil, tres dan unos 110.
-                      sizes="(min-width: 1024px) 16vw, 33vw"
-                      className="object-cover object-center"
-                    />
-                  </li>
-                ))}
-              </ul>
+              {/* La grilla vive en un componente cliente aparte: lo único
+                  que necesita JavaScript es la alternancia de piezas, así que
+                  el resto de la sección se sigue renderizando en el servidor.
+
+                  La caja es 4:5 y no cuadrada: es el formato nativo de las
+                  publicaciones, así que entran sin recorte y el texto de cada
+                  pieza queda entero. De paso es lo que hace hoy la grilla de
+                  Instagram, que dejó el cuadrado atrás. */}
+              <HomeSocialGrid celdas={CELDAS} />
             </Reveal>
 
             {/* Fila 1, columna 2 en desktop: a la derecha del handle y
@@ -146,7 +152,18 @@ export function HomeSocial() {
               <RuleLink
                 href={INSTAGRAM_CLINICA_URL}
                 external
-                ruleClass="w-12 lg:w-20"
+                // `wide`: la raya rellena lo que queda hasta el borde del
+                // bloque en vez de medir un ancho fijo. Con las columnas al
+                // 50/50, eso deja el texto arrancando exactamente en el medio
+                // de la sección **a cualquier ancho** — que es lo que se
+                // buscaba y lo que un valor en píxeles no puede sostener: ahí
+                // el punto de partida se corre cada vez que cambia el
+                // viewport.
+                //
+                // De paso resuelve el móvil solo: la raya se calcula sobre los
+                // 259px de la columna y le tocan unos 90, en vez de salirse
+                // con los 300 y pico que necesita el escritorio.
+                wide
                 className="text-gold"
               >
                 Seguir en Instagram
@@ -159,7 +176,12 @@ export function HomeSocial() {
               numeral y su regla— y la vertical colgando. El ancho explícito y
               el `shrink-0` son necesarios: en WebKit un texto vertical no le
               propaga su ancho al ítem flex y la columna colapsa a cero. */}
-          <Reveal delay={200} className="mt-14 w-11 shrink-0 lg:mt-[4.2rem] lg:w-14">
+          {/* El kanji arranca más arriba que en el resto del sitio: allá se
+              alinea con el eyebrow, acá sube a la altura del numeral. Esta
+              sección tiene el encabezado más alto de la página —numeral,
+              regla, eyebrow y el handle a cuerpo de titular— y con el margen
+              de siempre el riel quedaba empezando a media altura del bloque. */}
+          <Reveal delay={200} className="mt-6 w-11 shrink-0 lg:mt-8 lg:w-14">
             <div className="flex flex-col items-center gap-6">
               <span
                 lang="ja"
