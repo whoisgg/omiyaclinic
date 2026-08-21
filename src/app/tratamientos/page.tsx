@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CATEGORIES, getTreatments, type Category } from "@/lib/treatments";
 import { BOOKING_URL } from "@/lib/links";
+import { DisplayHeading } from "@/components/display-heading";
 import { Reveal } from "@/components/reveal";
 import { RuleLink } from "@/components/rule-link";
 import { SectionRail } from "@/components/section-rail";
@@ -25,7 +26,11 @@ export default async function TratamientosPage({
   const activeCategory = active ? CATEGORIES.find((c) => c.id === active) : null;
 
   return (
-    <main className="bg-[#fdf9f0]">
+    // `cream-pale`, el token de la paleta, en vez del `#fdf9f0` que tenía.
+    // Era uno de los hexadecimales sueltos que la auditoría listó en las
+    // páginas internas: cada una había elegido su propio crema y ninguno era
+    // el del sistema.
+    <main className="bg-cream-pale">
       {/* Header — título + intro.
 
           Trae el marcador y el riel del resto del sitio, que es lo que las
@@ -53,11 +58,27 @@ export default async function TratamientosPage({
               />
             </Reveal>
 
-            <Reveal delay={80}>
-              <h1 className="mt-6 font-serif text-5xl font-light leading-tight text-zinc-900 sm:text-6xl">
-                Tratamientos Personalizados
-              </h1>
-            </Reveal>
+            {/* A la escala display del sitio, que es lo que separaba a esta
+                página del home: allá los titulares van en `DisplayHeading` y
+                acá estaba en la escala de Tailwind.
+
+                `size="sm"` y no la grande: la chica va de 36 a 76px y a 1280
+                el renglón largo —"Personalizados", 14 caracteres— mide unos
+                470px dentro de una columna de 672. Con la escala grande, que
+                llega a 116px, se salía.
+
+                Dos palabras, dos líneas declaradas a mano: la escala display
+                está pensada para 2-3 palabras por renglón y con el corte
+                automático el navegador partía donde le quedaba. La segunda va
+                atenuada, que es el gesto del sitio para los titulares de dos
+                tiempos. */}
+            <DisplayHeading
+              as="h1"
+              lines={["Tratamientos", "Personalizados"]}
+              size="sm"
+              delay={80}
+              className="mt-6 text-zinc-900"
+            />
 
             {activeCategory ? (
               <Reveal delay={160} className="mt-6 max-w-lg">

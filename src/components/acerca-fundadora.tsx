@@ -91,9 +91,6 @@ const ESPECIALIDADES = [
  * caminando, sin posar, sin papel en la mano— y la única que no pelea con el
  * sistema de negro y dorado.
  *
- * El código de la galería sigue en `founder-gallery.tsx`, sin usar, por si la
- * decisión se revierte.
- *
  * El retrato de estudio no está a propósito: `/founder-portrait.webp` es el
  * mismo archivo que usa la sección de la fundadora del landing, dos veces.
  */
