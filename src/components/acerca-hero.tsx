@@ -51,17 +51,18 @@ const ENCUADRE = "absolute inset-0 h-[130%] w-[130%] max-w-none object-cover";
 export function AcercaHero() {
   return (
     <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-cream-pale">
-      {/* En desktop la foto va detrás de todo, a pantalla completa. En móvil
-          no: a 390px una foto de fondo bajo el titular lo deja sin contraste,
-          así que el wireframe la baja a una banda en flujo y el texto vuelve
-          al crema limpio. Son dos tratamientos distintos del mismo archivo, y
-          por eso cada uno se monta en su breakpoint en vez de reacomodar uno
-          solo con utilidades. */}
+      {/* La foto va detrás de todo en los dos breakpoints, que es lo que
+          pide el wireframe 32: el kanji, el titular y el hint de scroll se
+          leen encima de ella. Antes en móvil era una banda en flujo con el
+          texto sobre crema limpio debajo — se veía bien, pero no era una
+          portada: era una foto con un texto al lado.
+
+          Lo que cambia entre breakpoints es el encuadre y el velo, no la
+          estructura, y por eso van dos imágenes y dos degradados en vez de
+          uno solo reacomodado con utilidades: `object-position` y el ángulo
+          del gradiente no se pueden interpolar. */}
       {FOTO_FONDO ? (
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 hidden lg:block"
-        >
+        <div aria-hidden="true" className="absolute inset-0">
           <Image
             src={FOTO_FONDO}
             alt=""
@@ -69,21 +70,42 @@ export function AcercaHero() {
             height={1920}
             priority
             sizes="130vw"
-            className={ENCUADRE}
+            className={`${ENCUADRE} lg:hidden`}
+            style={{ left: "-30%", objectPosition: "58% 22%" }}
+          />
+          <Image
+            src={FOTO_FONDO}
+            alt=""
+            width={2400}
+            height={1920}
+            priority
+            sizes="130vw"
+            className={`${ENCUADRE} hidden lg:block`}
             style={{ left: "-30%", objectPosition: "82% 32%" }}
           />
+
           {/* El velo no es para oscurecer sino para bajarle el contraste a la
               foto hasta que el negro del titular vuelva a leerse sin pelear.
               Va en el crema de la marca y no en blanco o negro: cualquiera de
               los dos le cambia la temperatura a la imagen.
 
-              Dejó de ser un velo plano: ahora es un degradado en diagonal que
-              tapa fuerte por la izquierda —donde cae el titular— y suelta la
-              foto en el centro, donde están ellas. Un velo parejo tenía que
-              subir hasta el 65% para que el texto se leyera, y a esa altura la
-              foto entera quedaba lavada. */}
+              Dejó de ser un velo plano. Antes era un `cream/65` parejo: para
+              que el titular se leyera había que subirlo hasta ahí, y a esa
+              altura la foto entera quedaba lavada.
+
+              En desktop va en diagonal, tapando fuerte por la izquierda
+              —donde cae el titular— y soltando el centro, que es donde están
+              ellas. En móvil va vertical y carga al pie, porque ahí el texto
+              no está al costado sino abajo. */}
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 lg:hidden"
+            style={{
+              backgroundImage:
+                "linear-gradient(180deg, rgba(240,236,228,.4) 0%, rgba(240,236,228,.08) 40%, rgba(240,236,228,.68) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0 hidden lg:block"
             style={{
               backgroundImage:
                 "linear-gradient(100deg, rgba(240,236,228,.72) 0%, rgba(240,236,228,.18) 46%, rgba(240,236,228,.4) 100%)",
@@ -165,42 +187,6 @@ export function AcercaHero() {
             />
           </Reveal>
         </div>
-
-        {/* La banda de móvil. Va después del kanji y antes del titular, que es
-            el orden del wireframe 32b, y sangra por los dos bordes con
-            márgenes negativos que cancelan el padding del contenedor.
-
-            Sangrar no es un capricho: es lo que hace que la portada se lea
-            como el hero del landing. Allá la rama se pasa del ancho del
-            viewport y toca los dos bordes; acá, metida dentro del padding, la
-            foto se leía como una tarjeta pegada sobre el crema en vez de como
-            el fondo de una portada. */}
-        {FOTO_FONDO ? (
-          <Reveal delay={120} className="-mx-6 sm:-mx-8 lg:hidden">
-            <div className="relative mt-8 h-[460px] w-full overflow-hidden">
-              <Image
-                src={FOTO_FONDO}
-                alt=""
-                width={2400}
-                height={1920}
-                priority
-                sizes="130vw"
-                className={ENCUADRE}
-                style={{ left: "-30%", objectPosition: "58% 22%" }}
-              />
-              {/* Acá el degradado va vertical y no en diagonal: en la banda de
-                  móvil el texto no está al costado sino arriba y abajo. */}
-              <div
-                aria-hidden="true"
-                className="absolute inset-0"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(180deg, rgba(240,236,228,.4) 0%, rgba(240,236,228,.08) 40%, rgba(240,236,228,.68) 100%)",
-                }}
-              />
-            </div>
-          </Reveal>
-        ) : null}
 
         {/* ── Bloque del titular, anclado al pie ──
             `mt-auto` en móvil: con la sección midiendo una pantalla completa,
