@@ -53,3 +53,17 @@ export const MAPS_EMBED_URL =
   "https://www.google.com/maps?q=Del+Pucar%C3%A1+50,+Oficina+410,+Machal%C3%AD,+Chile&output=embed";
 
 export const DIRECCION = "Del Pucará 50, Of. 410 — Machalí";
+
+/**
+ * El teléfono de la clínica, en las tres formas que hacen falta.
+ *
+ * Van juntos a propósito: son el mismo dato y si cambia el número hay que
+ * tocar los tres. Separarlos es la forma segura de que uno quede viejo.
+ *
+ * - `TELEFONO` es como se escribe y se muestra.
+ * - `TELEFONO_TEL` es E.164 sin espacios, que es lo que acepta `tel:`.
+ * - `WHATSAPP_URL` va sin `+` ni espacios, que es lo que pide wa.me.
+ */
+export const TELEFONO = "+56 9 2239 9869";
+export const TELEFONO_TEL = "tel:+56922399869";
+export const WHATSAPP_URL = "https://wa.me/56922399869";

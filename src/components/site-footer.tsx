@@ -1,4 +1,4 @@
-import { INSTAGRAM_CLINICA_URL, MAPS_URL } from "@/lib/links";
+import { INSTAGRAM_CLINICA_URL, MAPS_URL, WHATSAPP_URL } from "@/lib/links";
 import Link from "next/link";
 import { LogoFull } from "@/components/logo-full";
 
@@ -36,7 +36,9 @@ const HORARIO = [
 const CONTACTO = [
   { label: "Del Pucará 50, Machalí", href: MAPS_URL },
   { label: "Instagram", href: INSTAGRAM_CLINICA_URL },
-  { label: "WhatsApp", href: "https://wa.me/" },
+  // Apuntaba a `https://wa.me/` pelado —o sea a la portada de WhatsApp— desde
+  // antes de que existiera el número.
+  { label: "WhatsApp", href: WHATSAPP_URL },
 ];
 
 const LEGALES = [

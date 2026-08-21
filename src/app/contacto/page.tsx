@@ -7,6 +7,8 @@ import {
   DIRECCION,
   MAPS_EMBED_URL,
   MAPS_URL,
+  TELEFONO,
+  TELEFONO_TEL,
 } from "@/lib/links";
 
 /** "Su visita". */
@@ -30,10 +32,6 @@ const HORARIO = [
  * le envía al paciente cuando corresponde; no es una puerta pública. Tenerlo
  * acá invitaba a pagar antes de que exista nada que pagar.
  *
- * ⚠️ **Falta el teléfono.** La versión anterior de esta página mostraba
- * "+56 9 …" como marcador, que en una página de contacto es peor que no
- * mostrar nada: parece un dato roto. La fila entra sola cuando haya número.
- *
  * El correo viene de la versión anterior y **no está verificado**; se mantiene
  * porque ya estaba publicado, no porque conste que es el bueno.
  */
@@ -43,6 +41,12 @@ const DATOS = [
     valor: DIRECCION,
     href: MAPS_URL,
     externo: true,
+  },
+  {
+    rotulo: "Teléfono",
+    valor: TELEFONO,
+    href: TELEFONO_TEL,
+    externo: false,
   },
   {
     rotulo: "Correo",
