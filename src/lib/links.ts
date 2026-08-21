@@ -67,3 +67,7 @@ export const DIRECCION = "Del Pucará 50, Of. 410 — Machalí";
 export const TELEFONO = "+56 9 2239 9869";
 export const TELEFONO_TEL = "tel:+56922399869";
 export const WHATSAPP_URL = "https://wa.me/56922399869";
+
+/** El correo de la clínica. Confirmado por el usuario el 2026-08-21: la
+ *  versión anterior del sitio decía `hello@`, que no era la casilla. */
+export const CORREO = "contacto@omiyaclinic.cl";

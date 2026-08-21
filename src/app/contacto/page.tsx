@@ -6,6 +6,7 @@ import {
   BOOKING_URL,
   DIRECCION,
   MAPS_EMBED_URL,
+  CORREO,
   MAPS_URL,
   TELEFONO,
   TELEFONO_TEL,
@@ -32,8 +33,9 @@ const HORARIO = [
  * le envía al paciente cuando corresponde; no es una puerta pública. Tenerlo
  * acá invitaba a pagar antes de que exista nada que pagar.
  *
- * El correo viene de la versión anterior y **no está verificado**; se mantiene
- * porque ya estaba publicado, no porque conste que es el bueno.
+ * Los datos están todos confirmados por el usuario. Ojo con el correo: la
+ * versión anterior del sitio publicaba `hello@omiyaclinic.cl`, que no era la
+ * casilla — o sea que hubo un tiempo con un correo equivocado en el aire.
  */
 const DATOS = [
   {
@@ -50,8 +52,8 @@ const DATOS = [
   },
   {
     rotulo: "Correo",
-    valor: "hello@omiyaclinic.cl",
-    href: "mailto:hello@omiyaclinic.cl",
+    valor: CORREO,
+    href: `mailto:${CORREO}`,
     externo: false,
   },
 ];
