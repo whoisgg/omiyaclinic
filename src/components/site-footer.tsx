@@ -1,4 +1,4 @@
-import { INSTAGRAM_CLINICA_URL } from "@/lib/links";
+import { INSTAGRAM_CLINICA_URL, MAPS_URL } from "@/lib/links";
 import Link from "next/link";
 import { LogoFull } from "@/components/logo-full";
 
@@ -32,9 +32,6 @@ const HORARIO = [
   { dia: "Mié · Sáb", hora: "10:00 – 14:00" },
   { dia: "Lun · Dom", hora: "Cerrado" },
 ];
-
-const MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=Del%20Pucar%C3%A1%2050%2C%20Oficina%20410%2C%20Edificio%20Don%20Octavio%2C%20Machal%C3%AD";
 
 const CONTACTO = [
   { label: "Del Pucará 50, Machalí", href: MAPS_URL },

@@ -26,3 +26,22 @@ export const INSTAGRAM_CLINICA_URL = "https://www.instagram.com/omiyaclinic/";
 export const INSTAGRAM_URL =
   "https://www.instagram.com/dra.antonietaortegamunoz/";
 
+
+/**
+ * La clínica en Google Maps. Vive acá y no en el footer porque la usan los
+ * dos: el enlace del footer y el mapa de la página de contacto.
+ */
+export const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=Del%20Pucar%C3%A1%2050%2C%20Oficina%20410%2C%20Edificio%20Don%20Octavio%2C%20Machal%C3%AD";
+
+/**
+ * La misma dirección, en la forma que acepta el iframe de Google Maps.
+ *
+ * `output=embed` es lo que permite incrustar sin clave de API. La otra vía
+ * —`/maps/embed?pb=…`— necesita que alguien entre a Google y copie el bloque
+ * `pb`, que es una cadena opaca imposible de mantener a mano.
+ */
+export const MAPS_EMBED_URL =
+  "https://www.google.com/maps?q=Del+Pucar%C3%A1+50,+Oficina+410,+Machal%C3%AD,+Chile&output=embed";
+
+export const DIRECCION = "Del Pucará 50, Of. 410 — Machalí";
