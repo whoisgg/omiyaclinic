@@ -78,10 +78,14 @@ function Firma({ className = "" }: { className?: string }) {
       {/* El nombre es lo único de la sección que sube a escala de titular: el
           tracking abierto lo separa de la cita, que va en la misma serif pero
           mucho más grande y sin espaciar. */}
+      {/* "Ortega M." y no "Ortega" a secas: el apellido materno abreviado,
+          como se firma en Chile. Cabe porque el corte de línea está declarado
+          a mano —el renglón largo sigue siendo "ANTONIETA", 206px con su
+          tracking— y "ORTEGA M." queda por debajo de esa medida. */}
       <p className="mt-4 font-serif text-[26px] font-light uppercase leading-[1.35] tracking-[0.16em] text-zinc-900 lg:text-[32px]">
         Antonieta
         <br />
-        Ortega
+        Ortega M.
       </p>
       <p
         className="mt-5 text-[10px] uppercase leading-[2] tracking-[0.35em] text-gold"
