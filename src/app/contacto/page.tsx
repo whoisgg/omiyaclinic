@@ -7,7 +7,6 @@ import {
   DIRECCION,
   MAPS_EMBED_URL,
   MAPS_URL,
-  PAYMENT_URL,
 } from "@/lib/links";
 
 /** "Su visita". */
@@ -23,9 +22,13 @@ const HORARIO = [
  * Los datos, cada uno colgando de su hairline.
  *
  * **Sin iconos.** El wireframe 52 los reemplaza por rótulo y regla, y tiene
- * razón: en una columna de cinco filas un pin y un sobre pesaban más que la
+ * razón: en una columna de varias filas un pin y un sobre pesaban más que la
  * palabra que acompañaban, y ninguno de los dos existe en el resto del
  * lenguaje del sitio.
+ *
+ * **Sin fila de pagos**, aunque el wireframe la trae. El link de HealthAtom se
+ * le envía al paciente cuando corresponde; no es una puerta pública. Tenerlo
+ * acá invitaba a pagar antes de que exista nada que pagar.
  *
  * ⚠️ **Falta el teléfono.** La versión anterior de esta página mostraba
  * "+56 9 …" como marcador, que en una página de contacto es peor que no
@@ -124,7 +127,13 @@ export default function ContactoPage() {
                     es la fuente que estaba al día: la página anterior decía
                     "Martes a sábado · 10:00 – 19:00", que no coincide con
                     ninguno de los tres. */}
-                <Reveal delay={320} className="border-t border-zinc-200 py-5">
+                {/* Cierra la lista, así que lleva borde abajo además del de
+                    arriba: sin él la última fila quedaba abierta contra el
+                    aire y las otras dos parecían un bloque cortado. */}
+                <Reveal
+                  delay={320}
+                  className="border-y border-zinc-200 py-5"
+                >
                   <dt className="eyebrow tracking-[0.4em] text-gold">
                     Horarios
                   </dt>
@@ -138,14 +147,6 @@ export default function ContactoPage() {
                   </dd>
                 </Reveal>
 
-                <Reveal delay={380} className="border-t border-zinc-200 py-5">
-                  <dt className="eyebrow tracking-[0.4em] text-gold">Pagos</dt>
-                  <dd className="mt-3">
-                    <RuleLink href={PAYMENT_URL} external className="text-gold">
-                      Link de pago en línea
-                    </RuleLink>
-                  </dd>
-                </Reveal>
               </dl>
 
               {/* Cierra la columna, con la raya larga que corresponde. La

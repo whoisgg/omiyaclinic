@@ -6,6 +6,14 @@
 export const BOOKING_URL =
   "https://cfef9477a3f223017832f99a2e8d7eda04b5fb18.agenda.softwaredentalink.com/agenda?modalidad=1";
 
+/**
+ * Link de pago de HealthAtom.
+ *
+ * **Hoy no lo enlaza ninguna página, a propósito.** Estuvo un tiempo en
+ * Contacto y salió el 2026-08-21: el link se le envía al paciente cuando
+ * corresponde, no es una puerta pública. Se conserva acá porque es un dato del
+ * negocio que no se puede reconstruir, no porque esté en uso.
+ */
 export const PAYMENT_URL = "https://ff.healthatom.io/txzPhD";
 
 /**
