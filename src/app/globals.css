@@ -100,6 +100,22 @@ body {
   transform: scaleX(1.7);
 }
 
+/* La variante `wide` —la raya que rellena hasta el borde del bloque— **no**
+   lleva `.btn-rule-line`, y no es un olvido.
+
+   Ese scaleX(1.7) está calculado para una raya corta: 48px que crecen a 82 y
+   se comen el aire que tienen al lado. Una raya que ya ocupa todo el ancho
+   disponible no tiene aire que comerse, así que al escalarla se sale del
+   bloque —en la sección social cruzaba el riel del kanji y llegaba al borde
+   de la ventana—.
+
+   El hover pasa entonces al enlace entero: texto y raya bajan juntos de
+   opacidad, que además los mantiene solidarios porque la raya hereda
+   `currentColor`. */
+.btn-rule-fill:hover {
+  opacity: 0.62;
+}
+
 .btn-luxe {
   position: relative;
   overflow: hidden;

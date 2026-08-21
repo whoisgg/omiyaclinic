@@ -33,7 +33,7 @@ export function RuleLink({
   className?: string;
 }) {
   const clases = `btn-rule items-center gap-4 text-[11px] ${
-    wide ? "flex w-full" : "inline-flex"
+    wide ? "btn-rule-fill flex w-full" : "inline-flex"
   } ${className}`;
 
   const contenido = (
@@ -41,7 +41,9 @@ export function RuleLink({
       {children}
       <span
         aria-hidden="true"
-        className={`btn-rule-line hairline-h block ${wide ? "flex-1" : ruleClass}`}
+        className={`hairline-h block ${
+          wide ? "flex-1" : `btn-rule-line ${ruleClass}`
+        }`}
         style={{ backgroundColor: "currentColor" }}
       />
     </>
