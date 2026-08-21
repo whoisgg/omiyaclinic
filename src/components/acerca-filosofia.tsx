@@ -57,8 +57,15 @@ export function AcercaFilosofia() {
 
               {/* Larga, como la de las secciones I y III: la del marcador,
                   que va arriba, mide 44px y abre; ésta cierra. Con las dos
-                  cortas se leían como la misma raya repetida. */}
-              <Reveal delay={240}>
+                  cortas se leían como la misma raya repetida.
+
+                  Solo en desktop. Acá cierra la columna de la cita, que es su
+                  trabajo mientras las dos columnas existen; en móvil las
+                  columnas se apilan y esta misma raya caía entre la cita y los
+                  párrafos, que continúan la misma idea. La regla de la página
+                  es que las horizontales cierran un bloque, no lo parten. La
+                  versión de móvil vive abajo, después de los párrafos. */}
+              <Reveal delay={240} className="hidden lg:block">
                 <span
                   aria-hidden="true"
                   className="mt-8 block hairline-h w-1/2 max-w-[20rem] bg-gold lg:mt-10"
@@ -78,6 +85,19 @@ export function AcercaFilosofia() {
                     {p}
                   </p>
                 ))}
+              </Reveal>
+
+              {/* La raya de cierre en móvil, donde sí cierra: después de los
+                  párrafos y antes de la foto. Es un elemento decorativo
+                  duplicado y no uno movido con `order`, porque en cada
+                  breakpoint vive dentro de una columna distinta del grid.
+                  Duplicar un `span` con `aria-hidden` no le cuesta nada al
+                  lector de pantalla. */}
+              <Reveal delay={240} className="lg:hidden">
+                <span
+                  aria-hidden="true"
+                  className="mt-10 block hairline-h w-1/2 max-w-[20rem] bg-gold"
+                />
               </Reveal>
 
               <Reveal delay={280}>
