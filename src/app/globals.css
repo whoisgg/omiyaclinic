@@ -82,6 +82,15 @@ body {
 /* Terciario: el texto con la regla al costado —"Ver más ————"— en vez de
    debajo. Es el mismo gesto que `.btn-underline`, pero la raya nace visible y
    se estira en horizontal, así que lee como una flecha sin serlo. */
+/* Excepción para cuando el enlace lleva algo que no se puede pasar a
+   versalitas —un handle de Instagram, por ejemplo—. Va acá y no como una
+   utilidad de Tailwind en el componente porque `.btn-rule` se declara después
+   de las utilidades y les gana en la cascada; resolverlo con `!important`
+   desde el JSX escondería el motivo. */
+.btn-rule-plain {
+  text-transform: none;
+}
+
 .btn-rule-line {
   transform-origin: left;
   transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);

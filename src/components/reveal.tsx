@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 
 /**
  * Fade-in sutil al entrar en viewport. Se dispara una sola vez.
@@ -16,10 +22,15 @@ export function Reveal({
   children,
   className = "",
   delay = 0,
+  style,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  /** Estilos del contenedor, para lo que no se puede expresar con una clase
+   *  —una medida calculada, por ejemplo—. Se mezcla con el `transitionDelay`,
+   *  que lo pone el propio componente. */
+  style?: CSSProperties;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -48,7 +59,11 @@ export function Reveal({
     <div
       ref={ref}
       className={`reveal${visible ? " is-visible" : ""} ${className}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={
+        delay || style
+          ? { ...style, ...(delay ? { transitionDelay: `${delay}ms` } : null) }
+          : undefined
+      }
     >
       {children}
     </div>
