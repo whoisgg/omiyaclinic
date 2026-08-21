@@ -51,10 +51,17 @@ export function AcercaPilares() {
   return (
     <section className="bg-cream-pale">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-20 sm:px-8 lg:px-12 lg:py-32">
-        <div className="flex items-start gap-6 lg:gap-16">
-          <SectionRail kanji="五つの柱" />
+        {/* En móvil el riel es la columna derecha y el contenido la izquierda,
+              como en "Tu experiencia en Omiya" del home. Con el riel a la
+              izquierda —que es donde vive en desktop— los 44px del kanji más
+              el gap se leían a 390px como un margen izquierdo de más, distinto
+              al del resto de la página. La colocación va por `col-start` y no
+              reordenando el DOM: el riel se anuncia después del texto igual
+              que en desktop. */}
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-6 lg:flex lg:gap-16">
+          <SectionRail kanji="五つの柱" className="col-start-2 row-start-1" />
 
-          <div className="flex-1">
+          <div className="col-start-1 row-start-1 flex-1">
             <SectionMarker numeral="02" eyebrow="Nuestra mirada" />
 
             <DisplayHeading

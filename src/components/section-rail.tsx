@@ -59,10 +59,16 @@ export function SectionMarker({
  * El margen superior tampoco es decorativo: baja el riel hasta que el kanji
  * arranca a la altura del eyebrow, salteándose lo que ocupan el numeral, su
  * regla y sus márgenes. Son los mismos valores del home.
+ *
+ * El componente no decide de qué lado va: eso lo pone la sección con
+ * `className`, porque depende del layout de cada una y cambia con el
+ * breakpoint. En Acerca de las secciones lo mandan a la columna derecha en
+ * móvil y lo devuelven a la izquierda en desktop.
  */
 export function SectionRail({
   kanji,
   align = "eyebrow",
+  className = "",
 }: {
   kanji: string;
   /**
@@ -76,13 +82,16 @@ export function SectionRail({
    * flotando a media altura.
    */
   align?: "eyebrow" | "top";
+  /** Colocación en el layout de la sección: en qué columna cae y de qué lado.
+   *  El riel no la conoce por su cuenta. */
+  className?: string;
 }) {
   return (
     <Reveal
       delay={200}
       className={`w-11 shrink-0 lg:w-14 ${
         align === "top" ? "self-start" : "mt-14 lg:mt-[4.2rem]"
-      }`}
+      } ${className}`}
     >
       <div className="flex flex-col items-center gap-6">
         <span
