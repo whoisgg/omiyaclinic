@@ -6,7 +6,7 @@ import { HomeTreatmentsGallery } from "@/components/home-treatments-gallery";
 import { Reveal } from "@/components/reveal";
 import { HomeFounder } from "@/components/home-founder";
 import { HomeExperiencia } from "@/components/home-experiencia";
-import { HomeCierre } from "@/components/home-cierre";
+import { CierreCta } from "@/components/cierre-cta";
 import { HomeSocial } from "@/components/home-social";
 import { DisplayHeading } from "@/components/display-heading";
 
@@ -174,7 +174,7 @@ export default function HomePage() {
           detrás de él. */}
       <HomeSocial />
 
-      <HomeCierre />
+      <CierreCta />
     </>
   );
 }

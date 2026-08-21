@@ -30,7 +30,7 @@ const DIRECCION = "Del Pucará 50, Machalí";
  * Además calza con el encuadre: la mitad inferior izquierda, que es donde cae
  * el titular, está desenfocada y clara, así que la tinta se lee sin pelear.
  */
-const FOTO_FONDO: string | null = "/acerca/hero-equipo-v1.webp";
+const FOTO_FONDO: string | null = "/acerca/hero-equipo-v2.webp";
 
 /**
  * El encuadre de la foto, que no es un `object-cover` normal.
@@ -47,6 +47,20 @@ const FOTO_FONDO: string | null = "/acerca/hero-equipo-v1.webp";
  * casi cuadrada y el punto se corre al centro (58%) subiendo el recorte (22%).
  */
 const ENCUADRE = "absolute inset-0 h-[130%] w-[130%] max-w-none object-cover";
+
+/**
+ * El master va a 3200px y `quality={85}` en vez de los 2400 y el 75 por
+ * omisión.
+ *
+ * No es por resolución —a DPR 3 el slot pide 1716px y Next ya servía la
+ * variante de 1920—, sino por **doble compresión**: el master era webp de
+ * calidad 80 y Next lo reencodaba a 75, así que la foto pasaba dos veces por
+ * un compresor con pérdida antes de llegar a pantalla. Se nota en los listones
+ * de madera, que son detalle fino y repetido.
+ *
+ * El peso del master solo cuesta repositorio: el navegador nunca lo descarga,
+ * porque lo que recibe son las variantes que Next deriva de él.
+ */
 
 export function AcercaHero() {
   return (
@@ -66,9 +80,10 @@ export function AcercaHero() {
           <Image
             src={FOTO_FONDO}
             alt=""
-            width={2400}
-            height={1920}
+            width={3200}
+            height={2560}
             priority
+            quality={85}
             sizes="130vw"
             className={`${ENCUADRE} lg:hidden`}
             style={{ left: "-30%", objectPosition: "58% 22%" }}
@@ -76,9 +91,10 @@ export function AcercaHero() {
           <Image
             src={FOTO_FONDO}
             alt=""
-            width={2400}
-            height={1920}
+            width={3200}
+            height={2560}
             priority
+            quality={85}
             sizes="130vw"
             className={`${ENCUADRE} hidden lg:block`}
             style={{ left: "-30%", objectPosition: "82% 32%" }}
@@ -96,7 +112,18 @@ export function AcercaHero() {
               En desktop va en diagonal, tapando fuerte por la izquierda
               —donde cae el titular— y soltando el centro, que es donde están
               ellas. En móvil va vertical y carga al pie, porque ahí el texto
-              no está al costado sino abajo. */}
+              no está al costado sino abajo.
+
+              Los tres puntos son los del wireframe. Se probó agregar un
+              cuarto para levantar el velo por la derecha, donde el riel caía
+              sobre el ventanal, y se descartó al mover el riel a la izquierda:
+              arreglar el fondo para sostener un texto mal ubicado es tratar el
+              síntoma.
+
+              Los textos atenuados sí se quedan en `ink-body` y no en
+              `ink-muted`. La pista estaba en la composición: "Filosofía /
+              Omiya", que va en `ink`, se leía bien al lado de un "Clínica
+              premium de well-aging" que había desaparecido. */}
           <div
             className="absolute inset-0 lg:hidden"
             style={{
@@ -115,52 +142,38 @@ export function AcercaHero() {
       ) : null}
 
       <div className="relative mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-6 pb-8 pt-24 sm:px-8 lg:px-12 lg:pb-10 lg:pt-32">
-        {/* ── Franja superior: el kanji y, en desktop, el riel derecho ── */}
+        {/* ── Franja superior: el riel de la marca, arriba a la izquierda ──
+
+            **Sin kanji.** El hero lo tenía —大宮の哲学, "la filosofía de
+            Omiya"— y salió: con la foto nueva el riel derecho caía sobre el
+            ventanal y el texto se perdía contra la luz de afuera, así que el
+            bloque se mudó al lugar del kanji, que es la esquina donde el velo
+            está en 0.72 y cualquier cosa se lee. Los dos no cabían.
+
+            Se cambió el ideograma por el rótulo de marca y no al revés porque
+            el rótulo dice algo: "Filosofía / Omiya" es lo que la página es, y
+            el descriptor repite la bajada del landing. El kanji era ornamento
+            en un sitio que ya lo tiene en las cinco secciones de abajo.
+
+            El riel deja de estar posicionado con `absolute` y pasa al flujo:
+            no queda nada más en esta franja de lo que tenga que separarse.
+
+            **En móvil no va**, igual que antes de la mudanza: a 390px la
+            portada es la foto y el titular, y el wireframe deja ese lado libre
+            para que la banda respire. Con el kanji fuera, la franja superior
+            queda vacía en móvil y eso es lo correcto — el hero arranca en la
+            imagen.
+
+            Las piezas son las del hero del landing —la vertical, el rótulo en
+            tinta, el descriptor y la horizontal que cierra—, y el descriptor
+            repite el de allá a propósito: es la bajada de la marca, así que
+            las dos portadas del sitio la dicen igual en vez de inventar una
+            variante por página.
+
+            El rótulo va en tinta y no en oro: a 11px sobre una foto el oro se
+            lava. El oro queda en las dos rayas. */}
         <div className="relative flex items-start lg:flex-1">
-          <Reveal>
-            <p
-              aria-hidden="true"
-              lang="ja"
-              className="font-jp text-[26px] font-normal leading-[1.5] text-ink [writing-mode:vertical-rl] lg:text-[34px]"
-            >
-              大宮の哲学
-            </p>
-          </Reveal>
-
-          {/* El riel, calcado del hero del landing: no va pegado al borde
-              derecho sino posicionado dentro del cuadro. Pegado a la derecha
-              quedaba contra el botón de agendar y arriba del todo, y por eso
-              no se leía como el mismo elemento aunque las piezas fueran las
-              mismas.
-
-              El 68% del eje horizontal es el mismo número que allá y cae en
-              el mismo pixel, porque la caja que lo contiene mide igual: el
-              ancho del eje menos el padding lateral.
-
-              El vertical, en cambio, va a 20% y no al 26% del landing. No es
-              una discrepancia: el porcentaje se mide contra cajas distintas.
-              Allá la franja ocupa casi todo el hero, porque el hero no tiene
-              titular abajo; acá arranca bajo el padding superior y termina
-              donde empieza "Acerca de Omiya". Con el 26% el riel caía 34px
-              más abajo que el del landing. Lo que tiene que coincidir es
-              dónde queda en pantalla, y a 20% cae a 2px del original.
-
-              Las piezas también son las de allá: la vertical, el rótulo en
-              tinta, el descriptor atenuado y la horizontal que cierra. El
-              descriptor repite el del landing —"clínica premium de
-              well-aging"— y eso es deliberado: es la bajada de la marca, así
-              que las dos portadas del sitio la dicen igual en vez de inventar
-              una variante por página.
-
-              El rótulo va en tinta y no en oro: a 11px sobre una foto el oro
-              se lava. El oro queda en las dos rayas.
-
-              En móvil no va: el wireframe deja ese lado libre para que la
-              banda de foto respire. */}
-          <Reveal
-            delay={200}
-            className="absolute right-0 top-[20%] hidden flex-col items-start lg:left-[68%] lg:right-auto lg:flex"
-          >
+          <Reveal delay={120} className="hidden flex-col items-start lg:flex">
             <span
               aria-hidden="true"
               className="mb-6 h-16 hairline-v bg-gold lg:mb-8 lg:h-20"
@@ -175,7 +188,7 @@ export function AcercaHero() {
             </p>
             <p
               aria-hidden="true"
-              className="mt-8 font-sans text-[9px] uppercase leading-[2] tracking-[0.22em] text-ink-muted lg:mt-10 lg:text-[10px]"
+              className="mt-8 font-sans text-[9px] uppercase leading-[2] tracking-[0.22em] text-ink-body lg:mt-10 lg:text-[10px]"
             >
               Clínica premium
               <br />
@@ -225,14 +238,14 @@ export function AcercaHero() {
         >
           <div className="flex items-center gap-4">
             <span aria-hidden="true" className="hairline-h w-7 bg-gold sm:w-9" />
-            <span className="font-sans text-[9px] uppercase tracking-[0.26em] text-ink-muted lg:text-[10px]">
+            <span className="font-sans text-[9px] uppercase tracking-[0.26em] text-ink-body lg:text-[10px]">
               Scroll para explorar
             </span>
           </div>
 
           {/* La dirección pasó de vertical a horizontal en esta versión del
               wireframe. En móvil no se muestra: sigue en el footer. */}
-          <p className="hidden font-sans text-[9px] uppercase tracking-[0.24em] text-ink-muted lg:block lg:text-[10px]">
+          <p className="hidden font-sans text-[9px] uppercase tracking-[0.24em] text-ink-body lg:block lg:text-[10px]">
             {DIRECCION}
           </p>
         </Reveal>

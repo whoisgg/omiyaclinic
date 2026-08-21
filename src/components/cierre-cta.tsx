@@ -4,11 +4,18 @@ import { Reveal } from "@/components/reveal";
 import { RuleLink } from "@/components/rule-link";
 
 /**
- * Cierre de la home. Wireframes 42a (desktop) / 42b (móvil).
+ * El cierre del sitio. Wireframes 42a (desktop) / 42b (móvil).
+ *
+ * Se llamaba `HomeCierre` y vivía solo en el landing. Ahora cierra también
+ * Acerca de, así que el nombre dejó de decir la verdad. No lleva props ni
+ * contenido propio de una página —el verso, el titular, la línea de apoyo y
+ * la reserva son los mismos en las dos—, que es lo que permite repetirlo tal
+ * cual en vez de parametrizarlo.
  *
  * Es la única sección sin numeral: no es un capítulo más de la página sino el
  * punto final, así que se sale de la numeración igual que el hero se sale por
- * arriba.
+ * arriba. Eso vale igual en las dos páginas — en el landing va después de la
+ * VI y en Acerca de después de la 05.
  *
  * Los dos breakpoints comparten composición —cambian escalas, no piezas—, así
  * que acá sí alcanza un solo bloque: verso vertical, titular, la línea de
@@ -38,7 +45,7 @@ import { RuleLink } from "@/components/rule-link";
 // "Empieza desde aquí".
 const JA = "ここから始まる";
 
-export function HomeCierre() {
+export function CierreCta() {
   return (
     <section className="relative bg-night">
       <div className="mx-auto w-full max-w-[1600px] px-6 py-24 sm:px-8 lg:px-12 lg:py-36">

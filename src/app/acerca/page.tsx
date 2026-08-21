@@ -4,6 +4,7 @@ import { AcercaPilares } from "@/components/acerca-pilares";
 import { AcercaNombre } from "@/components/acerca-nombre";
 import { AcercaFilosofia } from "@/components/acerca-filosofia";
 import { AcercaFundadora } from "@/components/acerca-fundadora";
+import { CierreCta } from "@/components/cierre-cta";
 
 /**
  * Acerca de — wireframes 32a (desktop) y 32b (móvil).
@@ -28,6 +29,16 @@ export default function AcercaPage() {
       <AcercaNombre />
       <AcercaFilosofia />
       <AcercaFundadora />
+
+      {/* El mismo cierre del landing, repetido tal cual. La página terminaba
+          en la fundadora y desde ahí solo quedaba el footer: alguien que se
+          leyó Acerca de entera es exactamente quien está listo para agendar, y
+          no tenía dónde hacerlo sin volver arriba.
+
+          Repetido y no una variante: es la llamada a la acción del sitio, así
+          que decirla distinta en cada página la debilita. Es el mismo criterio
+          por el que las dos portadas comparten la bajada de marca. */}
+      <CierreCta />
     </main>
   );
 }
