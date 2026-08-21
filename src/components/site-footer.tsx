@@ -1,4 +1,4 @@
-import { INSTAGRAM_URL } from "@/lib/links";
+import { INSTAGRAM_CLINICA_URL } from "@/lib/links";
 import Link from "next/link";
 import { LogoFull } from "@/components/logo-full";
 
@@ -38,7 +38,7 @@ const MAPS_URL =
 
 const CONTACTO = [
   { label: "Del Pucará 50, Machalí", href: MAPS_URL },
-  { label: "Instagram", href: INSTAGRAM_URL },
+  { label: "Instagram", href: INSTAGRAM_CLINICA_URL },
   { label: "WhatsApp", href: "https://wa.me/" },
 ];
 

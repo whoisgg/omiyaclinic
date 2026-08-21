@@ -7,6 +7,7 @@ import { Reveal } from "@/components/reveal";
 import { HomeFounder } from "@/components/home-founder";
 import { HomeExperiencia } from "@/components/home-experiencia";
 import { HomeCierre } from "@/components/home-cierre";
+import { HomeSocial } from "@/components/home-social";
 import { DisplayHeading } from "@/components/display-heading";
 
 const COMPROMISO = [
@@ -168,6 +169,11 @@ export default function HomePage() {
       <HomeExperiencia />
 
       {/* CIERRE — wireframes 38a/40b, la única sección centrada y sin numeral */}
+      {/* SÍGUENOS — sección VI, el feed de Instagram. Va acá y no después
+          del cierre: el cierre es el punto final de la página y nada puede ir
+          detrás de él. */}
+      <HomeSocial />
+
       <HomeCierre />
     </>
   );
